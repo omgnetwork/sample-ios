@@ -18,6 +18,9 @@
 		031BB1631F9890360095468F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1611F9890360095468F /* Login.storyboard */; };
 		031BB1651F9890770095468F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1641F9890770095468F /* LoginViewController.swift */; };
 		031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1661F9890A20095468F /* LoginViewModel.swift */; };
+		031BB1691F98AE600095468F /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1681F98AE600095468F /* Register.storyboard */; };
+		031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB16A1F98AF0C0095468F /* RegisterViewController.swift */; };
+		031BB16D1F98AF250095468F /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB16C1F98AF250095468F /* RegisterViewModel.swift */; };
 		0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */; };
 		3ED9A449EF88414AE7A86E3D /* Pods_OMGShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B48C40806609F21E392F9A /* Pods_OMGShopUITests.framework */; };
 		4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */; };
@@ -59,6 +62,9 @@
 		031BB1621F9890360095468F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		031BB1641F9890770095468F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		031BB1661F9890A20095468F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		031BB1681F98AE600095468F /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		031BB16A1F98AF0C0095468F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		031BB16C1F98AF250095468F /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop.release.xcconfig"; sourceTree = "<group>"; };
 		29E669345BD1D2973F29F1A1 /* Pods-OMGShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A37D1380E180BBB8DCA459E0 /* Pods-OMGShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 				031BB14E1F988E750095468F /* LaunchScreen.storyboard */,
 				031BB1501F988E750095468F /* Main.storyboard */,
 				031BB1611F9890360095468F /* Login.storyboard */,
+				031BB1681F98AE600095468F /* Register.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -182,6 +189,7 @@
 			children = (
 				031BB15A1F988E8B0095468F /* BaseViewController.swift */,
 				031BB1641F9890770095468F /* LoginViewController.swift */,
+				031BB16A1F98AF0C0095468F /* RegisterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 			children = (
 				031BB15C1F988E930095468F /* BaseViewModel.swift */,
 				031BB1661F9890A20095468F /* LoginViewModel.swift */,
+				031BB16C1F98AF250095468F /* RegisterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -346,6 +355,7 @@
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
 				031BB1581F988E750095468F /* Main.storyboard in Resources */,
+				031BB1691F98AE600095468F /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +545,9 @@
 			files = (
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
 				031BB11F1F9886790095468F /* AppDelegate.swift in Sources */,
+				031BB16D1F98AF250095468F /* RegisterViewModel.swift in Sources */,
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
+				031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */,
 				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,
 				031BB15D1F988E930095468F /* BaseViewModel.swift in Sources */,
 			);

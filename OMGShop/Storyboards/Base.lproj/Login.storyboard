@@ -19,7 +19,7 @@
         <!--Login View Controller-->
         <scene sceneID="toN-Sc-CR1">
             <objects>
-                <viewController id="9EG-aI-uEY" customClass="LoginViewController" customModule="OMGShop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="9EG-aI-uEY" customClass="LoginViewController" customModule="OMGShop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LUe-V5-AH0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,6 +147,9 @@
                                 <state key="normal" title="Don't have an account yet? Register">
                                     <color key="titleColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="z1h-mD-fuF" kind="presentation" id="OXk-2W-xda"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,6 +177,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWQ-oc-oor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="580" y="17.541229385307346"/>
+        </scene>
+        <!--Register-->
+        <scene sceneID="RF4-xZ-ido">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Register" id="z1h-mD-fuF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9BZ-u4-RBO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1354" y="17"/>
         </scene>
     </scenes>
     <resources>
