@@ -15,6 +15,12 @@
 		031BB1591F988E750095468F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1531F988E750095468F /* Assets.xcassets */; };
 		031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB15A1F988E8B0095468F /* BaseViewController.swift */; };
 		031BB15D1F988E930095468F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB15C1F988E930095468F /* BaseViewModel.swift */; };
+		031BB1631F9890360095468F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1611F9890360095468F /* Login.storyboard */; };
+		031BB1651F9890770095468F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1641F9890770095468F /* LoginViewController.swift */; };
+		031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1661F9890A20095468F /* LoginViewModel.swift */; };
+		0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */; };
+		3ED9A449EF88414AE7A86E3D /* Pods_OMGShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B48C40806609F21E392F9A /* Pods_OMGShopUITests.framework */; };
+		4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OMGShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		031BB11B1F9886790095468F /* OMGShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMGShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		031BB11E1F9886790095468F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		031BB12A1F9886790095468F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +56,17 @@
 		031BB1531F988E750095468F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		031BB15A1F988E8B0095468F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		031BB15C1F988E930095468F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		031BB1621F9890360095468F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		031BB1641F9890770095468F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		031BB1661F9890A20095468F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop.release.xcconfig"; sourceTree = "<group>"; };
+		29E669345BD1D2973F29F1A1 /* Pods-OMGShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A37D1380E180BBB8DCA459E0 /* Pods-OMGShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.release.xcconfig"; sourceTree = "<group>"; };
+		A6AFBBF013772C360933222F /* Pods-OMGShopUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopUITests/Pods-OMGShopUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD99480BA39EA23C6F7625FC /* Pods-OMGShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop.debug.xcconfig"; sourceTree = "<group>"; };
+		D3B48C40806609F21E392F9A /* Pods_OMGShopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OMGShopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3A0DC706CA91D2513CEC8A2 /* Pods-OMGShopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopUITests/Pods-OMGShopUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OMGShopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ED9A449EF88414AE7A86E3D /* Pods_OMGShopUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +104,8 @@
 				031BB1321F9886790095468F /* OMGShopTests */,
 				031BB13D1F9886790095468F /* OMGShopUITests */,
 				031BB11C1F9886790095468F /* Products */,
+				76ECF0DE93FD8C1066016B0B /* Pods */,
+				0D84E417D653AC9EE1D708AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +164,7 @@
 			children = (
 				031BB14E1F988E750095468F /* LaunchScreen.storyboard */,
 				031BB1501F988E750095468F /* Main.storyboard */,
+				031BB1611F9890360095468F /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -157,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				031BB15A1F988E8B0095468F /* BaseViewController.swift */,
+				031BB1641F9890770095468F /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -165,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				031BB15C1F988E930095468F /* BaseViewModel.swift */,
+				031BB1661F9890A20095468F /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -176,6 +202,29 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0D84E417D653AC9EE1D708AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */,
+				F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */,
+				D3B48C40806609F21E392F9A /* Pods_OMGShopUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		76ECF0DE93FD8C1066016B0B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BD99480BA39EA23C6F7625FC /* Pods-OMGShop.debug.xcconfig */,
+				172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */,
+				29E669345BD1D2973F29F1A1 /* Pods-OMGShopTests.debug.xcconfig */,
+				A37D1380E180BBB8DCA459E0 /* Pods-OMGShopTests.release.xcconfig */,
+				A6AFBBF013772C360933222F /* Pods-OMGShopUITests.debug.xcconfig */,
+				E3A0DC706CA91D2513CEC8A2 /* Pods-OMGShopUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,10 +232,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 031BB1431F9886790095468F /* Build configuration list for PBXNativeTarget "OMGShop" */;
 			buildPhases = (
+				E95EFD1C40035230DE0298A5 /* [CP] Check Pods Manifest.lock */,
 				031BB1171F9886790095468F /* Sources */,
 				031BB1181F9886790095468F /* Frameworks */,
 				031BB1191F9886790095468F /* Resources */,
 				031BB1601F9890170095468F /* ShellScript */,
+				3C3818C7CB1033C55BB1031D /* [CP] Embed Pods Frameworks */,
+				52EC21EA1FD9FC7F758C5DEF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,9 +253,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 031BB1461F9886790095468F /* Build configuration list for PBXNativeTarget "OMGShopTests" */;
 			buildPhases = (
+				2CAA7D3EB5FFC40D2E27AC68 /* [CP] Check Pods Manifest.lock */,
 				031BB12B1F9886790095468F /* Sources */,
 				031BB12C1F9886790095468F /* Frameworks */,
 				031BB12D1F9886790095468F /* Resources */,
+				41D2AD0DCB2F2CF5A7BF40DF /* [CP] Embed Pods Frameworks */,
+				DF187C5B083CD55DF25BBCB6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,9 +274,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 031BB1491F9886790095468F /* Build configuration list for PBXNativeTarget "OMGShopUITests" */;
 			buildPhases = (
+				77326F5702D8D2F39EE14374 /* [CP] Check Pods Manifest.lock */,
 				031BB1361F9886790095468F /* Sources */,
 				031BB1371F9886790095468F /* Frameworks */,
 				031BB1381F9886790095468F /* Resources */,
+				280666DCFC8012DDD5ABFCD5 /* [CP] Embed Pods Frameworks */,
+				53B9CB6D11B90BA345E6B173 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -284,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				031BB1631F9890360095468F /* Login.storyboard in Resources */,
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
 				031BB1581F988E750095468F /* Main.storyboard in Resources */,
@@ -320,6 +379,153 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		280666DCFC8012DDD5ABFCD5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopUITests/Pods-OMGShopUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2CAA7D3EB5FFC40D2E27AC68 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OMGShopTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C3818C7CB1033C55BB1031D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41D2AD0DCB2F2CF5A7BF40DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52EC21EA1FD9FC7F758C5DEF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53B9CB6D11B90BA345E6B173 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopUITests/Pods-OMGShopUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77326F5702D8D2F39EE14374 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OMGShopUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF187C5B083CD55DF25BBCB6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E95EFD1C40035230DE0298A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OMGShop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -327,8 +533,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
 				031BB11F1F9886790095468F /* AppDelegate.swift in Sources */,
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
+				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,
 				031BB15D1F988E930095468F /* BaseViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +587,14 @@
 				031BB1511F988E750095468F /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		031BB1611F9890360095468F /* Login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				031BB1621F9890360095468F /* Base */,
+			);
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -493,6 +709,7 @@
 		};
 		031BB1441F9886790095468F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD99480BA39EA23C6F7625FC /* Pods-OMGShop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -509,6 +726,7 @@
 		};
 		031BB1451F9886790095468F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -525,6 +743,7 @@
 		};
 		031BB1471F9886790095468F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29E669345BD1D2973F29F1A1 /* Pods-OMGShopTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -542,6 +761,7 @@
 		};
 		031BB1481F9886790095468F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A37D1380E180BBB8DCA459E0 /* Pods-OMGShopTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -559,6 +779,7 @@
 		};
 		031BB14A1F9886790095468F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6AFBBF013772C360933222F /* Pods-OMGShopUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -575,6 +796,7 @@
 		};
 		031BB14B1F9886790095468F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3A0DC706CA91D2513CEC8A2 /* Pods-OMGShopUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
