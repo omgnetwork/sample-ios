@@ -34,6 +34,7 @@ class RegisterViewModel: BaseViewModel {
     func submit(withSuccessClosure success: SuccessClosure, failure: FailureClosure) {
         do {
             try self.validateAll()
+            let registerForm = RegisterForm(firstName: self.firstName!, lastName: self.lastName!, email: self.email!, password: self.password!)
             // TODO: do the actual operation
             success()
         } catch let error as OMGError {
