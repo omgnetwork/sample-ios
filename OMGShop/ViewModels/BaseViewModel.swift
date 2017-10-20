@@ -10,4 +10,8 @@ import UIKit
 
 class BaseViewModel: NSObject {
 
+    typealias ViewModelValidationClosure = ((_ errorMessage: String?) -> Void)
+    typealias SuccessClosure = () -> Void
+    typealias FailureClosure = (_ error: OMGError) -> Void
+
 }

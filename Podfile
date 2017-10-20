@@ -7,6 +7,8 @@ target 'OMGShop' do
 
   # Pods for OMGShop
   pod 'TPKeyboardAvoiding'
+  pod 'SkyFloatingLabelTextField'
+  pod 'Toaster'
 
   target 'OMGShopTests' do
     inherit! :search_paths

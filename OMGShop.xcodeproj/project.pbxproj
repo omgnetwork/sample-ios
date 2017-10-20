@@ -21,6 +21,12 @@
 		031BB1691F98AE600095468F /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1681F98AE600095468F /* Register.storyboard */; };
 		031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB16A1F98AF0C0095468F /* RegisterViewController.swift */; };
 		031BB16D1F98AF250095468F /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB16C1F98AF250095468F /* RegisterViewModel.swift */; };
+		031BB16F1F99948A0095468F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB16E1F99948A0095468F /* Theme.swift */; };
+		031BB1721F9995360095468F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1711F9995360095468F /* Extension.swift */; };
+		031BB1741F9998EB0095468F /* OMGShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1731F9998EB0095468F /* OMGShopManager.swift */; };
+		031BB1761F999FED0095468F /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1751F999FED0095468F /* CustomView.swift */; };
+		03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03BD53E41F99B77F00A26499 /* Localizable.strings */; };
+		03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53E91F99D97B00A26499 /* OMGError.swift */; };
 		0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */; };
 		3ED9A449EF88414AE7A86E3D /* Pods_OMGShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B48C40806609F21E392F9A /* Pods_OMGShopUITests.framework */; };
 		4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */; };
@@ -65,6 +71,12 @@
 		031BB1681F98AE600095468F /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		031BB16A1F98AF0C0095468F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		031BB16C1F98AF250095468F /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		031BB16E1F99948A0095468F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		031BB1711F9995360095468F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		031BB1731F9998EB0095468F /* OMGShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGShopManager.swift; sourceTree = "<group>"; };
+		031BB1751F999FED0095468F /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		03BD53E71F99B8FF00A26499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		03BD53E91F99D97B00A26499 /* OMGError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGError.swift; sourceTree = "<group>"; };
 		172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop.release.xcconfig"; sourceTree = "<group>"; };
 		29E669345BD1D2973F29F1A1 /* Pods-OMGShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A37D1380E180BBB8DCA459E0 /* Pods-OMGShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,10 +140,13 @@
 		031BB11D1F9886790095468F /* OMGShop */ = {
 			isa = PBXGroup;
 			children = (
+				03BD53E41F99B77F00A26499 /* Localizable.strings */,
 				031BB11E1F9886790095468F /* AppDelegate.swift */,
 				031BB12A1F9886790095468F /* Info.plist */,
+				031BB1701F99952E0095468F /* Helpers */,
 				031BB1521F988E750095468F /* Assets */,
 				031BB14C1F988E750095468F /* Managers */,
+				03BD53E81F99D93600A26499 /* Models */,
 				031BB14D1F988E750095468F /* Storyboards */,
 				031BB1541F988E750095468F /* ViewControllers */,
 				031BB1551F988E750095468F /* ViewModels */,
@@ -161,6 +176,8 @@
 		031BB14C1F988E750095468F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				031BB16E1F99948A0095468F /* Theme.swift */,
+				031BB1731F9998EB0095468F /* OMGShopManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -210,6 +227,24 @@
 			);
 			path = Views;
 			sourceTree = "<group>";
+		};
+		031BB1701F99952E0095468F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				031BB1711F9995360095468F /* Extension.swift */,
+				031BB1751F999FED0095468F /* CustomView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		03BD53E81F99D93600A26499 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03BD53E91F99D97B00A26499 /* OMGError.swift */,
+			);
+			name = Models;
+			path = OMGShop/Models;
+			sourceTree = SOURCE_ROOT;
 		};
 		0D84E417D653AC9EE1D708AC /* Frameworks */ = {
 			isa = PBXGroup;
@@ -352,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				031BB1631F9890360095468F /* Login.storyboard in Resources */,
+				03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */,
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
 				031BB1581F988E750095468F /* Main.storyboard in Resources */,
@@ -429,11 +465,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -543,13 +583,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				031BB1721F9995360095468F /* Extension.swift in Sources */,
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
+				031BB16F1F99948A0095468F /* Theme.swift in Sources */,
 				031BB11F1F9886790095468F /* AppDelegate.swift in Sources */,
 				031BB16D1F98AF250095468F /* RegisterViewModel.swift in Sources */,
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
+				031BB1761F999FED0095468F /* CustomView.swift in Sources */,
 				031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */,
 				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,
 				031BB15D1F988E930095468F /* BaseViewModel.swift in Sources */,
+				03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */,
+				031BB1741F9998EB0095468F /* OMGShopManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +652,14 @@
 				031BB1621F9890360095468F /* Base */,
 			);
 			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		03BD53E41F99B77F00A26499 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03BD53E71F99B8FF00A26499 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,12 +1,18 @@
 PODS:
+  - SkyFloatingLabelTextField (3.2.1)
+  - Toaster (2.1.0)
   - TPKeyboardAvoiding (1.3.1)
 
 DEPENDENCIES:
+  - SkyFloatingLabelTextField
+  - Toaster
   - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
+  SkyFloatingLabelTextField: 71d28906024e7d7e4460099b342f3ca7036a2e24
+  Toaster: 8c3225dc465bef4aa57e147a288724576df8e439
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: 659b7a11143cb687a62b6930a65047aed0809df0
+PODFILE CHECKSUM: 2ce04e616b18b894effd82c010b3001e0d9c8fa3
 
 COCOAPODS: 1.3.1
