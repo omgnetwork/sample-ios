@@ -9,6 +9,7 @@ target 'OMGShop' do
   pod 'TPKeyboardAvoiding'
   pod 'SkyFloatingLabelTextField'
   pod 'Toaster'
+  pod 'MBProgressHUD'
 
   target 'OMGShopTests' do
     inherit! :search_paths

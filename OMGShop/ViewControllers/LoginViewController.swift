@@ -38,9 +38,11 @@ class LoginViewController: BaseViewController {
 extension LoginViewController {
 
     @IBAction func tapLoginButton(_ sender: UIButton) {
+        self.showLoading()
         self.viewModel.submit(withSuccessClosure: {
-
+            self.hideLoading()
         }, failure: { (error) in
+            self.hideLoading()
             self.showError(withMessage: error.localizedDescription)
         })
     }

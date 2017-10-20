@@ -49,9 +49,11 @@ extension RegisterViewController {
     }
 
     @IBAction func tapRegisterButton(_ sender: UIButton) {
+        self.showLoading()
         self.viewModel.submit(withSuccessClosure: {
-
+            self.hideLoading()
         }, failure: { (error) in
+            self.hideLoading()
             self.showError(withMessage: error.localizedDescription)
         })
     }

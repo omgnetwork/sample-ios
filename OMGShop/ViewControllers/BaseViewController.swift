@@ -8,8 +8,11 @@
 
 import UIKit
 import Toaster
+import MBProgressHUD
 
 class BaseViewController: UIViewController {
+
+    var loading: MBProgressHUD?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,20 @@ class BaseViewController: UIViewController {
 }
 
 extension BaseViewController {
+
+    func showLoading() {
+        self.loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.loading!.contentColor = Color.omiseGOBlue.uiColor()
+        self.loading!.bezelView.style = .solidColor
+        self.loading!.bezelView.color = UIColor.white
+        self.loading!.mode = .indeterminate
+    }
+
+    func hideLoading() {
+        if let loading = self.loading {
+            loading.hide(animated: true)
+        }
+    }
 
     private func setupToast(_ toast: Toast) {
         toast.view.font = Font.avenirBook.withSize(15)

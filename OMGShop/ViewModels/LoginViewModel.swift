@@ -24,6 +24,8 @@ class LoginViewModel: BaseViewModel {
     func submit(withSuccessClosure success: SuccessClosure, failure: FailureClosure) {
         do {
             try self.validateAll()
+            // TODO: do the actual operation
+            success()
         } catch let error as OMGError {
             failure(error)
         } catch _ {}
