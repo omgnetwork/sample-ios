@@ -17,6 +17,7 @@ extension UIColor {
         let blue = CGFloat((hexint & 0xff) >> 0) / 255.0
         let alpha = alpha!
         let color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+
         return color
     }
 
@@ -25,6 +26,7 @@ extension UIColor {
         let scanner: Scanner = Scanner(string: fromHexString)
         scanner.charactersToBeSkipped = CharacterSet(charactersIn: "#")
         scanner.scanHexInt32(&hexInt)
+
         return hexInt
     }
 
@@ -44,6 +46,48 @@ extension String {
 
     func localized() -> String {
         return NSLocalizedString(self, comment: "")
+    }
+
+}
+
+extension UITableView {
+
+    public func registerNib(tableViewCell: UITableViewCell.Type) {
+        self.register(UINib.init(nibName: String(describing: tableViewCell), bundle: nil),
+                      forCellReuseIdentifier: String(describing: tableViewCell))
+    }
+
+    public func registerNibs(tableViewCells: [UITableViewCell.Type]) {
+        tableViewCells.forEach { (tableViewCell) in
+            self.registerNib(tableViewCell: tableViewCell)
+        }
+    }
+
+}
+
+extension UITableViewCell {
+
+    class func identifier() -> String {
+        return String(describing: self)
+    }
+
+}
+
+extension UIImageView {
+
+    func downloaded(from url: URL?) {
+        guard let url = url else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async {
+                self.image = image
+            }
+            }.resume()
     }
 
 }

@@ -27,5 +27,9 @@
 "register.error.validation.email" = "Invalid email";
 "register.error.validation.password" = "Password should be at least 6 characters long";
 
+// Product list
+
+"product_list.view.title" = "Products";
+
 // Global Errors
 "error.missing_required_fields" = "Missing required fields";

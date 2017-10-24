@@ -34,6 +34,10 @@ enum Color: String {
         return UIColor.color(fromHexString: self.rawValue, alpha: alpha)
     }
 
+    func cgColor() -> CGColor {
+        return self.uiColor().cgColor
+    }
+
 }
 
 enum Font: String {

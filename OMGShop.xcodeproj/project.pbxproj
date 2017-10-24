@@ -26,7 +26,15 @@
 		031BB1721F9995360095468F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1711F9995360095468F /* Extension.swift */; };
 		031BB1741F9998EB0095468F /* OMGShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1731F9998EB0095468F /* OMGShopManager.swift */; };
 		031BB1761F999FED0095468F /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1751F999FED0095468F /* CustomView.swift */; };
+		039F69CB1F9EF53A00AE5355 /* Product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039F69C91F9EF53A00AE5355 /* Product.storyboard */; };
 		039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039F69CC1F9EF55800AE5355 /* Register.storyboard */; };
+		039F69D01F9EF7BB00AE5355 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69CF1F9EF7BB00AE5355 /* ProductListViewController.swift */; };
+		039F69D21F9EF7E900AE5355 /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69D11F9EF7E900AE5355 /* ProductListViewModel.swift */; };
+		039F69D61F9EF84F00AE5355 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69D41F9EF84F00AE5355 /* ProductTableViewCell.swift */; };
+		039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */; };
+		039F69D91F9EF9A000AE5355 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69D81F9EF9A000AE5355 /* Product.swift */; };
+		039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */; };
+		03B200291F9F126D0067F86E /* ProductListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B200281F9F126D0067F86E /* ProductListTests.swift */; };
 		03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03BD53E41F99B77F00A26499 /* Localizable.strings */; };
 		03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53E91F99D97B00A26499 /* OMGError.swift */; };
 		03BD53ED1F99ED6500A26499 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53EC1F99ED6500A26499 /* LoginForm.swift */; };
@@ -81,7 +89,15 @@
 		031BB1711F9995360095468F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		031BB1731F9998EB0095468F /* OMGShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGShopManager.swift; sourceTree = "<group>"; };
 		031BB1751F999FED0095468F /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		039F69CA1F9EF53A00AE5355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Product.storyboard; sourceTree = "<group>"; };
 		039F69CD1F9EF55800AE5355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Register.storyboard; sourceTree = "<group>"; };
+		039F69CF1F9EF7BB00AE5355 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
+		039F69D11F9EF7E900AE5355 /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
+		039F69D41F9EF84F00AE5355 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		039F69D81F9EF9A000AE5355 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
+		03B200281F9F126D0067F86E /* ProductListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTests.swift; sourceTree = "<group>"; };
 		03BD53E71F99B8FF00A26499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03BD53E91F99D97B00A26499 /* OMGError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGError.swift; sourceTree = "<group>"; };
 		03BD53EC1F99ED6500A26499 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
@@ -173,6 +189,7 @@
 				031BB1351F9886790095468F /* Info.plist */,
 				030F896D1F9ED7A700986735 /* LoginTests.swift */,
 				030F89711F9EDC5300986735 /* RegisterTests.swift */,
+				03B200281F9F126D0067F86E /* ProductListTests.swift */,
 			);
 			path = OMGShopTests;
 			sourceTree = "<group>";
@@ -202,6 +219,7 @@
 				031BB14E1F988E750095468F /* LaunchScreen.storyboard */,
 				031BB1501F988E750095468F /* Main.storyboard */,
 				031BB1611F9890360095468F /* Login.storyboard */,
+				039F69C91F9EF53A00AE5355 /* Product.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -220,6 +238,7 @@
 				031BB15A1F988E8B0095468F /* BaseViewController.swift */,
 				031BB1641F9890770095468F /* LoginViewController.swift */,
 				031BB16A1F98AF0C0095468F /* RegisterViewController.swift */,
+				039F69CF1F9EF7BB00AE5355 /* ProductListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -230,6 +249,8 @@
 				031BB15C1F988E930095468F /* BaseViewModel.swift */,
 				031BB1661F9890A20095468F /* LoginViewModel.swift */,
 				031BB16C1F98AF250095468F /* RegisterViewModel.swift */,
+				039F69D11F9EF7E900AE5355 /* ProductListViewModel.swift */,
+				039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -237,6 +258,7 @@
 		031BB1561F988E750095468F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				039F69D31F9EF84100AE5355 /* TableViewCells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,10 +272,20 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		039F69D31F9EF84100AE5355 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				039F69D41F9EF84F00AE5355 /* ProductTableViewCell.swift */,
+				039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		03BD53E81F99D93600A26499 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				03BD53E91F99D97B00A26499 /* OMGError.swift */,
+				039F69D81F9EF9A000AE5355 /* Product.swift */,
 			);
 			name = Models;
 			path = OMGShop/Models;
@@ -411,8 +443,10 @@
 			files = (
 				031BB1631F9890360095468F /* Login.storyboard in Resources */,
 				03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */,
+				039F69CB1F9EF53A00AE5355 /* Product.storyboard in Resources */,
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
+				039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */,
 				031BB1581F988E750095468F /* Main.storyboard in Resources */,
 				039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */,
 			);
@@ -608,20 +642,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039F69D91F9EF9A000AE5355 /* Product.swift in Sources */,
 				031BB1721F9995360095468F /* Extension.swift in Sources */,
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
 				031BB16F1F99948A0095468F /* Theme.swift in Sources */,
 				031BB11F1F9886790095468F /* AppDelegate.swift in Sources */,
 				031BB16D1F98AF250095468F /* RegisterViewModel.swift in Sources */,
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
+				039F69D01F9EF7BB00AE5355 /* ProductListViewController.swift in Sources */,
 				031BB1761F999FED0095468F /* CustomView.swift in Sources */,
 				031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */,
 				03BD53F11F99F5C400A26499 /* RegisterForm.swift in Sources */,
 				03BD53ED1F99ED6500A26499 /* LoginForm.swift in Sources */,
+				039F69D61F9EF84F00AE5355 /* ProductTableViewCell.swift in Sources */,
 				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,
+				039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */,
 				03BD53EF1F99EDA200A26499 /* BaseForm.swift in Sources */,
 				031BB15D1F988E930095468F /* BaseViewModel.swift in Sources */,
 				03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */,
+				039F69D21F9EF7E900AE5355 /* ProductListViewModel.swift in Sources */,
 				031BB1741F9998EB0095468F /* OMGShopManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				030F896E1F9ED7A700986735 /* LoginTests.swift in Sources */,
+				03B200291F9F126D0067F86E /* ProductListTests.swift in Sources */,
 				031BB1341F9886790095468F /* OMGShopTests.swift in Sources */,
 				030F89721F9EDC5300986735 /* RegisterTests.swift in Sources */,
 			);
@@ -682,6 +722,14 @@
 				031BB1621F9890360095468F /* Base */,
 			);
 			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		039F69C91F9EF53A00AE5355 /* Product.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				039F69CA1F9EF53A00AE5355 /* Base */,
+			);
+			name = Product.storyboard;
 			sourceTree = "<group>";
 		};
 		039F69CC1F9EF55800AE5355 /* Register.storyboard */ = {
