@@ -34,7 +34,10 @@ class RegisterViewModel: BaseViewModel {
     func submit(withSuccessClosure success: SuccessClosure, failure: FailureClosure) {
         do {
             try self.validateAll()
-            let registerForm = RegisterForm(firstName: self.firstName!, lastName: self.lastName!, email: self.email!, password: self.password!)
+            let registerForm = RegisterForm(firstName: self.firstName!,
+                                            lastName: self.lastName!,
+                                            email: self.email!,
+                                            password: self.password!)
             // TODO: do the actual operation
             success()
         } catch let error as OMGError {
@@ -59,14 +62,14 @@ class RegisterViewModel: BaseViewModel {
     @discardableResult
     private func validateEmail() -> Bool {
         let isEmailValid = self.email?.isValidEmailAddress() ?? false
-        self.updateEmailValidation?(isEmailValid ? nil : "login.error.validation.email".localized())
+        self.updateEmailValidation?(isEmailValid ? nil : "register.error.validation.email".localized())
         return isEmailValid
     }
 
     @discardableResult
     private func validatePassword() -> Bool {
         let isPasswordValid = self.password?.isValidPassword() ?? false
-        updatePasswordValidation?(isPasswordValid ? nil : "login.error.validation.password".localized())
+        updatePasswordValidation?(isPasswordValid ? nil : "register.error.validation.password".localized())
         return isPasswordValid
     }
 
