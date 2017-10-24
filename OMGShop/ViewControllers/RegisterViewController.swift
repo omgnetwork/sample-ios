@@ -23,13 +23,13 @@ class RegisterViewController: BaseViewController {
 
     override func configureView() {
         super.configureView()
-        self.title = "register.view.title".localized()
-        self.firstNameTextField.placeholder = "register.text_field.placeholder.first_name".localized()
-        self.lastNameTextField.placeholder = "register.text_field.placeholder.last_name".localized()
-        self.emailTextField.placeholder = "register.text_field.placeholder.email".localized()
-        self.passwordTextField.placeholder = "register.text_field.placeholder.password".localized()
-        self.registerButton.setTitle("register.button.title.register".localized(), for: .normal)
-        self.closeButton.title = "register.button.title.close".localized()
+        self.title = self.viewModel.viewTitle
+        self.firstNameTextField.placeholder = self.viewModel.firstNamePlaceholder
+        self.lastNameTextField.placeholder = self.viewModel.lastNamePlaceholder
+        self.emailTextField.placeholder = self.viewModel.emailPlaceholder
+        self.passwordTextField.placeholder = self.viewModel.passwordPlaceholder
+        self.registerButton.setTitle(self.viewModel.registerButtonTitle, for: .normal)
+        self.closeButton.title = self.viewModel.closeButtonTitle.localized()
     }
 
     override func configureViewModel() {
@@ -38,6 +38,13 @@ class RegisterViewController: BaseViewController {
         self.viewModel.updateLastNameValidation = { self.lastNameTextField.errorMessage = $0 }
         self.viewModel.updateEmailValidation = { self.emailTextField.errorMessage = $0 }
         self.viewModel.updatePasswordValidation = { self.passwordTextField.errorMessage = $0 }
+        self.viewModel.onSuccessRegister = {
+            self.hideLoading()
+        }
+        self.viewModel.onFailedRegister = { (error) in
+            self.hideLoading()
+            self.showError(withMessage: error.message)
+        }
     }
 
 }
@@ -50,12 +57,7 @@ extension RegisterViewController {
 
     @IBAction func tapRegisterButton(_ sender: UIButton) {
         self.showLoading()
-        self.viewModel.submit(withSuccessClosure: {
-            self.hideLoading()
-        }, failure: { (error) in
-            self.hideLoading()
-            self.showError(withMessage: error.localizedDescription)
-        })
+        self.viewModel.submit()
     }
 
 }

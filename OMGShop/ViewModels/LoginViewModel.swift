@@ -10,8 +10,16 @@ import UIKit
 
 class LoginViewModel: BaseViewModel {
 
+    // Delegate closures
     var updateEmailValidation: ViewModelValidationClosure?
     var updatePasswordValidation: ViewModelValidationClosure?
+    var onSuccessLogin: SuccessClosure?
+    var onFailedLogin: FailureClosure?
+
+    let emailPlaceholder = "login.text_field.placeholder.email".localized()
+    let passwordPlaceholder = "login.text_field.placeholder.password".localized()
+    let loginButtonTitle = "login.button.title.login".localized()
+    let registerButtonTitle = "login.button.title.register".localized()
 
     var email: String? {
         didSet { self.validateEmail() }
@@ -21,14 +29,14 @@ class LoginViewModel: BaseViewModel {
         didSet { self.validatePassword() }
     }
 
-    func submit(withSuccessClosure success: SuccessClosure, failure: FailureClosure) {
+    func submit() {
         do {
             try self.validateAll()
             let loginForm = LoginForm(email: self.email!, password: self.password!)
             // TODO: do the actual operation
-            success()
+            self.onSuccessLogin?()
         } catch let error as OMGError {
-            failure(error)
+            self.onFailedLogin?(error)
         } catch _ {}
     }
 

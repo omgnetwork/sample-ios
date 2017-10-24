@@ -21,16 +21,23 @@ class LoginViewController: BaseViewController {
 
     override func configureView() {
         super.configureView()
-        self.emailTextField.placeholder = "login.text_field.placeholder.email".localized()
-        self.passwordTextField.placeholder = "login.text_field.placeholder.password".localized()
-        self.loginButton.setTitle("login.button.title.login".localized(), for: .normal)
-        self.registerButton.setTitle("login.button.title.register".localized(), for: .normal)
+        self.emailTextField.placeholder = self.viewModel.emailPlaceholder
+        self.passwordTextField.placeholder = self.viewModel.passwordPlaceholder
+        self.loginButton.setTitle(self.viewModel.loginButtonTitle, for: .normal)
+        self.registerButton.setTitle(self.viewModel.registerButtonTitle, for: .normal)
     }
 
     override func configureViewModel() {
         super.configureViewModel()
         self.viewModel.updateEmailValidation = { self.emailTextField.errorMessage = $0 }
         self.viewModel.updatePasswordValidation = { self.passwordTextField.errorMessage = $0 }
+        self.viewModel.onSuccessLogin = {
+            self.hideLoading()
+        }
+        self.viewModel.onFailedLogin = { (error) in
+            self.hideLoading()
+            self.showError(withMessage: error.localizedDescription)
+        }
     }
 
 }
@@ -39,12 +46,7 @@ extension LoginViewController {
 
     @IBAction func tapLoginButton(_ sender: UIButton) {
         self.showLoading()
-        self.viewModel.submit(withSuccessClosure: {
-            self.hideLoading()
-        }, failure: { (error) in
-            self.hideLoading()
-            self.showError(withMessage: error.localizedDescription)
-        })
+        self.viewModel.submit()
     }
 
 }

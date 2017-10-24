@@ -10,10 +10,21 @@ import UIKit
 
 class RegisterViewModel: BaseViewModel {
 
+    // Delegate closures
     var updateFirstNameValidation: ViewModelValidationClosure?
     var updateLastNameValidation: ViewModelValidationClosure?
     var updateEmailValidation: ViewModelValidationClosure?
     var updatePasswordValidation: ViewModelValidationClosure?
+    var onSuccessRegister: SuccessClosure?
+    var onFailedRegister: FailureClosure?
+
+    let viewTitle: String = "register.view.title".localized()
+    let firstNamePlaceholder = "register.text_field.placeholder.first_name".localized()
+    let lastNamePlaceholder = "register.text_field.placeholder.last_name".localized()
+    let emailPlaceholder = "register.text_field.placeholder.email".localized()
+    let passwordPlaceholder = "register.text_field.placeholder.password".localized()
+    let closeButtonTitle = "register.button.title.close".localized()
+    let registerButtonTitle = "register.button.title.register".localized()
 
     var firstName: String? {
         didSet { self.validateFirstName() }
@@ -31,7 +42,7 @@ class RegisterViewModel: BaseViewModel {
         didSet { self.validatePassword() }
     }
 
-    func submit(withSuccessClosure success: SuccessClosure, failure: FailureClosure) {
+    func submit() {
         do {
             try self.validateAll()
             let registerForm = RegisterForm(firstName: self.firstName!,
@@ -39,9 +50,9 @@ class RegisterViewModel: BaseViewModel {
                                             email: self.email!,
                                             password: self.password!)
             // TODO: do the actual operation
-            success()
+            self.onSuccessRegister?()
         } catch let error as OMGError {
-            failure(error)
+            self.onFailedRegister?(error)
         } catch _ {}
     }
 

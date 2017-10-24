@@ -20,13 +20,13 @@
 		031BB1631F9890360095468F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1611F9890360095468F /* Login.storyboard */; };
 		031BB1651F9890770095468F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1641F9890770095468F /* LoginViewController.swift */; };
 		031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1661F9890A20095468F /* LoginViewModel.swift */; };
-		031BB1691F98AE600095468F /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1681F98AE600095468F /* Register.storyboard */; };
 		031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB16A1F98AF0C0095468F /* RegisterViewController.swift */; };
 		031BB16D1F98AF250095468F /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB16C1F98AF250095468F /* RegisterViewModel.swift */; };
 		031BB16F1F99948A0095468F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB16E1F99948A0095468F /* Theme.swift */; };
 		031BB1721F9995360095468F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1711F9995360095468F /* Extension.swift */; };
 		031BB1741F9998EB0095468F /* OMGShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1731F9998EB0095468F /* OMGShopManager.swift */; };
 		031BB1761F999FED0095468F /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1751F999FED0095468F /* CustomView.swift */; };
+		039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039F69CC1F9EF55800AE5355 /* Register.storyboard */; };
 		03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03BD53E41F99B77F00A26499 /* Localizable.strings */; };
 		03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53E91F99D97B00A26499 /* OMGError.swift */; };
 		03BD53ED1F99ED6500A26499 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53EC1F99ED6500A26499 /* LoginForm.swift */; };
@@ -75,13 +75,13 @@
 		031BB1621F9890360095468F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		031BB1641F9890770095468F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		031BB1661F9890A20095468F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		031BB1681F98AE600095468F /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		031BB16A1F98AF0C0095468F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		031BB16C1F98AF250095468F /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		031BB16E1F99948A0095468F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		031BB1711F9995360095468F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		031BB1731F9998EB0095468F /* OMGShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGShopManager.swift; sourceTree = "<group>"; };
 		031BB1751F999FED0095468F /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		039F69CD1F9EF55800AE5355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Register.storyboard; sourceTree = "<group>"; };
 		03BD53E71F99B8FF00A26499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03BD53E91F99D97B00A26499 /* OMGError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGError.swift; sourceTree = "<group>"; };
 		03BD53EC1F99ED6500A26499 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
@@ -198,10 +198,10 @@
 		031BB14D1F988E750095468F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				039F69CC1F9EF55800AE5355 /* Register.storyboard */,
 				031BB14E1F988E750095468F /* LaunchScreen.storyboard */,
 				031BB1501F988E750095468F /* Main.storyboard */,
 				031BB1611F9890360095468F /* Login.storyboard */,
-				031BB1681F98AE600095468F /* Register.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -414,7 +414,7 @@
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
 				031BB1581F988E750095468F /* Main.storyboard in Resources */,
-				031BB1691F98AE600095468F /* Register.storyboard in Resources */,
+				039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +682,14 @@
 				031BB1621F9890360095468F /* Base */,
 			);
 			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		039F69CC1F9EF55800AE5355 /* Register.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				039F69CD1F9EF55800AE5355 /* Base */,
+			);
+			name = Register.storyboard;
 			sourceTree = "<group>";
 		};
 		03BD53E41F99B77F00A26499 /* Localizable.strings */ = {
