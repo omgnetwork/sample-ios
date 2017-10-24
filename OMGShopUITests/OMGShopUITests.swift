@@ -8,4 +8,15 @@
 
 import XCTest
 
-class OMGShopUITests: XCTestCase {}
+class OMGShopUITests: XCTestCase {
+
+    var app: XCUIApplication!
+
+    override func setUp() {
+        super.setUp()
+        continueAfterFailure = false
+        app = XCUIApplication()
+        app.launchArguments.append("--uitesting")
+    }
+
+}

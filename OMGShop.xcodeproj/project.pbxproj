@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030F896E1F9ED7A700986735 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F896D1F9ED7A700986735 /* LoginTests.swift */; };
+		030F89721F9EDC5300986735 /* RegisterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F89711F9EDC5300986735 /* RegisterTests.swift */; };
 		031BB11F1F9886790095468F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB11E1F9886790095468F /* AppDelegate.swift */; };
 		031BB1341F9886790095468F /* OMGShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1331F9886790095468F /* OMGShopTests.swift */; };
 		031BB13F1F9886790095468F /* OMGShopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB13E1F9886790095468F /* OMGShopUITests.swift */; };
@@ -54,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OMGShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		030F896D1F9ED7A700986735 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
+		030F89711F9EDC5300986735 /* RegisterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTests.swift; sourceTree = "<group>"; };
 		031BB11B1F9886790095468F /* OMGShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMGShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		031BB11E1F9886790095468F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		031BB12A1F9886790095468F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 			children = (
 				031BB1331F9886790095468F /* OMGShopTests.swift */,
 				031BB1351F9886790095468F /* Info.plist */,
+				030F896D1F9ED7A700986735 /* LoginTests.swift */,
+				030F89711F9EDC5300986735 /* RegisterTests.swift */,
 			);
 			path = OMGShopTests;
 			sourceTree = "<group>";
@@ -624,7 +630,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				030F896E1F9ED7A700986735 /* LoginTests.swift in Sources */,
 				031BB1341F9886790095468F /* OMGShopTests.swift in Sources */,
+				030F89721F9EDC5300986735 /* RegisterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
