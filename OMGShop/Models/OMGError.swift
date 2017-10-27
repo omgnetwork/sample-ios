@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import OmiseGO
 
 enum OMGError: Error {
 
     case missingRequiredFields
+    case omiseGOError(error: OmiseGOError)
 
     var message: String {
         switch self {
         case .missingRequiredFields:
             return "error.missing_required_fields".localized()
+        case .omiseGOError(error: let error):
+            return error.localizedDescription
         }
     }
 

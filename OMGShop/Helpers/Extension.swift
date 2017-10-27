@@ -7,6 +7,17 @@
 //
 
 import UIKit
+import OmiseGO
+
+extension MintedToken {
+
+    func display(forAmount amount: Double) -> String {
+        let value = amount * OMGShopManager.shared.setting.tokenValue
+
+        return value.displayablePrice(withSubunitToUnitCount: self.subUnitToUnit)
+    }
+
+}
 
 extension UIColor {
 
@@ -88,6 +99,31 @@ extension UIImageView {
                 self.image = image
             }
             }.resume()
+    }
+
+}
+
+extension Double {
+
+    func displayablePrice(withSubunitToUnitCount subUnitToUnit: Double = 100) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.maximumFractionDigits = 2
+        formatter.currencyCode = "THB"
+        formatter.currencySymbol = "฿"
+        let displayableAmount: Double = self / subUnitToUnit
+        return formatter.string(from: NSNumber(value: displayableAmount)) ?? ""
+    }
+
+}
+
+extension UIViewController {
+
+    class func newInstance<T: UIViewController>(fromStoryboard storyboard: Storyboard) -> T? {
+        let identifier = String(describing: self)
+
+        return UIStoryboard(name: storyboard.name, bundle: nil).instantiateViewController(withIdentifier:
+            identifier) as? T
     }
 
 }

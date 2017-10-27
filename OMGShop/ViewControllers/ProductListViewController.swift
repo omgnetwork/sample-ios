@@ -10,6 +10,8 @@ import UIKit
 
 class ProductListViewController: BaseViewController {
 
+    let showCheckoutViewControllerSegueIdentifer = "showCheckoutViewController"
+
     let viewModel: ProductListViewModel = ProductListViewModel()
 
     @IBOutlet weak var tableView: UITableView!
@@ -22,6 +24,7 @@ class ProductListViewController: BaseViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44
         self.reloadProducts()
+        if #available(iOS 11.0, *) { self.tableView.contentInsetAdjustmentBehavior = .never }
     }
 
     override func configureViewModel() {
@@ -37,15 +40,16 @@ class ProductListViewController: BaseViewController {
         self.viewModel.getProducts()
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == self.showCheckoutViewControllerSegueIdentifer,
+            let vc: CheckoutViewController = segue.destination as? CheckoutViewController,
+            let product: Product = sender as? Product {
+            let viewModel: CheckoutViewModel = CheckoutViewModel(product: product)
+            vc.viewModel = viewModel
+        }
     }
-    */
 
 }
 
@@ -68,9 +72,19 @@ extension ProductListViewController: UITableViewDataSource {
 
 }
 
+extension ProductListViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let product = self.viewModel.productCellViewModel(at: indexPath).product
+        self.performSegue(withIdentifier: self.showCheckoutViewControllerSegueIdentifer, sender: product)
+    }
+
+}
+
 extension ProductListViewController: ProductTableViewCellDelegate {
 
     func didTapBuy(forProduct product: Product) {
+        self.performSegue(withIdentifier: self.showCheckoutViewControllerSegueIdentifer, sender: product)
     }
 
 }

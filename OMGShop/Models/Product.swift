@@ -14,21 +14,23 @@ struct Product {
     let description: String
     let imageURL: String
     let price: Double
-    let displayPrice: String
+    var displayPrice: String {
+        return self.price.displayablePrice()
+    }
 
     static func dummies() -> [Product] {
         let p1 = Product(name: "OmiseGO T-shirt 1",
                          description: "This is an awesome T-shirt",
                          imageURL: "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png",
-                         price: 985, displayPrice: "$9.85")
+                         price: 98500)
         let p2 = Product(name: "OmiseGO T-shirt 2",
                          description: "This is an other awesome T-shirt",
                          imageURL: "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png",
-                         price: 155, displayPrice: "$15.5")
+                         price: 15500)
         let p3 = Product(name: "OmiseGO T-shirt 3",
                          description: "This is an other awesome T-shirt",
                          imageURL: "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png",
-                         price: 450, displayPrice: "$4.5")
+                         price: 45000)
         return [p1, p2, p3]
     }
 

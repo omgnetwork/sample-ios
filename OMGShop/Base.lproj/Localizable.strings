@@ -31,5 +31,27 @@
 
 "product_list.view.title" = "Products";
 
+// Checkout
+
+"checkout.view.title" = "Checkout";
+"checkout.label.your_product" = "Your product";
+"checkout.label.summary" = "Summary";
+"checkout.label.sub_total" = "Sub total";
+"checkout.label.discount" = "Discount";
+"checkout.label.total" = "Total";
+"checkout.button.title.redeem" = "Redeem OMG coins";
+"checkout.button.title.pay" = "Pay";
+"checkout.message.pay_success" = "Successfuly bought";
+
+// Redeem popup
+
+"popup.redeem.label.title" = "Redeem OMG coins";
+"popup.redeem.you_have" = "You have";
+"popup.redeem.to_redeem" = "to redeem";
+"popup.redeem.get_discount" = "Get discount";
+"popup.redeem.redeem" = "Redeem";
+"popup.redeem.button.title.cancel" = "Cancel";
+"popup.redeem.button.title.redeem" = "Redeem";
+
 // Global Errors
 "error.missing_required_fields" = "Missing required fields";
