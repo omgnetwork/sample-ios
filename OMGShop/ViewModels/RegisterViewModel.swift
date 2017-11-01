@@ -17,6 +17,7 @@ class RegisterViewModel: BaseViewModel {
     var updatePasswordValidation: ViewModelValidationClosure?
     var onSuccessRegister: SuccessClosure?
     var onFailedRegister: FailureClosure?
+    var onLoadStateChanged: ObjectClosure<Bool>?
 
     let viewTitle: String = "register.view.title".localized()
     let firstNamePlaceholder = "register.text_field.placeholder.first_name".localized()
@@ -42,15 +43,35 @@ class RegisterViewModel: BaseViewModel {
         didSet { self.validatePassword() }
     }
 
+    var isLoading: Bool = false {
+        didSet { self.onLoadStateChanged?(isLoading) }
+    }
+
     func submit() {
         do {
             try self.validateAll()
+            self.isLoading = true
             let registerForm = RegisterForm(firstName: self.firstName!,
                                             lastName: self.lastName!,
                                             email: self.email!,
                                             password: self.password!)
-            // TODO: do the actual operation
-            self.onSuccessRegister?()
+            SessionAPI.register(withForm: registerForm, completionClosure: { (response) in
+                switch response {
+                case .success(data: let tokens):
+                    SessionManager.shared.login(withAppToken: tokens.authenticationToken,
+                                                omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken)
+                    SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+                        self.isLoading = false
+                        self.onSuccessRegister?()
+                    }, failure: { (error) in
+                        self.isLoading = false
+                        self.onFailedRegister?(error)
+                    })
+                case .fail(error: let error):
+                    self.isLoading = false
+                    self.onFailedRegister?(error)
+                }
+            })
         } catch let error as OMGError {
             self.onFailedRegister?(error)
         } catch _ {}

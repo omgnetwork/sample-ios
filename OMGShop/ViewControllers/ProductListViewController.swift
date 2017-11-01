@@ -14,29 +14,42 @@ class ProductListViewController: BaseViewController {
 
     let viewModel: ProductListViewModel = ProductListViewModel()
 
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl: UIRefreshControl!
 
     override func configureView() {
         super.configureView()
         self.title = self.viewModel.viewTitle
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.tintColor = Color.omiseGOBlue.uiColor()
+        self.refreshControl.addTarget(self, action: #selector(reloadProducts), for: .valueChanged)
         self.tableView.registerNib(tableViewCell: ProductTableViewCell.self)
         self.tableView.tableFooterView = UIView()
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44
+        self.tableView.refreshControl = self.refreshControl
+        let logoutButton = UIBarButtonItem(title: self.viewModel.logoutButtonTitle,
+                                           style: .plain, target: self.viewModel,
+                                           action: #selector(self.viewModel.logout))
+        self.navigationItem.leftBarButtonItem = logoutButton
         self.reloadProducts()
         if #available(iOS 11.0, *) { self.tableView.contentInsetAdjustmentBehavior = .never }
     }
 
     override func configureViewModel() {
         super.configureViewModel()
+        self.viewModel.onLoadStateChanged = { $0 ? self.showLoading() : self.hideLoading()}
         self.viewModel.reloadTableViewClosure = {
-            self.hideLoading()
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
+        self.viewModel.onFailLoadProducts = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onLogoutSuccess = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
+        self.viewModel.onFailLogout = { self.showError(withMessage: $0.localizedDescription) }
     }
 
-    private func reloadProducts() {
-        self.showLoading()
+    @objc private func reloadProducts() {
         self.viewModel.getProducts()
     }
 

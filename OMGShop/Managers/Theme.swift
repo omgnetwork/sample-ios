@@ -22,6 +22,9 @@ struct Theme {
         barButtonAppearance.setTitleTextAttributes([
             .font: Font.avenirMedium.withSize(17),
             .foregroundColor: Color.omiseGOBlue.uiColor()], for: .normal)
+        barButtonAppearance.setTitleTextAttributes([
+            .font: Font.avenirMedium.withSize(17),
+            .foregroundColor: Color.omiseGOBlue.uiColor()], for: .highlighted)
     }
 
 }

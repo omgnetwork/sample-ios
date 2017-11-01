@@ -1,21 +1,27 @@
 PODS:
+  - Alamofire (4.5.1)
+  - KeychainSwift (10.0.0)
   - MBProgressHUD (1.0.0)
   - SkyFloatingLabelTextField (3.2.1)
   - Toaster (2.1.0)
   - TPKeyboardAvoiding (1.3.1)
 
 DEPENDENCIES:
+  - Alamofire
+  - KeychainSwift
   - MBProgressHUD
   - SkyFloatingLabelTextField
   - Toaster
   - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SkyFloatingLabelTextField: 71d28906024e7d7e4460099b342f3ca7036a2e24
   Toaster: 8c3225dc465bef4aa57e147a288724576df8e439
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: b8efad44446a3ae4237ce1acfae73d2b4f27abb8
+PODFILE CHECKSUM: 33f70367a50eae8b3b8e5d303a1264626b63061a
 
 COCOAPODS: 1.3.1

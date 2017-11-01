@@ -13,8 +13,10 @@ typealias EmptyClosure = () -> Void
 typealias SuccessClosure = () -> Void
 typealias ObjectClosure<T> = (_ object: T) -> Void
 typealias FailureClosure = (_ error: OMGError) -> Void
+typealias APIClosure<T: Decodable> = ObjectClosure<Response<T>>
 
 enum Storyboard {
+    case loading
     case login
     case register
     case product
@@ -22,6 +24,7 @@ enum Storyboard {
 
     var name: String {
         switch self {
+        case .loading: return "Loading"
         case .login: return "Login"
         case .register: return "Register"
         case .product: return "Product"
@@ -32,4 +35,24 @@ enum Storyboard {
     var storyboard: UIStoryboard {
         return UIStoryboard.init(name: self.name, bundle: nil)
     }
+}
+
+enum UserDefaultKeys: String {
+    case appAuthenticationToken = "token.app_authentication_token"
+    case omiseGOAuthenticationToken = "token.omisego_authentication_token"
+}
+
+enum AppState {
+    case logout
+    case loading
+    case login
+}
+
+struct Constant {
+
+    static let hostURL = "https://kubera.omisego.io"
+    static let apiKey = "xxx"
+    static let authenticatedScheme = "OMGAuthenticated"
+    static let unAuthenticatedScheme = "OMGBasic"
+
 }

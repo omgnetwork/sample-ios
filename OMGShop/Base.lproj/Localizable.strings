@@ -6,6 +6,10 @@
   Copyright © 2560 Mederic Petit. All rights reserved.
 */
 
+// Loading
+
+"loading.button.title.retry" = "Retry";
+
 // Login
 "login.error.validation.email" = "Invalid email";
 "login.error.validation.password" = "Password should be at least 6 characters long";
@@ -30,6 +34,7 @@
 // Product list
 
 "product_list.view.title" = "Products";
+"product_list.button.title.logout" = "Log out";
 
 // Checkout
 
@@ -55,3 +60,4 @@
 
 // Global Errors
 "error.missing_required_fields" = "Missing required fields";
+"error.unexpected" = "An unexpected error has occured";

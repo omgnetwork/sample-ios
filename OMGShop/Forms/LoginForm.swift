@@ -8,9 +8,17 @@
 
 import UIKit
 
-struct LoginForm {
+struct LoginForm: Encodable {
 
     let email: String
     let password: String
+
+}
+
+extension LoginForm: JsonEncodable {
+
+    func encodedBody() -> Data? {
+        return try? JSONEncoder().encode(self)
+    }
 
 }

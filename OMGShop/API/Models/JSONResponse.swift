@@ -1,0 +1,58 @@
+//
+//  JSONResponse.swift
+//  OMGShop
+//
+//  Created by Mederic Petit on 30/10/2560 BE.
+//  Copyright © 2560 Mederic Petit. All rights reserved.
+//
+
+import UIKit
+
+struct JSONResponse<ObjectType: Decodable> {
+
+    let version: String
+    let success: Bool
+    let data: Response<ObjectType>
+
+}
+
+extension JSONResponse: Decodable {
+
+    private enum CodingKeys: String, CodingKey {
+        case version
+        case success
+        case data
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        version = try container.decode(String.self, forKey: .version)
+        success = try container.decode(Bool.self, forKey: .success)
+        if success {
+            let result = try container.decode(ObjectType.self, forKey: .data)
+            data = .success(data: result)
+        } else {
+            let error = try container.decode(APIError.self, forKey: .data)
+            data = .fail(error: .apiError(error: error))
+        }
+    }
+}
+
+struct JSONListResponse<ListableType: Decodable> {
+
+    let data: ListableType
+
+}
+
+extension JSONListResponse: Decodable {
+
+    private enum CodingKeys: String, CodingKey {
+        case data
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        data = try container.decode(ListableType.self, forKey: .data)
+    }
+
+}

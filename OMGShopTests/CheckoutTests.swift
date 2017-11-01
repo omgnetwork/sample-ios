@@ -8,12 +8,13 @@
 
 import XCTest
 @testable import OMGShop
+@testable import OmiseGO
 
 class CheckoutTests: OMGShopTests {
 
     func testGetBalance() {
         let expectation = self.expectation(description: "get balance")
-        let product = Product(name: "test", description: "test", imageURL: "", price: 20000)
+        let product = Product(uid: "1", name: "test", description: "test", imageURL: "", price: 20000)
         let viewModel = CheckoutViewModel(product: product)
         viewModel.onSuccessGetBalances = {
             expectation.fulfill()
@@ -27,7 +28,7 @@ class CheckoutTests: OMGShopTests {
 
     func testPricesCalculation() {
         let productPrice: Double = 20000
-        let product = Product(name: "test", description: "test", imageURL: "", price: productPrice)
+        let product = Product(uid: "1", name: "test", description: "test", imageURL: "", price: productPrice)
         let viewModel = CheckoutViewModel(product: product)
         var discountedPrice: String?
         var totalPrice: String?
@@ -47,8 +48,13 @@ class CheckoutTests: OMGShopTests {
 
     func testPay() {
         let expectation = self.expectation(description: "pay")
-        let product = Product(name: "test", description: "test", imageURL: "", price: 20000)
+        let product = Product(uid: "1", name: "test", description: "test", imageURL: "", price: 20000)
         let viewModel = CheckoutViewModel(product: product)
+        let decoder = JSONDecoder()
+        //swiftlint:disable:next line_length
+        let balanceJSON = "{\r\n  \"object\": \"balance\",\r\n  \"minted_token\": {\r\n    \"object\": \"minted_token\",\r\n    \"symbol\": \"OMG\",\r\n    \"name\": \"OmiseGO\",\r\n    \"subunit_to_unit\": 100\r\n  },\r\n  \"address\": \"my_omg_address\",\r\n  \"amount\": 800000\r\n}".data(using: .utf8)
+        let balance = try? decoder.decode(Balance.self, from: balanceJSON!)
+        viewModel.checkout.balance = balance
         viewModel.onSuccessPay = { _ in
             expectation.fulfill()
         }

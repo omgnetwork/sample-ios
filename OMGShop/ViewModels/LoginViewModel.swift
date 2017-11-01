@@ -15,6 +15,7 @@ class LoginViewModel: BaseViewModel {
     var updatePasswordValidation: ViewModelValidationClosure?
     var onSuccessLogin: SuccessClosure?
     var onFailedLogin: FailureClosure?
+    var onLoadStateChanged: ObjectClosure<Bool>?
 
     let emailPlaceholder = "login.text_field.placeholder.email".localized()
     let passwordPlaceholder = "login.text_field.placeholder.password".localized()
@@ -29,12 +30,32 @@ class LoginViewModel: BaseViewModel {
         didSet { self.validatePassword() }
     }
 
+    var isLoading: Bool = false {
+        didSet { self.onLoadStateChanged?(isLoading) }
+    }
+
     func submit() {
         do {
             try self.validateAll()
+            self.isLoading = true
             let loginForm = LoginForm(email: self.email!, password: self.password!)
-            // TODO: do the actual operation
-            self.onSuccessLogin?()
+            SessionAPI.login(withForm: loginForm, completionClosure: { (response) in
+                switch response {
+                case .success(data: let tokens):
+                    SessionManager.shared.login(withAppToken: tokens.authenticationToken,
+                                                omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken)
+                    SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+                        self.isLoading = false
+                        self.onSuccessLogin?()
+                    }, failure: { (error) in
+                        self.isLoading = false
+                        self.onFailedLogin?(error)
+                    })
+                case .fail(error: let error):
+                    self.isLoading = false
+                    self.onFailedLogin?(error)
+                }
+            })
         } catch let error as OMGError {
             self.onFailedLogin?(error)
         } catch _ {}

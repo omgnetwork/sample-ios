@@ -18,6 +18,7 @@ class ProductListTests: OMGShopTests {
             defer { expectation.fulfill() }
             XCTAssertTrue(viewModel.numberOfCell() > 0)
         }
+        viewModel.onFailLoadProducts = { XCTFail($0.localizedDescription) }
         viewModel.getProducts()
         waitForExpectations(timeout: 15.0, handler: nil)
     }

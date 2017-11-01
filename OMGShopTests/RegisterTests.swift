@@ -51,4 +51,15 @@ class RegisterTests: OMGShopTests {
         XCTAssert(passwordError == nil)
     }
 
+    func testRegister() {
+        let viewModel: RegisterViewModel = RegisterViewModel()
+        viewModel.onSuccessRegister = { XCTAssert(true) }
+        viewModel.onFailedRegister = { XCTFail($0.localizedDescription) }
+        viewModel.firstName = "John"
+        viewModel.lastName = "Doe"
+        viewModel.email = "email@example.com"
+        viewModel.password = "aV@lIdP@ssWord"
+        viewModel.submit()
+    }
+
 }

@@ -10,6 +10,8 @@ target 'OMGShop' do
   pod 'SkyFloatingLabelTextField'
   pod 'Toaster'
   pod 'MBProgressHUD'
+  pod 'Alamofire'
+  pod 'KeychainSwift'
 
   target 'OMGShopTests' do
     inherit! :search_paths

@@ -20,8 +20,10 @@ class Checkout {
     }
 
     let subTotal: Double
+    let product: Product
 
     init(product: Product) {
+        self.product = product
         self.subTotal = product.price
         self.updateTotalPrice()
     }

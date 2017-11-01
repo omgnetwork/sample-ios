@@ -9,6 +9,10 @@
 import UIKit
 import OmiseGO
 
+func dispatchMain(_ block: @escaping EmptyClosure) {
+    DispatchQueue.main.async { block() }
+}
+
 extension MintedToken {
 
     func display(forAmount amount: Double) -> String {

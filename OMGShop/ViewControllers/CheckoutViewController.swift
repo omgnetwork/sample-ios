@@ -43,28 +43,22 @@ class CheckoutViewController: BaseViewController {
         self.redeemButton.setTitle(self.viewModel.redeemButtonTitle, for: .normal)
         self.payButton.setTitle(self.viewModel.payButtonTitle, for: .normal)
 
-        self.showLoading()
         self.viewModel.loadBalances()
     }
 
     override func configureViewModel() {
         super.configureViewModel()
+        self.viewModel.onLoadStateChanged = { $0 ? self.showLoading() : self.hideLoading()}
         self.viewModel.onSuccessGetBalances = { self.hideLoading() }
-        self.viewModel.onFailGetBalances = { (error) in
-            self.hideLoading()
-            self.showError(withMessage: error.localizedDescription)
-        }
+        self.viewModel.onFailGetBalances = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onDiscountPriceChange = { self.discountPriceLabel.text = $0 }
         self.viewModel.onTotalPriceChange = { self.totalPriceLabel.text = $0 }
         self.viewModel.onSuccessPay = { (message) in
             self.showMessage(message)
-            self.hideLoading()
             self.navigationController?.popViewController(animated: true)
         }
-        self.viewModel.onFailPay = { (error) in
-            self.showError(withMessage: error.message)
-            self.hideLoading()
-        }
+        self.viewModel.onFailPay = {  self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onAppStateChanged = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
     }
 
     override func viewDidLayoutSubviews() {
@@ -82,7 +76,6 @@ extension CheckoutViewController {
     }
 
     @IBAction func didTapPayButton(_ sender: UIButton) {
-        self.showLoading()
         self.viewModel.pay()
     }
 

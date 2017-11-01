@@ -16,7 +16,7 @@ class RedeemTests: OMGShopTests {
         //swiftlint:disable:next line_length
         let balanceJSON = "{\r\n  \"object\": \"balance\",\r\n  \"minted_token\": {\r\n    \"object\": \"minted_token\",\r\n    \"symbol\": \"OMG\",\r\n    \"name\": \"OmiseGO\",\r\n    \"subunit_to_unit\": 100\r\n  },\r\n  \"address\": \"my_omg_address\",\r\n  \"amount\": 800000\r\n}".data(using: .utf8)
         let balance = try? JSONDecoder().decode(Balance.self, from: balanceJSON!)
-        let product = Product(name: "", description: "", imageURL: "", price: 20000)
+        let product = Product(uid: "1", name: "", description: "", imageURL: "", price: 20000)
         let checkout = Checkout(product: product)
         checkout.balance = balance
         let viewModel = RedeemPopupViewModel(checkout: checkout)
@@ -28,7 +28,7 @@ class RedeemTests: OMGShopTests {
         //swiftlint:disable:next line_length
         let balanceJSON = "{\r\n  \"object\": \"balance\",\r\n  \"minted_token\": {\r\n    \"object\": \"minted_token\",\r\n    \"symbol\": \"OMG\",\r\n    \"name\": \"OmiseGO\",\r\n    \"subunit_to_unit\": 100\r\n  },\r\n  \"address\": \"my_omg_address\",\r\n  \"amount\": 800000\r\n}".data(using: .utf8)
         let balance = try? JSONDecoder().decode(Balance.self, from: balanceJSON!)
-        let product = Product(name: "", description: "", imageURL: "", price: 20000)
+        let product = Product(uid: "1", name: "", description: "", imageURL: "", price: 20000)
         let checkout = Checkout(product: product)
         checkout.balance = balance
         let viewModel = RedeemPopupViewModel(checkout: checkout)
@@ -40,7 +40,7 @@ class RedeemTests: OMGShopTests {
         //swiftlint:disable:next line_length
         let balanceJSON = "{\r\n  \"object\": \"balance\",\r\n  \"minted_token\": {\r\n    \"object\": \"minted_token\",\r\n    \"symbol\": \"OMG\",\r\n    \"name\": \"OmiseGO\",\r\n    \"subunit_to_unit\": 100\r\n  },\r\n  \"address\": \"my_omg_address\",\r\n  \"amount\": 800000\r\n}".data(using: .utf8)
         let balance = try? JSONDecoder().decode(Balance.self, from: balanceJSON!)
-        let product = Product(name: "", description: "", imageURL: "", price: 20000)
+        let product = Product(uid: "1", name: "", description: "", imageURL: "", price: 20000)
         let checkout = Checkout(product: product)
         checkout.balance = balance
         checkout.redeemedToken = 5000

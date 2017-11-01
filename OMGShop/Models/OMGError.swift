@@ -12,13 +12,22 @@ import OmiseGO
 enum OMGError: Error {
 
     case missingRequiredFields
+    case unexpected
+    case apiError(error: APIError)
     case omiseGOError(error: OmiseGOError)
+    case other(error: Error)
 
     var message: String {
         switch self {
         case .missingRequiredFields:
             return "error.missing_required_fields".localized()
+        case .unexpected:
+            return "error.unexpected".localized()
+        case .apiError(error: let apiError):
+            return apiError.description
         case .omiseGOError(error: let error):
+            return error.description
+        case .other(error: let error):
             return error.localizedDescription
         }
     }

@@ -12,8 +12,13 @@ class ProductListViewModel: BaseViewModel {
 
     // Delegate closures
     var reloadTableViewClosure: EmptyClosure?
+    var onFailLoadProducts: FailureClosure?
+    var onLoadStateChanged: ObjectClosure<Bool>?
+    var onLogoutSuccess: EmptyClosure?
+    var onFailLogout: FailureClosure?
 
-    var viewTitle: String = "product_list.view.title".localized()
+    let viewTitle: String = "product_list.view.title".localized()
+    let logoutButtonTitle = "product_list.button.title.logout".localized()
 
     private var productCellViewModels: [ProductCellViewModel]! = [] {
         didSet {
@@ -21,16 +26,43 @@ class ProductListViewModel: BaseViewModel {
         }
     }
 
+    var isLoading: Bool = false {
+        didSet { self.onLoadStateChanged?(self.isLoading) }
+    }
+
     func getProducts() {
-        // TODO: Get products from API
-        let products = Product.dummies()
-        self.process(products)
+        self.isLoading = true
+        ProductAPI.getAll { (response) in
+            switch response {
+            case .success(data: let products):
+                self.process(products)
+                self.isLoading = false
+            case .fail(error: let error):
+                self.isLoading = false
+                self.onFailLoadProducts?(error)
+            }
+        }
+    }
+
+    @objc func logout() {
+        self.isLoading = true
+        SessionManager.shared.logout(withSuccessClosure: {
+            dispatchMain {
+                self.isLoading = false
+                self.onLogoutSuccess?()
+            }
+        }, failure: { (error) in
+            dispatchMain {
+                self.isLoading = false
+                self.onFailLogout?(error)
+            }
+        })
     }
 
     private func process(_ products: [Product]) {
         var newCellViewModels: [ProductCellViewModel] = []
         products.forEach({ newCellViewModels.append(ProductCellViewModel(product: $0)) })
-        self.productCellViewModels.append(contentsOf: newCellViewModels)
+        self.productCellViewModels = newCellViewModels
     }
 
 }
