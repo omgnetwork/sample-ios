@@ -52,13 +52,13 @@ class SessionManager {
     func logout(withSuccessClosure success: @escaping SuccessClosure, failure: @escaping FailureClosure) {
         OMGClient.shared.logout { (response) in
             //TODO: Uncomment this
-//            switch response {
-//            case .success(data: _):
-                self.clearTokens()
-                success()
-//            case .fail(error: let error):
-//                failure(.omiseGOError(error: error))
-//            }
+            //            switch response {
+            //            case .success(data: _):
+            self.clearTokens()
+            success()
+            //            case .fail(error: let error):
+            //                failure(.omiseGOError(error: error))
+            //            }
         }
 
     }
@@ -90,5 +90,4 @@ class SessionManager {
         let config = OMGConfiguration(baseURL: "https://kubera.omisego.io", apiKey: "", authenticationToken: token)
         OMGClient.setup(withConfig: config)
     }
-
 }

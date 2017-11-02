@@ -32,6 +32,14 @@
             </objects>
             <point key="canvasLocation" x="-217" y="172"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="dXk-Kd-FZ7">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="PJk-UF-dpQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vb4-En-wcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1714" y="-389"/>
+        </scene>
         <!--Product List View Controller-->
         <scene sceneID="8C6-8o-vdm">
             <objects>
@@ -58,7 +66,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YQ2-At-GO1"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fwh-FD-iDS"/>
+                    <navigationItem key="navigationItem" id="fwh-FD-iDS">
+                        <barButtonItem key="leftBarButtonItem" image="profile_icon" id="E8m-kh-Nrj">
+                            <color key="tintColor" red="0.10196078431372549" green="0.32549019607843138" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="PJk-UF-dpQ" kind="presentation" id="h7M-HM-0aW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="wiR-Ar-yeI" id="YM6-iK-QR2"/>
                         <segue destination="wtB-rv-Xo1" kind="show" identifier="showCheckoutViewController" id="3oy-5h-onf"/>
@@ -82,11 +97,11 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR PRODUCT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGD-Ea-iq0">
                                         <rect key="frame" x="16" y="0.0" width="343" height="36"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
-                                        <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.90251116070000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lGD-Ea-iq0" secondAttribute="trailing" constant="16" id="8Qu-6x-MMg"/>
                                     <constraint firstItem="lGD-Ea-iq0" firstAttribute="top" secondItem="wxr-7n-9sy" secondAttribute="top" id="BOk-Ab-VTG"/>
@@ -138,11 +153,11 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUMMARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tf4-mw-VFG">
                                         <rect key="frame" x="16" y="0.0" width="343" height="36"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
-                                        <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.90251116070000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Tf4-mw-VFG" firstAttribute="top" secondItem="sea-TZ-3Ks" secondAttribute="top" id="2xy-5g-hCg"/>
                                     <constraint firstAttribute="bottom" secondItem="Tf4-mw-VFG" secondAttribute="bottom" id="Eu9-Cg-1ba"/>
@@ -323,7 +338,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzP-c7-XLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1956" y="169.56521739130437"/>
+            <point key="canvasLocation" x="1993" y="171"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="profile_icon" width="25" height="25"/>
+    </resources>
 </document>

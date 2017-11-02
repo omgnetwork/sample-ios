@@ -14,11 +14,8 @@ class ProductListViewModel: BaseViewModel {
     var reloadTableViewClosure: EmptyClosure?
     var onFailLoadProducts: FailureClosure?
     var onLoadStateChanged: ObjectClosure<Bool>?
-    var onLogoutSuccess: EmptyClosure?
-    var onFailLogout: FailureClosure?
 
     let viewTitle: String = "product_list.view.title".localized()
-    let logoutButtonTitle = "product_list.button.title.logout".localized()
 
     private var productCellViewModels: [ProductCellViewModel]! = [] {
         didSet {
@@ -42,21 +39,6 @@ class ProductListViewModel: BaseViewModel {
                 self.onFailLoadProducts?(error)
             }
         }
-    }
-
-    @objc func logout() {
-        self.isLoading = true
-        SessionManager.shared.logout(withSuccessClosure: {
-            dispatchMain {
-                self.isLoading = false
-                self.onLogoutSuccess?()
-            }
-        }, failure: { (error) in
-            dispatchMain {
-                self.isLoading = false
-                self.onFailLogout?(error)
-            }
-        })
     }
 
     private func process(_ products: [Product]) {

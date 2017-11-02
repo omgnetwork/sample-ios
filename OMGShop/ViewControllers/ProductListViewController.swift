@@ -29,10 +29,6 @@ class ProductListViewController: BaseViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44
         self.tableView.refreshControl = self.refreshControl
-        let logoutButton = UIBarButtonItem(title: self.viewModel.logoutButtonTitle,
-                                           style: .plain, target: self.viewModel,
-                                           action: #selector(self.viewModel.logout))
-        self.navigationItem.leftBarButtonItem = logoutButton
         self.reloadProducts()
         if #available(iOS 11.0, *) { self.tableView.contentInsetAdjustmentBehavior = .never }
     }
@@ -45,8 +41,6 @@ class ProductListViewController: BaseViewController {
             self.refreshControl.endRefreshing()
         }
         self.viewModel.onFailLoadProducts = { self.showError(withMessage: $0.localizedDescription) }
-        self.viewModel.onLogoutSuccess = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
-        self.viewModel.onFailLogout = { self.showError(withMessage: $0.localizedDescription) }
     }
 
     @objc private func reloadProducts() {
@@ -63,7 +57,6 @@ class ProductListViewController: BaseViewController {
             vc.viewModel = viewModel
         }
     }
-
 }
 
 extension ProductListViewController: UITableViewDataSource {

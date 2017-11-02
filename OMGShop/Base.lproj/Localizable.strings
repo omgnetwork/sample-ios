@@ -58,6 +58,14 @@
 "popup.redeem.button.title.cancel" = "Cancel";
 "popup.redeem.button.title.redeem" = "Redeem";
 
+// Profile
+
+"profile.view.title" = "My profile";
+"profile.button.title.logout" = "Log out";
+"profile.button.title.close" = "Close";
+"profile.label.token" = "Token";
+"profile.label.amount" = "Amount";
+
 // Global Errors
 "error.missing_required_fields" = "Missing required fields";
 "error.unexpected" = "An unexpected error has occured";

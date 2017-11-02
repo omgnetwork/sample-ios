@@ -15,7 +15,6 @@ class CheckoutViewModel: BaseViewModel {
     var onDiscountPriceChange: ObjectClosure<String>?
     var onTotalPriceChange: ObjectClosure<String>?
     var onFailGetBalances: FailureClosure?
-    var onSuccessGetBalances: SuccessClosure?
     var onSuccessPay: ObjectClosure<String>?
     var onFailPay: FailureClosure?
     var onLoadStateChanged: ObjectClosure<Bool>?
@@ -65,7 +64,6 @@ class CheckoutViewModel: BaseViewModel {
         self.checkout.balance = balance
         self.isLoading = true
         self.isLoading = false
-        self.onSuccessGetBalances?()
         // TODO: For later
 //        Balance.getAll { (result) in
 //            self.isLoading = false

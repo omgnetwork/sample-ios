@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03003E191FA989A600EAB202 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03003E181FA989A600EAB202 /* Profile.storyboard */; };
 		03006E521FA83B5A00831F32 /* CustomerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03006E511FA83B5A00831F32 /* CustomerTest.swift */; };
 		030F896E1F9ED7A700986735 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F896D1F9ED7A700986735 /* LoginTests.swift */; };
 		030F89721F9EDC5300986735 /* RegisterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F89711F9EDC5300986735 /* RegisterTests.swift */; };
@@ -14,7 +15,6 @@
 		031BB1341F9886790095468F /* OMGShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1331F9886790095468F /* OMGShopTests.swift */; };
 		031BB13F1F9886790095468F /* OMGShopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB13E1F9886790095468F /* OMGShopUITests.swift */; };
 		031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB14E1F988E750095468F /* LaunchScreen.storyboard */; };
-		031BB1581F988E750095468F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1501F988E750095468F /* Main.storyboard */; };
 		031BB1591F988E750095468F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1531F988E750095468F /* Assets.xcassets */; };
 		031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB15A1F988E8B0095468F /* BaseViewController.swift */; };
 		031BB15D1F988E930095468F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB15C1F988E930095468F /* BaseViewModel.swift */; };
@@ -37,11 +37,11 @@
 		034FA0421FA2F7CE0033B8D1 /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C2E9A1FA03E38001AE452 /* OmiseGO.framework */; };
 		036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */; };
 		036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */; };
-		037AFA6E1FA702EF006A0C01 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA6D1FA702EF006A0C01 /* APIController.swift */; };
 		037AFA701FA70A12006A0C01 /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA6F1FA70A12006A0C01 /* JSONResponse.swift */; };
 		037AFA721FA70B3C006A0C01 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA711FA70B3C006A0C01 /* Response.swift */; };
 		037AFA741FA70B5D006A0C01 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA731FA70B5D006A0C01 /* APIError.swift */; };
 		037AFA761FA7122B006A0C01 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA751FA7122B006A0C01 /* Router.swift */; };
+		039B18A91FA9DF0D00A0B2BA /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039B18A81FA9DF0C00A0B2BA /* APIController.swift */; };
 		039F69CB1F9EF53A00AE5355 /* Product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039F69C91F9EF53A00AE5355 /* Product.storyboard */; };
 		039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 039F69CC1F9EF55800AE5355 /* Register.storyboard */; };
 		039F69D01F9EF7BB00AE5355 /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69CF1F9EF7BB00AE5355 /* ProductListViewController.swift */; };
@@ -51,6 +51,8 @@
 		039F69D91F9EF9A000AE5355 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69D81F9EF9A000AE5355 /* Product.swift */; };
 		039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */; };
 		03B200291F9F126D0067F86E /* ProductListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B200281F9F126D0067F86E /* ProductListTests.swift */; };
+		03B618061FA9A10400BC0B0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B618051FA9A10400BC0B0E /* ProfileViewController.swift */; };
+		03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */; };
 		03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03BD53E41F99B77F00A26499 /* Localizable.strings */; };
 		03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53E91F99D97B00A26499 /* OMGError.swift */; };
 		03BD53ED1F99ED6500A26499 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53EC1F99ED6500A26499 /* LoginForm.swift */; };
@@ -107,6 +109,7 @@
 
 /* Begin PBXFileReference section */
 		002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OMGShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03003E181FA989A600EAB202 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		03006E511FA83B5A00831F32 /* CustomerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTest.swift; sourceTree = "<group>"; };
 		030F896D1F9ED7A700986735 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		030F89711F9EDC5300986735 /* RegisterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTests.swift; sourceTree = "<group>"; };
@@ -120,7 +123,6 @@
 		031BB13E1F9886790095468F /* OMGShopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGShopUITests.swift; sourceTree = "<group>"; };
 		031BB1401F9886790095468F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		031BB14F1F988E750095468F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		031BB1511F988E750095468F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		031BB1531F988E750095468F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		031BB15A1F988E8B0095468F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		031BB15C1F988E930095468F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
@@ -142,11 +144,11 @@
 		034FA03F1FA2F25A0033B8D1 /* RedeemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemTests.swift; sourceTree = "<group>"; };
 		036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
-		037AFA6D1FA702EF006A0C01 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		037AFA6F1FA70A12006A0C01 /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
 		037AFA711FA70B3C006A0C01 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		037AFA731FA70B5D006A0C01 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		037AFA751FA7122B006A0C01 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		039B18A81FA9DF0C00A0B2BA /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		039F69CA1F9EF53A00AE5355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Product.storyboard; sourceTree = "<group>"; };
 		039F69CD1F9EF55800AE5355 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Register.storyboard; sourceTree = "<group>"; };
 		039F69CF1F9EF7BB00AE5355 /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,8 @@
 		039F69D81F9EF9A000AE5355 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
 		03B200281F9F126D0067F86E /* ProductListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTests.swift; sourceTree = "<group>"; };
+		03B618051FA9A10400BC0B0E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		03BD53E71F99B8FF00A26499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03BD53E91F99D97B00A26499 /* OMGError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGError.swift; sourceTree = "<group>"; };
 		03BD53EC1F99ED6500A26499 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
@@ -296,11 +300,11 @@
 			children = (
 				039F69CC1F9EF55800AE5355 /* Register.storyboard */,
 				031BB14E1F988E750095468F /* LaunchScreen.storyboard */,
-				031BB1501F988E750095468F /* Main.storyboard */,
 				031BB1611F9890360095468F /* Login.storyboard */,
 				039F69C91F9EF53A00AE5355 /* Product.storyboard */,
 				032C2E911FA0326F001AE452 /* Popup.storyboard */,
 				03C6013E1FA6E3FC0033A0C7 /* Loading.storyboard */,
+				03003E181FA989A600EAB202 /* Profile.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -323,6 +327,7 @@
 				036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */,
 				032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */,
 				03C601411FA6E4510033A0C7 /* LoadingViewController.swift */,
+				03B618051FA9A10400BC0B0E /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */,
 				032C2E961FA0389A001AE452 /* RedeemPopupViewModel.swift */,
 				03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */,
+				03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -364,7 +370,7 @@
 			children = (
 				037AFA6B1FA702A1006A0C01 /* Routers */,
 				037AFA6C1FA702A1006A0C01 /* Models */,
-				037AFA6D1FA702EF006A0C01 /* APIController.swift */,
+				039B18A81FA9DF0C00A0B2BA /* APIController.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -567,12 +573,12 @@
 			files = (
 				031BB1631F9890360095468F /* Login.storyboard in Resources */,
 				03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */,
+				03003E191FA989A600EAB202 /* Profile.storyboard in Resources */,
 				039F69CB1F9EF53A00AE5355 /* Product.storyboard in Resources */,
 				03C601401FA6E3FC0033A0C7 /* Loading.storyboard in Resources */,
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
 				039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */,
-				031BB1581F988E750095468F /* Main.storyboard in Resources */,
 				039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */,
 				032C2E931FA0326F001AE452 /* Popup.storyboard in Resources */,
 			);
@@ -772,8 +778,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				039B18A91FA9DF0D00A0B2BA /* APIController.swift in Sources */,
 				039F69D91F9EF9A000AE5355 /* Product.swift in Sources */,
-				037AFA6E1FA702EF006A0C01 /* APIController.swift in Sources */,
 				031BB1721F9995360095468F /* Extension.swift in Sources */,
 				037AFA741FA70B5D006A0C01 /* APIError.swift in Sources */,
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
@@ -790,6 +796,7 @@
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
 				039F69D01F9EF7BB00AE5355 /* ProductListViewController.swift in Sources */,
 				03DEC75E1FA8382C009068AD /* CustomerAPI.swift in Sources */,
+				03B618061FA9A10400BC0B0E /* ProfileViewController.swift in Sources */,
 				031BB1761F999FED0095468F /* CustomView.swift in Sources */,
 				031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */,
 				03BD53F11F99F5C400A26499 /* RegisterForm.swift in Sources */,
@@ -799,6 +806,7 @@
 				03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */,
 				037AFA761FA7122B006A0C01 /* Router.swift in Sources */,
 				036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */,
+				03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */,
 				03F998261FA7162E00565960 /* Protocol.swift in Sources */,
 				036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */,
 				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,
@@ -860,14 +868,6 @@
 				031BB14F1F988E750095468F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		031BB1501F988E750095468F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				031BB1511F988E750095468F /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		031BB1611F9890360095468F /* Login.storyboard */ = {

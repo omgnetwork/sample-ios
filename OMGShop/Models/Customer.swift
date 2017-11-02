@@ -24,4 +24,8 @@ struct Customer: Decodable {
         case lastName = "last_name"
     }
 
+    func fullName() -> String {
+        return "\(firstName) \(lastName)"
+    }
+
 }
