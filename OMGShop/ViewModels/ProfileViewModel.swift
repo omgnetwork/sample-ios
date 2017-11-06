@@ -19,8 +19,8 @@ class ProfileViewModel: BaseViewModel {
     var onFailLogout: FailureClosure?
 
     var name: String {
-        guard let user = SessionManager.shared.currentCustomer else { return "" }
-        return user.fullName()
+        guard let user = SessionManager.shared.currentUser else { return "" }
+        return user.username
     }
     var isLoading: Bool = false {
         didSet { self.onLoadStateChanged?(isLoading) }
@@ -33,7 +33,7 @@ class ProfileViewModel: BaseViewModel {
     let closeButtonTitle = "profile.button.title.close".localized()
     let token = "profile.label.token".localized()
     let amount = "profile.label.amount".localized()
-    
+
     override init() {
         super.init()
     }
@@ -56,7 +56,7 @@ class ProfileViewModel: BaseViewModel {
         //                self.onSuccessGetBalances?()
         //            case .fail(error: let error):
         //                switch error {
-        //                case .api(apiError: let apiError) where !apiError.isAuthorizationError():
+        //                case .api(apiError: let apiError) where apiError.isAuthorizationError():
         //                    SessionManager.shared.clearTokens()
         //                    self.onAppStateChanged?()
         //                default: break

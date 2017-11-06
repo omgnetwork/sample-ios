@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		03003E191FA989A600EAB202 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03003E181FA989A600EAB202 /* Profile.storyboard */; };
-		03006E521FA83B5A00831F32 /* CustomerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03006E511FA83B5A00831F32 /* CustomerTest.swift */; };
 		030F896E1F9ED7A700986735 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F896D1F9ED7A700986735 /* LoginTests.swift */; };
 		030F89721F9EDC5300986735 /* RegisterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F89711F9EDC5300986735 /* RegisterTests.swift */; };
 		031BB11F1F9886790095468F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB11E1F9886790095468F /* AppDelegate.swift */; };
@@ -58,7 +57,6 @@
 		03BD53ED1F99ED6500A26499 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53EC1F99ED6500A26499 /* LoginForm.swift */; };
 		03BD53F11F99F5C400A26499 /* RegisterForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53F01F99F5C400A26499 /* RegisterForm.swift */; };
 		03C601391FA6D6F10033A0C7 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601381FA6D6F10033A0C7 /* SessionManager.swift */; };
-		03C6013B1FA6D71D0033A0C7 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C6013A1FA6D71D0033A0C7 /* Customer.swift */; };
 		03C601401FA6E3FC0033A0C7 /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C6013E1FA6E3FC0033A0C7 /* Loading.storyboard */; };
 		03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601411FA6E4510033A0C7 /* LoadingViewController.swift */; };
 		03C601441FA6E46F0033A0C7 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */; };
@@ -66,7 +64,6 @@
 		03CC0C9F1FA05B0900DB377C /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC0C9E1FA05B0900DB377C /* Checkout.swift */; };
 		03CC0CA11FA06F1200DB377C /* OmiseGO.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 032C2E9A1FA03E38001AE452 /* OmiseGO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DEC75B1FA81554009068AD /* ProductAPI.swift */; };
-		03DEC75E1FA8382C009068AD /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DEC75D1FA8382C009068AD /* CustomerAPI.swift */; };
 		03F998261FA7162E00565960 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F998251FA7162E00565960 /* Protocol.swift */; };
 		03F9982A1FA71DED00565960 /* SessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F998291FA71DED00565960 /* SessionAPI.swift */; };
 		03F9982C1FA7294900565960 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9982B1FA7294900565960 /* SessionToken.swift */; };
@@ -110,7 +107,6 @@
 /* Begin PBXFileReference section */
 		002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OMGShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03003E181FA989A600EAB202 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		03006E511FA83B5A00831F32 /* CustomerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTest.swift; sourceTree = "<group>"; };
 		030F896D1F9ED7A700986735 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		030F89711F9EDC5300986735 /* RegisterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTests.swift; sourceTree = "<group>"; };
 		031BB11B1F9886790095468F /* OMGShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMGShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,14 +161,12 @@
 		03BD53EC1F99ED6500A26499 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 		03BD53F01F99F5C400A26499 /* RegisterForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterForm.swift; sourceTree = "<group>"; };
 		03C601381FA6D6F10033A0C7 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		03C6013A1FA6D71D0033A0C7 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		03C6013F1FA6E3FC0033A0C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Loading.storyboard; sourceTree = "<group>"; };
 		03C601411FA6E4510033A0C7 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
 		03CC0C9C1FA0558900DB377C /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		03CC0C9E1FA05B0900DB377C /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
 		03DEC75B1FA81554009068AD /* ProductAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPI.swift; sourceTree = "<group>"; };
-		03DEC75D1FA8382C009068AD /* CustomerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAPI.swift; sourceTree = "<group>"; };
 		03F998251FA7162E00565960 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		03F998291FA71DED00565960 /* SessionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAPI.swift; sourceTree = "<group>"; };
 		03F9982B1FA7294900565960 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
@@ -270,7 +264,6 @@
 				03B200281F9F126D0067F86E /* ProductListTests.swift */,
 				034FA03D1FA2D9C50033B8D1 /* CheckoutTests.swift */,
 				034FA03F1FA2F25A0033B8D1 /* RedeemTests.swift */,
-				03006E511FA83B5A00831F32 /* CustomerTest.swift */,
 			);
 			path = OMGShopTests;
 			sourceTree = "<group>";
@@ -391,7 +384,6 @@
 				037AFA731FA70B5D006A0C01 /* APIError.swift */,
 				03F998291FA71DED00565960 /* SessionAPI.swift */,
 				03DEC75B1FA81554009068AD /* ProductAPI.swift */,
-				03DEC75D1FA8382C009068AD /* CustomerAPI.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -412,7 +404,6 @@
 				039F69D81F9EF9A000AE5355 /* Product.swift */,
 				03CC0C9C1FA0558900DB377C /* Setting.swift */,
 				03CC0C9E1FA05B0900DB377C /* Checkout.swift */,
-				03C6013A1FA6D71D0033A0C7 /* Customer.swift */,
 				03F998251FA7162E00565960 /* Protocol.swift */,
 				03F9982B1FA7294900565960 /* SessionToken.swift */,
 			);
@@ -785,7 +776,6 @@
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
 				031BB16F1F99948A0095468F /* Theme.swift in Sources */,
 				03CC0C9D1FA0558900DB377C /* Setting.swift in Sources */,
-				03C6013B1FA6D71D0033A0C7 /* Customer.swift in Sources */,
 				037AFA721FA70B3C006A0C01 /* Response.swift in Sources */,
 				031BB11F1F9886790095468F /* AppDelegate.swift in Sources */,
 				03F9982E1FA7386A00565960 /* BuyForm.swift in Sources */,
@@ -795,7 +785,6 @@
 				03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */,
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
 				039F69D01F9EF7BB00AE5355 /* ProductListViewController.swift in Sources */,
-				03DEC75E1FA8382C009068AD /* CustomerAPI.swift in Sources */,
 				03B618061FA9A10400BC0B0E /* ProfileViewController.swift in Sources */,
 				031BB1761F999FED0095468F /* CustomView.swift in Sources */,
 				031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */,
@@ -833,7 +822,6 @@
 				03B200291F9F126D0067F86E /* ProductListTests.swift in Sources */,
 				034FA0401FA2F25A0033B8D1 /* RedeemTests.swift in Sources */,
 				031BB1341F9886790095468F /* OMGShopTests.swift in Sources */,
-				03006E521FA83B5A00831F32 /* CustomerTest.swift in Sources */,
 				030F89721F9EDC5300986735 /* RegisterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

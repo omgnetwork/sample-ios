@@ -11,13 +11,17 @@ import UIKit
 class SessionAPI {
 
     class func login(withForm form: LoginForm, completionClosure:@escaping APIClosure<SessionToken>) {
-        completionClosure(.success(data: SessionToken(authenticationToken: "qwe", omiseGOAuthenticationToken: "qwe")))
+        completionClosure(.success(data:
+            SessionToken(authenticationToken: "qwe",
+                         omiseGOAuthenticationToken: "2VzmEZoZl_SnZGD4FWh9E42sCsTbgY4En5_aqeEOeKo")))
         //TODO: Uncomment this
 //        Router.login(withForm: form).request(withCompletionClosure: completionClosure)
     }
 
     class func register(withForm form: RegisterForm, completionClosure:@escaping APIClosure<SessionToken>) {
-        completionClosure(.success(data: SessionToken(authenticationToken: "qwe", omiseGOAuthenticationToken: "qwe")))
+        completionClosure(.success(data:
+            SessionToken(authenticationToken: "qwe",
+                         omiseGOAuthenticationToken: "2VzmEZoZl_SnZGD4FWh9E42sCsTbgY4En5_aqeEOeKo")))
         //TODO: Uncomment this
 //        Router.register(withForm: form).request(withCompletionClosure: completionClosure)
     }

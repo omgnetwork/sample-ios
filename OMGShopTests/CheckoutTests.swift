@@ -21,6 +21,7 @@ class CheckoutTests: OMGShopTests {
         }
         viewModel.onFailGetBalances = {
             XCTFail($0.message)
+            expectation.fulfill()
         }
         viewModel.loadBalances()
         waitForExpectations(timeout: 15.0, handler: nil)

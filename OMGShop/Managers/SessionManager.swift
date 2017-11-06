@@ -20,12 +20,12 @@ class SessionManager {
 
     let keychain = KeychainSwift()
 
-    var currentCustomer: Customer?
+    var currentUser: User?
     var authenticationToken: String?
     var omiseGOAuthenticationToken: String?
     var state: AppState {
         if self.isLoggedIn() {
-            return self.currentCustomer == nil ? .loading : .login
+            return self.currentUser == nil ? .loading : .login
         } else {
             return .logout
         }
@@ -45,7 +45,7 @@ class SessionManager {
         self.keychain.delete(UserDefaultKeys.appAuthenticationToken.rawValue)
         self.keychain.delete(UserDefaultKeys.omiseGOAuthenticationToken.rawValue)
         self.authenticationToken = nil
-        self.currentCustomer = nil
+        self.currentUser = nil
         self.omiseGOAuthenticationToken = nil
     }
 
@@ -63,15 +63,16 @@ class SessionManager {
 
     }
 
-    func loadCurrentUser(withSuccessClosure success: @escaping SuccessClosure, failure: @escaping FailureClosure) {
+    func loadCurrentUser(withSuccessClosure success: @escaping SuccessClosure,
+                         failure: @escaping (_ error: OmiseGOError) -> Void) {
         guard self.isLoggedIn() else {
-            failure(.unexpected)
+            failure(.unexpected(message: "error.unexpected".localized()))
             return
         }
-        CustomerAPI.getCurrent { (response) in
+        User.getCurrent { (response) in
             switch response {
-            case .success(data: let customer):
-                self.currentCustomer = customer
+            case .success(data: let user):
+                self.currentUser = user
                 success()
             case .fail(error: let error):
                 failure(error)
@@ -87,7 +88,9 @@ class SessionManager {
 
     private func initializeOmiseGOSDK() {
         guard let token = self.omiseGOAuthenticationToken else { return }
-        let config = OMGConfiguration(baseURL: "https://kubera.omisego.io", apiKey: "", authenticationToken: token)
+        let config = OMGConfiguration(baseURL: Constant.omiseGOhostURL,
+                                      apiKey: Constant.omiseGOAPIKey,
+                                      authenticationToken: token)
         OMGClient.setup(withConfig: config)
     }
 }

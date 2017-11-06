@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import OmiseGO
 
 class LoadingViewModel: BaseViewModel {
 
-    var onSuccessLoading: SuccessClosure?
     var onFailedLoading: FailureClosure?
     var onLoadStateChange: ObjectClosure<Bool>?
+    var onAppStateChanged: EmptyClosure?
 
     let retryButtonTitle: String = "loading.button.title.retry".localized()
 
@@ -26,10 +27,16 @@ class LoadingViewModel: BaseViewModel {
         self.isLoading = true
         SessionManager.shared.loadCurrentUser(withSuccessClosure: { [weak self] in
             self?.isLoading = false
-            self?.onSuccessLoading?()
-        }, failure: { [weak self] (error) in
-            self?.isLoading = false
-            self?.onFailedLoading?(error)
+            self?.onAppStateChanged?()
+            }, failure: { [weak self] (error) in
+                switch error {
+                case .api(apiError: let apiError) where apiError.isAuthorizationError():
+                    SessionManager.shared.clearTokens()
+                    self?.onAppStateChanged?()
+                default: break
+                }
+                self?.isLoading = false
+                self?.onFailedLoading?(OMGError.omiseGOError(error: error))
         })
     }
 

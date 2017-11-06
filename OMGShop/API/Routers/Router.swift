@@ -13,7 +13,6 @@ enum Router<ResponseType: Decodable> {
 
     case login(withForm: LoginForm)
     case register(withForm: RegisterForm)
-    case getCurrentUser
     case getProducts
     case buyProduct(withForm: BuyForm)
 
@@ -43,7 +42,6 @@ extension Router: URLRequestConvertible {
         switch self {
         case .login(withForm: _): return "/login"
         case .register(withForm: _): return "/register"
-        case .getCurrentUser: return "me.get"
         case .getProducts: return "products.get" // /bins/ugmiz
         case .buyProduct(withForm: _): return "products.buy" // /bins/1bjrl7
         }

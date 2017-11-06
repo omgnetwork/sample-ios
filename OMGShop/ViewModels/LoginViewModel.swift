@@ -49,7 +49,7 @@ class LoginViewModel: BaseViewModel {
                         self.onSuccessLogin?()
                     }, failure: { (error) in
                         self.isLoading = false
-                        self.onFailedLogin?(error)
+                        self.onFailedLogin?(OMGError.omiseGOError(error: error))
                     })
                 case .fail(error: let error):
                     self.isLoading = false

@@ -50,8 +50,10 @@ enum AppState {
 
 struct Constant {
 
+    static let omiseGOhostURL = "https://kubera.omisego.io"
     static let hostURL = "https://kubera.omisego.io"
     static let apiKey = "xxx"
+    static let omiseGOAPIKey = "1482qNxPey7A4_rrKkAOb4kAOTsD2HoLysS7eQ1Zd3Y"
     static let authenticatedScheme = "OMGAuthenticated"
     static let unAuthenticatedScheme = "OMGBasic"
 

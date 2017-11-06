@@ -19,6 +19,7 @@ class CheckoutViewModel: BaseViewModel {
     var onFailPay: FailureClosure?
     var onLoadStateChanged: ObjectClosure<Bool>?
     var onAppStateChanged: EmptyClosure?
+    var onSuccessGetBalances: EmptyClosure?
 
     let viewTitle: String = "checkout.view.title".localized()
     let yourProductLabel: String = "checkout.label.your_product".localized().uppercased()
@@ -64,6 +65,7 @@ class CheckoutViewModel: BaseViewModel {
         self.checkout.balance = balance
         self.isLoading = true
         self.isLoading = false
+        self.onSuccessGetBalances?()
         // TODO: For later
 //        Balance.getAll { (result) in
 //            self.isLoading = false
@@ -73,7 +75,7 @@ class CheckoutViewModel: BaseViewModel {
 //                self.onSuccessGetBalances?()
 //            case .fail(error: let error):
 //                switch error {
-//                case .api(apiError: let apiError) where !apiError.isAuthorizationError():
+//                case .api(apiError: let apiError) where apiError.isAuthorizationError():
 //                    SessionManager.shared.clearTokens()
 //                    self.onAppStateChanged?()
 //                default: break
