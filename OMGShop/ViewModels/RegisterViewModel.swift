@@ -17,7 +17,7 @@ class RegisterViewModel: BaseViewModel {
     var updatePasswordValidation: ViewModelValidationClosure?
     var onSuccessRegister: SuccessClosure?
     var onFailedRegister: FailureClosure?
-    var onLoadStateChanged: ObjectClosure<Bool>?
+    var onLoadStateChange: ObjectClosure<Bool>?
 
     let viewTitle: String = "register.view.title".localized()
     let firstNamePlaceholder = "register.text_field.placeholder.first_name".localized()
@@ -44,37 +44,45 @@ class RegisterViewModel: BaseViewModel {
     }
 
     var isLoading: Bool = false {
-        didSet { self.onLoadStateChanged?(isLoading) }
+        didSet { self.onLoadStateChange?(isLoading) }
     }
 
-    func submit() {
+    func register() {
         do {
             try self.validateAll()
             self.isLoading = true
-            let registerForm = RegisterForm(firstName: self.firstName!,
-                                            lastName: self.lastName!,
-                                            email: self.email!,
-                                            password: self.password!)
-            SessionAPI.register(withForm: registerForm, completionClosure: { (response) in
-                switch response {
-                case .success(data: let tokens):
-                    SessionManager.shared.login(withAppToken: tokens.authenticationToken,
-                                                omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken)
-                    SessionManager.shared.loadCurrentUser(withSuccessClosure: {
-                        self.isLoading = false
-                        self.onSuccessRegister?()
-                    }, failure: { (error) in
-                        self.isLoading = false
-                        self.onFailedRegister?(OMGError.omiseGOError(error: error))
-                    })
-                case .fail(error: let error):
-                    self.isLoading = false
-                    self.onFailedRegister?(error)
-                }
-            })
+            self.submit()
         } catch let error as OMGError {
             self.onFailedRegister?(error)
         } catch _ {}
+    }
+
+    private func submit() {
+        let registerForm = RegisterForm(firstName: self.firstName!,
+                                        lastName: self.lastName!,
+                                        email: self.email!,
+                                        password: self.password!)
+        SessionAPI.register(withForm: registerForm, completionClosure: { (response) in
+            switch response {
+            case .success(data: let tokens): self.processRegister(withTokens: tokens)
+            case .fail(error: let error):
+                self.isLoading = false
+                self.onFailedRegister?(error)
+            }
+        })
+    }
+
+    private func processRegister(withTokens tokens: SessionToken) {
+        SessionManager.shared.login(withAppToken: tokens.authenticationToken,
+                                    omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken,
+                                    userId: tokens.userId)
+        SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+            self.isLoading = false
+            self.onSuccessRegister?()
+        }, failure: { (error) in
+            self.isLoading = false
+            self.onFailedRegister?(OMGError.omiseGO(error: error))
+        })
     }
 
     @discardableResult

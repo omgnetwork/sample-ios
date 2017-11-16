@@ -34,14 +34,4 @@ class LoginTests: OMGShopTests {
         XCTAssert(emailError == nil)
         XCTAssert(passwordError == nil)
     }
-
-    func testLogin() {
-        let viewModel: LoginViewModel = LoginViewModel()
-        viewModel.email = "email@example.com"
-        viewModel.password = "aV@lIdP@ssWord"
-        viewModel.onSuccessLogin = { XCTAssert(true) }
-        viewModel.onFailedLogin = { XCTFail($0.localizedDescription) }
-        viewModel.submit()
-    }
-
 }

@@ -13,7 +13,6 @@ class LoadingViewModel: BaseViewModel {
 
     var onFailedLoading: FailureClosure?
     var onLoadStateChange: ObjectClosure<Bool>?
-    var onAppStateChanged: EmptyClosure?
 
     let retryButtonTitle: String = "loading.button.title.retry".localized()
 
@@ -25,18 +24,13 @@ class LoadingViewModel: BaseViewModel {
 
     func load() {
         self.isLoading = true
-        SessionManager.shared.loadCurrentUser(withSuccessClosure: { [weak self] in
-            self?.isLoading = false
-            self?.onAppStateChanged?()
-            }, failure: { [weak self] (error) in
-                switch error {
-                case .api(apiError: let apiError) where apiError.isAuthorizationError():
-                    SessionManager.shared.clearTokens()
-                    self?.onAppStateChanged?()
-                default: break
-                }
-                self?.isLoading = false
-                self?.onFailedLoading?(OMGError.omiseGOError(error: error))
+        SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+            self.isLoading = false
+            self.onAppStateChange?()
+            }, failure: { (error) in
+                self.handleOmiseGOrror(error)
+                self.isLoading = false
+                self.onFailedLoading?(OMGError.omiseGO(error: error))
         })
     }
 

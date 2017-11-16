@@ -33,7 +33,7 @@ extension JSONResponse: Decodable {
             data = .success(data: result)
         } else {
             let error = try container.decode(APIError.self, forKey: .data)
-            data = .fail(error: .apiError(error: error))
+            data = .fail(error: .api(error: error))
         }
     }
 }

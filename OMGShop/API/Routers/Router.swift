@@ -41,9 +41,9 @@ extension Router: URLRequestConvertible {
     var operation: String {
         switch self {
         case .login(withForm: _): return "/login"
-        case .register(withForm: _): return "/register"
-        case .getProducts: return "products.get" // /bins/ugmiz
-        case .buyProduct(withForm: _): return "products.buy" // /bins/1bjrl7
+        case .register(withForm: _): return "/signup"
+        case .getProducts: return "products.get"
+        case .buyProduct(withForm: _): return "product.buy"
         }
     }
 

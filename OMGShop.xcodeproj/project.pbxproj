@@ -12,7 +12,6 @@
 		030F89721F9EDC5300986735 /* RegisterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F89711F9EDC5300986735 /* RegisterTests.swift */; };
 		031BB11F1F9886790095468F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB11E1F9886790095468F /* AppDelegate.swift */; };
 		031BB1341F9886790095468F /* OMGShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1331F9886790095468F /* OMGShopTests.swift */; };
-		031BB13F1F9886790095468F /* OMGShopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB13E1F9886790095468F /* OMGShopUITests.swift */; };
 		031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB14E1F988E750095468F /* LaunchScreen.storyboard */; };
 		031BB1591F988E750095468F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1531F988E750095468F /* Assets.xcassets */; };
 		031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB15A1F988E8B0095468F /* BaseViewController.swift */; };
@@ -30,12 +29,11 @@
 		032C2E951FA0388A001AE452 /* RedeemPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */; };
 		032C2E971FA0389A001AE452 /* RedeemPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E961FA0389A001AE452 /* RedeemPopupViewModel.swift */; };
 		032C2E991FA03980001AE452 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E981FA03980001AE452 /* Constant.swift */; };
-		032C2E9B1FA03E39001AE452 /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C2E9A1FA03E38001AE452 /* OmiseGO.framework */; };
 		034FA03E1FA2D9C50033B8D1 /* CheckoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA03D1FA2D9C50033B8D1 /* CheckoutTests.swift */; };
 		034FA0401FA2F25A0033B8D1 /* RedeemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FA03F1FA2F25A0033B8D1 /* RedeemTests.swift */; };
-		034FA0421FA2F7CE0033B8D1 /* OmiseGO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 032C2E9A1FA03E38001AE452 /* OmiseGO.framework */; };
 		036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */; };
 		036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */; };
+		037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */; };
 		037AFA701FA70A12006A0C01 /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA6F1FA70A12006A0C01 /* JSONResponse.swift */; };
 		037AFA721FA70B3C006A0C01 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA711FA70B3C006A0C01 /* Response.swift */; };
 		037AFA741FA70B5D006A0C01 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA731FA70B5D006A0C01 /* APIError.swift */; };
@@ -49,39 +47,32 @@
 		039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */; };
 		039F69D91F9EF9A000AE5355 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69D81F9EF9A000AE5355 /* Product.swift */; };
 		039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */; };
-		03B200291F9F126D0067F86E /* ProductListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B200281F9F126D0067F86E /* ProductListTests.swift */; };
 		03B618061FA9A10400BC0B0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B618051FA9A10400BC0B0E /* ProfileViewController.swift */; };
 		03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */; };
 		03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03BD53E41F99B77F00A26499 /* Localizable.strings */; };
 		03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53E91F99D97B00A26499 /* OMGError.swift */; };
 		03BD53ED1F99ED6500A26499 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53EC1F99ED6500A26499 /* LoginForm.swift */; };
 		03BD53F11F99F5C400A26499 /* RegisterForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BD53F01F99F5C400A26499 /* RegisterForm.swift */; };
+		03C2C0801FBAE54700B794AC /* TokenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C07E1FBAE54700B794AC /* TokenTableViewCell.swift */; };
+		03C2C0811FBAE54700B794AC /* TokenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03C2C07F1FBAE54700B794AC /* TokenTableViewCell.xib */; };
+		03C2C0831FBAE67A00B794AC /* TokenCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C2C0821FBAE67A00B794AC /* TokenCellViewModel.swift */; };
 		03C601391FA6D6F10033A0C7 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601381FA6D6F10033A0C7 /* SessionManager.swift */; };
 		03C601401FA6E3FC0033A0C7 /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C6013E1FA6E3FC0033A0C7 /* Loading.storyboard */; };
 		03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601411FA6E4510033A0C7 /* LoadingViewController.swift */; };
 		03C601441FA6E46F0033A0C7 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */; };
 		03CC0C9D1FA0558900DB377C /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC0C9C1FA0558900DB377C /* Setting.swift */; };
 		03CC0C9F1FA05B0900DB377C /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC0C9E1FA05B0900DB377C /* Checkout.swift */; };
-		03CC0CA11FA06F1200DB377C /* OmiseGO.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 032C2E9A1FA03E38001AE452 /* OmiseGO.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DEC75B1FA81554009068AD /* ProductAPI.swift */; };
 		03F998261FA7162E00565960 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F998251FA7162E00565960 /* Protocol.swift */; };
 		03F9982A1FA71DED00565960 /* SessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F998291FA71DED00565960 /* SessionAPI.swift */; };
 		03F9982C1FA7294900565960 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9982B1FA7294900565960 /* SessionToken.swift */; };
 		03F9982E1FA7386A00565960 /* BuyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9982D1FA7386A00565960 /* BuyForm.swift */; };
 		0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */; };
-		3ED9A449EF88414AE7A86E3D /* Pods_OMGShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B48C40806609F21E392F9A /* Pods_OMGShopUITests.framework */; };
 		4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		031BB1301F9886790095468F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 031BB1131F9886780095468F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 031BB11A1F9886790095468F;
-			remoteInfo = OMGShop;
-		};
-		031BB13B1F9886790095468F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 031BB1131F9886780095468F /* Project object */;
 			proxyType = 1;
@@ -97,7 +88,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				03CC0CA11FA06F1200DB377C /* OmiseGO.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,9 +105,6 @@
 		031BB12F1F9886790095468F /* OMGShopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OMGShopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		031BB1331F9886790095468F /* OMGShopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGShopTests.swift; sourceTree = "<group>"; };
 		031BB1351F9886790095468F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		031BB13A1F9886790095468F /* OMGShopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OMGShopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		031BB13E1F9886790095468F /* OMGShopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGShopUITests.swift; sourceTree = "<group>"; };
-		031BB1401F9886790095468F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		031BB14F1F988E750095468F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		031BB1531F988E750095468F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		031BB15A1F988E8B0095468F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -135,11 +122,11 @@
 		032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPopupViewController.swift; sourceTree = "<group>"; };
 		032C2E961FA0389A001AE452 /* RedeemPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPopupViewModel.swift; sourceTree = "<group>"; };
 		032C2E981FA03980001AE452 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		032C2E9A1FA03E38001AE452 /* OmiseGO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OmiseGO.framework; sourceTree = SOURCE_ROOT; };
 		034FA03D1FA2D9C50033B8D1 /* CheckoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutTests.swift; sourceTree = "<group>"; };
 		034FA03F1FA2F25A0033B8D1 /* RedeemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemTests.swift; sourceTree = "<group>"; };
 		036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
+		037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintedTokenManager.swift; sourceTree = "<group>"; };
 		037AFA6F1FA70A12006A0C01 /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
 		037AFA711FA70B3C006A0C01 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		037AFA731FA70B5D006A0C01 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -153,13 +140,15 @@
 		039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		039F69D81F9EF9A000AE5355 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
-		03B200281F9F126D0067F86E /* ProductListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTests.swift; sourceTree = "<group>"; };
 		03B618051FA9A10400BC0B0E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		03BD53E71F99B8FF00A26499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		03BD53E91F99D97B00A26499 /* OMGError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGError.swift; sourceTree = "<group>"; };
 		03BD53EC1F99ED6500A26499 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
 		03BD53F01F99F5C400A26499 /* RegisterForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterForm.swift; sourceTree = "<group>"; };
+		03C2C07E1FBAE54700B794AC /* TokenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenTableViewCell.swift; sourceTree = "<group>"; };
+		03C2C07F1FBAE54700B794AC /* TokenTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenTableViewCell.xib; sourceTree = "<group>"; };
+		03C2C0821FBAE67A00B794AC /* TokenCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCellViewModel.swift; sourceTree = "<group>"; };
 		03C601381FA6D6F10033A0C7 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		03C6013F1FA6E3FC0033A0C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Loading.storyboard; sourceTree = "<group>"; };
 		03C601411FA6E4510033A0C7 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +175,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				032C2E9B1FA03E39001AE452 /* OmiseGO.framework in Frameworks */,
 				0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,16 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				034FA0421FA2F7CE0033B8D1 /* OmiseGO.framework in Frameworks */,
 				4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		031BB1371F9886790095468F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3ED9A449EF88414AE7A86E3D /* Pods_OMGShopUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +195,6 @@
 			children = (
 				031BB11D1F9886790095468F /* OMGShop */,
 				031BB1321F9886790095468F /* OMGShopTests */,
-				031BB13D1F9886790095468F /* OMGShopUITests */,
 				031BB11C1F9886790095468F /* Products */,
 				76ECF0DE93FD8C1066016B0B /* Pods */,
 				0D84E417D653AC9EE1D708AC /* Frameworks */,
@@ -228,7 +206,6 @@
 			children = (
 				031BB11B1F9886790095468F /* OMGShop.app */,
 				031BB12F1F9886790095468F /* OMGShopTests.xctest */,
-				031BB13A1F9886790095468F /* OMGShopUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,7 +213,6 @@
 		031BB11D1F9886790095468F /* OMGShop */ = {
 			isa = PBXGroup;
 			children = (
-				032C2E9A1FA03E38001AE452 /* OmiseGO.framework */,
 				03BD53E41F99B77F00A26499 /* Localizable.strings */,
 				031BB11E1F9886790095468F /* AppDelegate.swift */,
 				031BB12A1F9886790095468F /* Info.plist */,
@@ -261,20 +237,10 @@
 				031BB1351F9886790095468F /* Info.plist */,
 				030F896D1F9ED7A700986735 /* LoginTests.swift */,
 				030F89711F9EDC5300986735 /* RegisterTests.swift */,
-				03B200281F9F126D0067F86E /* ProductListTests.swift */,
 				034FA03D1FA2D9C50033B8D1 /* CheckoutTests.swift */,
 				034FA03F1FA2F25A0033B8D1 /* RedeemTests.swift */,
 			);
 			path = OMGShopTests;
-			sourceTree = "<group>";
-		};
-		031BB13D1F9886790095468F /* OMGShopUITests */ = {
-			isa = PBXGroup;
-			children = (
-				031BB13E1F9886790095468F /* OMGShopUITests.swift */,
-				031BB1401F9886790095468F /* Info.plist */,
-			);
-			path = OMGShopUITests;
 			sourceTree = "<group>";
 		};
 		031BB14C1F988E750095468F /* Managers */ = {
@@ -284,6 +250,7 @@
 				031BB1731F9998EB0095468F /* OMGShopManager.swift */,
 				032C2E981FA03980001AE452 /* Constant.swift */,
 				03C601381FA6D6F10033A0C7 /* SessionManager.swift */,
+				037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -337,6 +304,7 @@
 				032C2E961FA0389A001AE452 /* RedeemPopupViewModel.swift */,
 				03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */,
 				03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */,
+				03C2C0821FBAE67A00B794AC /* TokenCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -393,6 +361,8 @@
 			children = (
 				039F69D41F9EF84F00AE5355 /* ProductTableViewCell.swift */,
 				039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */,
+				03C2C07E1FBAE54700B794AC /* TokenTableViewCell.swift */,
+				03C2C07F1FBAE54700B794AC /* TokenTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -490,27 +460,6 @@
 			productReference = 031BB12F1F9886790095468F /* OMGShopTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		031BB1391F9886790095468F /* OMGShopUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 031BB1491F9886790095468F /* Build configuration list for PBXNativeTarget "OMGShopUITests" */;
-			buildPhases = (
-				77326F5702D8D2F39EE14374 /* [CP] Check Pods Manifest.lock */,
-				031BB1361F9886790095468F /* Sources */,
-				031BB1371F9886790095468F /* Frameworks */,
-				031BB1381F9886790095468F /* Resources */,
-				280666DCFC8012DDD5ABFCD5 /* [CP] Embed Pods Frameworks */,
-				53B9CB6D11B90BA345E6B173 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				031BB13C1F9886790095468F /* PBXTargetDependency */,
-			);
-			name = OMGShopUITests;
-			productName = OMGShopUITests;
-			productReference = 031BB13A1F9886790095468F /* OMGShopUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -526,11 +475,6 @@
 						ProvisioningStyle = Automatic;
 					};
 					031BB12E1F9886790095468F = {
-						CreatedOnToolsVersion = 9.0.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 031BB11A1F9886790095468F;
-					};
-					031BB1391F9886790095468F = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 031BB11A1F9886790095468F;
@@ -552,7 +496,6 @@
 			targets = (
 				031BB11A1F9886790095468F /* OMGShop */,
 				031BB12E1F9886790095468F /* OMGShopTests */,
-				031BB1391F9886790095468F /* OMGShopUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -570,19 +513,13 @@
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
 				039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */,
+				03C2C0811FBAE54700B794AC /* TokenTableViewCell.xib in Resources */,
 				039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */,
 				032C2E931FA0326F001AE452 /* Popup.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		031BB12D1F9886790095468F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		031BB1381F9886790095468F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -604,21 +541,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-		280666DCFC8012DDD5ABFCD5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopUITests/Pods-OMGShopUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		2CAA7D3EB5FFC40D2E27AC68 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -648,6 +570,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/OmiseGO/OmiseGO.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/Toaster/Toaster.framework",
@@ -657,6 +580,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OmiseGO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toaster.framework",
@@ -694,39 +618,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		53B9CB6D11B90BA345E6B173 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopUITests/Pods-OMGShopUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		77326F5702D8D2F39EE14374 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OMGShopUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DF187C5B083CD55DF25BBCB6 /* [CP] Copy Pods Resources */ = {
@@ -778,6 +669,7 @@
 				03CC0C9D1FA0558900DB377C /* Setting.swift in Sources */,
 				037AFA721FA70B3C006A0C01 /* Response.swift in Sources */,
 				031BB11F1F9886790095468F /* AppDelegate.swift in Sources */,
+				03C2C0831FBAE67A00B794AC /* TokenCellViewModel.swift in Sources */,
 				03F9982E1FA7386A00565960 /* BuyForm.swift in Sources */,
 				03C601391FA6D6F10033A0C7 /* SessionManager.swift in Sources */,
 				03F9982A1FA71DED00565960 /* SessionAPI.swift in Sources */,
@@ -800,6 +692,8 @@
 				036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */,
 				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,
 				037AFA701FA70A12006A0C01 /* JSONResponse.swift in Sources */,
+				037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */,
+				03C2C0801FBAE54700B794AC /* TokenTableViewCell.swift in Sources */,
 				032C2E991FA03980001AE452 /* Constant.swift in Sources */,
 				039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */,
 				03F9982C1FA7294900565960 /* SessionToken.swift in Sources */,
@@ -819,18 +713,9 @@
 			files = (
 				034FA03E1FA2D9C50033B8D1 /* CheckoutTests.swift in Sources */,
 				030F896E1F9ED7A700986735 /* LoginTests.swift in Sources */,
-				03B200291F9F126D0067F86E /* ProductListTests.swift in Sources */,
 				034FA0401FA2F25A0033B8D1 /* RedeemTests.swift in Sources */,
 				031BB1341F9886790095468F /* OMGShopTests.swift in Sources */,
 				030F89721F9EDC5300986735 /* RegisterTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		031BB1361F9886790095468F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				031BB13F1F9886790095468F /* OMGShopUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,11 +726,6 @@
 			isa = PBXTargetDependency;
 			target = 031BB11A1F9886790095468F /* OMGShop */;
 			targetProxy = 031BB1301F9886790095468F /* PBXContainerItemProxy */;
-		};
-		031BB13C1F9886790095468F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 031BB11A1F9886790095468F /* OMGShop */;
-			targetProxy = 031BB13B1F9886790095468F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1102,40 +982,6 @@
 			};
 			name = Release;
 		};
-		031BB14A1F9886790095468F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AFBBF013772C360933222F /* Pods-OMGShopUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8274NNDSD5;
-				INFOPLIST_FILE = OMGShopUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.omisego.OMGShopUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = OMGShop;
-			};
-			name = Debug;
-		};
-		031BB14B1F9886790095468F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3A0DC706CA91D2513CEC8A2 /* Pods-OMGShopUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8274NNDSD5;
-				INFOPLIST_FILE = OMGShopUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.omisego.OMGShopUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = OMGShop;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1162,15 +1008,6 @@
 			buildConfigurations = (
 				031BB1471F9886790095468F /* Debug */,
 				031BB1481F9886790095468F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		031BB1491F9886790095468F /* Build configuration list for PBXNativeTarget "OMGShopUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				031BB14A1F9886790095468F /* Debug */,
-				031BB14B1F9886790095468F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

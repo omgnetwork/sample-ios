@@ -35,7 +35,7 @@ class ProductListViewController: BaseViewController {
 
     override func configureViewModel() {
         super.configureViewModel()
-        self.viewModel.onLoadStateChanged = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
         self.viewModel.reloadTableViewClosure = {
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()

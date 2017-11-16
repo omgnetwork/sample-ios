@@ -16,10 +16,10 @@ class CheckoutTests: OMGShopTests {
         let expectation = self.expectation(description: "get balance")
         let product = Product(uid: "1", name: "test", description: "test", imageURL: "", price: 20000)
         let viewModel = CheckoutViewModel(product: product)
-        viewModel.onSuccessGetBalances = {
+        viewModel.onSuccessGetAddress = {
             expectation.fulfill()
         }
-        viewModel.onFailGetBalances = {
+        viewModel.onFailGetAddress = {
             XCTFail($0.message)
             expectation.fulfill()
         }
@@ -45,25 +45,6 @@ class CheckoutTests: OMGShopTests {
         XCTAssert(discountedPrice == discount.displayablePrice())
         XCTAssert(viewModel.subTotalPrice == productPrice.displayablePrice())
         XCTAssert(totalPrice == (productPrice - discount).displayablePrice())
-    }
-
-    func testPay() {
-        let expectation = self.expectation(description: "pay")
-        let product = Product(uid: "1", name: "test", description: "test", imageURL: "", price: 20000)
-        let viewModel = CheckoutViewModel(product: product)
-        let decoder = JSONDecoder()
-        //swiftlint:disable:next line_length
-        let balanceJSON = "{\r\n  \"object\": \"balance\",\r\n  \"minted_token\": {\r\n    \"object\": \"minted_token\",\r\n    \"symbol\": \"OMG\",\r\n    \"name\": \"OmiseGO\",\r\n    \"subunit_to_unit\": 100\r\n  },\r\n  \"address\": \"my_omg_address\",\r\n  \"amount\": 800000\r\n}".data(using: .utf8)
-        let balance = try? decoder.decode(Balance.self, from: balanceJSON!)
-        viewModel.checkout.balance = balance
-        viewModel.onSuccessPay = { _ in
-            expectation.fulfill()
-        }
-        viewModel.onFailPay = {
-            XCTFail($0.message)
-        }
-        viewModel.pay()
-        waitForExpectations(timeout: 15.0, handler: nil)
     }
 
 }

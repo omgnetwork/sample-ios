@@ -13,7 +13,7 @@ class ProductListViewModel: BaseViewModel {
     // Delegate closures
     var reloadTableViewClosure: EmptyClosure?
     var onFailLoadProducts: FailureClosure?
-    var onLoadStateChanged: ObjectClosure<Bool>?
+    var onLoadStateChange: ObjectClosure<Bool>?
 
     let viewTitle: String = "product_list.view.title".localized()
 
@@ -24,7 +24,7 @@ class ProductListViewModel: BaseViewModel {
     }
 
     var isLoading: Bool = false {
-        didSet { self.onLoadStateChanged?(self.isLoading) }
+        didSet { self.onLoadStateChange?(self.isLoading) }
     }
 
     func getProducts() {

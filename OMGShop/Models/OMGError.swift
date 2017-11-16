@@ -13,8 +13,8 @@ enum OMGError: Error {
 
     case missingRequiredFields
     case unexpected
-    case apiError(error: APIError)
-    case omiseGOError(error: OmiseGOError)
+    case api(error: APIError)
+    case omiseGO(error: OmiseGOError)
     case other(error: Error)
 
     var message: String {
@@ -23,9 +23,9 @@ enum OMGError: Error {
             return "error.missing_required_fields".localized()
         case .unexpected:
             return "error.unexpected".localized()
-        case .apiError(error: let apiError):
+        case .api(error: let apiError):
             return apiError.description
-        case .omiseGOError(error: let error):
+        case .omiseGO(error: let error):
             return error.description
         case .other(error: let error):
             return error.localizedDescription

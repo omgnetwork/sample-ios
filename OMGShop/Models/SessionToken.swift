@@ -10,10 +10,12 @@ import UIKit
 
 struct SessionToken: Decodable {
 
+    let userId: String
     let authenticationToken: String
     let omiseGOAuthenticationToken: String
 
     private enum CodingKeys: String, CodingKey {
+        case userId = "user_id"
         case authenticationToken = "authentication_token"
         case omiseGOAuthenticationToken = "omisego_authentication_token"
     }

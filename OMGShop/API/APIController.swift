@@ -24,19 +24,22 @@ class APIController {
     class func request<T: Decodable>(withRouter router: URLRequestConvertible,
                                      completionClosure: @escaping APIClosure<T>) -> URLSessionTask? {
         let request = self.shared.manager.request(router).responseData { (data) in
-            switch data.result {
-            case .success(let data):
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    let response: JSONResponse<T> = try jsonDecoder.decode(JSONResponse<T>.self, from: data)
-                    completionClosure(response.data)
-                } catch let error {
+            if let response = data.response, [200, 500].contains(response.statusCode) {
+                switch data.result {
+                case .success(let data):
+                    do {
+                        let jsonDecoder = JSONDecoder()
+                        let response: JSONResponse<T> = try jsonDecoder.decode(JSONResponse<T>.self, from: data)
+                        completionClosure(response.data)
+                    } catch let error {
+                        completionClosure(.fail(error: .other(error: error)))
+                    }
+                case .failure(let error):
                     completionClosure(.fail(error: .other(error: error)))
                 }
-            case .failure(let error):
-                completionClosure(.fail(error: .other(error: error)))
+            } else {
+                completionClosure(.fail(error: OMGError.unexpected))
             }
-
         }
         debugPrint(request)
         return request.task
@@ -63,36 +66,30 @@ private class OMGRequestAdapter: RequestAdapter {
 
     enum AuthenticationType {
 
-        case authenticated(token: String)
+        case authenticated(token: String, userId: String)
         case unAuthenticated
-
-        var scheme: String {
-            switch self {
-            case .authenticated: return Constant.authenticatedScheme
-            case .unAuthenticated: return Constant.unAuthenticatedScheme
-            }
-        }
 
         var encodedKey: String? {
             var key: String!
             switch self {
-            case .authenticated(token: let authenticationToken):
-                key = "\(Constant.apiKey):\(authenticationToken)"
+            case .authenticated(token: let authenticationToken, userId: let userId):
+                key = "\(Constant.apiKeyId):\(Constant.apiKey):\(userId):\(authenticationToken)"
             case .unAuthenticated:
-                key = Constant.apiKey
+                key = "\(Constant.apiKeyId):\(Constant.apiKey)"
             }
             return key.data(using: .utf8, allowLossyConversion: false)?.base64EncodedString()
         }
 
         func encodedAuthorizationHeader() -> String? {
             guard let encodedKey = self.encodedKey else { return nil }
-            return "\(self.scheme) \(encodedKey)"
+            return "\(Constant.authenticationScheme) \(encodedKey)"
         }
     }
 
     var authenticationType: AuthenticationType {
-        if let authenticationToken = SessionManager.shared.authenticationToken {
-            return .authenticated(token: authenticationToken)
+        if let authenticationToken = SessionManager.shared.authenticationToken,
+            let customerId = SessionManager.shared.customerId {
+            return .authenticated(token: authenticationToken, userId: customerId)
         }
         return .unAuthenticated
     }

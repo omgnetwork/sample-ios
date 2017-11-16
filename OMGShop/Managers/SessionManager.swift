@@ -21,6 +21,7 @@ class SessionManager {
     let keychain = KeychainSwift()
 
     var currentUser: User?
+    var customerId: String? // For the sake of simplicity we only store the customerId
     var authenticationToken: String?
     var omiseGOAuthenticationToken: String?
     var state: AppState {
@@ -35,15 +36,18 @@ class SessionManager {
         return self.authenticationToken != nil
     }
 
-    func login(withAppToken appAuthenticationToken: String, omiseGOAuthenticationToken: String) {
+    func login(withAppToken appAuthenticationToken: String, omiseGOAuthenticationToken: String, userId: String) {
+        self.keychain.set(userId, forKey: UserDefaultKeys.userId.rawValue)
         self.keychain.set(appAuthenticationToken, forKey: UserDefaultKeys.appAuthenticationToken.rawValue)
         self.keychain.set(omiseGOAuthenticationToken, forKey: UserDefaultKeys.omiseGOAuthenticationToken.rawValue)
         self.loadTokens()
     }
 
     func clearTokens() {
+        self.keychain.delete(UserDefaultKeys.userId.rawValue)
         self.keychain.delete(UserDefaultKeys.appAuthenticationToken.rawValue)
         self.keychain.delete(UserDefaultKeys.omiseGOAuthenticationToken.rawValue)
+        UserDefaults.standard.removeObject(forKey: UserDefaultKeys.selectedTokenSymbol.rawValue)
         self.authenticationToken = nil
         self.currentUser = nil
         self.omiseGOAuthenticationToken = nil
@@ -51,14 +55,13 @@ class SessionManager {
 
     func logout(withSuccessClosure success: @escaping SuccessClosure, failure: @escaping FailureClosure) {
         OMGClient.shared.logout { (response) in
-            //TODO: Uncomment this
-            //            switch response {
-            //            case .success(data: _):
-            self.clearTokens()
-            success()
-            //            case .fail(error: let error):
-            //                failure(.omiseGOError(error: error))
-            //            }
+            switch response {
+            case .success(data: _):
+                self.clearTokens()
+                success()
+            case .fail(error: let error):
+                failure(.omiseGO(error: error))
+            }
         }
 
     }
@@ -81,6 +84,7 @@ class SessionManager {
     }
 
     private func loadTokens() {
+        self.customerId = self.keychain.get(UserDefaultKeys.userId.rawValue)
         self.authenticationToken = self.keychain.get(UserDefaultKeys.appAuthenticationToken.rawValue)
         self.omiseGOAuthenticationToken = self.keychain.get(UserDefaultKeys.omiseGOAuthenticationToken.rawValue)
         self.initializeOmiseGOSDK()

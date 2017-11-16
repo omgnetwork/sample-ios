@@ -31,7 +31,7 @@ class LoginViewController: BaseViewController {
         super.configureViewModel()
         self.viewModel.updateEmailValidation = { self.emailTextField.errorMessage = $0 }
         self.viewModel.updatePasswordValidation = { self.passwordTextField.errorMessage = $0 }
-        self.viewModel.onLoadStateChanged = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
         self.viewModel.onSuccessLogin = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
         self.viewModel.onFailedLogin = { self.showError(withMessage: $0.localizedDescription) }
     }
@@ -41,7 +41,8 @@ class LoginViewController: BaseViewController {
 extension LoginViewController {
 
     @IBAction func tapLoginButton(_ sender: UIButton) {
-        self.viewModel.submit()
+        self.view.endEditing(true)
+        self.viewModel.login()
     }
 
 }
@@ -51,7 +52,7 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if !self.scrollView.tpKeyboardAvoiding_focusNextTextField() {
             textField.resignFirstResponder()
-            self.viewModel.submit()
+            self.viewModel.login()
         }
         return true
     }

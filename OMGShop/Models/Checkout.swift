@@ -10,7 +10,8 @@ import OmiseGO
 
 class Checkout {
 
-    var balance: Balance?
+    var selectedBalance: Balance!
+    var address: Address?
     var total: Double = 0
     var redeemedToken: Double = 0 {
         didSet { self.discount = redeemedToken * OMGShopManager.shared.setting.tokenValue }

@@ -14,12 +14,13 @@ class CheckoutViewModel: BaseViewModel {
     // Delegate Closures
     var onDiscountPriceChange: ObjectClosure<String>?
     var onTotalPriceChange: ObjectClosure<String>?
-    var onFailGetBalances: FailureClosure?
+    var onSuccessGetAddress: EmptyClosure?
+    var onFailGetAddress: FailureClosure?
     var onSuccessPay: ObjectClosure<String>?
     var onFailPay: FailureClosure?
-    var onLoadStateChanged: ObjectClosure<Bool>?
-    var onAppStateChanged: EmptyClosure?
-    var onSuccessGetBalances: EmptyClosure?
+    var onLoadStateChange: ObjectClosure<Bool>?
+    var onRedeemButtonStateChange: ObjectClosure<Bool>?
+    var onRedeemButtonTitleChange: ObjectClosure<String>?
 
     let viewTitle: String = "checkout.view.title".localized()
     let yourProductLabel: String = "checkout.label.your_product".localized().uppercased()
@@ -27,7 +28,6 @@ class CheckoutViewModel: BaseViewModel {
     let discountLabel: String = "checkout.label.discount".localized()
     let totalLabel: String = "checkout.label.total".localized()
     let summaryLabel: String = "checkout.label.summary".localized().uppercased()
-    let redeemButtonTitle: String = "checkout.button.title.redeem".localized()
     let payButtonTitle: String = "checkout.button.title.pay".localized()
 
     let productName: String
@@ -42,7 +42,13 @@ class CheckoutViewModel: BaseViewModel {
         didSet { self.onTotalPriceChange?(totalPrice) }
     }
     var isLoading: Bool = false {
-        didSet { self.onLoadStateChanged?(isLoading) }
+        didSet { self.onLoadStateChange?(isLoading) }
+    }
+    var redeemButtonTitle: String = "checkout.button.title.redeem.loading".localized() {
+        didSet { self.onRedeemButtonTitleChange?(redeemButtonTitle) }
+    }
+    var isRedeemButtonEnabled: Bool = false {
+        didSet { self.onRedeemButtonStateChange?(isRedeemButtonEnabled) }
     }
 
     let checkout: Checkout!
@@ -58,31 +64,24 @@ class CheckoutViewModel: BaseViewModel {
     }
 
     func loadBalances() {
-        let decoder = JSONDecoder()
-        //swiftlint:disable:next line_length
-        let balanceJSON = "{\r\n  \"object\": \"balance\",\r\n  \"minted_token\": {\r\n    \"object\": \"minted_token\",\r\n    \"symbol\": \"OMG\",\r\n    \"name\": \"OmiseGO\",\r\n    \"subunit_to_unit\": 100\r\n  },\r\n  \"address\": \"my_omg_address\",\r\n  \"amount\": 800000\r\n}".data(using: .utf8)
-        let balance = try? decoder.decode(Balance.self, from: balanceJSON!)
-        self.checkout.balance = balance
         self.isLoading = true
-        self.isLoading = false
-        self.onSuccessGetBalances?()
-        // TODO: For later
-//        Balance.getAll { (result) in
-//            self.isLoading = false
-//            switch result {
-//            case .success(data: let balances):
-//                self.checkout.balance = balances.first
-//                self.onSuccessGetBalances?()
-//            case .fail(error: let error):
-//                switch error {
-//                case .api(apiError: let apiError) where apiError.isAuthorizationError():
-//                    SessionManager.shared.clearTokens()
-//                    self.onAppStateChanged?()
-//                default: break
-//                }
-//                self.onFailGetBalances?(.omiseGOError(error: error))
-//            }
-//        }
+        Address.getMain { (result) in
+            self.isLoading = false
+            switch result {
+            case .success(data: let address):
+                MintedTokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: address.balances)
+                self.checkout.address = address
+                self.checkout.selectedBalance =
+                    MintedTokenManager.shared.selectedBalance(fromBalances: address.balances)
+                self.updateRedeemButtonTitle()
+                self.onSuccessGetAddress?()
+            case .fail(error: let error):
+                self.handleOmiseGOrror(error)
+                self.onFailGetAddress?(.omiseGO(error: error))
+            }
+            self.updateRedeemButtonTitle()
+            self.isRedeemButtonEnabled = MintedTokenManager.shared.selectedTokenSymbol != nil
+        }
     }
 
     func updatePrices() {
@@ -92,7 +91,7 @@ class CheckoutViewModel: BaseViewModel {
 
     func pay() {
         self.isLoading = true
-        let buyForm = BuyForm(tokenSymbol: self.checkout.balance!.mintedToken.symbol,
+        let buyForm = BuyForm(tokenSymbol: self.checkout.selectedBalance!.mintedToken.symbol,
                               tokenValue: self.checkout.redeemedToken,
                               productId: self.checkout.product.uid)
         ProductAPI.buy(withForm: buyForm) { (response) in
@@ -102,8 +101,17 @@ class CheckoutViewModel: BaseViewModel {
                 self.onSuccessPay?("\("checkout.message.pay_success".localized()) \(self.productName)")
             case .fail(error: let error):
                 self.isLoading = false
+                self.handleOMGShopError(error)
                 self.onFailPay?(error)
             }
+        }
+    }
+
+    private func updateRedeemButtonTitle() {
+        if let selectedToken = MintedTokenManager.shared.selectedTokenSymbol {
+            self.redeemButtonTitle = "\("checkout.button.title.redeem.redeem".localized()) \(selectedToken)"
+        } else {
+            self.redeemButtonTitle = "checkout.button.title.redeem.no_balance".localized()
         }
     }
 

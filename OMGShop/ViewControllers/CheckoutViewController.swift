@@ -41,6 +41,7 @@ class CheckoutViewController: BaseViewController {
         self.totalLabel.text = self.viewModel.totalLabel
         self.totalPriceLabel.text = self.viewModel.totalPrice
         self.redeemButton.setTitle(self.viewModel.redeemButtonTitle, for: .normal)
+        self.redeemButton.isEnabled = self.viewModel.isRedeemButtonEnabled
         self.payButton.setTitle(self.viewModel.payButtonTitle, for: .normal)
 
         self.viewModel.loadBalances()
@@ -48,8 +49,8 @@ class CheckoutViewController: BaseViewController {
 
     override func configureViewModel() {
         super.configureViewModel()
-        self.viewModel.onLoadStateChanged = { $0 ? self.showLoading() : self.hideLoading()}
-        self.viewModel.onFailGetBalances = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onFailGetAddress = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onDiscountPriceChange = { self.discountPriceLabel.text = $0 }
         self.viewModel.onTotalPriceChange = { self.totalPriceLabel.text = $0 }
         self.viewModel.onSuccessPay = { (message) in
@@ -57,7 +58,9 @@ class CheckoutViewController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         self.viewModel.onFailPay = {  self.showError(withMessage: $0.localizedDescription) }
-        self.viewModel.onAppStateChanged = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
+        self.viewModel.onAppStateChange = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
+        self.viewModel.onRedeemButtonTitleChange = { self.redeemButton.setTitle($0, for: .normal) }
+        self.viewModel.onRedeemButtonStateChange = { self.redeemButton.isEnabled = $0 }
     }
 
     override func viewDidLayoutSubviews() {

@@ -12,15 +12,10 @@ target 'OMGShop' do
   pod 'MBProgressHUD'
   pod 'Alamofire'
   pod 'KeychainSwift'
+  pod 'OmiseGO', :git => 'ssh://git@phabricator.omisego.io/source/sdk-ios.git'
 
   target 'OMGShopTests' do
     inherit! :search_paths
     # Pods for testing
   end
-
-  target 'OMGShopUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

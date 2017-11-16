@@ -15,7 +15,10 @@ class RedeemPopupViewModel: BaseViewModel {
     var onRedeemTokenUpdate: ObjectClosure<String>?
     var onDiscountUpdate: ObjectClosure<String>?
 
-    let title: String = "popup.redeem.label.title".localized()
+    var title: String {
+        //swiftlint:disable:next line_length
+        return "\("popup.redeem.label.title.redeem".localized()) \(self.checkout.selectedBalance.mintedToken.symbol) \("popup.redeem.label.title.coins".localized())"
+    }
     let cancelButtonTitle: String = "popup.redeem.button.title.cancel".localized()
     let redeemButtonTitle: String = "popup.redeem.button.title.redeem".localized()
     private let checkout: Checkout
@@ -48,7 +51,7 @@ class RedeemPopupViewModel: BaseViewModel {
     }
 
     func maximumSliderValue() -> Float {
-        return Float(min(self.checkout.balance!.amount / OMGShopManager.shared.setting.tokenValue,
+        return Float(min(self.checkout.selectedBalance.amount / OMGShopManager.shared.setting.tokenValue,
                          self.checkout.subTotal / OMGShopManager.shared.setting.tokenValue))
     }
 
@@ -65,7 +68,8 @@ class RedeemPopupViewModel: BaseViewModel {
         let youHave = NSAttributedString(string: "popup.redeem.you_have".localized(), attributes: baseAttributes)
         let toRedeem = NSAttributedString(string: "popup.redeem.to_redeem".localized(), attributes: baseAttributes)
         let tokensAttributes: [NSAttributedStringKey: Any] = [.font: Font.avenirMedium.withSize(14)]
-        let tokens = NSAttributedString(string: " \(self.checkout.balance!.displayAmount(withPrecision: 2)) OMG ",
+        let amount = self.checkout.selectedBalance.displayAmount(withPrecision: 2)
+        let tokens = NSAttributedString(string: " \(amount) \(self.checkout.selectedBalance.mintedToken.symbol) ",
             attributes: tokensAttributes)
         let mutableAS = NSMutableAttributedString()
         mutableAS.append(youHave)
@@ -78,13 +82,14 @@ class RedeemPopupViewModel: BaseViewModel {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
-        let amount = self.selectedTokenAmount / self.checkout.balance!.mintedToken.subUnitToUnit
+        let amount = self.selectedTokenAmount / self.checkout.selectedBalance.mintedToken.subUnitToUnit
         let displayableAmount = formatter.string(from: NSNumber(value: amount)) ?? "-"
-        self.redeemToken = "\("popup.redeem.redeem".localized()) \(displayableAmount) OMG"
+        self.redeemToken =
+        "\("popup.redeem.redeem".localized()) \(displayableAmount) \(self.checkout.selectedBalance.mintedToken.symbol)"
     }
 
     private func buildGetDiscountString() {
-        let displayAmount = self.checkout.balance!.mintedToken.display(forAmount: self.selectedTokenAmount)
+        let displayAmount = self.checkout.selectedBalance.mintedToken.display(forAmount: self.selectedTokenAmount)
         self.getDiscount = "\("popup.redeem.get_discount".localized()) \(displayAmount)"
     }
 

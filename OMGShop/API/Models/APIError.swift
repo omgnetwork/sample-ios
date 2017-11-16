@@ -17,12 +17,22 @@ public struct APIError: CustomDebugStringConvertible {
         return "Error: \(code.debugDescription) - \(description)"
     }
 
+    func isAuthorizationError() -> Bool {
+        switch self.code {
+        case .invalidAuthenticationToken: return true
+        default: return false
+        }
+    }
+
     public enum APIErrorCode: CustomDebugStringConvertible, Decodable {
 
+        case invalidAuthenticationToken
         case other(String)
 
         init(code: String) {
             switch code {
+            case "user:invalid_authentication_token":
+                self = .invalidAuthenticationToken
             case let code:
                 self = .other(code)
             }
@@ -34,6 +44,8 @@ public struct APIError: CustomDebugStringConvertible {
 
         public var code: String {
             switch self {
+            case .invalidAuthenticationToken:
+                return "user:invalid_authentication_token"
             case .other(let code):
                 return code
             }
@@ -41,6 +53,8 @@ public struct APIError: CustomDebugStringConvertible {
 
         public var debugDescription: String {
             switch self {
+            case .invalidAuthenticationToken:
+                return "user:invalid_authentication_token"
             case .other(let code):
                 return code
             }

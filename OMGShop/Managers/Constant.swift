@@ -38,8 +38,10 @@ enum Storyboard {
 }
 
 enum UserDefaultKeys: String {
+    case userId = "token.user_id"
     case appAuthenticationToken = "token.app_authentication_token"
     case omiseGOAuthenticationToken = "token.omisego_authentication_token"
+    case selectedTokenSymbol = "minted_token.selected"
 }
 
 enum AppState {
@@ -51,10 +53,10 @@ enum AppState {
 struct Constant {
 
     static let omiseGOhostURL = "https://kubera.omisego.io"
-    static let hostURL = "https://kubera.omisego.io"
-    static let apiKey = "xxx"
+    static let hostURL = "https://omgshop.omisego.io/api"
+    static let apiKeyId = "1"
+    static let apiKey = "e8d4764f77f36bfd741bd9ed21400cf5"
     static let omiseGOAPIKey = "1482qNxPey7A4_rrKkAOb4kAOTsD2HoLysS7eQ1Zd3Y"
-    static let authenticatedScheme = "OMGAuthenticated"
-    static let unAuthenticatedScheme = "OMGBasic"
+    static let authenticationScheme = "OMGShop"
 
 }

@@ -38,7 +38,7 @@ class RegisterViewController: BaseViewController {
         self.viewModel.updateLastNameValidation = { self.lastNameTextField.errorMessage = $0 }
         self.viewModel.updateEmailValidation = { self.emailTextField.errorMessage = $0 }
         self.viewModel.updatePasswordValidation = { self.passwordTextField.errorMessage = $0 }
-        self.viewModel.onLoadStateChanged = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
         self.viewModel.onSuccessRegister = {
             self.dismiss(animated: false, completion: {
                 (UIApplication.shared.delegate as? AppDelegate)?.loadRootView()
@@ -56,7 +56,8 @@ extension RegisterViewController {
     }
 
     @IBAction func tapRegisterButton(_ sender: UIButton) {
-        self.viewModel.submit()
+        self.view.endEditing(true)
+        self.viewModel.register()
     }
 
 }
@@ -66,7 +67,7 @@ extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if !self.scrollView.tpKeyboardAvoiding_focusNextTextField() {
             textField.resignFirstResponder()
-            self.viewModel.submit()
+            self.viewModel.register()
         }
         return true
     }

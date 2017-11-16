@@ -15,7 +15,7 @@ class LoginViewModel: BaseViewModel {
     var updatePasswordValidation: ViewModelValidationClosure?
     var onSuccessLogin: SuccessClosure?
     var onFailedLogin: FailureClosure?
-    var onLoadStateChanged: ObjectClosure<Bool>?
+    var onLoadStateChange: ObjectClosure<Bool>?
 
     let emailPlaceholder = "login.text_field.placeholder.email".localized()
     let passwordPlaceholder = "login.text_field.placeholder.password".localized()
@@ -31,34 +31,42 @@ class LoginViewModel: BaseViewModel {
     }
 
     var isLoading: Bool = false {
-        didSet { self.onLoadStateChanged?(isLoading) }
+        didSet { self.onLoadStateChange?(isLoading) }
     }
 
-    func submit() {
+    func login() {
         do {
             try self.validateAll()
             self.isLoading = true
-            let loginForm = LoginForm(email: self.email!, password: self.password!)
-            SessionAPI.login(withForm: loginForm, completionClosure: { (response) in
-                switch response {
-                case .success(data: let tokens):
-                    SessionManager.shared.login(withAppToken: tokens.authenticationToken,
-                                                omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken)
-                    SessionManager.shared.loadCurrentUser(withSuccessClosure: {
-                        self.isLoading = false
-                        self.onSuccessLogin?()
-                    }, failure: { (error) in
-                        self.isLoading = false
-                        self.onFailedLogin?(OMGError.omiseGOError(error: error))
-                    })
-                case .fail(error: let error):
-                    self.isLoading = false
-                    self.onFailedLogin?(error)
-                }
-            })
+            self.submit()
         } catch let error as OMGError {
             self.onFailedLogin?(error)
         } catch _ {}
+    }
+
+    private func submit() {
+        let loginForm = LoginForm(email: self.email!, password: self.password!)
+        SessionAPI.login(withForm: loginForm, completionClosure: { (response) in
+            switch response {
+            case .success(data: let tokens): self.processLogin(withTokens: tokens)
+            case .fail(error: let error):
+                self.isLoading = false
+                self.onFailedLogin?(error)
+            }
+        })
+    }
+
+    private func processLogin(withTokens tokens: SessionToken) {
+        SessionManager.shared.login(withAppToken: tokens.authenticationToken,
+                                    omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken,
+                                    userId: tokens.userId)
+        SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+            self.isLoading = false
+            self.onSuccessLogin?()
+        }, failure: { (error) in
+            self.isLoading = false
+            self.onFailedLogin?(OMGError.omiseGO(error: error))
+        })
     }
 
     @discardableResult
