@@ -2,7 +2,7 @@ PODS:
   - Alamofire (4.5.1)
   - KeychainSwift (10.0.0)
   - MBProgressHUD (1.1.0)
-  - OmiseGO (0.8.0)
+  - OmiseGO (0.8.2)
   - SkyFloatingLabelTextField (3.3.0)
   - Toaster (2.1.1)
   - TPKeyboardAvoiding (1.3.1)
@@ -11,7 +11,7 @@ DEPENDENCIES:
   - Alamofire
   - KeychainSwift
   - MBProgressHUD
-  - OmiseGO (from `ssh://git@phabricator.omisego.io/source/sdk-ios.git`, tag `0.8.1`)
+  - OmiseGO (from `ssh://git@phabricator.omisego.io/source/sdk-ios.git`)
   - SkyFloatingLabelTextField
   - Toaster
   - TPKeyboardAvoiding
@@ -19,22 +19,21 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   OmiseGO:
     :git: ssh://git@phabricator.omisego.io/source/sdk-ios.git
-    :tag: 0.8.1
 
 CHECKOUT OPTIONS:
   OmiseGO:
+    :commit: 29db766767ee899ee7a0f6215b1cd7be740f6d30
     :git: ssh://git@phabricator.omisego.io/source/sdk-ios.git
-    :tag: 0.8.1
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  OmiseGO: 904a69de5867069e05f020eb39314e25949c0d7a
+  OmiseGO: 1045c200bfc9bf2c9538a6de819cfc447d7428c3
   SkyFloatingLabelTextField: 771be94beca6868a6cea187f70c965ebd81d2f93
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: a179d1edbbd29ae73ee469b4672ddc470a480630
+PODFILE CHECKSUM: d5de7d08b7add488afa60136191c211cf07a8405
 
 COCOAPODS: 1.3.1

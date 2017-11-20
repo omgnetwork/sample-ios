@@ -91,7 +91,7 @@ class CheckoutViewModel: BaseViewModel {
 
     func pay() {
         self.isLoading = true
-        let buyForm = BuyForm(tokenSymbol: self.checkout.selectedBalance!.mintedToken.symbol,
+        let buyForm = BuyForm(tokenId: self.checkout.selectedBalance!.mintedToken.id,
                               tokenValue: self.checkout.redeemedToken,
                               productId: self.checkout.product.uid)
         ProductAPI.buy(withForm: buyForm) { (response) in

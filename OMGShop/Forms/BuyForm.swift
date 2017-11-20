@@ -10,12 +10,12 @@ import UIKit
 
 struct BuyForm: Encodable {
 
-    let tokenSymbol: String
+    let tokenId: String
     let tokenValue: Double
     let productId: String
 
     private enum CodingKeys: String, CodingKey {
-        case tokenSymbol = "token_symbol"
+        case tokenId = "token_id"
         case tokenValue = "token_value"
         case productId = "product_id"
     }
