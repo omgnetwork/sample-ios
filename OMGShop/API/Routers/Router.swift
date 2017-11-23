@@ -60,7 +60,12 @@ extension Router: URLRequestConvertible {
         var urlRequest = URLRequest(url: url.appendingPathComponent(self.operation))
         urlRequest.httpMethod = HTTPMethod.post.rawValue
         urlRequest.httpBody = self.body
+        urlRequest.setValue(self.generateIdempotencyToken(), forHTTPHeaderField: "Idempotency-Token")
         return urlRequest
+    }
+
+    private func generateIdempotencyToken() -> String {
+        return UUID().uuidString
     }
 
 }

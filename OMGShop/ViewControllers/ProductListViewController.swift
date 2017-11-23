@@ -40,7 +40,10 @@ class ProductListViewController: BaseViewController {
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
         }
-        self.viewModel.onFailLoadProducts = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onFailLoadProducts = {
+            self.showError(withMessage: $0.localizedDescription)
+            self.refreshControl.endRefreshing()
+        }
     }
 
     @objc private func reloadProducts() {
