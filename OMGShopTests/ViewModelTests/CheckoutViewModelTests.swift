@@ -128,6 +128,7 @@ class CheckoutViewModelTests: XCTestCase {
     func testPricesCalculation() {
         var discountedPrice: String?
         var totalPrice: String?
+        self.goToLoadAddressFinished()
         self.sut.onDiscountPriceChange = { discountedPrice = $0 }
         self.sut.onTotalPriceChange = { totalPrice = $0 }
         let discount: Double = 10000

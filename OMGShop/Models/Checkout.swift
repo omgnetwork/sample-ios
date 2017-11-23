@@ -30,7 +30,7 @@ class Checkout {
     }
 
     private func updateTotalPrice() {
-        self.total = self.subTotal - self.discount
+        self.total = self.subTotal - (100.0 * self.discount / (self.selectedBalance?.mintedToken.subUnitToUnit ?? 1))
     }
 
 }

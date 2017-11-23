@@ -95,7 +95,8 @@ class CheckoutViewModel: BaseViewModel {
 
     func updatePrices() {
         self.totalPrice = self.checkout.total.displayablePrice()
-        self.discountPrice = self.checkout.discount.displayablePrice()
+        self.discountPrice = self.checkout.selectedBalance?.mintedToken.display(forAmount: self.checkout.discount) ??
+            0.0.displayablePrice()
     }
 
     func pay() {
