@@ -6,7 +6,6 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
 import OmiseGO
 
 class CheckoutViewModel: BaseViewModel {
@@ -53,28 +52,30 @@ class CheckoutViewModel: BaseViewModel {
 
     let checkout: Checkout!
 
-    init(product: Product) {
+    private let addressLoader: AddressLoaderProtocol
+    private let productAPI: ProductAPIProtocol
+
+    init(product: Product,
+         addressLoader: AddressLoaderProtocol = AddressLoader(),
+         productAPI: ProductAPIProtocol = ProductAPI()) {
         self.checkout = Checkout(product: product)
         self.productName = product.name
         self.productImageURL = URL(string: product.imageURL)
         self.productPrice = product.displayPrice
         self.subTotalPrice = product.displayPrice
+        self.addressLoader = addressLoader
+        self.productAPI = productAPI
         super.init()
         self.updatePrices()
     }
 
     func loadBalances() {
         self.isLoading = true
-        Address.getMain { (result) in
+        self.addressLoader.getMain { (result) in
             self.isLoading = false
             switch result {
             case .success(data: let address):
-                MintedTokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: address.balances)
-                self.checkout.address = address
-                self.checkout.selectedBalance =
-                    MintedTokenManager.shared.selectedBalance(fromBalances: address.balances)
-                self.updateRedeemButtonTitle()
-                self.onSuccessGetAddress?()
+                self.processAddress(address)
             case .fail(error: let error):
                 self.handleOmiseGOrror(error)
                 self.onFailGetAddress?(.omiseGO(error: error))
@@ -82,6 +83,14 @@ class CheckoutViewModel: BaseViewModel {
             self.updateRedeemButtonTitle()
             self.isRedeemButtonEnabled = MintedTokenManager.shared.selectedTokenSymbol != nil
         }
+    }
+
+    private func processAddress(_ address: Address) {
+        MintedTokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: address.balances)
+        self.checkout.address = address
+        self.checkout.selectedBalance =
+            MintedTokenManager.shared.selectedBalance(fromBalances: address.balances)
+        self.onSuccessGetAddress?()
     }
 
     func updatePrices() {
@@ -94,7 +103,7 @@ class CheckoutViewModel: BaseViewModel {
         let buyForm = BuyForm(tokenId: self.checkout.selectedBalance!.mintedToken.id,
                               tokenValue: self.checkout.redeemedToken,
                               productId: self.checkout.product.uid)
-        ProductAPI.buy(withForm: buyForm) { (response) in
+        self.productAPI.buy(withForm: buyForm) { (response) in
             switch response {
             case .success(data: _):
                 self.isLoading = false

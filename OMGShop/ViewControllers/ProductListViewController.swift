@@ -62,7 +62,7 @@ class ProductListViewController: BaseViewController {
 extension ProductListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.numberOfCell()
+        return self.viewModel.numberOfRow()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

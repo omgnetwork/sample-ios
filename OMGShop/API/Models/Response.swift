@@ -6,8 +6,6 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
-
 enum Response<Data> {
     case success(data: Data)
     case fail(error: OMGError)

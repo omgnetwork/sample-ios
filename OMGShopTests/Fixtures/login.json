@@ -1,0 +1,6 @@
+{
+  "object": "authentication_token",
+  "user_id": "1",
+  "authentication_token": "a_valid_token",
+  "omisego_authentication_token": "a_valid_omisego_token"
+}

@@ -6,8 +6,6 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
-
 struct Product: Decodable {
 
     let uid: String

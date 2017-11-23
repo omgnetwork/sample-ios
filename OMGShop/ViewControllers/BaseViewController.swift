@@ -6,7 +6,6 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
 import Toaster
 import MBProgressHUD
 

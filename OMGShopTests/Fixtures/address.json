@@ -1,0 +1,26 @@
+{
+  "object": "address",
+  "address": "XXX123",
+  "balances": [
+    {
+      "amount": 800000,
+      "minted_token": {
+        "object": "minted_token",
+        "id": "MNT:123",
+        "symbol": "MNT",
+        "name": "Mint",
+        "subunit_to_unit": 100
+      }
+    },
+    {
+      "amount": 3333,
+      "minted_token": {
+        "object": "minted_token",
+        "id": "OMG:123",
+        "symbol": "OMG",
+        "name": "OmiseGO",
+        "subunit_to_unit": 100
+      }
+    }
+  ]
+}

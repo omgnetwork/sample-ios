@@ -6,7 +6,7 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class ProductListViewModel: BaseViewModel {
 
@@ -27,9 +27,16 @@ class ProductListViewModel: BaseViewModel {
         didSet { self.onLoadStateChange?(self.isLoading) }
     }
 
+    private let productAPI: ProductAPIProtocol
+
+    init(productAPI: ProductAPIProtocol = ProductAPI()) {
+        self.productAPI = productAPI
+        super.init()
+    }
+
     func getProducts() {
         self.isLoading = true
-        ProductAPI.getAll { (response) in
+        self.productAPI.getAll { (response) in
             switch response {
             case .success(data: let products):
                 self.process(products)
@@ -55,7 +62,7 @@ extension ProductListViewModel {
         return self.productCellViewModels[indexPath.row]
     }
 
-    func numberOfCell() -> Int {
+    func numberOfRow() -> Int {
         return self.productCellViewModels.count
     }
 

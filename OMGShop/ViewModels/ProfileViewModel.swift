@@ -6,7 +6,6 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
 import OmiseGO
 
 class ProfileViewModel: BaseViewModel {
@@ -21,7 +20,7 @@ class ProfileViewModel: BaseViewModel {
     var onLoadStateChange: ObjectClosure<Bool>?
 
     var name: String {
-        guard let user = SessionManager.shared.currentUser else { return "" }
+        guard let user = self.sessionManager.currentUser else { return "" }
         return user.username
     }
     var isLoading: Bool = false {
@@ -37,7 +36,13 @@ class ProfileViewModel: BaseViewModel {
     let amount = "profile.label.amount".localized()
     let selected = "profile.lable.selected".localized()
 
-    override init() {
+    private let sessionManager: SessionManagerProtocol
+    private let addressLoader: AddressLoaderProtocol
+
+    init(sessionManager: SessionManagerProtocol = SessionManager.shared,
+         addressLoader: AddressLoaderProtocol = AddressLoader()) {
+        self.sessionManager = sessionManager
+        self.addressLoader = addressLoader
         super.init()
     }
 
@@ -45,7 +50,7 @@ class ProfileViewModel: BaseViewModel {
         self.isLoading = true
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+        self.sessionManager.loadCurrentUser(withSuccessClosure: {
             dispatchGroup.leave()
             self.onSuccessReloadUser?(self.name)
         }, failure: { (error) in
@@ -53,13 +58,11 @@ class ProfileViewModel: BaseViewModel {
             self.onFailReloadUser?(OMGError.omiseGO(error: error))
         })
         dispatchGroup.enter()
-        Address.getMain { (result) in
+        self.addressLoader.getMain { (result) in
             self.isLoading = false
             switch result {
             case .success(data: let address):
-                MintedTokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: address.balances)
-                self.generateTableViewModels(fromBalances: address.balances)
-                self.onTableDataChange?()
+                self.processAddress(address)
             case .fail(error: let error):
                 self.handleOmiseGOrror(error)
                 self.onFailGetAddress?(.omiseGO(error: error))
@@ -72,9 +75,15 @@ class ProfileViewModel: BaseViewModel {
         }
     }
 
+    private func processAddress(_ address: Address) {
+        MintedTokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: address.balances)
+        self.generateTableViewModels(fromBalances: address.balances)
+        self.onTableDataChange?()
+    }
+
     func logout() {
         self.isLoading = true
-        SessionManager.shared.logout(withSuccessClosure: {
+        self.sessionManager.logout(withSuccessClosure: {
             dispatchMain {
                 self.isLoading = false
                 self.onLogoutSuccess?()

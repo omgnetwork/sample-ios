@@ -6,15 +6,20 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
+protocol ProductAPIProtocol {
 
-class ProductAPI {
+    func getAll(withCompletionClosure completionClosure: @escaping APIClosure<[Product]>)
+    func buy(withForm form: BuyForm, completionClosure: @escaping APIClosure<EmptyResponse>)
 
-    class func getAll(withCompletionClosure completionClosure: @escaping APIClosure<[Product]>) {
+}
+
+class ProductAPI: ProductAPIProtocol {
+
+    func getAll(withCompletionClosure completionClosure: @escaping APIClosure<[Product]>) {
         Router.getProducts.request(withCompletionClosure: completionClosure)
     }
 
-    class func buy(withForm form: BuyForm, completionClosure: @escaping APIClosure<EmptyResponse>) {
+    func buy(withForm form: BuyForm, completionClosure: @escaping APIClosure<EmptyResponse>) {
         Router.buyProduct(withForm: form).request(withCompletionClosure: completionClosure)
     }
 

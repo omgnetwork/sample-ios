@@ -6,8 +6,6 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
-
 class RegisterViewModel: BaseViewModel {
 
     // Delegate closures
@@ -47,6 +45,16 @@ class RegisterViewModel: BaseViewModel {
         didSet { self.onLoadStateChange?(isLoading) }
     }
 
+    private let sessionAPI: SessionAPIProtocol
+    private let sessionManager: SessionManagerProtocol
+
+    init(sessionAPI: SessionAPIProtocol = SessionAPI(),
+         sessionManager: SessionManagerProtocol = SessionManager.shared) {
+        self.sessionAPI = sessionAPI
+        self.sessionManager = sessionManager
+        super.init()
+    }
+
     func register() {
         do {
             try self.validateAll()
@@ -62,7 +70,7 @@ class RegisterViewModel: BaseViewModel {
                                         lastName: self.lastName!,
                                         email: self.email!,
                                         password: self.password!)
-        SessionAPI.register(withForm: registerForm, completionClosure: { (response) in
+        self.sessionAPI.register(withForm: registerForm, completionClosure: { (response) in
             switch response {
             case .success(data: let tokens): self.processRegister(withTokens: tokens)
             case .fail(error: let error):
@@ -73,10 +81,10 @@ class RegisterViewModel: BaseViewModel {
     }
 
     private func processRegister(withTokens tokens: SessionToken) {
-        SessionManager.shared.login(withAppToken: tokens.authenticationToken,
+        self.sessionManager.login(withAppToken: tokens.authenticationToken,
                                     omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken,
                                     userId: tokens.userId)
-        SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+        self.sessionManager.loadCurrentUser(withSuccessClosure: {
             self.isLoading = false
             self.onSuccessRegister?()
         }, failure: { (error) in

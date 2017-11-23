@@ -6,7 +6,7 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct LoginForm: Encodable {
 

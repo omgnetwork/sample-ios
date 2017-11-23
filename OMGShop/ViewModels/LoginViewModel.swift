@@ -6,8 +6,6 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
-
 class LoginViewModel: BaseViewModel {
 
     // Delegate closures
@@ -34,6 +32,16 @@ class LoginViewModel: BaseViewModel {
         didSet { self.onLoadStateChange?(isLoading) }
     }
 
+    private let sessionAPI: SessionAPIProtocol
+    private let sessionManager: SessionManagerProtocol
+
+    init(sessionAPI: SessionAPIProtocol = SessionAPI(),
+         sessionManager: SessionManagerProtocol = SessionManager.shared) {
+        self.sessionAPI = sessionAPI
+        self.sessionManager = sessionManager
+        super.init()
+    }
+
     func login() {
         do {
             try self.validateAll()
@@ -46,7 +54,7 @@ class LoginViewModel: BaseViewModel {
 
     private func submit() {
         let loginForm = LoginForm(email: self.email!, password: self.password!)
-        SessionAPI.login(withForm: loginForm, completionClosure: { (response) in
+        self.sessionAPI.login(withForm: loginForm, completionClosure: { (response) in
             switch response {
             case .success(data: let tokens): self.processLogin(withTokens: tokens)
             case .fail(error: let error):
@@ -57,10 +65,10 @@ class LoginViewModel: BaseViewModel {
     }
 
     private func processLogin(withTokens tokens: SessionToken) {
-        SessionManager.shared.login(withAppToken: tokens.authenticationToken,
+        self.sessionManager.login(withAppToken: tokens.authenticationToken,
                                     omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken,
                                     userId: tokens.userId)
-        SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+        self.sessionManager.loadCurrentUser(withSuccessClosure: {
             self.isLoading = false
             self.onSuccessLogin?()
         }, failure: { (error) in

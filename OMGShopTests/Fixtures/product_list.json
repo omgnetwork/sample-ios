@@ -1,0 +1,18 @@
+[
+  {
+    "object": "product",
+    "id": "cjw211-23poka-qwd813-mcnqyqw",
+    "name": "OmiseGO t-shirt",
+    "description": "An awesome t-shirt",
+    "image_url": "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png",
+    "price": 20000
+  },
+  {
+    "object": "product",
+    "id": "cjw211-23poka-qwd813-mcnq123",
+    "name": "OmiseGO t-shirt 2",
+    "description": "An other awesome t-shirt",
+    "image_url": "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png",
+    "price": 30000
+  }
+]

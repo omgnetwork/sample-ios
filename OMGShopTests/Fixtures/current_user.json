@@ -1,0 +1,10 @@
+{
+  "object": "user",
+  "id": "an_id",
+  "provider_user_id": "a_provider_user_id",
+  "username": "john.doe@example.com",
+  "metadata": {
+    "first_name": "John",
+    "last_name": "Doe"
+  }
+}

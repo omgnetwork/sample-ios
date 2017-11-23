@@ -6,7 +6,6 @@
 //  Copyright © 2560 Mederic Petit. All rights reserved.
 //
 
-import UIKit
 import OmiseGO
 
 class LoadingViewModel: BaseViewModel {
@@ -16,6 +15,13 @@ class LoadingViewModel: BaseViewModel {
 
     let retryButtonTitle: String = "loading.button.title.retry".localized()
 
+    private let sessionManager: SessionManagerProtocol
+
+    init(sessionManager: SessionManagerProtocol = SessionManager.shared) {
+        self.sessionManager = sessionManager
+        super.init()
+    }
+
     var isLoading: Bool = true {
         didSet {
             self.onLoadStateChange?(isLoading)
@@ -24,7 +30,7 @@ class LoadingViewModel: BaseViewModel {
 
     func load() {
         self.isLoading = true
-        SessionManager.shared.loadCurrentUser(withSuccessClosure: {
+        self.sessionManager.loadCurrentUser(withSuccessClosure: {
             self.isLoading = false
             self.onAppStateChange?()
             }, failure: { (error) in

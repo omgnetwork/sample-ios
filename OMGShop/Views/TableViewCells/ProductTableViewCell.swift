@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ProductTableViewCellDelegate:class {
+protocol ProductTableViewCellDelegate: class {
     func didTapBuy(forProduct product: Product)
 }
 
