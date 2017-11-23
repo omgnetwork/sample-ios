@@ -48,7 +48,7 @@
 "checkout.button.title.redeem.no_balance" = "No balance available";
 "checkout.button.title.redeem.loading" = "Loading...";
 "checkout.button.title.pay" = "Pay";
-"checkout.message.pay_success" = "Successfuly bought";
+"checkout.message.pay_success" = "Successfully bought";
 
 // Redeem popup
 
