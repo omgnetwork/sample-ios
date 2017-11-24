@@ -81,7 +81,8 @@ class CheckoutViewModel: BaseViewModel {
                 self.onFailGetAddress?(.omiseGO(error: error))
             }
             self.updateRedeemButtonTitle()
-            self.isRedeemButtonEnabled = MintedTokenManager.shared.selectedTokenSymbol != nil
+            self.isRedeemButtonEnabled = MintedTokenManager.shared.selectedTokenSymbol != nil &&
+                self.checkout.address != nil
         }
     }
 

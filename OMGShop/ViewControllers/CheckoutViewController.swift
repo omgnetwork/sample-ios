@@ -43,6 +43,7 @@ class CheckoutViewController: BaseViewController {
         self.redeemButton.setTitle(self.viewModel.redeemButtonTitle, for: .normal)
         self.redeemButton.isEnabled = self.viewModel.isRedeemButtonEnabled
         self.payButton.setTitle(self.viewModel.payButtonTitle, for: .normal)
+        self.payButton.isEnabled = self.viewModel.isRedeemButtonEnabled
 
         self.viewModel.loadBalances()
     }
@@ -60,7 +61,10 @@ class CheckoutViewController: BaseViewController {
         self.viewModel.onFailPay = {  self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onAppStateChange = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
         self.viewModel.onRedeemButtonTitleChange = { self.redeemButton.setTitle($0, for: .normal) }
-        self.viewModel.onRedeemButtonStateChange = { self.redeemButton.isEnabled = $0 }
+        self.viewModel.onRedeemButtonStateChange = {
+            self.redeemButton.isEnabled = $0
+            self.payButton.isEnabled = $0
+        }
     }
 
     override func viewDidLayoutSubviews() {
