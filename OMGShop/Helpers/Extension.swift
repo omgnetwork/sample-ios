@@ -7,6 +7,7 @@
 //
 
 import OmiseGO
+import BigInt
 
 func dispatchMain(_ block: @escaping EmptyClosure) {
     DispatchQueue.main.async { block() }
@@ -14,10 +15,10 @@ func dispatchMain(_ block: @escaping EmptyClosure) {
 
 extension MintedToken {
 
-    func display(forAmount amount: Double) -> String {
+    func display(forAmount amount: BigUInt) -> String {
         let value = amount * OMGShopManager.shared.setting.tokenValue
 
-        return value.displayablePrice(withSubunitToUnitCount: self.subUnitToUnit)
+        return Double(value).displayablePrice(withSubunitToUnitCount: self.subUnitToUnit)
     }
 
 }

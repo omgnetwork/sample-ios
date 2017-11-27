@@ -13,6 +13,7 @@ target 'OMGShop' do
   pod 'Alamofire'
   pod 'KeychainSwift'
   pod 'OmiseGO', :git => 'ssh://git@phabricator.omisego.io/source/sdk-ios.git'
+  pod 'BigInt'
 
   target 'OMGShopTests' do
     inherit! :search_paths

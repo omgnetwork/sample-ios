@@ -9,6 +9,7 @@
 import XCTest
 @testable import OMGShop
 @testable import OmiseGO
+import BigInt
 
 class CheckoutViewModelTests: XCTestCase {
 
@@ -132,7 +133,7 @@ class CheckoutViewModelTests: XCTestCase {
         self.sut.onDiscountPriceChange = { discountedPrice = $0 }
         self.sut.onTotalPriceChange = { totalPrice = $0 }
         let discount: Double = 10000
-        self.sut.checkout.discount = discount
+        self.sut.checkout.discount = BigUInt(discount)
         self.sut.updatePrices()
         XCTAssert(discountedPrice == discount.displayablePrice())
         XCTAssert(self.sut.subTotalPrice == 20000.displayablePrice())

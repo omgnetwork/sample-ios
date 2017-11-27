@@ -11,7 +11,7 @@ import Foundation
 struct BuyForm: Encodable {
 
     let tokenId: String
-    let tokenValue: Double
+    let tokenValue: String
     let productId: String
 
     private enum CodingKeys: String, CodingKey {

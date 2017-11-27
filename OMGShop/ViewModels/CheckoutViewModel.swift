@@ -7,6 +7,7 @@
 //
 
 import OmiseGO
+import BigInt
 
 class CheckoutViewModel: BaseViewModel {
 
@@ -61,8 +62,8 @@ class CheckoutViewModel: BaseViewModel {
         self.checkout = Checkout(product: product)
         self.productName = product.name
         self.productImageURL = URL(string: product.imageURL)
-        self.productPrice = product.displayPrice
-        self.subTotalPrice = product.displayPrice
+        self.productPrice = product.price.displayablePrice()
+        self.subTotalPrice = product.price.displayablePrice()
         self.addressLoader = addressLoader
         self.productAPI = productAPI
         super.init()
@@ -95,7 +96,7 @@ class CheckoutViewModel: BaseViewModel {
     }
 
     func updatePrices() {
-        self.totalPrice = self.checkout.total.displayablePrice()
+        self.totalPrice = Double(self.checkout.total).displayablePrice()
         self.discountPrice = self.checkout.selectedBalance?.mintedToken.display(forAmount: self.checkout.discount) ??
             0.0.displayablePrice()
     }
@@ -103,7 +104,7 @@ class CheckoutViewModel: BaseViewModel {
     func pay() {
         self.isLoading = true
         let buyForm = BuyForm(tokenId: self.checkout.selectedBalance!.mintedToken.id,
-                              tokenValue: self.checkout.redeemedToken,
+                              tokenValue: self.checkout.redeemedToken.description,
                               productId: self.checkout.product.uid)
         self.productAPI.buy(withForm: buyForm) { (response) in
             switch response {

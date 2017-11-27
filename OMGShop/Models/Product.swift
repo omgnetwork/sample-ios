@@ -13,9 +13,6 @@ struct Product: Decodable {
     let description: String
     let imageURL: String
     let price: Double
-    var displayPrice: String {
-        return self.price.displayablePrice()
-    }
 
     private enum CodingKeys: String, CodingKey {
         case uid = "id"

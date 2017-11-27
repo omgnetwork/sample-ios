@@ -21,7 +21,7 @@ class ProductCellViewModel: BaseViewModel {
         self.product = product
         self.name = product.name
         self.desc = product.description
-        self.displayPrice = product.displayPrice
+        self.displayPrice = product.price.displayablePrice()
         self.imageURL = URL(string: product.imageURL)
     }
 

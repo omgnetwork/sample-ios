@@ -7,6 +7,7 @@
 //
 
 import OmiseGO
+import BigInt
 
 class RedeemPopupViewModel: BaseViewModel {
 
@@ -30,7 +31,7 @@ class RedeemPopupViewModel: BaseViewModel {
         didSet { self.onDiscountUpdate?(getDiscount) }
     }
 
-    private var selectedTokenAmount: Double = 0 {
+    private var selectedTokenAmount: BigUInt = 0 {
         didSet { self.buildRedeemTokenString() }
     }
 
@@ -44,18 +45,23 @@ class RedeemPopupViewModel: BaseViewModel {
     }
 
     func updateRedeem(withSliderValue value: Float) {
-        self.selectedTokenAmount = Double(value)
+        self.selectedTokenAmount =
+            BigUInt(value) * BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit) / 100
         self.buildGetDiscountString()
         self.buildRedeemTokenString()
     }
 
     func maximumSliderValue() -> Float {
-        return Float(min(self.checkout.selectedBalance.amount / OMGShopManager.shared.setting.tokenValue,
-                         self.checkout.subTotal / OMGShopManager.shared.setting.tokenValue))
+        let amount = BigUInt(self.checkout.selectedBalance.amount) * 100 /
+            (OMGShopManager.shared.setting.tokenValue *
+                BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit))
+        let itemValue = self.checkout.subTotal / OMGShopManager.shared.setting.tokenValue
+        return Float(min(amount, itemValue))
     }
 
     func initialSliderValue() -> Float {
-        return Float(self.selectedTokenAmount)
+        return Float(100 * self.selectedTokenAmount /
+            BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit))
     }
 
     func redeem() {
@@ -81,8 +87,9 @@ class RedeemPopupViewModel: BaseViewModel {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
-        let amount = self.selectedTokenAmount / self.checkout.selectedBalance.mintedToken.subUnitToUnit
-        let displayableAmount = formatter.string(from: NSNumber(value: amount)) ?? "-"
+        let amount = self.selectedTokenAmount /
+            BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit)
+        let displayableAmount = formatter.string(from: NSNumber(value: Double(amount))) ?? "-"
         self.redeemToken =
         "\("popup.redeem.redeem".localized()) \(displayableAmount) \(self.checkout.selectedBalance.mintedToken.symbol)"
     }
