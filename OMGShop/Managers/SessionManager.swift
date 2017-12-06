@@ -40,6 +40,8 @@ class SessionManager: SessionManagerProtocol {
         }
     }
 
+    var omiseGOClient: OMGClient!
+
     func isLoggedIn() -> Bool {
         return self.authenticationToken != nil
     }
@@ -66,7 +68,7 @@ class SessionManager: SessionManagerProtocol {
         let config = OMGConfiguration(baseURL: Constant.omiseGOhostURL,
                                       apiKey: Constant.omiseGOAPIKey,
                                       authenticationToken: token)
-        OMGClient.setup(withConfig: config)
+        self.omiseGOClient = OMGClient(config: config)
     }
 
     // SessionManagerProtocol
@@ -84,7 +86,7 @@ class SessionManager: SessionManagerProtocol {
             failure(.unexpected(message: "error.unexpected".localized()))
             return
         }
-        User.getCurrent { (response) in
+        User.getCurrent (using: self.omiseGOClient) { (response) in
             switch response {
             case .success(data: let user):
                 self.currentUser = user
@@ -96,7 +98,7 @@ class SessionManager: SessionManagerProtocol {
     }
 
     func logout(withSuccessClosure success: @escaping SuccessClosure, failure: @escaping FailureClosure) {
-        OMGClient.shared.logout { (response) in
+        self.omiseGOClient.logout { (response) in
             switch response {
             case .success(data: _):
                 self.clearTokens()

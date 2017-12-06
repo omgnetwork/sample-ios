@@ -16,7 +16,7 @@ protocol AddressLoaderProtocol {
 class AddressLoader: AddressLoaderProtocol {
 
     func getMain(withCallback callback: @escaping Address.RetrieveRequestCallback) {
-        Address.getMain(callback: callback)
+        Address.getMain(using: SessionManager.shared.omiseGOClient, callback: callback)
     }
 
 }
