@@ -10,8 +10,6 @@ class OMGShopManager {
 
     static let shared: OMGShopManager = OMGShopManager()
 
-    let setting: Setting = Setting()
-
     init() {
         Theme.apply()
     }

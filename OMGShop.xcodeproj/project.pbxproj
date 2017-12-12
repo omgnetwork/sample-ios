@@ -55,7 +55,6 @@
 		03C601401FA6E3FC0033A0C7 /* Loading.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C6013E1FA6E3FC0033A0C7 /* Loading.storyboard */; };
 		03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601411FA6E4510033A0C7 /* LoadingViewController.swift */; };
 		03C601441FA6E46F0033A0C7 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */; };
-		03CC0C9D1FA0558900DB377C /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC0C9C1FA0558900DB377C /* Setting.swift */; };
 		03CC0C9F1FA05B0900DB377C /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC0C9E1FA05B0900DB377C /* Checkout.swift */; };
 		03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DEC75B1FA81554009068AD /* ProductAPI.swift */; };
 		03F84C6F1FC3C62700F21C7B /* MockSessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C6E1FC3C62700F21C7B /* MockSessionAPI.swift */; };
@@ -157,7 +156,6 @@
 		03C6013F1FA6E3FC0033A0C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Loading.storyboard; sourceTree = "<group>"; };
 		03C601411FA6E4510033A0C7 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
-		03CC0C9C1FA0558900DB377C /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		03CC0C9E1FA05B0900DB377C /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
 		03DEC75B1FA81554009068AD /* ProductAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPI.swift; sourceTree = "<group>"; };
 		03F84C6E1FC3C62700F21C7B /* MockSessionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSessionAPI.swift; sourceTree = "<group>"; };
@@ -389,7 +387,6 @@
 			children = (
 				03BD53E91F99D97B00A26499 /* OMGError.swift */,
 				039F69D81F9EF9A000AE5355 /* Product.swift */,
-				03CC0C9C1FA0558900DB377C /* Setting.swift */,
 				03CC0C9E1FA05B0900DB377C /* Checkout.swift */,
 				03F998251FA7162E00565960 /* Protocol.swift */,
 				03F9982B1FA7294900565960 /* SessionToken.swift */,
@@ -714,7 +711,6 @@
 				037AFA741FA70B5D006A0C01 /* APIError.swift in Sources */,
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
 				031BB16F1F99948A0095468F /* Theme.swift in Sources */,
-				03CC0C9D1FA0558900DB377C /* Setting.swift in Sources */,
 				037AFA721FA70B3C006A0C01 /* Response.swift in Sources */,
 				031BB11F1F9886790095468F /* AppDelegate.swift in Sources */,
 				03C2C0831FBAE67A00B794AC /* TokenCellViewModel.swift in Sources */,

@@ -45,23 +45,19 @@ class RedeemPopupViewModel: BaseViewModel {
     }
 
     func updateRedeem(withSliderValue value: Float) {
-        self.selectedTokenAmount =
-            BigUInt(value) * BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit) / 100
+        self.selectedTokenAmount = BigUInt(value)
         self.buildGetDiscountString()
         self.buildRedeemTokenString()
     }
 
     func maximumSliderValue() -> Float {
-        let amount = BigUInt(self.checkout.selectedBalance.amount) * 100 /
-            (OMGShopManager.shared.setting.tokenValue *
-                BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit))
-        let itemValue = self.checkout.subTotal / OMGShopManager.shared.setting.tokenValue
-        return Float(min(amount, itemValue))
+        let amount = (BigUInt(self.checkout.selectedBalance.amount) /
+            BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit)) * 100
+        return Float(min(amount, self.checkout.subTotal))
     }
 
     func initialSliderValue() -> Float {
-        return Float(100 * self.selectedTokenAmount /
-            BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit))
+        return Float(self.selectedTokenAmount)
     }
 
     func redeem() {
@@ -87,16 +83,15 @@ class RedeemPopupViewModel: BaseViewModel {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
-        let amount = self.selectedTokenAmount /
-            BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit)
+        let amount = self.selectedTokenAmount / 100
         let displayableAmount = formatter.string(from: NSNumber(value: Double(amount))) ?? "-"
         self.redeemToken =
         "\("popup.redeem.redeem".localized()) \(displayableAmount) \(self.checkout.selectedBalance.mintedToken.symbol)"
     }
 
     private func buildGetDiscountString() {
-        let displayAmount = self.checkout.selectedBalance.mintedToken.display(forAmount: self.selectedTokenAmount)
-        self.getDiscount = "\("popup.redeem.get_discount".localized()) \(displayAmount)"
+        let displayAmount = self.selectedTokenAmount
+        self.getDiscount = "\("popup.redeem.get_discount".localized()) \(Double(displayAmount).displayablePrice())"
     }
 
 }

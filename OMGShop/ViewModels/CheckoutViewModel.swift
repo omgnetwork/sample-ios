@@ -97,14 +97,13 @@ class CheckoutViewModel: BaseViewModel {
 
     func updatePrices() {
         self.totalPrice = Double(self.checkout.total).displayablePrice()
-        self.discountPrice = self.checkout.selectedBalance?.mintedToken.display(forAmount: self.checkout.discount) ??
-            0.0.displayablePrice()
+        self.discountPrice = Double(self.checkout.discount).displayablePrice()
     }
 
     func pay() {
         self.isLoading = true
         let buyForm = BuyForm(tokenId: self.checkout.selectedBalance!.mintedToken.id,
-                              tokenValue: self.checkout.redeemedToken.description,
+                              tokenValue: (self.checkout.redeemedToken * BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit) / 100).description,
                               productId: self.checkout.product.uid)
         self.productAPI.buy(withForm: buyForm) { (response) in
             switch response {

@@ -37,7 +37,7 @@ class RedeemViewModelTests: XCTestCase {
     func testInitialSliderValues() {
         self.sut = RedeemPopupViewModel(checkout: self.checkout)
         XCTAssert(self.sut.initialSliderValue() == 0)
-        XCTAssert(self.sut.maximumSliderValue() == Float(20000 / OMGShopManager.shared.setting.tokenValue))
+        XCTAssert(self.sut.maximumSliderValue() == Float(20000))
     }
 
     func testUpdateSliderValues() {

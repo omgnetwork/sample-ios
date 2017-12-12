@@ -16,9 +16,7 @@ func dispatchMain(_ block: @escaping EmptyClosure) {
 extension MintedToken {
 
     func display(forAmount amount: BigUInt) -> String {
-        let value = amount * OMGShopManager.shared.setting.tokenValue
-
-        return Double(value).displayablePrice(withSubunitToUnitCount: self.subUnitToUnit)
+        return Double(amount).displayablePrice(withSubunitToUnitCount: self.subUnitToUnit)
     }
 
 }

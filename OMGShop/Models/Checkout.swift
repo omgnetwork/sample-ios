@@ -15,7 +15,7 @@ class Checkout {
     var address: Address?
     var total: BigUInt = 0
     var redeemedToken: BigUInt = 0 {
-        didSet { self.discount = redeemedToken * OMGShopManager.shared.setting.tokenValue }
+        didSet { self.discount = redeemedToken }
     }
     var discount: BigUInt = 0 {
         didSet { self.updateTotalPrice() }
@@ -31,8 +31,7 @@ class Checkout {
     }
 
     private func updateTotalPrice() {
-        self.total = self.subTotal - (100 * self.discount /
-            (BigUInt(self.selectedBalance?.mintedToken.subUnitToUnit ?? 1)))
+        self.total = self.subTotal - self.discount
     }
 
 }
