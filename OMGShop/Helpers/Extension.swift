@@ -54,7 +54,7 @@ extension String {
     }
 
     func isValidPassword() -> Bool {
-        return self.count >= 6
+        return self.count >= 8
     }
 
     func localized() -> String {
