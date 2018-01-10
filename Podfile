@@ -12,7 +12,7 @@ target 'OMGShop' do
   pod 'MBProgressHUD'
   pod 'Alamofire'
   pod 'KeychainSwift'
-  pod 'OmiseGO', :git => 'ssh://git@phabricator.omisego.io/source/sdk-ios.git'
+  pod 'OmiseGO', :git => 'git@github.com:omisego/ios-sdk.git'
   pod 'BigInt'
 
   target 'OMGShopTests' do
