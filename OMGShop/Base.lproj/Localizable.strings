@@ -70,6 +70,14 @@
 "profile.label.amount" = "Amount";
 "profile.lable.selected" = "Selected";
 
+// QRCode generator
+
+"qr_code_generator.title" = "QR Code";
+"qr_code_generator.text_field.placeholder.amount" = "Amount";
+"qr_code_generator.button.title.generate" = "Generate";
+"qr_code_generator.button.title.generate.disable" = "Loading";
+"qr_code_generator.button.title.scan" = "Scan QR Code";
+
 // Global Errors
 "error.missing_required_fields" = "Missing required fields";
 "error.unexpected" = "An unexpected error has occured";

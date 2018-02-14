@@ -20,3 +20,16 @@ class AddressLoader: AddressLoaderProtocol {
     }
 
 }
+
+protocol SettingLoaderProtocol {
+    func get(withCallback callback: @escaping Setting.RetrieveRequestCallback)
+}
+
+/// This wrapper has been created for the sake of testing with dependency injection
+class SettingLoader: SettingLoaderProtocol {
+
+    func get(withCallback callback: @escaping Setting.RetrieveRequestCallback) {
+        Setting.get(using: SessionManager.shared.omiseGOClient, callback: callback)
+    }
+
+}

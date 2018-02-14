@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03003E191FA989A600EAB202 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03003E181FA989A600EAB202 /* Profile.storyboard */; };
+		030F57342033E42D00F54296 /* QRCodeViewerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030F57332033E42D00F54296 /* QRCodeViewerViewModel.swift */; };
 		031BB11F1F9886790095468F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB11E1F9886790095468F /* AppDelegate.swift */; };
 		031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 031BB14E1F988E750095468F /* LaunchScreen.storyboard */; };
 		031BB1591F988E750095468F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 031BB1531F988E750095468F /* Assets.xcassets */; };
@@ -75,6 +75,11 @@
 		03F9982A1FA71DED00565960 /* SessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F998291FA71DED00565960 /* SessionAPI.swift */; };
 		03F9982C1FA7294900565960 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9982B1FA7294900565960 /* SessionToken.swift */; };
 		03F9982E1FA7386A00565960 /* BuyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9982D1FA7386A00565960 /* BuyForm.swift */; };
+		03FE64572032E75700345281 /* QRCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FE64532032E75700345281 /* QRCode.storyboard */; };
+		03FE64582032E75700345281 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FE64552032E75700345281 /* Profile.storyboard */; };
+		03FE645A2032EE1C00345281 /* QRCodeGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */; };
+		03FE645C2032EE2A00345281 /* QRCodeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */; };
+		03FE645E2032F47E00345281 /* QRCodeGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */; };
 		0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */; };
 		4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */; };
 /* End PBXBuildFile section */
@@ -104,7 +109,7 @@
 
 /* Begin PBXFileReference section */
 		002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OMGShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		03003E181FA989A600EAB202 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		030F57332033E42D00F54296 /* QRCodeViewerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewerViewModel.swift; sourceTree = "<group>"; };
 		031BB11B1F9886790095468F /* OMGShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMGShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		031BB11E1F9886790095468F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		031BB12A1F9886790095468F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,6 +181,11 @@
 		03F998291FA71DED00565960 /* SessionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionAPI.swift; sourceTree = "<group>"; };
 		03F9982B1FA7294900565960 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 		03F9982D1FA7386A00565960 /* BuyForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyForm.swift; sourceTree = "<group>"; };
+		03FE64542032E75700345281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/QRCode.storyboard; sourceTree = "<group>"; };
+		03FE64562032E75700345281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorViewController.swift; sourceTree = "<group>"; };
+		03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewerViewController.swift; sourceTree = "<group>"; };
+		03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorViewModel.swift; sourceTree = "<group>"; };
 		172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop.release.xcconfig"; sourceTree = "<group>"; };
 		29E669345BD1D2973F29F1A1 /* Pods-OMGShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A37D1380E180BBB8DCA459E0 /* Pods-OMGShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -279,7 +289,8 @@
 				039F69C91F9EF53A00AE5355 /* Product.storyboard */,
 				032C2E911FA0326F001AE452 /* Popup.storyboard */,
 				03C6013E1FA6E3FC0033A0C7 /* Loading.storyboard */,
-				03003E181FA989A600EAB202 /* Profile.storyboard */,
+				03FE64552032E75700345281 /* Profile.storyboard */,
+				03FE64532032E75700345281 /* QRCode.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -303,6 +314,8 @@
 				032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */,
 				03C601411FA6E4510033A0C7 /* LoadingViewController.swift */,
 				03B618051FA9A10400BC0B0E /* ProfileViewController.swift */,
+				03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */,
+				03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -320,6 +333,8 @@
 				03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */,
 				03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */,
 				03C2C0821FBAE67A00B794AC /* TokenCellViewModel.swift */,
+				03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */,
+				030F57332033E42D00F54296 /* QRCodeViewerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -547,14 +562,15 @@
 			files = (
 				031BB1631F9890360095468F /* Login.storyboard in Resources */,
 				03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */,
-				03003E191FA989A600EAB202 /* Profile.storyboard in Resources */,
 				039F69CB1F9EF53A00AE5355 /* Product.storyboard in Resources */,
+				03FE64572032E75700345281 /* QRCode.storyboard in Resources */,
 				03C601401FA6E3FC0033A0C7 /* Loading.storyboard in Resources */,
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
 				039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */,
 				03C2C0811FBAE54700B794AC /* TokenTableViewCell.xib in Resources */,
 				039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */,
+				03FE64582032E75700345281 /* Profile.storyboard in Resources */,
 				032C2E931FA0326F001AE452 /* Popup.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,6 +727,7 @@
 				037AFA741FA70B5D006A0C01 /* APIError.swift in Sources */,
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
 				031BB16F1F99948A0095468F /* Theme.swift in Sources */,
+				03FE645C2032EE2A00345281 /* QRCodeViewerViewController.swift in Sources */,
 				037AFA721FA70B3C006A0C01 /* Response.swift in Sources */,
 				031BB11F1F9886790095468F /* AppDelegate.swift in Sources */,
 				03C2C0831FBAE67A00B794AC /* TokenCellViewModel.swift in Sources */,
@@ -730,6 +747,7 @@
 				039F69D61F9EF84F00AE5355 /* ProductTableViewCell.swift in Sources */,
 				03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */,
 				037AFA761FA7122B006A0C01 /* Router.swift in Sources */,
+				03FE645E2032F47E00345281 /* QRCodeGeneratorViewModel.swift in Sources */,
 				036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */,
 				03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */,
 				03F998261FA7162E00565960 /* Protocol.swift in Sources */,
@@ -737,6 +755,8 @@
 				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,
 				037AFA701FA70A12006A0C01 /* JSONResponse.swift in Sources */,
 				03F84C801FC3FC5500F21C7B /* OmiseGOWrapper.swift in Sources */,
+				030F57342033E42D00F54296 /* QRCodeViewerViewModel.swift in Sources */,
+				03FE645A2032EE1C00345281 /* QRCodeGeneratorViewController.swift in Sources */,
 				037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */,
 				03C2C0801FBAE54700B794AC /* TokenTableViewCell.swift in Sources */,
 				032C2E991FA03980001AE452 /* Constant.swift in Sources */,
@@ -836,6 +856,22 @@
 				03C6013F1FA6E3FC0033A0C7 /* Base */,
 			);
 			name = Loading.storyboard;
+			sourceTree = "<group>";
+		};
+		03FE64532032E75700345281 /* QRCode.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03FE64542032E75700345281 /* Base */,
+			);
+			name = QRCode.storyboard;
+			sourceTree = "<group>";
+		};
+		03FE64552032E75700345281 /* Profile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				03FE64562032E75700345281 /* Base */,
+			);
+			name = Profile.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

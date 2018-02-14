@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S3m-wJ-XB3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S3m-wJ-XB3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +38,15 @@
                 <viewControllerPlaceholder storyboardName="Profile" id="PJk-UF-dpQ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vb4-En-wcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1714" y="-389"/>
+            <point key="canvasLocation" x="1750" y="-390"/>
+        </scene>
+        <!--QRCode-->
+        <scene sceneID="53a-LF-CHF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="QRCode" id="Hue-fX-Zu0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9LU-no-hRx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1758" y="-262"/>
         </scene>
         <!--Product List View Controller-->
         <scene sceneID="8C6-8o-vdm">
@@ -71,6 +79,11 @@
                             <color key="tintColor" red="0.10196078431372549" green="0.32549019607843138" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="PJk-UF-dpQ" kind="presentation" id="h7M-HM-0aW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="qr_icon" id="Ku9-Uv-TsA">
+                            <connections>
+                                <segue destination="Hue-fX-Zu0" kind="show" id="Pod-da-ilj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -343,5 +356,6 @@
     </scenes>
     <resources>
         <image name="profile_icon" width="25" height="25"/>
+        <image name="qr_icon" width="25" height="25"/>
     </resources>
 </document>
