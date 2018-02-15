@@ -18,7 +18,11 @@ class QRCodeGeneratorViewModel: BaseViewModel {
     var onFailedGetSettings: FailureClosure?
     var onGenerateButtonStateChange: ObjectClosure<Bool>?
 
-    var amountStr: String?
+    var amountStr: String? {
+        didSet {
+            self.updateGenerateButtonState()
+        }
+    }
     private var settings: Setting? {
         didSet {
             self.selectedMintedToken = settings?.mintedTokens.first
@@ -31,7 +35,6 @@ class QRCodeGeneratorViewModel: BaseViewModel {
     let scanButtonTitle = "qr_code_generator.button.title.scan".localized()
 
     var generateButtonTitle = "qr_code_generator.button.title.generate".localized()
-    var generateButtonDisabledTitle = "qr_code_generator.button.title.generate.disable".localized()
 
     private let settingLoader: SettingLoaderProtocol
 
@@ -80,8 +83,16 @@ class QRCodeGeneratorViewModel: BaseViewModel {
                 self.handleOmiseGOrror(error)
                 self.onFailedGetSettings?(.omiseGO(error: error))
             }
-            self.isGenerateButtonEnabled = self.selectedMintedToken != nil
+            self.updateGenerateButtonState()
         }
+    }
+
+    private func updateGenerateButtonState() {
+        guard self.selectedMintedToken != nil, let amount = self.amountStr, Double(amount) != nil else {
+            self.isGenerateButtonEnabled = false
+            return
+        }
+        self.isGenerateButtonEnabled = true
     }
 
     private func formatedAmount() -> Double? {

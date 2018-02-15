@@ -25,7 +25,6 @@ class QRCodeGeneratorViewController: BaseViewController {
         self.title = self.viewModel.title
         self.amountTextField.placeholder = self.viewModel.amountPlaceholder
         self.generateButton.setTitle(self.viewModel.generateButtonTitle, for: .normal)
-        self.generateButton.setTitle(self.viewModel.generateButtonDisabledTitle, for: .disabled)
         self.scanButton.setTitle(self.viewModel.scanButtonTitle, for: .normal)
     }
 
@@ -38,7 +37,10 @@ class QRCodeGeneratorViewController: BaseViewController {
         self.viewModel.onFailedGenerate = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onSuccessGetSettings = { self.pickerView.reloadAllComponents() }
         self.viewModel.onFailedGetSettings = { self.showError(withMessage: $0.localizedDescription) }
-        self.viewModel.onGenerateButtonStateChange = { self.generateButton.isEnabled = $0 }
+        self.viewModel.onGenerateButtonStateChange = {
+            self.generateButton.isEnabled = $0
+            self.generateButton.alpha = $0 ? 1 : 0.5
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
