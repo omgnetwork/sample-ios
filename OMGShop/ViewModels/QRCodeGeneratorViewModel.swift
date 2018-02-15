@@ -17,6 +17,8 @@ class QRCodeGeneratorViewModel: BaseViewModel {
     var onSuccessGetSettings: SuccessClosure?
     var onFailedGetSettings: FailureClosure?
     var onGenerateButtonStateChange: ObjectClosure<Bool>?
+    var onSuccessConsume: ObjectClosure<String>?
+    var onFailedConsume: FailureClosure?
 
     var amountStr: String? {
         didSet {
@@ -29,10 +31,12 @@ class QRCodeGeneratorViewModel: BaseViewModel {
         }
     }
     private var selectedMintedToken: MintedToken?
+    private let idemPotencyToken = UUID().uuidString
 
     let title = "qr_code_generator.title".localized()
     let amountPlaceholder = "qr_code_generator.text_field.placeholder.amount".localized()
     let scanButtonTitle = "qr_code_generator.button.title.scan".localized()
+    let cancelButtonTitle = "qr_code_scanner.button.title.cancel".localized()
 
     var generateButtonTitle = "qr_code_generator.button.title.generate".localized()
 
@@ -61,14 +65,47 @@ class QRCodeGeneratorViewModel: BaseViewModel {
         self.isLoading = true
         TransactionRequest.generateTransactionRequest(using: SessionManager.shared.omiseGOClient,
                                                       params: params) { (result) in
-            self.isLoading = false
-            switch result {
-            case .success(data: let transactionRequest):
-                self.onSuccessGenerate?(transactionRequest)
-            case .fail(error: let error):
-                self.onFailedGenerate?(.omiseGO(error: error))
-            }
+                                                        self.isLoading = false
+                                                        switch result {
+                                                        case .success(data: let transactionRequest):
+                                                            self.onSuccessGenerate?(transactionRequest)
+                                                        case .fail(error: let error):
+                                                            self.onFailedGenerate?(.omiseGO(error: error))
+                                                        }
         }
+    }
+
+    func consume(transactionRequest: TransactionRequest) {
+        guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+                                                    address: nil,
+                                                    amount: nil,
+                                                    idempotencyToken: self.idemPotencyToken,
+                                                    correlationId: nil,
+                                                    metadata: [:]) else {
+                                                        self.onFailedConsume?(.unexpected)
+                                                        return
+        }
+        self.isLoading = true
+        TransactionConsume.consumeTransactionRequest(using: SessionManager.shared.omiseGOClient,
+                                                     params: params) { (result) in
+                                                        self.isLoading = false
+                                                        switch result {
+                                                        case .success(data: let transactionConsume):
+                                                            self.onSuccessConsume?(
+                                                                self.successConsumeMessage(
+                                                                    withTransacionConsume: transactionConsume
+                                                                )
+                                                            )
+                                                        case .fail(error: let error):
+                                                            self.onFailedConsume?(.omiseGO(error: error))
+                                                        }
+        }
+    }
+
+    private func successConsumeMessage(withTransacionConsume transactionConsume: TransactionConsume) -> String {
+        let formattedAmount = transactionConsume.amount / transactionConsume.mintedToken.subUnitToUnit
+        //swiftlint:disable:next line_length
+        return "\("qr_code_generator.message.successful_sent".localized()) \(formattedAmount) \(transactionConsume.mintedToken.symbol) \("qr_code_generator.message.to".localized()) \(transactionConsume.address)"
     }
 
     func loadSettings() {
