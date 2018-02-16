@@ -31,4 +31,10 @@ class StubGenerator {
 
     func pay() -> OMGShop.EmptyResponse { return self.stub(forResource: "pay") }
 
+    func settings() -> Setting { return self.stub(forResource: "settings") }
+
+    func transactionRequest() -> TransactionRequest { return self.stub(forResource: "transaction_request") }
+
+    func transactionConsume() -> TransactionConsume { return self.stub(forResource: "transaction_consume")}
+
 }

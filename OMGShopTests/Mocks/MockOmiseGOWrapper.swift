@@ -34,3 +34,83 @@ extension MockAddressLoader: AddressLoaderProtocol {
     }
 
 }
+
+class MockSettingLoader {
+
+    var isLoadSettingCalled = false
+
+    var settings: Setting?
+    var loadCompletionClosure: Setting.RetrieveRequestCallback!
+
+    func loadSettingSuccess() {
+        loadCompletionClosure(OmiseGO.Response.success(data: self.settings!))
+    }
+
+    func loadSettingFailed(withError error: OmiseGOError) {
+        loadCompletionClosure(OmiseGO.Response.fail(error: error))
+    }
+
+}
+
+extension MockSettingLoader: SettingLoaderProtocol {
+
+    func get(withCallback callback: @escaping Setting.RetrieveRequestCallback) {
+        self.isLoadSettingCalled = true
+        self.loadCompletionClosure = callback
+    }
+
+}
+
+class MockTransactionRequestCreator {
+
+    var isGenerateCalled = false
+
+    var transactionRequest: TransactionRequest?
+    var generateCompletionClosure: TransactionRequest.RetrieveRequestCallback!
+
+    func generateTransactionRequestSuccess() {
+        generateCompletionClosure(OmiseGO.Response.success(data: self.transactionRequest!))
+    }
+
+    func generateTransactionRequestFailed(withError error: OmiseGOError) {
+        generateCompletionClosure(OmiseGO.Response.fail(error: error))
+    }
+
+}
+
+extension MockTransactionRequestCreator: TransactionRequestCreateProtocol {
+
+    func generate(withParams params: TransactionRequestCreateParams,
+                  callback: @escaping TransactionRequest.RetrieveRequestCallback) {
+        self.isGenerateCalled = true
+        self.generateCompletionClosure = callback
+    }
+
+}
+
+class MockTransactionConsumer {
+
+    var isConsumeCalled = false
+
+    var transactionConsume: TransactionConsume?
+    var consumeCompletionClosure: TransactionConsume.RetrieveRequestCallback!
+
+    func consumeTransactionSuccess() {
+        consumeCompletionClosure(OmiseGO.Response.success(data: self.transactionConsume!))
+    }
+
+    func consumeTransactionFailed(withError error: OmiseGOError) {
+        consumeCompletionClosure(OmiseGO.Response.fail(error: error))
+    }
+
+}
+
+extension MockTransactionConsumer: TransactionConsumeProtocol {
+
+    func consume(withParams params: TransactionConsumeParams,
+                 callback: @escaping TransactionConsume.RetrieveRequestCallback) {
+        self.isConsumeCalled = true
+        self.consumeCompletionClosure = callback
+    }
+
+}

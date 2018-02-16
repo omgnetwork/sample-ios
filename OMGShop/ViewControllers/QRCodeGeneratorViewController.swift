@@ -46,6 +46,7 @@ class QRCodeGeneratorViewController: BaseViewController {
         self.navigationController?.popViewController(animated: true)
         }
         self.viewModel.onFailedConsume = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.loadSettings()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
