@@ -4,7 +4,7 @@ PODS:
     - SipHash (~> 1.2)
   - KeychainSwift (10.0.0)
   - MBProgressHUD (1.1.0)
-  - OmiseGO (0.9.1)
+  - OmiseGO (0.9.2)
   - SipHash (1.2.0)
   - SkyFloatingLabelTextField (3.4.0)
   - Toaster (2.1.1)
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OmiseGO:
-    :commit: 6a0de61b939d80cee7966fd5e2da39e05c320976
+    :commit: a0e8e8e575996ebfe6306858ce01a35cc8d91c49
     :git: git@github.com:omisego/ios-sdk.git
 
 SPEC CHECKSUMS:
@@ -35,7 +35,7 @@ SPEC CHECKSUMS:
   BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
   KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  OmiseGO: 333b519b241e0d1be6a8070ddfd166401420f620
+  OmiseGO: aa675d2235b6f706fc553539ec7f7ccffdd3b3c8
   SipHash: c6e9e43e9c531b5bc6602545130c26194a6d31ce
   SkyFloatingLabelTextField: 703aa1420b697392b1e7dba25571180dde018477
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb

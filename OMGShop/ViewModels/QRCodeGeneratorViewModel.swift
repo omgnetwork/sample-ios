@@ -11,6 +11,7 @@ import BigInt
 
 class QRCodeGeneratorViewModel: BaseViewModel {
 
+    // Delegate closures
     var onSuccessGenerate: ObjectClosure<TransactionRequest>?
     var onFailedGenerate: FailureClosure?
     var onLoadStateChange: ObjectClosure<Bool>?
@@ -20,11 +21,6 @@ class QRCodeGeneratorViewModel: BaseViewModel {
     var onSuccessConsume: ObjectClosure<String>?
     var onFailedConsume: FailureClosure?
 
-    var amountStr: String? {
-        didSet {
-            self.updateGenerateButtonState()
-        }
-    }
     private var settings: Setting? {
         didSet {
             self.selectedMintedToken = settings?.mintedTokens.first
@@ -32,21 +28,24 @@ class QRCodeGeneratorViewModel: BaseViewModel {
     }
     private var selectedMintedToken: MintedToken?
     private let idemPotencyToken = UUID().uuidString
+    private let settingLoader: SettingLoaderProtocol
 
     let title = "qr_code_generator.title".localized()
     let amountPlaceholder = "qr_code_generator.text_field.placeholder.amount".localized()
     let scanButtonTitle = "qr_code_generator.button.title.scan".localized()
     let cancelButtonTitle = "qr_code_scanner.button.title.cancel".localized()
-
-    var generateButtonTitle = "qr_code_generator.button.title.generate".localized()
-
-    private let settingLoader: SettingLoaderProtocol
+    let generateButtonTitle = "qr_code_generator.button.title.generate".localized()
 
     var isGenerateButtonEnabled: Bool = false {
         didSet { self.onGenerateButtonStateChange?(isGenerateButtonEnabled) }
     }
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }
+    }
+    var amountStr: String? {
+        didSet {
+            self.updateGenerateButtonState()
+        }
     }
 
     init(settingLoader: SettingLoaderProtocol = SettingLoader()) {
@@ -102,12 +101,6 @@ class QRCodeGeneratorViewModel: BaseViewModel {
         }
     }
 
-    private func successConsumeMessage(withTransacionConsume transactionConsume: TransactionConsume) -> String {
-        let formattedAmount = transactionConsume.amount / transactionConsume.mintedToken.subUnitToUnit
-        //swiftlint:disable:next line_length
-        return "\("qr_code_generator.message.successful_sent".localized()) \(formattedAmount) \(transactionConsume.mintedToken.symbol) \("qr_code_generator.message.to".localized()) \(transactionConsume.address)"
-    }
-
     func loadSettings() {
         self.isLoading = true
         self.settingLoader.get { (result) in
@@ -140,6 +133,13 @@ class QRCodeGeneratorViewModel: BaseViewModel {
         return Double(formattedAmount)
     }
 
+    private func successConsumeMessage(withTransacionConsume transactionConsume: TransactionConsume) -> String {
+        let formattedAmount = transactionConsume.amount / transactionConsume.mintedToken.subUnitToUnit
+        //swiftlint:disable:next line_length
+        return "\("qr_code_generator.message.successful_sent".localized()) \(formattedAmount) \(transactionConsume.mintedToken.symbol) \("qr_code_generator.message.to".localized()) \(transactionConsume.address)"
+    }
+
+    //MARK: Picker
     func didSelect(row: Int) {
         self.selectedMintedToken = self.settings?.mintedTokens[row]
     }
