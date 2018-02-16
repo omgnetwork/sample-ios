@@ -19,8 +19,8 @@ class RedeemViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        self.address = StubGenerator().mainAddress()
-        self.product = StubGenerator().stubProducts().first!
+        self.address = StubGenerator.mainAddress()
+        self.product = StubGenerator.stubProducts().first!
         self.checkout = Checkout(product: product)
         self.checkout.address = address
         self.checkout.selectedBalance = address?.balances.first!

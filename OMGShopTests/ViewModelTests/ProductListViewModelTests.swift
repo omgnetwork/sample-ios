@@ -69,7 +69,7 @@ class ProductListViewModelTests: XCTestCase {
     func testLoadingWhenRequesting() {
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
-        self.mockProductAPI.products = StubGenerator().stubProducts()
+        self.mockProductAPI.products = StubGenerator.stubProducts()
         self.sut.getProducts()
         XCTAssertTrue(loadingStatus)
         self.mockProductAPI.loadProductsSuccess()
@@ -81,7 +81,7 @@ class ProductListViewModelTests: XCTestCase {
 extension ProductListViewModelTests {
 
     private func goToLoadProductsFinished() {
-        self.mockProductAPI.products = StubGenerator().stubProducts()
+        self.mockProductAPI.products = StubGenerator.stubProducts()
         self.sut.getProducts()
         self.mockProductAPI.loadProductsSuccess()
     }

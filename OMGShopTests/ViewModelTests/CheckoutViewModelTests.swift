@@ -85,7 +85,7 @@ class CheckoutViewModelTests: XCTestCase {
         self.sut.onLoadStateChange = { loadingStatus = $0 }
         self.sut.loadBalances()
         XCTAssertTrue(loadingStatus)
-        self.mockAddressLoader.address = StubGenerator().mainAddress()
+        self.mockAddressLoader.address = StubGenerator.mainAddress()
         self.mockAddressLoader.loadMainAddressSuccess()
         XCTAssertFalse(loadingStatus)
     }
@@ -121,7 +121,7 @@ class CheckoutViewModelTests: XCTestCase {
         self.goToLoadAddressFinished()
         self.sut.pay()
         XCTAssertTrue(loadingStatus)
-        self.mockProductAPI.pay = StubGenerator().pay()
+        self.mockProductAPI.pay = StubGenerator.pay()
         self.mockProductAPI.paySuccess()
         XCTAssertFalse(loadingStatus)
     }
@@ -146,7 +146,7 @@ extension CheckoutViewModelTests {
 
     private func goToLoadAddressFinished() {
         self.sut.loadBalances()
-        self.mockAddressLoader.address = StubGenerator().mainAddress()
+        self.mockAddressLoader.address = StubGenerator.mainAddress()
         self.mockAddressLoader.loadMainAddressSuccess()
     }
 
@@ -159,7 +159,7 @@ extension CheckoutViewModelTests {
     private func goToPayFinished() {
         self.goToLoadAddressFinished()
         self.sut.pay()
-        self.mockProductAPI.pay = StubGenerator().pay()
+        self.mockProductAPI.pay = StubGenerator.pay()
         self.mockProductAPI.paySuccess()
     }
 

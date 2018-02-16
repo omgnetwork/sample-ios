@@ -63,7 +63,7 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
     func testShowLoadingWhenLoadingSettings() {
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
-        self.mockSettingLoader.settings = StubGenerator().settings()
+        self.mockSettingLoader.settings = StubGenerator.settings()
         self.sut.loadSettings()
         XCTAssertTrue(loadingStatus)
         self.mockSettingLoader.loadSettingSuccess()
@@ -100,7 +100,7 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
         self.goToLoadSettingsFinished()
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
-        self.mockTransactionRequestCreator.transactionRequest = StubGenerator().transactionRequest()
+        self.mockTransactionRequestCreator.transactionRequest = StubGenerator.transactionRequest()
         self.sut.generate()
         XCTAssertTrue(loadingStatus)
         self.mockTransactionRequestCreator.generateTransactionRequestSuccess()
@@ -108,7 +108,7 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
     }
 
     func testConsumeCalled() {
-        self.sut.consume(transactionRequest: StubGenerator().transactionRequest())
+        self.sut.consume(transactionRequest: StubGenerator.transactionRequest())
         XCTAssert(self.mockTransactionConsumer.isConsumeCalled)
     }
 
@@ -118,7 +118,7 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
             XCTAssertEqual($0.message, "unexpected error: Failed to consume transaction")
             didFail = true
         }
-        self.sut.consume(transactionRequest: StubGenerator().transactionRequest())
+        self.sut.consume(transactionRequest: StubGenerator.transactionRequest())
         let error: OmiseGOError = .unexpected(message: "Failed to consume transaction")
         self.mockTransactionConsumer.consumeTransactionFailed(withError: error)
         XCTAssert(didFail)
@@ -135,8 +135,8 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
     func testShowLoadingConsuming() {
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
-        self.mockTransactionConsumer.transactionConsume = StubGenerator().transactionConsume()
-        self.sut.consume(transactionRequest: StubGenerator().transactionRequest())
+        self.mockTransactionConsumer.transactionConsume = StubGenerator.transactionConsume()
+        self.sut.consume(transactionRequest: StubGenerator.transactionRequest())
         XCTAssertTrue(loadingStatus)
         self.mockTransactionConsumer.consumeTransactionSuccess()
         XCTAssertFalse(loadingStatus)
@@ -167,21 +167,21 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
 extension QRCodeGeneratorViewModelTests {
 
     private func goToLoadSettingsFinished() {
-        self.mockSettingLoader.settings = StubGenerator().settings()
+        self.mockSettingLoader.settings = StubGenerator.settings()
         self.sut.loadSettings()
         self.mockSettingLoader.loadSettingSuccess()
     }
 
     private func goToGenerateTransactionRequestFinished() {
         self.goToLoadSettingsFinished()
-        self.mockTransactionRequestCreator.transactionRequest = StubGenerator().transactionRequest()
+        self.mockTransactionRequestCreator.transactionRequest = StubGenerator.transactionRequest()
         self.sut.generate()
         self.mockTransactionRequestCreator.generateTransactionRequestSuccess()
     }
 
     private func goToConsumeTransactionRequestFinished() {
-        self.mockTransactionConsumer.transactionConsume = StubGenerator().transactionConsume()
-        self.sut.consume(transactionRequest: StubGenerator().transactionRequest())
+        self.mockTransactionConsumer.transactionConsume = StubGenerator.transactionConsume()
+        self.sut.consume(transactionRequest: StubGenerator.transactionRequest())
         self.mockTransactionConsumer.consumeTransactionSuccess()
     }
 
