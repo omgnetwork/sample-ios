@@ -55,7 +55,7 @@ class QRCodeGeneratorViewModel: BaseViewModel {
         guard let mintedTokenId = self.selectedMintedToken?.id else { return }
         let params = TransactionRequestCreateParams(type: .receive,
                                                     mintedTokenId: mintedTokenId,
-                                                    amount: self.formatedAmount(),
+                                                    amount: self.formattedAmount(),
                                                     address: nil,
                                                     correlationId: nil)
         self.isLoading = true
@@ -95,7 +95,7 @@ class QRCodeGeneratorViewModel: BaseViewModel {
         self.isGenerateButtonEnabled = true
     }
 
-    private func formatedAmount() -> Double? {
+    private func formattedAmount() -> Double? {
         guard let subUnitToUnit = self.selectedMintedToken?.subUnitToUnit,
             let amountStr = self.amountStr,
             let amount = Double(amountStr) else { return nil }
