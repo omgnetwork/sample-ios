@@ -12,8 +12,8 @@ target 'OMGShop' do
   pod 'MBProgressHUD'
   pod 'Alamofire'
   pod 'KeychainSwift'
-  pod 'OmiseGO', :git => 'git@github.com:omisego/ios-sdk.git'
   pod 'BigInt'
+  pod 'OmiseGO', git: 'git@github.com:omisego/ios-sdk.git'
 
   target 'OMGShopTests' do
     inherit! :search_paths

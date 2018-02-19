@@ -21,6 +21,7 @@ enum Storyboard {
     case register
     case product
     case popup
+    case qrCode
 
     var name: String {
         switch self {
@@ -29,6 +30,7 @@ enum Storyboard {
         case .register: return "Register"
         case .product: return "Product"
         case .popup: return "Popup"
+        case .qrCode: return "QRCode"
         }
     }
 

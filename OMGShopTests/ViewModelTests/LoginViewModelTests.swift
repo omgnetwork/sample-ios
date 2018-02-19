@@ -105,7 +105,7 @@ extension LoginViewModelTests {
 
     private func goToLoginFinished() {
         self.fillValidCredentials()
-        self.mockSessionAPI.sessionToken = StubGenerator().stubLogin()
+        self.mockSessionAPI.sessionToken = StubGenerator.stubLogin()
         self.sut.login()
         self.mockSessionAPI.loginSuccess()
     }

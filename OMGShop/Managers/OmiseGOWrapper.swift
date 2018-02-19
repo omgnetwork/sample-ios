@@ -20,3 +20,50 @@ class AddressLoader: AddressLoaderProtocol {
     }
 
 }
+
+protocol SettingLoaderProtocol {
+    func get(withCallback callback: @escaping Setting.RetrieveRequestCallback)
+}
+
+/// This wrapper has been created for the sake of testing with dependency injection
+class SettingLoader: SettingLoaderProtocol {
+
+    func get(withCallback callback: @escaping Setting.RetrieveRequestCallback) {
+        Setting.get(using: SessionManager.shared.omiseGOClient, callback: callback)
+    }
+
+}
+
+protocol TransactionRequestCreateProtocol {
+    func generate(withParams params: TransactionRequestCreateParams,
+                  callback: @escaping TransactionRequest.RetrieveRequestCallback)
+}
+
+/// This wrapper has been created for the sake of testing with dependency injection
+class TransactionRequestLoader: TransactionRequestCreateProtocol {
+
+    func generate(withParams params: TransactionRequestCreateParams,
+                  callback: @escaping TransactionRequest.RetrieveRequestCallback) {
+        TransactionRequest.generateTransactionRequest(using: SessionManager.shared.omiseGOClient,
+                                                      params: params,
+                                                      callback: callback)
+    }
+
+}
+
+protocol TransactionConsumeProtocol {
+    func consume(withParams params: TransactionConsumeParams,
+                 callback: @escaping TransactionConsume.RetrieveRequestCallback)
+}
+
+/// This wrapper has been created for the sake of testing with dependency injection
+class TransactionConsumeLoader: TransactionConsumeProtocol {
+
+    func consume(withParams params: TransactionConsumeParams,
+                 callback: @escaping TransactionConsume.RetrieveRequestCallback) {
+        TransactionConsume.consumeTransactionRequest(using: SessionManager.shared.omiseGOClient,
+                                                     params: params,
+                                                     callback: callback)
+    }
+
+}

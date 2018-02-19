@@ -1,0 +1,16 @@
+{
+  "minted_tokens": [
+                    {
+                    "id": "OMG:123",
+                    "symbol": "OMG",
+                    "name": "OmiseGO",
+                    "subunit_to_unit": 100000000
+                    },
+                    {
+                    "id": "BTC:123",
+                    "symbol": "BTC",
+                    "name": "Bitcoin",
+                    "subunit_to_unit": 10000000000
+                    }
+                    ]
+}
