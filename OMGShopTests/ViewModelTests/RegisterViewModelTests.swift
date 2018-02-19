@@ -121,7 +121,7 @@ extension RegisterViewModelTests {
 
     private func goToRegisterFinished() {
         self.fillValidCredentials()
-        self.mockSessionAPI.sessionToken = StubGenerator().stubLogin()
+        self.mockSessionAPI.sessionToken = StubGenerator.stubLogin()
         self.sut.register()
         self.mockSessionAPI.registerSuccess()
     }

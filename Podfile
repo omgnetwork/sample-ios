@@ -13,7 +13,7 @@ target 'OMGShop' do
   pod 'Alamofire'
   pod 'KeychainSwift'
   pod 'BigInt'
-  pod 'OmiseGO', git: 'git@github.com:omisego/ios-sdk.git', branch: 'T675-Transaction-request-consume'
+  pod 'OmiseGO', git: 'git@github.com:omisego/ios-sdk.git'
 
   target 'OMGShopTests' do
     inherit! :search_paths

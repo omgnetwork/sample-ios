@@ -59,7 +59,7 @@ class ProfileViewModelTests: XCTestCase {
         }
         self.sut.loadData()
         let error: OmiseGOError = .unexpected(message: "Failed to load user")
-        self.mockAddressLoader.address = StubGenerator().mainAddress()
+        self.mockAddressLoader.address = StubGenerator.mainAddress()
         self.mockAddressLoader.loadMainAddressSuccess()
         self.mockSessionManager.loadCurrentUserFailed(withError: error)
         XCTAssert(didFail)
@@ -90,7 +90,7 @@ class ProfileViewModelTests: XCTestCase {
     }
 
     func testCellViewModel() {
-        let balance = StubGenerator().mainAddress().balances.first!
+        let balance = StubGenerator.mainAddress().balances.first!
         let cellViewModel = TokenCellViewModel(balance: balance, isSelected: true)
         XCTAssertEqual(cellViewModel.isSelected, true)
         XCTAssertEqual(cellViewModel.tokenAmount, balance.displayAmount(withPrecision: 2))
@@ -114,8 +114,8 @@ class ProfileViewModelTests: XCTestCase {
     func testLoadingWhenLoading() {
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
-        self.mockAddressLoader.address = StubGenerator().mainAddress()
-        self.mockSessionManager.currentUser = StubGenerator().stubCurrentUser()
+        self.mockAddressLoader.address = StubGenerator.mainAddress()
+        self.mockSessionManager.currentUser = StubGenerator.stubCurrentUser()
         self.sut.loadData()
         XCTAssertTrue(loadingStatus)
         self.mockAddressLoader.loadMainAddressSuccess()
@@ -160,8 +160,8 @@ class ProfileViewModelTests: XCTestCase {
 extension ProfileViewModelTests {
 
     private func goToLoadFinished() {
-        self.mockAddressLoader.address = StubGenerator().mainAddress()
-        self.mockSessionManager.currentUser = StubGenerator().stubCurrentUser()
+        self.mockAddressLoader.address = StubGenerator.mainAddress()
+        self.mockSessionManager.currentUser = StubGenerator.stubCurrentUser()
         self.sut.loadData()
         self.mockAddressLoader.loadMainAddressSuccess()
         self.mockSessionManager.loadCurrentUserSuccess()

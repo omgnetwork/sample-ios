@@ -41,6 +41,12 @@ class QRCodeGeneratorViewController: BaseViewController {
             self.generateButton.isEnabled = $0
             self.generateButton.alpha = $0 ? 1 : 0.5
         }
+        self.viewModel.onSuccessConsume = {
+        self.showMessage($0)
+        self.navigationController?.popViewController(animated: true)
+        }
+        self.viewModel.onFailedConsume = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.loadSettings()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,7 +67,28 @@ extension QRCodeGeneratorViewController {
     }
 
     @IBAction func tapScanButton(_ sender: UIButton) {
+        if let scannerVC = QRScannerViewController(delegate: self,
+                                              client: SessionManager.shared.omiseGOClient,
+                                              cancelButtonTitle: self.viewModel.cancelButtonTitle) {
+            self.present(scannerVC, animated: true, completion: nil)
+        }
+    }
 
+}
+
+extension QRCodeGeneratorViewController: QRScannerViewControllerDelegate {
+
+    func scannerDidCancel(scanner: QRScannerViewController) {
+        scanner.dismiss(animated: true, completion: nil)
+    }
+
+    func scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest) {
+        scanner.dismiss(animated: true, completion: nil)
+        self.viewModel.consume(transactionRequest: transactionRequest)
+    }
+
+    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError) {
+        self.showError(withMessage: error.localizedDescription)
     }
 
 }

@@ -77,6 +77,12 @@
 "qr_code_generator.button.title.generate" = "Generate";
 "qr_code_generator.button.title.generate.disable" = "Loading";
 "qr_code_generator.button.title.scan" = "Scan QR Code";
+"qr_code_generator.message.successful_sent" = "Successfuly sent";
+"qr_code_generator.message.to" = "to";
+
+// QRCode scanner
+
+"qr_code_scanner.button.title.cancel" = "Cancel";
 
 // Global Errors
 "error.missing_required_fields" = "Missing required fields";
