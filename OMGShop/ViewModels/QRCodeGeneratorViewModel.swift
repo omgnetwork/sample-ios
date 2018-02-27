@@ -97,6 +97,7 @@ class QRCodeGeneratorViewModel: BaseViewModel {
     func consume(transactionRequest: TransactionRequest) {
         guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
                                                     address: nil,
+                                                    mintedTokenId: nil,
                                                     amount: nil,
                                                     idempotencyToken: self.idemPotencyToken,
                                                     correlationId: nil,

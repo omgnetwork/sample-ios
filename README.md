@@ -5,7 +5,7 @@ The OmiseGO iOS sample app is a simple app to demonstrate the use of the [iOS SD
 ---
 # Requirements
 
-- iOS 9.0+
+- iOS 10.0+
 - Xcode 9+
 - Swift 4.0
 

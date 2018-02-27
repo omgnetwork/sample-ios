@@ -54,11 +54,11 @@ enum AppState {
 
 struct Constant {
 
-    static let omiseGOhostURL = "https://kubera.omisego.io"
-    static let hostURL = "https://omgshop.omisego.io/api"
+    static let omiseGOhostURL = "https://ewallet.demo.omisego.io/api"
+    static let hostURL = "https://sample-shop.demo.omisego.io/api"
     static let apiKeyId = "1"
-    static let apiKey = "e8d4764f77f36bfd741bd9ed21400cf5"
-    static let omiseGOAPIKey = "1482qNxPey7A4_rrKkAOb4kAOTsD2HoLysS7eQ1Zd3Y"
+    static let apiKey = "f3629628db9316aa3710b2f705db59c1"
+    static let omiseGOAPIKey = "zjH7vrLnwxuruQaDIZZ6jqKhlgLTsUCCYusBzUMQ3Ww"
     static let authenticationScheme = "OMGShop"
 
 }

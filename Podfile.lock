@@ -4,7 +4,7 @@ PODS:
     - SipHash (~> 1.2)
   - KeychainSwift (10.0.0)
   - MBProgressHUD (1.1.0)
-  - OmiseGO (0.9.2)
+  - OmiseGO (0.9.6)
   - SipHash (1.2.0)
   - SkyFloatingLabelTextField (3.4.0)
   - Toaster (2.1.1)
@@ -15,19 +15,18 @@ DEPENDENCIES:
   - BigInt
   - KeychainSwift
   - MBProgressHUD
-  - OmiseGO (from `git@github.com:omisego/ios-sdk.git`, branch `T675-Transaction-request-consume`)
+  - OmiseGO (from `git@github.com:omisego/ios-sdk.git`)
   - SkyFloatingLabelTextField
   - Toaster
   - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
   OmiseGO:
-    :branch: T675-Transaction-request-consume
     :git: git@github.com:omisego/ios-sdk.git
 
 CHECKOUT OPTIONS:
   OmiseGO:
-    :commit: a0e8e8e575996ebfe6306858ce01a35cc8d91c49
+    :commit: 0f246450635cc9ff64aeb99587a3df27760da688
     :git: git@github.com:omisego/ios-sdk.git
 
 SPEC CHECKSUMS:
@@ -35,12 +34,12 @@ SPEC CHECKSUMS:
   BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
   KeychainSwift: f9f7910449a0c0fd2cabc889121530dd2c477c33
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  OmiseGO: aa675d2235b6f706fc553539ec7f7ccffdd3b3c8
+  OmiseGO: aaa20fe3bffaea037f7bef91399e4e9a1426d6d5
   SipHash: c6e9e43e9c531b5bc6602545130c26194a6d31ce
   SkyFloatingLabelTextField: 703aa1420b697392b1e7dba25571180dde018477
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: 4e1adcc2dbcf8a2dcecbd58e0a5d7aa0e3b35ad6
+PODFILE CHECKSUM: 1902a9d60af890501e8a451e0a3c74abd24addb8
 
 COCOAPODS: 1.4.0
