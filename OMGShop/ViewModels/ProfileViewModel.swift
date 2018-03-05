@@ -26,12 +26,14 @@ class ProfileViewModel: BaseViewModel {
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }
     }
+    var address: String?
 
     private var tokenCellViewModels: [TokenCellViewModel] = []
 
     let viewTitle = "profile.view.title".localized()
     let logoutButtonTitle = "profile.button.title.logout".localized()
     let closeButtonTitle = "profile.button.title.close".localized()
+    let historyButtonTitle = "profile.button.title.history".localized()
     let token = "profile.label.token".localized()
     let amount = "profile.label.amount".localized()
     let selected = "profile.lable.selected".localized()
@@ -77,6 +79,7 @@ class ProfileViewModel: BaseViewModel {
 
     private func processAddress(_ address: Address) {
         MintedTokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: address.balances)
+        self.address = address.address
         self.generateTableViewModels(fromBalances: address.balances)
         self.onTableDataChange?()
     }

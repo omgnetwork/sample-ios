@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileViewController: BaseViewController {
 
+    let historySegueIdentifier = "showHistoryViewController"
+
     let viewModel: ProfileViewModel = ProfileViewModel()
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,6 +21,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var historyButton: UIBarButtonItem!
 
     override func configureView() {
         super.configureView()
@@ -28,7 +31,8 @@ class ProfileViewController: BaseViewController {
         self.amountLabel.text = self.viewModel.amount
         self.selectedLabel.text = self.viewModel.selected
         self.logoutButton.setTitle(self.viewModel.logoutButtonTitle, for: .normal)
-        self.closeButton.title = self.viewModel.closeButtonTitle.localized()
+        self.closeButton.title = self.viewModel.closeButtonTitle
+        self.historyButton.title = self.viewModel.historyButtonTitle
         self.tableView.registerNib(tableViewCell: TokenTableViewCell.self)
         self.tableView.tableFooterView = UIView()
         self.viewModel.loadData()
@@ -47,6 +51,15 @@ class ProfileViewController: BaseViewController {
         self.viewModel.onSuccessReloadUser = { self.nameLabel.text = $0 }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.historySegueIdentifier,
+            let vc: TransactionsViewController = segue.destination as? TransactionsViewController,
+            let address: String = sender as? String {
+            let viewModel: TransactionsViewModel = TransactionsViewModel(address: address)
+            vc.viewModel = viewModel
+        }
+    }
+
 }
 
 extension ProfileViewController {
@@ -57,6 +70,11 @@ extension ProfileViewController {
 
     @IBAction func tapLogoutButton(_ sender: UIButton) {
         self.viewModel.logout()
+    }
+
+    @IBAction func tapHistoryButton(_ sender: UIBarButtonItem) {
+        guard let address = self.viewModel.address else { return }
+        self.performSegue(withIdentifier: self.historySegueIdentifier, sender: address)
     }
 
 }

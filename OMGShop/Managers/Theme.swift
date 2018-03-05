@@ -32,6 +32,8 @@ struct Theme {
 enum Color: String {
 
     case omiseGOBlue = "1A53F0"
+    case transactionDebit = "e74c3c"
+    case transactionCredit = "2ecc71"
 
     func uiColor(withAlpha alpha: CGFloat? = 1.0) -> UIColor {
         return UIColor.color(fromHexString: self.rawValue, alpha: alpha)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ABW-Xz-wya">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ABW-Xz-wya">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -132,21 +132,37 @@
                                 <action selector="tapCloseButton:" destination="UJV-yd-9Bh" id="XQz-59-fri"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="History" id="FFt-hT-NVx">
+                            <color key="tintColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="tapHistoryButton:" destination="UJV-yd-9Bh" id="sBj-RU-J56"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="amountLabel" destination="AQY-0u-Q5c" id="BCE-A5-mmt"/>
                         <outlet property="closeButton" destination="GIc-NF-MLe" id="thC-uh-U9t"/>
+                        <outlet property="historyButton" destination="FFt-hT-NVx" id="3sh-OI-a7h"/>
                         <outlet property="logoutButton" destination="heI-eE-HDQ" id="cJx-p8-TD7"/>
                         <outlet property="nameLabel" destination="vAn-af-qWv" id="oi3-Yj-0H5"/>
                         <outlet property="selectedLabel" destination="9xd-vn-Rgr" id="rdW-zi-Bej"/>
                         <outlet property="tableView" destination="akG-bc-1hs" id="Swl-a6-eeU"/>
                         <outlet property="tokenLabel" destination="cyW-CY-Nh7" id="g6G-71-lmB"/>
+                        <segue destination="7dG-LX-2z9" kind="show" identifier="showHistoryViewController" id="guf-DH-SVu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jC5-dx-xgE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="493.60000000000002" y="252.32383808095955"/>
+        </scene>
+        <!--Transaction-->
+        <scene sceneID="8Ql-6A-Dfl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Transaction" id="7dG-LX-2z9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i86-y5-jCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1242" y="253"/>
         </scene>
     </scenes>
 </document>

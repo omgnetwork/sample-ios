@@ -66,6 +66,7 @@
 "profile.view.title" = "My profile";
 "profile.button.title.logout" = "Log out";
 "profile.button.title.close" = "Close";
+"profile.button.title.history" = "History";
 "profile.label.token" = "Token";
 "profile.label.amount" = "Amount";
 "profile.lable.selected" = "Selected";
@@ -83,6 +84,13 @@
 // QRCode scanner
 
 "qr_code_scanner.button.title.cancel" = "Cancel";
+
+// Transactions
+
+"transactions.view.title" = "Transaction history";
+"transactions.label.to" = "To";
+"transactions.label.from" = "From";
+"transactions.label.my_address" = "My address:";
 
 // Global Errors
 "error.missing_required_fields" = "Missing required fields";

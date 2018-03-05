@@ -129,3 +129,25 @@ extension UIViewController {
     }
 
 }
+
+extension Date {
+
+    func toString(withFormat format: String? = "dd MMM yyyy HH:mm:ss") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter.string(from: self)
+    }
+
+}
+
+extension UIView {
+
+    func addDropShadow(withColor color: UIColor, offset: CGSize, opacity: Float, radius: CGFloat) {
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = radius
+        self.layer.masksToBounds = false
+    }
+}
