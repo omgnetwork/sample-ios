@@ -37,6 +37,9 @@
 		036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */; };
 		036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */; };
 		037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */; };
+		0377AD62204E5C8C00350407 /* TransactionsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */; };
+		0377AD64204E67F700350407 /* PaginatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD63204E67F700350407 /* PaginatorTest.swift */; };
+		0377AD66204E68D800350407 /* MockPaginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD65204E68D800350407 /* MockPaginator.swift */; };
 		037AFA701FA70A12006A0C01 /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA6F1FA70A12006A0C01 /* JSONResponse.swift */; };
 		037AFA721FA70B3C006A0C01 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA711FA70B3C006A0C01 /* Response.swift */; };
 		037AFA741FA70B5D006A0C01 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037AFA731FA70B5D006A0C01 /* APIError.swift */; };
@@ -152,6 +155,9 @@
 		036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
 		037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintedTokenManager.swift; sourceTree = "<group>"; };
+		0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelTest.swift; sourceTree = "<group>"; };
+		0377AD63204E67F700350407 /* PaginatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatorTest.swift; sourceTree = "<group>"; };
+		0377AD65204E68D800350407 /* MockPaginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPaginator.swift; sourceTree = "<group>"; };
 		037AFA6F1FA70A12006A0C01 /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
 		037AFA711FA70B3C006A0C01 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		037AFA731FA70B5D006A0C01 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -290,6 +296,7 @@
 				03F84C771FC3D46200F21C7B /* Fixtures */,
 				03F84C6D1FC3C61700F21C7B /* Mocks */,
 				031BB1351F9886790095468F /* Info.plist */,
+				0377AD63204E67F700350407 /* PaginatorTest.swift */,
 			);
 			path = OMGShopTests;
 			sourceTree = "<group>";
@@ -462,6 +469,7 @@
 				03F84C811FC3FD3E00F21C7B /* MockOmiseGOWrapper.swift */,
 				03F84C7B1FC3EA4200F21C7B /* MockProductAPI.swift */,
 				03F84C791FC3D7BB00F21C7B /* MockSessionManager.swift */,
+				0377AD65204E68D800350407 /* MockPaginator.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -477,6 +485,7 @@
 				03F84C8D1FC4216C00F21C7B /* CheckoutViewModelTests.swift */,
 				03F84C8E1FC4216C00F21C7B /* LoginViewModelTests.swift */,
 				03CEE9BE2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift */,
+				0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */,
 			);
 			path = ViewModelTests;
 			sourceTree = "<group>";
@@ -824,12 +833,15 @@
 				03F84C951FC4216C00F21C7B /* LoginViewModelTests.swift in Sources */,
 				03F84C921FC4216C00F21C7B /* ProductListViewModelTests.swift in Sources */,
 				03F84C821FC3FD3E00F21C7B /* MockOmiseGOWrapper.swift in Sources */,
+				0377AD62204E5C8C00350407 /* TransactionsViewModelTest.swift in Sources */,
 				03F84C7C1FC3EA4200F21C7B /* MockProductAPI.swift in Sources */,
 				03F84C941FC4216C00F21C7B /* CheckoutViewModelTests.swift in Sources */,
 				03F84C911FC4216C00F21C7B /* RegisterViewModelTests.swift in Sources */,
 				03F84C731FC3CA4400F21C7B /* StubGenerator.swift in Sources */,
 				03F84C7A1FC3D7BB00F21C7B /* MockSessionManager.swift in Sources */,
 				03F84C6F1FC3C62700F21C7B /* MockSessionAPI.swift in Sources */,
+				0377AD64204E67F700350407 /* PaginatorTest.swift in Sources */,
+				0377AD66204E68D800350407 /* MockPaginator.swift in Sources */,
 				03F84C901FC4216C00F21C7B /* ProfileViewModelTests.swift in Sources */,
 				03F84C8F1FC4216C00F21C7B /* RedeemViewModelTests.swift in Sources */,
 			);
@@ -1042,7 +1054,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AWD3VR6J7J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1063,7 +1075,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AWD3VR6J7J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

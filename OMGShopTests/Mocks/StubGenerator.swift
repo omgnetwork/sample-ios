@@ -8,7 +8,7 @@
 // swiftlint:disable force_try
 
 @testable import OMGShop
-import OmiseGO
+@testable import OmiseGO
 
 class StubGenerator {
 
@@ -18,7 +18,9 @@ class StubGenerator {
         let filePath = (resource as NSString).appendingPathExtension("json")! as String
         let fixtureFileURL = directoryURL.appendingPathComponent(filePath)
         let data = try! Data(contentsOf: fixtureFileURL)
-        return try! JSONDecoder().decode(T.self, from: data)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+        return try! decoder.decode(T.self, from: data)
     }
 
     class func stubLogin() -> SessionToken { return self.stub(forResource: "login") }
@@ -36,5 +38,9 @@ class StubGenerator {
     class func transactionRequest() -> TransactionRequest { return self.stub(forResource: "transaction_request") }
 
     class func transactionConsume() -> TransactionConsume { return self.stub(forResource: "transaction_consume")}
+
+    class func stubTransactions() -> [Transaction] { return self.stub(forResource: "transactions")}
+
+    class func stubPagination() -> Pagination { return self.stub(forResource: "pagination")}
 
 }
