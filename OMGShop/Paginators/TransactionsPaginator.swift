@@ -10,10 +10,10 @@ import OmiseGO
 
 class TransactionPaginator: Paginator<Transaction> {
 
-    private let transactionLoader: TransactionloaderProtocol
+    private let transactionLoader: TransactionLoaderProtocol
     let address: String
 
-    init(transactionLoader: TransactionloaderProtocol,
+    init(transactionLoader: TransactionLoaderProtocol,
          address: String,
          successClosure: ObjectClosure<[Transaction]>?,
          failureClosure: FailureClosure?) {

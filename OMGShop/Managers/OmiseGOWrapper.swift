@@ -68,7 +68,7 @@ class TransactionConsumeLoader: TransactionConsumeProtocol {
 
 }
 
-protocol TransactionloaderProtocol {
+protocol TransactionLoaderProtocol {
 
     func list(withParams params: TransactionListParams,
               callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest?
@@ -76,7 +76,7 @@ protocol TransactionloaderProtocol {
 }
 
 /// This wrapper has been created for the sake of testing with dependency injection
-class TransactionLoader: TransactionloaderProtocol {
+class TransactionLoader: TransactionLoaderProtocol {
 
     @discardableResult
     func list(withParams params: TransactionListParams,

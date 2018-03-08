@@ -21,24 +21,24 @@ class TransactionCellViewModel: BaseViewModel {
 
     init(transaction: Transaction, currentUserAddress: String) {
         self.transaction = transaction
+        var source: TransactionSource!
+        var sign: String!
         if currentUserAddress == transaction.from.address {
             direction = "transactions.label.to".localized()
             address = transaction.to.address
-            color = Color.transactionDebit.uiColor()
-            let calculatedAmount = BigUInt(transaction.from.amount).quotientAndRemainder(
-                dividingBy: BigUInt(transaction.from.mintedToken.subUnitToUnit))
-            let displayableAmount = "\(calculatedAmount.quotient).\(calculatedAmount.remainder)"
-            amount = "- \(displayableAmount) \(transaction.to.mintedToken.symbol)"
+            color = Color.transactionDebitRed.uiColor()
+            source = transaction.from
+            sign = "-"
         } else {
             direction = "transactions.label.from".localized()
             address = transaction.from.address
-            color = Color.transactionCredit.uiColor()
-            let calculatedAmount =
-                BigUInt(transaction.to.amount).quotientAndRemainder(
-                    dividingBy: BigUInt(transaction.to.mintedToken.subUnitToUnit))
-            let displayableAmount = "\(calculatedAmount.quotient).\(calculatedAmount.remainder)"
-            amount = "+ \(displayableAmount) \(transaction.to.mintedToken.symbol)"
+            color = Color.transactionCreditGreen.uiColor()
+            source = transaction.to
+            sign = "+"
         }
+        let am = BigUInt(source.amount).quotientAndRemainder(dividingBy: BigUInt(source.mintedToken.subUnitToUnit))
+        let displayableAmount = "\(am.quotient).\(am.remainder)"
+        amount = "\(sign!) \(displayableAmount) \(source.mintedToken.symbol)"
         timeStamp = transaction.createdAt.toString()
     }
 

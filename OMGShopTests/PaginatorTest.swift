@@ -12,22 +12,6 @@ import XCTest
 
 class PaginatorTest: XCTestCase {
 
-    func testWithoutSubclass() {
-        var didCallClosure = false
-        let successClosure: ObjectClosure<[Transaction]> = { transactions in
-            didCallClosure = true
-        }
-        let failureClosure: FailureClosure = { error in
-            didCallClosure = true
-        }
-        let paginator = Paginator<Transaction>(page: 1,
-                                               perPage: 10,
-                                               successClosure: successClosure,
-                                               failureClosure: failureClosure)
-        paginator.loadNext()
-        XCTAssertFalse(didCallClosure)
-    }
-
     func testLoadSuccess() {
         var expectedTransactions: [Transaction] = []
         let successClosure: ObjectClosure<[Transaction]> = { transactions in

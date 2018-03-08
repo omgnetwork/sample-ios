@@ -146,7 +146,7 @@ class MockTransactionLoader {
 
 }
 
-extension MockTransactionLoader: TransactionloaderProtocol {
+extension MockTransactionLoader: TransactionLoaderProtocol {
 
     func list(withParams params: TransactionListParams,
               callback: @escaping Transaction.ListRequestCallback)

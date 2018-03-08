@@ -33,7 +33,7 @@ class TransactionsViewModel: BaseViewModel {
     }
     var paginator: TransactionPaginator!
 
-    init(transactionLoader: TransactionloaderProtocol = TransactionLoader(), address: String) {
+    init(transactionLoader: TransactionLoaderProtocol = TransactionLoader(), address: String) {
         self.myAddress = address
         super.init()
         self.paginator = TransactionPaginator(transactionLoader: transactionLoader,

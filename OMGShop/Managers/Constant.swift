@@ -54,7 +54,7 @@ enum AppState {
 
 struct Constant {
 
-    // Credentials
+    // Config
     static let omiseGOhostURL = "https://ewallet.demo.omisego.io/api"
     static let hostURL = "https://sample-shop.demo.omisego.io/api"
     static let apiKeyId = "1"
@@ -62,6 +62,7 @@ struct Constant {
     static let omiseGOAPIKey = "zjH7vrLnwxuruQaDIZZ6jqKhlgLTsUCCYusBzUMQ3Ww"
     static let authenticationScheme = "OMGShop"
 
+    // Pagination
     static let perPage = 20
 
 }

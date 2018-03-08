@@ -54,7 +54,7 @@ class Paginator<T: Decodable> {
 
     func load() {
         // Override in subclass
-        print("WARNING: Should not use directly this class. Subclass and override 'load()' instead!!")
+        assertionFailure("WARNING: Should not use directly this class. Subclass and override 'load()' instead!!")
     }
 
     func didReceiveResults(results: [T], pagination: Pagination) {
