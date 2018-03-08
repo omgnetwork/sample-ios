@@ -1,0 +1,82 @@
+[
+  {
+    "object": "transaction",
+    "id": "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+    "from": {
+      "object": "transaction_source",
+      "address": "083fe98d-a1f4-4fe9-bac0-b967b83140fc",
+      "amount": 1000,
+      "minted_token": {
+        "object": "minted_token",
+        "id": "ABC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+        "symbol": "ABC",
+        "name": "ABC Point",
+        "subunit_to_unit": 100,
+        "created_at": "2018-01-01T00:00:00Z",
+        "updated_at": "2018-01-01T10:00:00Z"
+      }
+    },
+    "to": {
+      "object": "transaction_source",
+      "address": "XXX123",
+      "amount": 1000,
+      "minted_token": {
+        "object": "minted_token",
+        "id": "ABC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+        "symbol": "ABC",
+        "name": "ABC Point",
+        "subunit_to_unit": 100,
+        "created_at": "2018-01-01T00:00:00Z",
+        "updated_at": "2018-01-01T10:00:00Z"
+      }
+    },
+    "exchange": {
+      "object": "exchange",
+      "rate": 1
+    },
+    "metadata": {},
+    "status": "confirmed",
+    "created_at": "2018-01-01T00:00:00Z",
+    "updated_at": "2018-01-01T10:00:00Z"
+  },
+  {
+    "object": "transaction",
+    "id": "ce3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+    "from": {
+      "object": "transaction_source",
+      "address": "XXX123",
+      "amount": 1000,
+      "minted_token": {
+        "object": "minted_token",
+        "id": "ABC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+        "symbol": "ABC",
+        "name": "ABC Point",
+        "subunit_to_unit": 100,
+        "created_at": "2018-01-01T00:00:00Z",
+        "updated_at": "2018-01-01T10:00:00Z"
+      }
+    },
+    "to": {
+      "object": "transaction_source",
+      "address": "083fe98d-a1f4-4fe9-bac0-b967b83140fc",
+      "amount": 1000,
+      "minted_token": {
+        "object": "minted_token",
+        "id": "ABC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
+        "symbol": "ABC",
+        "name": "ABC Point",
+        "subunit_to_unit": 100,
+        "created_at": "2018-01-01T00:00:00Z",
+        "updated_at": "2018-01-01T10:00:00Z"
+      }
+    },
+    "exchange": {
+      "object": "exchange",
+      "rate": 1
+    },
+    "metadata": {},
+    "status": "confirmed",
+    "created_at": "2018-01-01T00:00:00Z",
+    "updated_at": "2018-01-01T10:00:00Z"
+  }
+]

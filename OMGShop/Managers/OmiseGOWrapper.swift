@@ -67,3 +67,23 @@ class TransactionConsumeLoader: TransactionConsumeProtocol {
     }
 
 }
+
+protocol TransactionLoaderProtocol {
+
+    func list(withParams params: TransactionListParams,
+              callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest?
+
+}
+
+/// This wrapper has been created for the sake of testing with dependency injection
+class TransactionLoader: TransactionLoaderProtocol {
+
+    @discardableResult
+    func list(withParams params: TransactionListParams,
+              callback: @escaping Transaction.ListRequestCallback) -> Transaction.ListRequest? {
+        return Transaction.list(using: SessionManager.shared.omiseGOClient,
+                                params: params,
+                                callback: callback)
+    }
+
+}

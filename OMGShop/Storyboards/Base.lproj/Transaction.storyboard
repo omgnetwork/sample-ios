@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V2e-ob-0Od">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Medium</string>
+            <string>AvenirNext-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Transactions View Controller-->
+        <scene sceneID="T7P-gd-lEo">
+            <objects>
+                <viewController storyboardIdentifier="TransactionsViewController" id="V2e-ob-0Od" customClass="TransactionsViewController" customModule="OMGShop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SaW-gi-mad">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HTS-fz-gug">
+                                <rect key="frame" x="0.0" y="55" width="375" height="548"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="V2e-ob-0Od" id="4ND-OV-ATa"/>
+                                    <outlet property="delegate" destination="V2e-ob-0Od" id="VTa-QW-eY6"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqa-N1-JhG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="III-L6-lAP">
+                                        <rect key="frame" x="16" y="27.5" width="343" height="20"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZk-nB-qxs">
+                                        <rect key="frame" x="16" y="8" width="343" height="18"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="III-L6-lAP" firstAttribute="leading" secondItem="qqa-N1-JhG" secondAttribute="leading" constant="16" id="8hT-Lz-5O0"/>
+                                    <constraint firstAttribute="trailing" secondItem="III-L6-lAP" secondAttribute="trailing" constant="16" id="MeM-RA-LMq"/>
+                                    <constraint firstAttribute="bottom" secondItem="III-L6-lAP" secondAttribute="bottom" constant="8" id="SHG-XZ-MZ7"/>
+                                    <constraint firstItem="pZk-nB-qxs" firstAttribute="top" secondItem="qqa-N1-JhG" secondAttribute="top" constant="8" id="Tp8-XL-IHU"/>
+                                    <constraint firstItem="III-L6-lAP" firstAttribute="top" secondItem="pZk-nB-qxs" secondAttribute="bottom" constant="2" id="m96-1L-qWw"/>
+                                    <constraint firstAttribute="trailing" secondItem="pZk-nB-qxs" secondAttribute="trailing" constant="16" id="yXV-8r-bKf"/>
+                                    <constraint firstItem="pZk-nB-qxs" firstAttribute="leading" secondItem="qqa-N1-JhG" secondAttribute="leading" constant="16" id="zDy-k4-6HX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hnl-hi-sKZ" firstAttribute="trailing" secondItem="qqa-N1-JhG" secondAttribute="trailing" id="1JH-C8-CVv"/>
+                            <constraint firstItem="qqa-N1-JhG" firstAttribute="top" secondItem="SaW-gi-mad" secondAttribute="top" id="2mg-RU-SZu"/>
+                            <constraint firstItem="HTS-fz-gug" firstAttribute="top" secondItem="qqa-N1-JhG" secondAttribute="bottom" id="4UF-jc-xPo"/>
+                            <constraint firstItem="hnl-hi-sKZ" firstAttribute="bottom" secondItem="HTS-fz-gug" secondAttribute="bottom" id="4l5-1G-dRy"/>
+                            <constraint firstItem="HTS-fz-gug" firstAttribute="leading" secondItem="hnl-hi-sKZ" secondAttribute="leading" id="Sx1-Nj-MKP"/>
+                            <constraint firstItem="hnl-hi-sKZ" firstAttribute="trailing" secondItem="HTS-fz-gug" secondAttribute="trailing" id="Y2J-Mm-MAh"/>
+                            <constraint firstItem="qqa-N1-JhG" firstAttribute="leading" secondItem="SaW-gi-mad" secondAttribute="leading" id="qIa-zr-N0a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hnl-hi-sKZ"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="myAddressLabel" destination="pZk-nB-qxs" id="4Bo-pF-W8t"/>
+                        <outlet property="myAddressValueLabel" destination="III-L6-lAP" id="Txx-6l-9sa"/>
+                        <outlet property="myAddressView" destination="qqa-N1-JhG" id="mhg-Dv-VMN"/>
+                        <outlet property="tableView" destination="HTS-fz-gug" id="FcT-81-BM7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ebp-eE-e5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1728.8" y="429.53523238380814"/>
+        </scene>
+    </scenes>
+</document>

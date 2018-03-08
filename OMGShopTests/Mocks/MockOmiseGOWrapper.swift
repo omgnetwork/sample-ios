@@ -114,3 +114,46 @@ extension MockTransactionConsumer: TransactionConsumeProtocol {
     }
 
 }
+
+extension OMGJSONPaginatedListResponse {
+
+    init(data: [Item], pagination: Pagination) {
+        self.data = data
+        self.pagination = pagination
+    }
+
+}
+
+class MockTransactionLoader {
+
+    var isListCalled = false
+
+    var transactions: [Transaction]?
+    var pagination: Pagination?
+    var completionClosure: Transaction.ListRequestCallback!
+
+    func loadTransactionSuccess() {
+        completionClosure(
+            OmiseGO.Response.success(
+                data: OMGJSONPaginatedListResponse<Transaction>(data: self.transactions!, pagination: self.pagination!)
+            )
+        )
+    }
+
+    func loadTransactionFailed(withError error: OmiseGOError) {
+        completionClosure(OmiseGO.Response.fail(error: error))
+    }
+
+}
+
+extension MockTransactionLoader: TransactionLoaderProtocol {
+
+    func list(withParams params: TransactionListParams,
+              callback: @escaping Transaction.ListRequestCallback)
+        -> Transaction.ListRequest? {
+        self.isListCalled = true
+        self.completionClosure = callback
+        return nil
+    }
+
+}
