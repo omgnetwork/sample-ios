@@ -2,8 +2,8 @@
 //  BaseViewModel.swift
 //  OMGShop
 //
-//  Created by Mederic Petit on 19/10/2560 BE.
-//  Copyright © 2560 Mederic Petit. All rights reserved.
+//  Created by Mederic Petit on 19/10/17.
+//  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
 import OmiseGO
