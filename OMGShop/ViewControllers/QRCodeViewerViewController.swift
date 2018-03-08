@@ -2,8 +2,8 @@
 //  QRCodeViewerViewController.swift
 //  OMGShop
 //
-//  Created by Mederic Petit on 13/2/2561 BE.
-//  Copyright © 2561 Mederic Petit. All rights reserved.
+//  Created by Mederic Petit on 13/2/18.
+//  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
 import UIKit

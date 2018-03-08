@@ -2,8 +2,8 @@
 //  StubGenerator.swift
 //  OMGShopTests
 //
-//  Created by Mederic Petit on 21/11/2560 BE.
-//  Copyright © 2560 Mederic Petit. All rights reserved.
+//  Created by Mederic Petit on 21/11/17.
+//  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 // swiftlint:disable force_try
 
