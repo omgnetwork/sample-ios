@@ -87,7 +87,7 @@ extension QRCodeGeneratorViewController: QRScannerViewControllerDelegate {
         self.viewModel.consume(transactionRequest: transactionRequest)
     }
 
-    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OmiseGOError) {
+    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OMGError) {
         self.showError(withMessage: error.localizedDescription)
     }
 

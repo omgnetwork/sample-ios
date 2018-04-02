@@ -46,7 +46,7 @@ class TransactionsViewModelTest: XCTestCase {
             didFail = true
         }
         self.sut.getNextTransactions()
-        let error: OmiseGOError = .unexpected(message: "Failed to load transactions")
+        let error: OMGError = .unexpected(message: "Failed to load transactions")
         self.mockTransactionLoader.loadTransactionFailed(withError: error)
         XCTAssert(didFail)
     }

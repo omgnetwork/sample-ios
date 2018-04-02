@@ -21,7 +21,7 @@ class MockSessionAPI {
     }
 
     func loginFailed(withError error: APIError) {
-        completionClosure(.fail(error: OMGError.api(error: error)))
+        completionClosure(.fail(error: OMGShopError.api(error: error)))
     }
 
     func registerSuccess() {
@@ -29,7 +29,7 @@ class MockSessionAPI {
     }
 
     func registerFailed(withError error: APIError) {
-        completionClosure(.fail(error: OMGError.api(error: error)))
+        completionClosure(.fail(error: OMGShopError.api(error: error)))
     }
 
 }

@@ -14,7 +14,7 @@ protocol SessionManagerProtocol {
 
     func login(withAppToken appAuthenticationToken: String, omiseGOAuthenticationToken: String, userId: String)
     func loadCurrentUser(withSuccessClosure success: @escaping SuccessClosure,
-                         failure: @escaping (_ error: OmiseGOError) -> Void)
+                         failure: @escaping (_ error: OMGError) -> Void)
     func logout(withSuccessClosure success: @escaping SuccessClosure, failure: @escaping FailureClosure)
 }
 
@@ -40,7 +40,7 @@ class SessionManager: SessionManagerProtocol {
         }
     }
 
-    var omiseGOClient: OMGClient!
+    var omiseGOClient: HTTPClient!
 
     func isLoggedIn() -> Bool {
         return self.authenticationToken != nil
@@ -65,10 +65,10 @@ class SessionManager: SessionManagerProtocol {
 
     private func initializeOmiseGOSDK() {
         guard let token = self.omiseGOAuthenticationToken else { return }
-        let config = OMGConfiguration(baseURL: Constant.omiseGOhostURL,
-                                      apiKey: Constant.omiseGOAPIKey,
-                                      authenticationToken: token)
-        self.omiseGOClient = OMGClient(config: config)
+        let config = ClientConfiguration(baseURL: Constant.omiseGOhostURL,
+                                         apiKey: Constant.omiseGOAPIKey,
+                                         authenticationToken: token)
+        self.omiseGOClient = HTTPClient(config: config)
     }
 
     // SessionManagerProtocol
@@ -81,7 +81,7 @@ class SessionManager: SessionManagerProtocol {
     }
 
     func loadCurrentUser(withSuccessClosure success: @escaping SuccessClosure,
-                         failure: @escaping (_ error: OmiseGOError) -> Void) {
+                         failure: @escaping (_ error: OMGError) -> Void) {
         guard self.isLoggedIn() else {
             failure(.unexpected(message: "error.unexpected".localized()))
             return

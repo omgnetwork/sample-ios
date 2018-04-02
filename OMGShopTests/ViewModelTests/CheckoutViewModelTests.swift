@@ -152,7 +152,7 @@ extension CheckoutViewModelTests {
 
     private func goToLoadAddressFailed() {
         self.sut.loadBalances()
-        let error: OmiseGOError = .unexpected(message: "Failed to load address")
+        let error: OMGError = .unexpected(message: "Failed to load address")
         self.mockAddressLoader.loadMainAddressFailed(withError: error)
     }
 

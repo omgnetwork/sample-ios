@@ -13,7 +13,7 @@ target 'OMGShop' do
   pod 'Alamofire'
   pod 'KeychainSwift'
   pod 'BigInt'
-  pod 'OmiseGO'
+  pod 'OmiseGO', git: 'https://github.com/omisego/ios-sdk.git', branch: 'naming-consistency'
 
   target 'OMGShopTests' do
     inherit! :search_paths

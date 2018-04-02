@@ -8,7 +8,7 @@
 
 enum Response<Data> {
     case success(data: Data)
-    case fail(error: OMGError)
+    case fail(error: OMGShopError)
 }
 
 struct EmptyResponse: Decodable {}

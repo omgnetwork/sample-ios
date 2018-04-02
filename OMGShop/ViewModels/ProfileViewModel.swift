@@ -57,7 +57,7 @@ class ProfileViewModel: BaseViewModel {
             self.onSuccessReloadUser?(self.name)
         }, failure: { (error) in
             dispatchGroup.leave()
-            self.onFailReloadUser?(OMGError.omiseGO(error: error))
+            self.onFailReloadUser?(OMGShopError.omiseGO(error: error))
         })
         dispatchGroup.enter()
         self.addressLoader.getMain { (result) in
@@ -66,7 +66,7 @@ class ProfileViewModel: BaseViewModel {
             case .success(data: let address):
                 self.processAddress(address)
             case .fail(error: let error):
-                self.handleOmiseGOrror(error)
+                self.handleOMGError(error)
                 self.onFailGetAddress?(.omiseGO(error: error))
             }
             dispatchGroup.leave()

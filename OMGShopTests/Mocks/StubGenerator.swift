@@ -37,7 +37,7 @@ class StubGenerator {
 
     class func transactionRequest() -> TransactionRequest { return self.stub(forResource: "transaction_request") }
 
-    class func transactionConsume() -> TransactionConsume { return self.stub(forResource: "transaction_consume")}
+    class func transactionConsume() -> TransactionConsumption { return self.stub(forResource: "transaction_consumption")}
 
     class func stubTransactions() -> [Transaction] { return self.stub(forResource: "transactions")}
 

@@ -32,7 +32,7 @@ class PaginatorTest: XCTestCase {
     }
 
     func testLoadFailure() {
-        var expectedError: OMGError?
+        var expectedError: OMGShopError?
         let successClosure: ObjectClosure<[Transaction]> = { transactions in
             XCTFail("Shouldn't succeed")
         }
@@ -50,13 +50,13 @@ class PaginatorTest: XCTestCase {
 
     func testCancelRequest() {
         let paginator = Paginator<Transaction>(page: 1, perPage: 10, successClosure: nil, failureClosure: nil)
-        let dummyClient = OMGClient(config: OMGConfiguration(baseURL: "http://example.com",
-                                                             apiKey: "123",
-                                                             authenticationToken: "123"))
+        let dummyClient = HTTPClient(config: ClientConfiguration(baseURL: "http://example.com",
+                                                                 apiKey: "123",
+                                                                 authenticationToken: "123"))
         let dummyEndpoint = APIEndpoint.custom(path: "", task: .requestPlain)
-        let request = OMGRequest<OMGJSONPaginatedListResponse<Transaction>>.init(client: dummyClient,
-                                                                                 endpoint: dummyEndpoint,
-                                                                                 callback: { _ in
+        let request = Request<JSONPaginatedListResponse<Transaction>>.init(client: dummyClient,
+                                                                           endpoint: dummyEndpoint,
+                                                                           callback: { _ in
 
         })
         paginator.currentRequest = try? request.start()

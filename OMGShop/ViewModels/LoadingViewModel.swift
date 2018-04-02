@@ -34,9 +34,9 @@ class LoadingViewModel: BaseViewModel {
             self.isLoading = false
             self.onAppStateChange?()
             }, failure: { (error) in
-                self.handleOmiseGOrror(error)
+                self.handleOMGError(error)
                 self.isLoading = false
-                self.onFailedLoading?(OMGError.omiseGO(error: error))
+                self.onFailedLoading?(OMGShopError.omiseGO(error: error))
         })
     }
 

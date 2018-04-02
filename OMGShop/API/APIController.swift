@@ -37,7 +37,7 @@ class APIController {
                     completionClosure(.fail(error: .other(error: error)))
                 }
             } else {
-                completionClosure(.fail(error: OMGError.unexpected))
+                completionClosure(.fail(error: OMGShopError.unexpected))
             }
         }
         debugPrint(request)
