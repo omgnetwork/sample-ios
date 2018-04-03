@@ -60,7 +60,7 @@ class RegisterViewModel: BaseViewModel {
             try self.validateAll()
             self.isLoading = true
             self.submit()
-        } catch let error as OMGError {
+        } catch let error as OMGShopError {
             self.onFailedRegister?(error)
         } catch _ {}
     }
@@ -89,7 +89,7 @@ class RegisterViewModel: BaseViewModel {
             self.onSuccessRegister?()
         }, failure: { (error) in
             self.isLoading = false
-            self.onFailedRegister?(OMGError.omiseGO(error: error))
+            self.onFailedRegister?(OMGShopError.omiseGO(error: error))
         })
     }
 
@@ -128,7 +128,7 @@ class RegisterViewModel: BaseViewModel {
         isValid = self.validateLastName() && isValid
         isValid = self.validateEmail() && isValid
         isValid = self.validatePassword() && isValid
-        guard isValid else { throw OMGError.missingRequiredFields }
+        guard isValid else { throw OMGShopError.missingRequiredFields }
     }
 
 }

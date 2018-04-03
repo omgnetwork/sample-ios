@@ -68,7 +68,7 @@ class QRCodeGeneratorViewModel: BaseViewModel {
                 self.settings = settings
                 self.onSuccessGetSettings?()
             case .fail(error: let error):
-                self.handleOmiseGOrror(error)
+                self.handleOMGError(error)
                 self.onFailedGetSettings?(.omiseGO(error: error))
             }
             self.updateGenerateButtonState()
@@ -81,7 +81,13 @@ class QRCodeGeneratorViewModel: BaseViewModel {
                                                     mintedTokenId: mintedTokenId,
                                                     amount: self.formattedAmount(),
                                                     address: nil,
-                                                    correlationId: nil)
+                                                    correlationId: nil,
+                                                    requireConfirmation: false,
+                                                    maxConsumptions: nil,
+                                                    consumptionLifetime: nil,
+                                                    expirationDate: nil,
+                                                    allowAmountOverride: true,
+                                                    metadata: [:])!
         self.isLoading = true
         self.transactionRequestCreator.generate(withParams: params) { (result) in
             self.isLoading = false
@@ -95,12 +101,13 @@ class QRCodeGeneratorViewModel: BaseViewModel {
     }
 
     func consume(transactionRequest: TransactionRequest) {
-        guard let params = TransactionConsumeParams(transactionRequest: transactionRequest,
+        guard let params = TransactionConsumptionParams(transactionRequest: transactionRequest,
                                                     address: nil,
                                                     mintedTokenId: nil,
                                                     amount: nil,
                                                     idempotencyToken: self.idemPotencyToken,
                                                     correlationId: nil,
+                                                    expirationDate: nil,
                                                     metadata: [:]) else {
                                                         self.onFailedConsume?(.unexpected)
                                                         return
@@ -137,7 +144,7 @@ class QRCodeGeneratorViewModel: BaseViewModel {
         return Double(formattedAmount)
     }
 
-    private func successConsumeMessage(withTransacionConsume transactionConsume: TransactionConsume) -> String {
+    private func successConsumeMessage(withTransacionConsume transactionConsume: TransactionConsumption) -> String {
         let formattedAmount = transactionConsume.amount / transactionConsume.mintedToken.subUnitToUnit
         //swiftlint:disable:next line_length
         return "\("qr_code_generator.message.successful_sent".localized()) \(formattedAmount) \(transactionConsume.mintedToken.symbol) \("qr_code_generator.message.to".localized()) \(transactionConsume.address)"

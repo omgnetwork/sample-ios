@@ -23,7 +23,7 @@ class MockProductAPI {
     }
 
     func loadProductsFailed(withError error: APIError) {
-        loadCompletionClosure(.fail(error: OMGError.api(error: error)))
+        loadCompletionClosure(.fail(error: OMGShopError.api(error: error)))
     }
 
     func paySuccess() {
@@ -31,7 +31,7 @@ class MockProductAPI {
     }
 
     func payFailed(withError error: APIError) {
-        payCompletionClosure(.fail(error: OMGError.api(error: error)))
+        payCompletionClosure(.fail(error: OMGShopError.api(error: error)))
     }
 
 }

@@ -52,16 +52,16 @@ class TransactionRequestLoader: TransactionRequestCreateProtocol {
 }
 
 protocol TransactionConsumeProtocol {
-    func consume(withParams params: TransactionConsumeParams,
-                 callback: @escaping TransactionConsume.RetrieveRequestCallback)
+    func consume(withParams params: TransactionConsumptionParams,
+                 callback: @escaping TransactionConsumption.RetrieveRequestCallback)
 }
 
 /// This wrapper has been created for the sake of testing with dependency injection
 class TransactionConsumeLoader: TransactionConsumeProtocol {
 
-    func consume(withParams params: TransactionConsumeParams,
-                 callback: @escaping TransactionConsume.RetrieveRequestCallback) {
-        TransactionConsume.consumeTransactionRequest(using: SessionManager.shared.omiseGOClient,
+    func consume(withParams params: TransactionConsumptionParams,
+                 callback: @escaping TransactionConsumption.RetrieveRequestCallback) {
+        TransactionConsumption.consumeTransactionRequest(using: SessionManager.shared.omiseGOClient,
                                                      params: params,
                                                      callback: callback)
     }

@@ -45,7 +45,7 @@ class ProfileViewModelTests: XCTestCase {
             didFail = true
         }
         self.sut.loadData()
-        let error: OmiseGOError = .unexpected(message: "Failed to load address")
+        let error: OMGError = .unexpected(message: "Failed to load address")
         self.mockAddressLoader.loadMainAddressFailed(withError: error)
         self.mockSessionManager.loadCurrentUserSuccess()
         XCTAssert(didFail)
@@ -58,7 +58,7 @@ class ProfileViewModelTests: XCTestCase {
             didFail = true
         }
         self.sut.loadData()
-        let error: OmiseGOError = .unexpected(message: "Failed to load user")
+        let error: OMGError = .unexpected(message: "Failed to load user")
         self.mockAddressLoader.address = StubGenerator.mainAddress()
         self.mockAddressLoader.loadMainAddressSuccess()
         self.mockSessionManager.loadCurrentUserFailed(withError: error)
@@ -129,29 +129,29 @@ class ProfileViewModelTests: XCTestCase {
     }
 
     func testLogoutFailed() {
-        let e = self.expectation(description: "Logout should fail")
+        let expectation = self.expectation(description: "Logout should fail")
         var didFail = false
         self.sut.onFailLogout = {
             XCTAssertEqual($0.message, "Error")
             didFail = true
-            e.fulfill()
+            expectation.fulfill()
         }
         self.sut.logout()
         self.mockSessionManager.logoutFailed(withError: .init(code: .other("Error"), description: "Error"))
-        self.wait(for: [e], timeout: 1)
+        self.wait(for: [expectation], timeout: 1)
         XCTAssert(didFail)
     }
 
     func testLogoutSucceed() {
-        let e = self.expectation(description: "Logout should fail")
+        let expectation = self.expectation(description: "Logout should fail")
         var didLogout = false
         self.sut.onLogoutSuccess = {
             didLogout = true
-            e.fulfill()
+            expectation.fulfill()
         }
         self.sut.logout()
         self.mockSessionManager.logoutSuccess()
-        self.wait(for: [e], timeout: 1)
+        self.wait(for: [expectation], timeout: 1)
         XCTAssert(didLogout)
     }
 

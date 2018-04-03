@@ -78,7 +78,7 @@ class CheckoutViewModel: BaseViewModel {
             case .success(data: let address):
                 self.processAddress(address)
             case .fail(error: let error):
-                self.handleOmiseGOrror(error)
+                self.handleOMGError(error)
                 self.onFailGetAddress?(.omiseGO(error: error))
             }
             self.updateRedeemButtonTitle()

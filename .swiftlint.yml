@@ -1,2 +1,5 @@
-excluded: # paths to ignore during linting. Takes precedence over `included`.
-  - Pods
+included:
+- OMGShop
+line_length: 140
+disabled_rules:
+- identifier_name

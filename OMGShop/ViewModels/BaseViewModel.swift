@@ -12,7 +12,7 @@ class BaseViewModel: NSObject {
 
     var onAppStateChange: EmptyClosure?
 
-    func handleOMGShopError(_ error: OMGError) {
+    func handleOMGShopError(_ error: OMGShopError) {
         switch error {
         case .api(error: let apiError) where apiError.isAuthorizationError():
             SessionManager.shared.clearTokens()
@@ -21,7 +21,7 @@ class BaseViewModel: NSObject {
         }
     }
 
-    func handleOmiseGOrror(_ error: OmiseGOError) {
+    func handleOMGError(_ error: OMGError) {
         switch error {
         case .api(apiError: let apiError) where apiError.isAuthorizationError():
             SessionManager.shared.clearTokens()

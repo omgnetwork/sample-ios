@@ -12,7 +12,7 @@ typealias ViewModelValidationClosure = ((_ errorMessage: String?) -> Void)
 typealias EmptyClosure = () -> Void
 typealias SuccessClosure = () -> Void
 typealias ObjectClosure<T> = (_ object: T) -> Void
-typealias FailureClosure = (_ error: OMGError) -> Void
+typealias FailureClosure = (_ error: OMGShopError) -> Void
 typealias APIClosure<T: Decodable> = ObjectClosure<Response<T>>
 
 enum Storyboard {

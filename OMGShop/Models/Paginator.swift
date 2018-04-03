@@ -23,7 +23,7 @@ class Paginator<T: Decodable> {
     var successClosure: ObjectClosure<[T]>?
     var failureClosure: FailureClosure?
 
-    var currentRequest: OMGRequest<OMGJSONPaginatedListResponse<T>>?
+    var currentRequest: Request<JSONPaginatedListResponse<T>>?
 
     init(page: Int,
          perPage: Int,
@@ -63,7 +63,7 @@ class Paginator<T: Decodable> {
         self.state = .idle
     }
 
-    func didFail(withError error: OmiseGOError) {
+    func didFail(withError error: OMGError) {
         self.failureClosure?(.omiseGO(error: error))
         self.state = .idle
     }

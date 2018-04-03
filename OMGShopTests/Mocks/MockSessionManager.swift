@@ -18,14 +18,14 @@ class MockSessionManager: SessionManagerProtocol {
     var isLogoutCalled = false
 
     var successClosure: SuccessClosure!
-    var failureLoadUserClosure: ((OmiseGOError) -> Void)!
+    var failureLoadUserClosure: ((OMGError) -> Void)!
     var failureLogoutClosure: FailureClosure!
 
     func loadCurrentUserSuccess() {
         self.successClosure()
     }
 
-    func loadCurrentUserFailed(withError error: OmiseGOError) {
+    func loadCurrentUserFailed(withError error: OMGError) {
         self.failureLoadUserClosure(error)
     }
 
@@ -42,7 +42,7 @@ class MockSessionManager: SessionManagerProtocol {
     }
 
     func loadCurrentUser(withSuccessClosure success: @escaping SuccessClosure,
-                         failure: @escaping (OmiseGOError) -> Void) {
+                         failure: @escaping (OMGError) -> Void) {
         self.isLoadCurrentUserCalled = true
         self.successClosure = success
         self.failureLoadUserClosure = failure

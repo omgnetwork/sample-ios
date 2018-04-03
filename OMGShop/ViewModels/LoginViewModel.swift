@@ -47,7 +47,7 @@ class LoginViewModel: BaseViewModel {
             try self.validateAll()
             self.isLoading = true
             self.submit()
-        } catch let error as OMGError {
+        } catch let error as OMGShopError {
             self.onFailedLogin?(error)
         } catch _ {}
     }
@@ -73,7 +73,7 @@ class LoginViewModel: BaseViewModel {
             self.onSuccessLogin?()
         }, failure: { (error) in
             self.isLoading = false
-            self.onFailedLogin?(OMGError.omiseGO(error: error))
+            self.onFailedLogin?(OMGShopError.omiseGO(error: error))
         })
     }
 
@@ -96,7 +96,7 @@ class LoginViewModel: BaseViewModel {
         // So we can show to the user all fields that have errors
         var isValid = self.validateEmail()
         isValid = self.validatePassword() && isValid
-        guard isValid else { throw OMGError.missingRequiredFields }
+        guard isValid else { throw OMGShopError.missingRequiredFields }
     }
 
 }

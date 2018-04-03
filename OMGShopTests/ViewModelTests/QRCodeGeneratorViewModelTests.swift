@@ -47,7 +47,7 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
             didFail = true
         }
         self.sut.loadSettings()
-        let error: OmiseGOError = .unexpected(message: "Failed to load settings")
+        let error: OMGError = .unexpected(message: "Failed to load settings")
         self.mockSettingLoader.loadSettingFailed(withError: error)
         XCTAssert(didFail)
     }
@@ -84,7 +84,7 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
             didFail = true
         }
         self.sut.generate()
-        let error: OmiseGOError = .unexpected(message: "Failed to generate transaction request")
+        let error: OMGError = .unexpected(message: "Failed to generate transaction request")
         self.mockTransactionRequestCreator.generateTransactionRequestFailed(withError: error)
         XCTAssert(didFail)
     }
@@ -119,7 +119,7 @@ class QRCodeGeneratorViewModelTests: XCTestCase {
             didFail = true
         }
         self.sut.consume(transactionRequest: StubGenerator.transactionRequest())
-        let error: OmiseGOError = .unexpected(message: "Failed to consume transaction")
+        let error: OMGError = .unexpected(message: "Failed to consume transaction")
         self.mockTransactionConsumer.consumeTransactionFailed(withError: error)
         XCTAssert(didFail)
     }
