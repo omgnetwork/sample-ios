@@ -17,23 +17,10 @@ DEPENDENCIES:
   - BigInt
   - KeychainSwift
   - MBProgressHUD
-  - OmiseGO (= 0.9.10)
+  - OmiseGO
   - SkyFloatingLabelTextField
   - Toaster
   - TPKeyboardAvoiding
-
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - Alamofire
-    - BigInt
-    - KeychainSwift
-    - MBProgressHUD
-    - OmiseGO
-    - SipHash
-    - SkyFloatingLabelTextField
-    - Starscream
-    - Toaster
-    - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
@@ -47,6 +34,6 @@ SPEC CHECKSUMS:
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: e8b3d36ddcdd9d9d48267556a7859ab9546eb970
+PODFILE CHECKSUM: 7ec9cd0396d62425e5ab467c2c38a62a980d8251
 
 COCOAPODS: 1.5.0

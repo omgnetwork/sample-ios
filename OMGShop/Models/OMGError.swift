@@ -39,6 +39,6 @@ extension OMGShopError: CustomStringConvertible, CustomDebugStringConvertible {
 }
 
 extension OMGShopError: LocalizedError {
-    public var errorDescription: String { return self.message }
+    public var errorDescription: String? { return self.message }
     public var localizedDescription: String { return self.message }
 }

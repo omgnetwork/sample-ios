@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   OMGShop
 
@@ -71,19 +71,35 @@
 "profile.label.amount" = "Amount";
 "profile.lable.selected" = "Selected";
 
+// Generate Or Scan
+
+"generate_or_scan.title" = "QR Code";
+"generate_or_scan.button.title.cancel" = "Cancel";
+"generate_or_scan.button.title.generate" = "Generate QR Code";
+"generate_or_scan.button.title.scan" = "Scan QR Code";
+
+// TRequest generator
+
+"trequest_generator.label.i_want_to" = "I want to:";
+"trequest_generator.label.send" = "Send";
+"trequest_generator.label.receive" = "Receive";
+"trequest_generator.label.token" = "Token:";
+"trequest_generator.label.amount" = "Amount:";
+"trequest_generator.label.address" = "Address:";
+"trequest_generator.label.correlation_id" = "Correlation id:";
+"trequest_generator.label.requires_confirmation" = "Requires confirmation:";
+"trequest_generator.label.max_consumption" = "Max consumption:";
+"trequest_generator.label.consumption_lifetime" = "Consumption lifetime:";
+"trequest_generator.label.expiration_date" = "Expiration date:";
+
+
 // QRCode generator
 
-"qr_code_generator.title" = "QR Code";
 "qr_code_generator.text_field.placeholder.amount" = "Amount";
-"qr_code_generator.button.title.generate" = "Generate";
 "qr_code_generator.button.title.generate.disable" = "Loading";
-"qr_code_generator.button.title.scan" = "Scan QR Code";
 "qr_code_generator.message.successful_sent" = "Successfuly sent";
 "qr_code_generator.message.to" = "to";
 
-// QRCode scanner
-
-"qr_code_scanner.button.title.cancel" = "Cancel";
 
 // Transactions
 
