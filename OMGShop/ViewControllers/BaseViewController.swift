@@ -67,7 +67,6 @@ extension BaseViewController {
     }
 }
 
-
 class BaseTableViewController: UITableViewController {
 
     var loading: MBProgressHUD?

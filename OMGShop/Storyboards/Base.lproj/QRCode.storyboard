@@ -231,8 +231,9 @@
         <!--Request Generator View Controller-->
         <scene sceneID="7w5-Wj-xoN">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XYP-vQ-Kwz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="TRequestGeneratorViewController" id="xIJ-kz-Pqn" customClass="TRequestGeneratorViewController" customModule="OMGShop" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="44" id="knL-uf-LJG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="44" id="knL-uf-LJG" customClass="TPKeyboardAvoidingTableView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -603,6 +604,41 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="nuo-4v-1B0">
+                                        <rect key="frame" x="0.0" y="440" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nuo-4v-1B0" id="OSC-X0-dZD">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37h-Ss-ZsO">
+                                                    <rect key="frame" x="16" y="-4" width="343" height="50"/>
+                                                    <color key="backgroundColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="sbz-Pe-n2c"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                                    <state key="normal" title="Generate">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="didTapGenerateButton:" destination="xIJ-kz-Pqn" eventType="touchUpInside" id="uTz-o5-zXF"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="37h-Ss-ZsO" secondAttribute="bottom" constant="8" id="0v5-jW-ahb"/>
+                                                <constraint firstAttribute="trailing" secondItem="37h-Ss-ZsO" secondAttribute="trailing" constant="16" id="SpS-jg-juk"/>
+                                                <constraint firstItem="37h-Ss-ZsO" firstAttribute="top" secondItem="OSC-X0-dZD" secondAttribute="top" constant="8" id="Za3-eR-3ti"/>
+                                                <constraint firstItem="37h-Ss-ZsO" firstAttribute="leading" secondItem="OSC-X0-dZD" secondAttribute="leading" constant="16" id="hJv-t6-G6p"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -624,6 +660,7 @@
                         <outlet property="correlationIdTextField" destination="mhz-z5-1fi" id="rk9-N3-j7T"/>
                         <outlet property="expirationDateLabel" destination="hVV-oG-wd5" id="EnS-a5-qeT"/>
                         <outlet property="expirationDateTextField" destination="Ley-7i-MwJ" id="fBF-S3-qvY"/>
+                        <outlet property="generateButton" destination="37h-Ss-ZsO" id="hxv-Zz-SEr"/>
                         <outlet property="iWantToLabel" destination="Xuf-ri-19A" id="dKL-La-DZW"/>
                         <outlet property="maxConsumptionLabel" destination="m9D-vF-PfS" id="8mV-Ne-8Sr"/>
                         <outlet property="maxConsumptionsTextField" destination="rb4-fr-Lb4" id="IJo-1X-CrJ"/>
@@ -634,17 +671,16 @@
                         <outlet property="sendReceiveSwitch" destination="2JX-IP-eoU" id="HRE-5w-s6b"/>
                         <outlet property="tokenLabel" destination="zmJ-bZ-wSv" id="etO-iv-X47"/>
                         <outlet property="tokenTextField" destination="ydS-0h-V1T" id="JD5-jY-X7a"/>
+                        <outlet property="tpKeyboardAvoidingTableView" destination="knL-uf-LJG" id="5Xd-S9-1mC"/>
                         <segue destination="yfu-Gx-lOE" kind="show" identifier="showQRCodeViewer" id="JOs-Bq-ldR"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XYP-vQ-Kwz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1959" y="1026"/>
         </scene>
         <!--Code Viewer View Controller-->
         <scene sceneID="aYy-3b-5sN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="C4y-1c-p7B" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="QRCodeViewerViewController" id="yfu-Gx-lOE" customClass="QRCodeViewerViewController" customModule="OMGShop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WYy-s7-Lhg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
@@ -673,6 +709,7 @@
                         <outlet property="qrImageView" destination="znx-TG-ixF" id="ice-BQ-0jS"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C4y-1c-p7B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3406" y="1026"/>
         </scene>

@@ -80,17 +80,21 @@
 
 // TRequest generator
 
+"trequest_generator.title" = "Generate transaction";
 "trequest_generator.label.i_want_to" = "I want to:";
 "trequest_generator.label.send" = "Send";
 "trequest_generator.label.receive" = "Receive";
 "trequest_generator.label.token" = "Token:";
-"trequest_generator.label.amount" = "Amount:";
-"trequest_generator.label.address" = "Address:";
-"trequest_generator.label.correlation_id" = "Correlation id:";
+"trequest_generator.label.amount" = "Amount (optional):";
+"trequest_generator.label.address" = "Address (optional):";
+"trequest_generator.label.correlation_id" = "Correlation id (optional):";
 "trequest_generator.label.requires_confirmation" = "Requires confirmation:";
-"trequest_generator.label.max_consumption" = "Max consumption:";
-"trequest_generator.label.consumption_lifetime" = "Consumption lifetime:";
-"trequest_generator.label.expiration_date" = "Expiration date:";
+"trequest_generator.label.max_consumption" = "Max consumption (optional):";
+"trequest_generator.label.consumption_lifetime" = "Consumption lifetime in ms (optional):";
+"trequest_generator.label.expiration_date" = "Expiration date: (optional)";
+"trequest_generator.label.allow_amount_override" = "Allow amount override:";
+"trequest_generator.button.title.generate" = "Generate";
+"trequest_generator.button.title.next" = "Next";
 
 
 // QRCode generator

@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import OmiseGO
+import TPKeyboardAvoiding
 
 class TRequestGeneratorViewController: BaseTableViewController {
+
+    let showQRCodeImageSegueIdentifier = "showQRCodeViewer"
 
     let viewModel = TRequestGeneratorViewModel()
 
@@ -44,14 +48,9 @@ class TRequestGeneratorViewController: BaseTableViewController {
     @IBOutlet weak var allowAmountOverrideLabel: UILabel!
     @IBOutlet weak var allowAmountOverrideSwitch: UISwitch!
 
-    lazy var generateButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle(self.viewModel.generateButtonTitle, for: .normal)
-        button.backgroundColor = Color.omiseGOBlue.uiColor()
-        button.setTitleColor(.white, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    @IBOutlet var tpKeyboardAvoidingTableView: TPKeyboardAvoidingTableView!
+
+    @IBOutlet weak var generateButton: UIButton!
 
     override func configureView() {
         super.configureView()
@@ -67,7 +66,10 @@ class TRequestGeneratorViewController: BaseTableViewController {
         self.maxConsumptionLabel.text = self.viewModel.maxConsumptionLabel
         self.consumptionLifetimeLabel.text = self.viewModel.consumptionLifetimeLabel
         self.expirationDateLabel.text = self.viewModel.expirationDateLabel
+        self.allowAmountOverrideLabel.text = self.viewModel.allowAmountOverrideLabel
         self.setInitialValues()
+        self.setupPickers()
+        self.setupAccessoryViews()
     }
 
     private func setInitialValues() {
@@ -87,7 +89,10 @@ class TRequestGeneratorViewController: BaseTableViewController {
         super.configureViewModel()
         self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
         self.viewModel.onSuccessGenerate = { (transactionRequest) in
-            // TODO: Handle success
+            self.performSegue(withIdentifier: self.showQRCodeImageSegueIdentifier, sender: transactionRequest)
+        }
+        self.viewModel.onSuccessGetSettings = {
+            self.tokenTextField.text = self.viewModel.mintedTokenDisplay
         }
         self.viewModel.onFailedGenerate = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onFailedGetSettings = { self.showError(withMessage: $0.localizedDescription) }
@@ -96,6 +101,82 @@ class TRequestGeneratorViewController: BaseTableViewController {
             self.generateButton.alpha = $0 ? 1 : 0.5
         }
         self.viewModel.loadSettings()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == self.showQRCodeImageSegueIdentifier,
+            let transactionRequest = sender as? TransactionRequest,
+            let vc = segue.destination as? QRCodeViewerViewController {
+            let viewModel: QRCodeViewerViewModel = QRCodeViewerViewModel(transactionRequest: transactionRequest)
+            vc.viewModel = viewModel
+        }
+    }
+
+    func setupPickers() {
+        let pickerView = UIPickerView()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        self.tokenTextField.inputView = pickerView
+        let datePicker = UIDatePicker()
+        datePicker.addTarget(self, action: #selector(didUpdateExpirationDate), for: .valueChanged)
+        datePicker.datePickerMode = .dateAndTime
+        datePicker.minimumDate = Date()
+        self.expirationDateTextField.inputView = datePicker
+    }
+
+    func setupAccessoryViews() {
+        let accessoryView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
+        accessoryView.backgroundColor = .white
+        let nextButton = UIButton(type: .custom)
+        nextButton.setTitle(self.viewModel.nextButtonTitle, for: .normal)
+        nextButton.titleLabel?.font = Font.avenirMedium.withSize(17)
+        nextButton.setTitleColor(.black, for: .normal)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.addTarget(self,
+                             action: #selector(focusNextTextFieldOrResign),
+                             for: .touchUpInside)
+        accessoryView.addSubview(nextButton)
+        [.top, .trailing, .bottom].forEach {
+            accessoryView.addConstraint(NSLayoutConstraint(item: accessoryView,
+                                                           attribute: $0,
+                                                           relatedBy: .equal,
+                                                           toItem: nextButton,
+                                                           attribute: $0,
+                                                           multiplier: 1,
+                                                           constant: 0))
+        }
+        nextButton.addConstraints([NSLayoutConstraint(item: nextButton,
+                                                    attribute: .width,
+                                                    relatedBy: .equal,
+                                                    toItem: nil,
+                                                    attribute: .notAnAttribute,
+                                                    multiplier: 1,
+                                                    constant: 100),
+                                   NSLayoutConstraint(item: nextButton,
+                                                      attribute: .height,
+                                                      relatedBy: .equal,
+                                                      toItem: nil,
+                                                      attribute: .notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 44)])
+        [self.tokenTextField,
+         self.amountTextField,
+         self.addressTextField,
+         self.correlationIdTextField,
+         self.maxConsumptionsTextField,
+         self.consumptionLifetimeTextField,
+         self.expirationDateTextField].forEach { $0.inputAccessoryView = accessoryView }
+    }
+
+    @objc func focusNextTextFieldOrResign() {
+        if !self.tpKeyboardAvoidingTableView.focusNextTextField() {
+            self.view.endEditing(true)
+        }
+    }
+
+    @objc func didUpdateExpirationDate(_ picker: UIDatePicker) {
+        self.viewModel.didUpdateExpirationDate(picker.date)
+        self.expirationDateTextField.text = self.viewModel.expirationDateDisplay
     }
 
     @IBAction func sendReceiveSwitchDidToggle(_ sender: UISwitch) {
@@ -110,44 +191,18 @@ class TRequestGeneratorViewController: BaseTableViewController {
         self.viewModel.allowAmountOverrideSwitchState = sender.isOn
     }
 
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 76
-    }
-
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView()
-        footerView.backgroundColor = .white
-        footerView.addSubview(self.generateButton)
-        [.trailing, .bottom].forEach {
-            footerView.addConstraint(NSLayoutConstraint(item: footerView,
-                                                        attribute: $0,
-                                                        relatedBy: .equal,
-                                                        toItem: self.generateButton,
-                                                        attribute: $0,
-                                                        multiplier: 1,
-                                                        constant: 16))
-        }
-        [.leading, .top].forEach {
-            footerView.addConstraint(NSLayoutConstraint(item: footerView,
-                                                        attribute: $0,
-                                                        relatedBy: .equal,
-                                                        toItem: self.generateButton,
-                                                        attribute: $0,
-                                                        multiplier: 1,
-                                                        constant: -16))
-        }
-        return footerView
+    @IBAction func didTapGenerateButton(_ sender: UIButton) {
+        self.viewModel.generateTransactionRequest()
     }
 
 }
 
 extension TRequestGeneratorViewController: UITextFieldDelegate {
 
-
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.focusNextTextFieldOrResign()
+        return true
+    }
 
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
@@ -179,6 +234,30 @@ extension TRequestGeneratorViewController: UITextFieldDelegate {
         default: break
         }
         return true
+    }
+
+}
+
+extension TRequestGeneratorViewController: UIPickerViewDelegate {
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.viewModel.didSelect(row: row)
+    }
+
+}
+
+extension TRequestGeneratorViewController: UIPickerViewDataSource {
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.viewModel.title(forRow: row)
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.viewModel.numberOfRowsInPicker()
+    }
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return self.viewModel.numberOfColumnsInPicker()
     }
 
 }
