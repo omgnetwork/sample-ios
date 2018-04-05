@@ -93,9 +93,7 @@
 		03F9982E1FA7386A00565960 /* BuyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9982D1FA7386A00565960 /* BuyForm.swift */; };
 		03FE64572032E75700345281 /* QRCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FE64532032E75700345281 /* QRCode.storyboard */; };
 		03FE64582032E75700345281 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FE64552032E75700345281 /* Profile.storyboard */; };
-		03FE645A2032EE1C00345281 /* QRCodeGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */; };
 		03FE645C2032EE2A00345281 /* QRCodeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */; };
-		03FE645E2032F47E00345281 /* QRCodeGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */; };
 		0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */; };
 		4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */; };
 /* End PBXBuildFile section */
@@ -215,9 +213,7 @@
 		03F9982D1FA7386A00565960 /* BuyForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyForm.swift; sourceTree = "<group>"; };
 		03FE64542032E75700345281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/QRCode.storyboard; sourceTree = "<group>"; };
 		03FE64562032E75700345281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
-		03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorViewController.swift; sourceTree = "<group>"; };
 		03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewerViewController.swift; sourceTree = "<group>"; };
-		03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorViewModel.swift; sourceTree = "<group>"; };
 		172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop.release.xcconfig"; sourceTree = "<group>"; };
 		29E669345BD1D2973F29F1A1 /* Pods-OMGShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A37D1380E180BBB8DCA459E0 /* Pods-OMGShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -357,11 +353,10 @@
 				032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */,
 				03C601411FA6E4510033A0C7 /* LoadingViewController.swift */,
 				03B618051FA9A10400BC0B0E /* ProfileViewController.swift */,
-				03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */,
-				03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */,
 				030AB354204CE9D100CBB68B /* TransactionsViewController.swift */,
 				03D2186F207341C2008FA1AE /* GenerateOrScanViewController.swift */,
 				03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */,
+				03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -379,12 +374,11 @@
 				03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */,
 				03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */,
 				03C2C0821FBAE67A00B794AC /* TokenCellViewModel.swift */,
-				03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */,
-				030F57332033E42D00F54296 /* QRCodeViewerViewModel.swift */,
 				030AB356204CE9E000CBB68B /* TransactionsViewModel.swift */,
 				030AB35C204CEB3B00CBB68B /* TransactionCellViewModel.swift */,
 				03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */,
 				03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */,
+				030F57332033E42D00F54296 /* QRCodeViewerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -812,7 +806,6 @@
 				039F69D61F9EF84F00AE5355 /* ProductTableViewCell.swift in Sources */,
 				03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */,
 				037AFA761FA7122B006A0C01 /* Router.swift in Sources */,
-				03FE645E2032F47E00345281 /* QRCodeGeneratorViewModel.swift in Sources */,
 				036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */,
 				03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */,
 				03F998261FA7162E00565960 /* Protocol.swift in Sources */,
@@ -824,7 +817,6 @@
 				03D218722073618A008FA1AE /* TRequestGeneratorViewController.swift in Sources */,
 				03F84C801FC3FC5500F21C7B /* OmiseGOWrapper.swift in Sources */,
 				030F57342033E42D00F54296 /* QRCodeViewerViewModel.swift in Sources */,
-				03FE645A2032EE1C00345281 /* QRCodeGeneratorViewController.swift in Sources */,
 				037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */,
 				03C2C0801FBAE54700B794AC /* TokenTableViewCell.swift in Sources */,
 				032C2E991FA03980001AE452 /* Constant.swift in Sources */,

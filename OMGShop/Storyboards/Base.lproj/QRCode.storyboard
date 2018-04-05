@@ -11,158 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Code Generator View Controller-->
-        <scene sceneID="w6w-fI-Vfy">
-            <objects>
-                <viewController storyboardIdentifier="QRCodeGeneratorViewController" id="UHM-6X-C4n" customClass="QRCodeGeneratorViewController" customModule="OMGShop" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fTj-kn-PV7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHl-X1-FJ2">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRj-Ry-On9">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="334"/>
-                                        <subviews>
-                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bqg-cD-r03">
-                                                <rect key="frame" x="0.0" y="8" width="375" height="160"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="160" id="3Iv-gR-Yne"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="UHM-6X-C4n" id="a9b-l7-YAT"/>
-                                                    <outlet property="delegate" destination="UHM-6X-C4n" id="ytK-CJ-IVe"/>
-                                                </connections>
-                                            </pickerView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZ8-bn-Ozg">
-                                                <rect key="frame" x="16" y="176" width="343" height="150"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqP-Yz-lBa">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="64"/>
-                                                        <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MYF-sy-Rsg" customClass="OMGFloatingTextField" customModule="OMGShop" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="20" width="343" height="44"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="44" id="ti0-RJ-sH3"/>
-                                                                </constraints>
-                                                                <color key="textColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="next" textContentType="email"/>
-                                                                <connections>
-                                                                    <outlet property="delegate" destination="UHM-6X-C4n" id="1mz-OG-5tP"/>
-                                                                </connections>
-                                                            </textField>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="MYF-sy-Rsg" secondAttribute="bottom" id="9A7-Rb-YvN"/>
-                                                            <constraint firstItem="MYF-sy-Rsg" firstAttribute="leading" secondItem="vqP-Yz-lBa" secondAttribute="leading" id="Rnx-W1-iOe"/>
-                                                            <constraint firstItem="MYF-sy-Rsg" firstAttribute="top" secondItem="vqP-Yz-lBa" secondAttribute="top" constant="20" id="yQf-uL-yOa"/>
-                                                            <constraint firstAttribute="trailing" secondItem="MYF-sy-Rsg" secondAttribute="trailing" id="zvb-Z1-W4y"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAo-vX-IR8">
-                                                        <rect key="frame" x="0.0" y="84" width="343" height="50"/>
-                                                        <color key="backgroundColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="r42-Pk-cxz"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
-                                                        <state key="normal" title="Generate">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="4"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="tapGenerateButton:" destination="UHM-6X-C4n" eventType="touchUpInside" id="Mja-f1-KQd"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="OAo-vX-IR8" secondAttribute="bottom" constant="16" id="4mU-P2-7RE"/>
-                                                    <constraint firstItem="OAo-vX-IR8" firstAttribute="top" secondItem="vqP-Yz-lBa" secondAttribute="bottom" constant="20" id="HVT-Kw-qi5"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OAo-vX-IR8" secondAttribute="trailing" id="KvX-4V-bem"/>
-                                                    <constraint firstItem="vqP-Yz-lBa" firstAttribute="leading" secondItem="TZ8-bn-Ozg" secondAttribute="leading" id="Vku-8d-Ovj"/>
-                                                    <constraint firstItem="vqP-Yz-lBa" firstAttribute="top" secondItem="TZ8-bn-Ozg" secondAttribute="top" id="YOO-8A-4Dq"/>
-                                                    <constraint firstItem="OAo-vX-IR8" firstAttribute="leading" secondItem="TZ8-bn-Ozg" secondAttribute="leading" id="dq1-Df-wGe"/>
-                                                    <constraint firstAttribute="trailing" secondItem="vqP-Yz-lBa" secondAttribute="trailing" id="ndP-3v-It4"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Bqg-cD-r03" firstAttribute="top" secondItem="qRj-Ry-On9" secondAttribute="top" constant="8" id="1wz-gI-gBm"/>
-                                            <constraint firstAttribute="trailing" secondItem="TZ8-bn-Ozg" secondAttribute="trailing" constant="16" id="AHr-Hl-LYB"/>
-                                            <constraint firstItem="Bqg-cD-r03" firstAttribute="leading" secondItem="qRj-Ry-On9" secondAttribute="leading" id="IAm-zc-XYc"/>
-                                            <constraint firstAttribute="trailing" secondItem="Bqg-cD-r03" secondAttribute="trailing" id="IiQ-RX-AvT"/>
-                                            <constraint firstAttribute="bottom" secondItem="TZ8-bn-Ozg" secondAttribute="bottom" constant="8" id="iDe-H4-OTL"/>
-                                            <constraint firstItem="TZ8-bn-Ozg" firstAttribute="leading" secondItem="qRj-Ry-On9" secondAttribute="leading" constant="16" id="jha-dH-sqv"/>
-                                            <constraint firstItem="TZ8-bn-Ozg" firstAttribute="top" secondItem="Bqg-cD-r03" secondAttribute="bottom" constant="8" id="mi1-Nv-ooI"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="qRj-Ry-On9" firstAttribute="top" secondItem="FHl-X1-FJ2" secondAttribute="top" id="8Ar-cq-EeU"/>
-                                    <constraint firstAttribute="bottom" secondItem="qRj-Ry-On9" secondAttribute="bottom" id="KiG-ad-gje"/>
-                                    <constraint firstAttribute="trailing" secondItem="qRj-Ry-On9" secondAttribute="trailing" id="SlU-xm-5iA"/>
-                                    <constraint firstItem="qRj-Ry-On9" firstAttribute="leading" secondItem="FHl-X1-FJ2" secondAttribute="leading" id="t9p-r8-Eyb"/>
-                                </constraints>
-                            </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4Z-lB-aNT">
-                                <rect key="frame" x="16" y="543" width="343" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="et2-Dq-l64"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="Scan QRCode">
-                                    <color key="titleColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="tapScanButton:" destination="UHM-6X-C4n" eventType="touchUpInside" id="imV-fP-bSH"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="w4Z-lB-aNT" firstAttribute="leading" secondItem="SHp-0l-JyX" secondAttribute="leading" constant="16" id="I33-At-Qzr"/>
-                            <constraint firstItem="FHl-X1-FJ2" firstAttribute="leading" secondItem="fTj-kn-PV7" secondAttribute="leading" id="K7V-qL-9rw"/>
-                            <constraint firstItem="w4Z-lB-aNT" firstAttribute="top" secondItem="FHl-X1-FJ2" secondAttribute="bottom" id="XiU-0F-d0D"/>
-                            <constraint firstItem="qRj-Ry-On9" firstAttribute="trailing" secondItem="SHp-0l-JyX" secondAttribute="trailing" id="YWa-t4-NNO"/>
-                            <constraint firstItem="SHp-0l-JyX" firstAttribute="bottom" secondItem="w4Z-lB-aNT" secondAttribute="bottom" constant="16" id="eyt-6d-bVh"/>
-                            <constraint firstItem="FHl-X1-FJ2" firstAttribute="top" secondItem="fTj-kn-PV7" secondAttribute="top" id="fej-Zq-R3Z"/>
-                            <constraint firstAttribute="trailing" secondItem="FHl-X1-FJ2" secondAttribute="trailing" id="loU-nu-7q5"/>
-                            <constraint firstItem="SHp-0l-JyX" firstAttribute="leading" secondItem="qRj-Ry-On9" secondAttribute="leading" id="u3m-nh-s4O"/>
-                            <constraint firstItem="SHp-0l-JyX" firstAttribute="trailing" secondItem="w4Z-lB-aNT" secondAttribute="trailing" constant="16" id="vSk-7Q-xwS"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="SHp-0l-JyX"/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="oCG-ug-9c4"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="amountTextField" destination="MYF-sy-Rsg" id="d23-Ea-XWp"/>
-                        <outlet property="generateButton" destination="OAo-vX-IR8" id="s86-oJ-fZC"/>
-                        <outlet property="pickerView" destination="Bqg-cD-r03" id="VeF-3m-UT4"/>
-                        <outlet property="scanButton" destination="w4Z-lB-aNT" id="RMl-vo-PCX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0o5-1q-noi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="270" y="250"/>
-        </scene>
         <!--Generate Or Scan View Controller-->
         <scene sceneID="YAC-Bl-D7S">
             <objects>
@@ -179,7 +27,6 @@
                                     <color key="titleColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="tapScanButton:" destination="UHM-6X-C4n" eventType="touchUpInside" id="dWe-FG-DmD"/>
                                     <action selector="tapScanButton:" destination="a3C-oT-qIS" eventType="touchUpInside" id="yJs-xh-5Na"/>
                                 </connections>
                             </button>
@@ -198,7 +45,6 @@
                                     <color key="titleColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="tapScanButton:" destination="UHM-6X-C4n" eventType="touchUpInside" id="tup-Fx-IHs"/>
                                     <segue destination="xIJ-kz-Pqn" kind="show" id="roV-uD-yJU"/>
                                 </connections>
                             </button>
