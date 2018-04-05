@@ -23,6 +23,33 @@ class GenerateOrScanViewController: BaseViewController {
         self.scanQRCodeButton.setTitle(self.viewModel.scanButtonTitle, for: .normal)
     }
 
+    override func configureViewModel() {
+        super.configureViewModel()
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onAmountMissing = {
+            let alert = UIAlertController(title: self.viewModel.amountMissingTitle,
+                                          message: self.viewModel.amountMissingMessage,
+                                          preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: self.viewModel.cancelLabel, style: .cancel, handler: nil)
+            let confirmAction = UIAlertAction(title: self.viewModel.confirmLabel, style: .default, handler: { _ in
+                self.viewModel.amountDisplay = alert.textFields?.first?.text ?? ""
+                self.viewModel.submitAmount()
+            })
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.font = Font.avenirBook.withSize(15)
+                textField.keyboardType = .decimalPad
+            })
+            alert.addAction(cancelAction)
+            alert.addAction(confirmAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        self.viewModel.onSuccessConsume = {
+            self.showMessage($0)
+            self.navigationController?.popViewController(animated: true)
+        }
+        self.viewModel.onFailedConsume = { self.showError(withMessage: $0.localizedDescription) }
+    }
+
 }
 
 extension GenerateOrScanViewController {

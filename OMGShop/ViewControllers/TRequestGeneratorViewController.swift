@@ -87,7 +87,7 @@ class TRequestGeneratorViewController: BaseTableViewController {
 
     override func configureViewModel() {
         super.configureViewModel()
-        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading() }
         self.viewModel.onSuccessGenerate = { (transactionRequest) in
             self.performSegue(withIdentifier: self.showQRCodeImageSegueIdentifier, sender: transactionRequest)
         }

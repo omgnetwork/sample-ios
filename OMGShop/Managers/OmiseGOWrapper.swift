@@ -62,8 +62,8 @@ class TransactionConsumeLoader: TransactionConsumeProtocol {
     func consume(withParams params: TransactionConsumptionParams,
                  callback: @escaping TransactionConsumption.RetrieveRequestCallback) {
         TransactionConsumption.consumeTransactionRequest(using: SessionManager.shared.omiseGOClient,
-                                                     params: params,
-                                                     callback: callback)
+                                                         params: params,
+                                                         callback: callback)
     }
 
 }

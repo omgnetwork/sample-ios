@@ -41,6 +41,7 @@ class SessionManager: SessionManagerProtocol {
     }
 
     var omiseGOClient: HTTPClient!
+    var omiseGOSocketClient: SocketClient!
 
     func isLoggedIn() -> Bool {
         return self.authenticationToken != nil
@@ -65,10 +66,14 @@ class SessionManager: SessionManagerProtocol {
 
     private func initializeOmiseGOSDK() {
         guard let token = self.omiseGOAuthenticationToken else { return }
-        let config = ClientConfiguration(baseURL: Constant.omiseGOhostURL,
+        let httpConfig = ClientConfiguration(baseURL: Constant.omiseGOhostURL,
                                          apiKey: Constant.omiseGOAPIKey,
                                          authenticationToken: token)
-        self.omiseGOClient = HTTPClient(config: config)
+        self.omiseGOClient = HTTPClient(config: httpConfig)
+        let socketConfig = ClientConfiguration(baseURL: Constant.omiseGOSocketURL,
+                                             apiKey: Constant.omiseGOAPIKey,
+                                             authenticationToken: token)
+        self.omiseGOSocketClient = SocketClient(config: socketConfig, delegate: nil)
     }
 
     // SessionManagerProtocol

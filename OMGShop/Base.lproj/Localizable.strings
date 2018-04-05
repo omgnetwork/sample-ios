@@ -77,6 +77,10 @@
 "generate_or_scan.button.title.cancel" = "Cancel";
 "generate_or_scan.button.title.generate" = "Generate QR Code";
 "generate_or_scan.button.title.scan" = "Scan QR Code";
+"generate_or_scan.alert.title.scan" = "Input amount";
+"generate_or_scan.alert.message.scan" = "Amount was not inputed when generating the transaction, please input an amount";
+"generate_or_scan.alert.cancel" = "Cancel";
+"generate_or_scan.alert.confirm" = "Confirm";
 
 // TRequest generator
 
@@ -95,6 +99,19 @@
 "trequest_generator.label.allow_amount_override" = "Allow amount override:";
 "trequest_generator.button.title.generate" = "Generate";
 "trequest_generator.button.title.next" = "Next";
+
+// QRCode viewer
+
+"qrcode_viewer.label.waiting" = "Waiting for scan";
+"qrcode_viewer.alert.consumption_request.title" = "Consumption Request";
+"qrcode_viewer.alert.consumption_request.wants_to" = "wants to";
+"qrcode_viewer.alert.consumption_request.send_you" = "send you";
+"qrcode_viewer.alert.consumption_request.take_you" = "take you";
+"qrcode_viewer.alert.consumption_request.do_you_approve" = "do you want to approve this transaction?";
+"qrcode_viewer.alert.consumption_request.approve" = "Approve";
+"qrcode_viewer.alert.consumption_request.reject" = "Reject";
+"qrcode_viewer.message.successfully_approved" = "Transaction completed";
+"qrcode_viewer.message.successfully_rejected" = "Successfully rejected the transaction";
 
 
 // QRCode generator
