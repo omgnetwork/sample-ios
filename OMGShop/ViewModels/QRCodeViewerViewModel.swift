@@ -76,6 +76,10 @@ class QRCodeViewerViewModel: BaseViewModel {
             }
         }
     }
+
+    func stopListening() {
+        self.transactionRequest.stopListening(withClient: SessionManager.shared.omiseGOSocketClient)
+    }
 }
 
 extension QRCodeViewerViewModel: TransactionRequestEventDelegate {

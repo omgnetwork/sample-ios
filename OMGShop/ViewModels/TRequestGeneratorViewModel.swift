@@ -43,7 +43,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     private var expirationDate: Date? {
         didSet {
             guard let date = expirationDate else { return }
-            self.expirationDateDisplay = date.toString(withFormat: "dd MMM yyyy - HH:mm:ss")
+            self.expirationDateDisplay = date.toString(withFormat: "dd MMM yyyy - HH:mm")
         }
     }
 
@@ -109,17 +109,21 @@ class TRequestGeneratorViewModel: BaseViewModel {
 
     func generateTransactionRequest() {
         guard let mintedTokenId = self.mintedToken?.id else { return }
-        let params = TransactionRequestCreateParams(type: self.sendReceiveSwitchState ? .send : .receive,
-                                                    mintedTokenId: mintedTokenId,
-                                                    amount: self.formattedAmount(),
-                                                    address: self.addressDisplay != "" ? self.addressDisplay : nil,
-                                                    correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
-                                                    requireConfirmation: self.requiresConfirmationSwitchState,
-                                                    maxConsumptions: self.formattedMaxConsumptions(),
-                                                    consumptionLifetime: self.formattedConsumptionLifetime(),
-                                                    expirationDate: self.expirationDate,
-                                                    allowAmountOverride: self.allowAmountOverrideSwitchState,
-                                                    metadata: [:])!
+        guard let params = TransactionRequestCreateParams(type: self.sendReceiveSwitchState ? .send : .receive,
+                                                          mintedTokenId: mintedTokenId,
+                                                          amount: self.formattedAmount(),
+                                                          address: self.addressDisplay != "" ? self.addressDisplay : nil,
+                                                          correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
+                                                          requireConfirmation: self.requiresConfirmationSwitchState,
+                                                          maxConsumptions: self.formattedMaxConsumptions(),
+                                                          consumptionLifetime: self.formattedConsumptionLifetime(),
+                                                          expirationDate: self.expirationDate,
+                                                          allowAmountOverride: self.allowAmountOverrideSwitchState,
+                                                          metadata: [:]
+            ) else {
+                self.onFailedGenerate?(.message(message: "trequest_generator.error.missing_amount".localized()))
+                return
+        }
         self.isLoading = true
         self.transactionRequestCreator.generate(withParams: params) { (result) in
             self.isLoading = false
@@ -151,7 +155,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     private func formattedMaxConsumptions() -> Int? {
         guard self.maxConsumptionsDisplay != "",
             let maxConsumptions = Int(self.maxConsumptionsDisplay) else {
-            return nil
+                return nil
         }
         return maxConsumptions
     }

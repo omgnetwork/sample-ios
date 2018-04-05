@@ -15,6 +15,7 @@ enum OMGShopError: Error {
     case api(error: APIError)
     case omiseGO(error: OMGError)
     case other(error: Error)
+    case message(message: String)
 
     var message: String {
         switch self {
@@ -28,6 +29,8 @@ enum OMGShopError: Error {
             return error.description
         case .other(error: let error):
             return error.localizedDescription
+        case .message(message: let message):
+            return message
         }
     }
 

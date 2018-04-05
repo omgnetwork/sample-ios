@@ -73,6 +73,8 @@
 		03D21874207361A5008FA1AE /* GenerateOrScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */; };
 		03D21876207361B3008FA1AE /* TRequestGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */; };
 		03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DEC75B1FA81554009068AD /* ProductAPI.swift */; };
+		03F437F920760C6E00309EEA /* TRequestConsumerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F437F820760C6E00309EEA /* TRequestConsumerViewController.swift */; };
+		03F437FB20760C7C00309EEA /* TRequestConsumerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */; };
 		03F84C6F1FC3C62700F21C7B /* MockSessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C6E1FC3C62700F21C7B /* MockSessionAPI.swift */; };
 		03F84C731FC3CA4400F21C7B /* StubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C721FC3CA4400F21C7B /* StubGenerator.swift */; };
 		03F84C781FC3D46200F21C7B /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 03F84C771FC3D46200F21C7B /* Fixtures */; };
@@ -193,6 +195,8 @@
 		03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateOrScanViewModel.swift; sourceTree = "<group>"; };
 		03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestGeneratorViewModel.swift; sourceTree = "<group>"; };
 		03DEC75B1FA81554009068AD /* ProductAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPI.swift; sourceTree = "<group>"; };
+		03F437F820760C6E00309EEA /* TRequestConsumerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestConsumerViewController.swift; sourceTree = "<group>"; };
+		03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestConsumerViewModel.swift; sourceTree = "<group>"; };
 		03F84C6E1FC3C62700F21C7B /* MockSessionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSessionAPI.swift; sourceTree = "<group>"; };
 		03F84C721FC3CA4400F21C7B /* StubGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGenerator.swift; sourceTree = "<group>"; };
 		03F84C771FC3D46200F21C7B /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 				030AB354204CE9D100CBB68B /* TransactionsViewController.swift */,
 				03D2186F207341C2008FA1AE /* GenerateOrScanViewController.swift */,
 				03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */,
+				03F437F820760C6E00309EEA /* TRequestConsumerViewController.swift */,
 				03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */,
 			);
 			path = ViewControllers;
@@ -378,6 +383,7 @@
 				030AB35C204CEB3B00CBB68B /* TransactionCellViewModel.swift */,
 				03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */,
 				03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */,
+				03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */,
 				030F57332033E42D00F54296 /* QRCodeViewerViewModel.swift */,
 			);
 			path = ViewModels;
@@ -782,6 +788,7 @@
 				037AFA741FA70B5D006A0C01 /* APIError.swift in Sources */,
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
 				030AB362204D050000CBB68B /* TransactionsPaginator.swift in Sources */,
+				03F437FB20760C7C00309EEA /* TRequestConsumerViewModel.swift in Sources */,
 				031BB16F1F99948A0095468F /* Theme.swift in Sources */,
 				03FE645C2032EE2A00345281 /* QRCodeViewerViewController.swift in Sources */,
 				037AFA721FA70B3C006A0C01 /* Response.swift in Sources */,
@@ -809,6 +816,7 @@
 				036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */,
 				03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */,
 				03F998261FA7162E00565960 /* Protocol.swift in Sources */,
+				03F437F920760C6E00309EEA /* TRequestConsumerViewController.swift in Sources */,
 				030AB357204CE9E000CBB68B /* TransactionsViewModel.swift in Sources */,
 				036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */,
 				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,

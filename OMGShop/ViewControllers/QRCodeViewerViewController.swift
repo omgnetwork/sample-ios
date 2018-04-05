@@ -32,6 +32,11 @@ class QRCodeViewerViewController: BaseViewController {
         return alert
     }()
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.viewModel.stopListening()
+    }
+
     override func configureView() {
         super.configureView()
         self.waitingForScanLabel.text = self.viewModel.waitingLabel

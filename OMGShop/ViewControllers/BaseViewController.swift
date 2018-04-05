@@ -85,8 +85,9 @@ class BaseTableViewController: UITableViewController {
 
 extension BaseTableViewController {
 
-    func showLoading() {
+    func showLoading(withMessage message: String? = nil) {
         self.loading = MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.loading!.label.text = message
         self.loading!.contentColor = Color.omiseGOBlue.uiColor()
         self.loading!.bezelView.style = .solidColor
         self.loading!.bezelView.color = UIColor.white

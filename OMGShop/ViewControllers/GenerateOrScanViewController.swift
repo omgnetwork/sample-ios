@@ -11,6 +11,8 @@ import OmiseGO
 
 class GenerateOrScanViewController: BaseViewController {
 
+    let segueIdentifier = "showConsumeView"
+
     let viewModel = GenerateOrScanViewModel()
 
     @IBOutlet weak var generateQRCodeButton: UIButton!
@@ -23,33 +25,10 @@ class GenerateOrScanViewController: BaseViewController {
         self.scanQRCodeButton.setTitle(self.viewModel.scanButtonTitle, for: .normal)
     }
 
-    override func configureViewModel() {
-        super.configureViewModel()
-        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
-        self.viewModel.onAmountMissing = {
-            let alert = UIAlertController(title: self.viewModel.amountMissingTitle,
-                                          message: self.viewModel.amountMissingMessage,
-                                          preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: self.viewModel.cancelLabel, style: .cancel, handler: nil)
-            let confirmAction = UIAlertAction(title: self.viewModel.confirmLabel, style: .default, handler: { _ in
-                self.viewModel.amountDisplay = alert.textFields?.first?.text ?? ""
-                self.viewModel.submitAmount()
-            })
-            alert.addTextField(configurationHandler: { (textField) in
-                textField.font = Font.avenirBook.withSize(15)
-                textField.keyboardType = .decimalPad
-            })
-            alert.addAction(cancelAction)
-            alert.addAction(confirmAction)
-            self.present(alert, animated: true, completion: nil)
-        }
-        self.viewModel.onSuccessConsume = {
-            self.showMessage($0)
-            self.navigationController?.popViewController(animated: true)
-        }
-        self.viewModel.onFailedConsume = { self.showError(withMessage: $0.localizedDescription) }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == self.segueIdentifier, let transactionRequest = sender as? TransactionRequest, let vc = segue.destination as? TRequestConsumerViewController else { return }
+        vc.viewModel = TRequestConsumerViewModel(transactionRequest: transactionRequest)
     }
-
 }
 
 extension GenerateOrScanViewController {
@@ -72,7 +51,7 @@ extension GenerateOrScanViewController: QRScannerViewControllerDelegate {
 
     func scannerDidDecode(scanner: QRScannerViewController, transactionRequest: TransactionRequest) {
         scanner.dismiss(animated: true, completion: nil)
-        self.viewModel.consume(transactionRequest: transactionRequest)
+        self.performSegue(withIdentifier: self.segueIdentifier, sender: transactionRequest)
     }
 
     func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OMGError) {
