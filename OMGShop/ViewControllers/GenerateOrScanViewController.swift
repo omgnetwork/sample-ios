@@ -26,7 +26,9 @@ class GenerateOrScanViewController: BaseViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == self.segueIdentifier, let transactionRequest = sender as? TransactionRequest, let vc = segue.destination as? TRequestConsumerViewController else { return }
+        guard segue.identifier == self.segueIdentifier,
+            let transactionRequest = sender as? TransactionRequest,
+            let vc = segue.destination as? TRequestConsumerViewController else { return }
         vc.viewModel = TRequestConsumerViewModel(transactionRequest: transactionRequest)
     }
 }

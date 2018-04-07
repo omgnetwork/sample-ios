@@ -109,16 +109,17 @@ class TRequestConsumerViewModel: BaseViewModel {
     func consumeTransactionRequest() {
         guard let mintedTokenId = self.mintedToken?.id else { return }
 
-        guard let params = TransactionConsumptionParams(transactionRequest: self.transactionRequest,
-                                                        address: self.addressDisplay != "" ? self.addressDisplay : nil,
-                                                        mintedTokenId: mintedTokenId,
-                                                        amount: self.formattedAmount(),
-                                                        idempotencyToken: self.idemPotencyToken,
-                                                        correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
-                                                        expirationDate: self.expirationDate,
-                                                        metadata: [:]) else {
-                                                            self.onFailedConsume?(.unexpected)
-                                                            return
+        guard let params = TransactionConsumptionParams(
+            transactionRequest: self.transactionRequest,
+            address: self.addressDisplay != "" ? self.addressDisplay : nil,
+            mintedTokenId: mintedTokenId,
+            amount: self.formattedAmount(),
+            idempotencyToken: self.idemPotencyToken,
+            correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
+            expirationDate: self.expirationDate,
+            metadata: [:]) else {
+                self.onFailedConsume?(.missingRequiredFields)
+                return
         }
         self.isLoading = true
         self.transactionConsumer.consume(withParams: params) { (result) in
