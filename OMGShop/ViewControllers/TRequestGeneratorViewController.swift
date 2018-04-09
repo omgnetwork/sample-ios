@@ -194,6 +194,7 @@ class TRequestGeneratorViewController: BaseTableViewController {
     }
 
     @IBAction func didTapGenerateButton(_ sender: UIButton) {
+        self.view.endEditing(true)
         self.viewModel.generateTransactionRequest()
     }
 

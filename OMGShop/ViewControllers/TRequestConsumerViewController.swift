@@ -147,6 +147,7 @@ class TRequestConsumerViewController: BaseTableViewController {
     }
 
     @IBAction func didTapConsumeButton(_ sender: UIButton) {
+        self.view.endEditing(true)
         self.viewModel.consumeTransactionRequest()
     }
 
