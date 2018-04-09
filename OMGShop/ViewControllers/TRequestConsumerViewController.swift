@@ -65,13 +65,17 @@ class TRequestConsumerViewController: BaseTableViewController {
         super.configureViewModel()
         self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading() }
         self.viewModel.onSuccessConsume = {
+            self.hideLoading()
             self.showMessage($0)
             self.navigationController?.popToRootViewController(animated: true)
         }
         self.viewModel.onSuccessGetSettings = {
             self.tokenTextField.text = self.viewModel.mintedTokenDisplay
         }
-        self.viewModel.onFailedConsume = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onFailedConsume = {
+            self.hideLoading()
+            self.showError(withMessage: $0.localizedDescription)
+        }
         self.viewModel.onFailedGetSettings = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onConsumeButtonStateChange = {
             self.consumeButton.isEnabled = $0
