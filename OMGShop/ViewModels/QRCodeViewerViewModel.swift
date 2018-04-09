@@ -80,12 +80,23 @@ class QRCodeViewerViewModel: BaseViewModel {
     func stopListening() {
         self.transactionRequest.stopListening(withClient: SessionManager.shared.omiseGOSocketClient)
     }
+
+    private func successConsumeMessage(withTransacionConsumption transactionConsumption: TransactionConsumption) -> String {
+        let formattedAmount = transactionConsumption.amount / transactionConsumption.mintedToken.subUnitToUnit
+        if transactionConsumption.transactionRequest.type == .send {
+            //swiftlint:disable:next line_length
+            return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("qrcode_viewer.message.to".localized()) \(transactionConsumption.address)"
+        } else {
+            //swiftlint:disable:next line_length
+            return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.received".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("qrcode_viewer.message.from".localized()) \(transactionConsumption.address)"
+        }
+    }
 }
 
 extension QRCodeViewerViewModel: TransactionRequestEventDelegate {
 
     func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
-        self.onSuccessApprove?("qrcode_viewer.message.successfully_approved".localized())
+        self.onSuccessApprove?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
     }
 
     func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {

@@ -35,6 +35,8 @@ class TRequestConsumerViewModel: BaseViewModel {
     var addressDisplay: String
     var correlationIdDisplay: String
     var expirationDateDisplay: String
+    let transactionTypeDisplay: String
+    let requesterAddressDisplay: String
 
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }
@@ -87,6 +89,10 @@ class TRequestConsumerViewModel: BaseViewModel {
         self.addressDisplay = ""
         self.correlationIdDisplay = ""
         self.expirationDateDisplay = ""
+        self.transactionTypeDisplay = transactionRequest.type == .send ?
+            "trequest_consumer.label.receive_from".localized() :
+            "trequest_consumer.label.send_to".localized()
+        self.requesterAddressDisplay = transactionRequest.address
         super.init()
     }
 
@@ -145,12 +151,11 @@ class TRequestConsumerViewModel: BaseViewModel {
         let formattedAmount = transactionConsumption.amount / transactionConsumption.mintedToken.subUnitToUnit
         if transactionConsumption.transactionRequest.type == .send {
             //swiftlint:disable:next line_length
-            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.received".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("trequest_consumer.message.from".localized()) \(transactionConsumption.address)"
+            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.received".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("trequest_consumer.message.from".localized()) \(transactionConsumption.transactionRequest.address)"
         } else {
             //swiftlint:disable:next line_length
-            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("trequest_consumer.message.to".localized()) \(transactionConsumption.address)"
+            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("trequest_consumer.message.to".localized()) \(transactionConsumption.transactionRequest.address)"
         }
-
     }
 
     private func formattedAmount() -> Double? {

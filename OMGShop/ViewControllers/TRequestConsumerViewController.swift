@@ -13,6 +13,9 @@ class TRequestConsumerViewController: BaseTableViewController {
 
     var viewModel: TRequestConsumerViewModel!
 
+    @IBOutlet weak var transactionTypeLabel: UILabel!
+    @IBOutlet weak var addressRequesterLabel: UILabel!
+
     @IBOutlet weak var tokenLabel: UILabel!
     @IBOutlet weak var tokenTextField: UITextField!
 
@@ -49,6 +52,8 @@ class TRequestConsumerViewController: BaseTableViewController {
     }
 
     private func setInitialValues() {
+        self.transactionTypeLabel.text = self.viewModel.transactionTypeDisplay
+        self.addressRequesterLabel.text = self.viewModel.requesterAddressDisplay
         self.tokenTextField.text = self.viewModel.mintedTokenDisplay
         self.amountTextField.text = self.viewModel.amountDisplay
         self.addressTextField.text = self.viewModel.addressDisplay

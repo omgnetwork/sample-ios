@@ -114,6 +114,8 @@
 "trequest_consumer.message.to" = "to";
 "trequest_consumer.message.from" = "from";
 "trequest_consumer.error.consumption_rejected" = "Your transaction has been rejected by the requester";
+"trequest_consumer.label.send_to" = "Send to:";
+"trequest_consumer.label.receive_from" = "Receive from:";
 
 // QRCode viewer
 
@@ -127,6 +129,11 @@
 "qrcode_viewer.alert.consumption_request.reject" = "Reject";
 "qrcode_viewer.message.successfully_approved" = "Transaction completed";
 "qrcode_viewer.message.successfully_rejected" = "Successfully rejected the transaction";
+"qrcode_viewer.message.successfully" = "Successfully";
+"qrcode_viewer.message.sent" = "sent";
+"qrcode_viewer.message.received" = "received";
+"qrcode_viewer.message.to" = "to";
+"qrcode_viewer.message.from" = "from";
 
 
 // QRCode generator
