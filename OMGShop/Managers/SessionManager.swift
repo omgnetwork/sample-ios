@@ -73,7 +73,7 @@ class SessionManager: SessionManagerProtocol {
         let socketConfig = ClientConfiguration(baseURL: Constant.omiseGOSocketURL,
                                              apiKey: Constant.omiseGOAPIKey,
                                              authenticationToken: token)
-        self.omiseGOSocketClient = SocketClient(config: socketConfig, delegate: nil)
+        self.omiseGOSocketClient = SocketClient(config: socketConfig, delegate: self)
     }
 
     // SessionManagerProtocol
@@ -113,4 +113,16 @@ class SessionManager: SessionManagerProtocol {
             }
         }
     }
+}
+
+extension SessionManager: SocketConnectionDelegate {
+
+    func didConnect() {
+        print("Socket did connect")
+    }
+
+    func didDisconnect(_ error: OMGError?) {
+        print("Socket did disconnect")
+    }
+
 }
