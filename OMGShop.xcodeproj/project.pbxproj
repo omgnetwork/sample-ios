@@ -30,6 +30,7 @@
 		031BB1721F9995360095468F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1711F9995360095468F /* Extension.swift */; };
 		031BB1741F9998EB0095468F /* OMGShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1731F9998EB0095468F /* OMGShopManager.swift */; };
 		031BB1761F999FED0095468F /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1751F999FED0095468F /* CustomView.swift */; };
+		0324806C207C6DD500669DAA /* TRequestConsumerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324806B207C6DD500669DAA /* TRequestConsumerViewModelTests.swift */; };
 		032C2E931FA0326F001AE452 /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032C2E911FA0326F001AE452 /* Popup.storyboard */; };
 		032C2E951FA0388A001AE452 /* RedeemPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */; };
 		032C2E971FA0389A001AE452 /* RedeemPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E961FA0389A001AE452 /* RedeemPopupViewModel.swift */; };
@@ -67,7 +68,7 @@
 		03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601411FA6E4510033A0C7 /* LoadingViewController.swift */; };
 		03C601441FA6E46F0033A0C7 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */; };
 		03CC0C9F1FA05B0900DB377C /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC0C9E1FA05B0900DB377C /* Checkout.swift */; };
-		03CEE9BF2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEE9BE2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift */; };
+		03CEE9BF2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEE9BE2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift */; };
 		03D21870207341C2008FA1AE /* GenerateOrScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2186F207341C2008FA1AE /* GenerateOrScanViewController.swift */; };
 		03D218722073618A008FA1AE /* TRequestGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */; };
 		03D21874207361A5008FA1AE /* GenerateOrScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */; };
@@ -152,6 +153,7 @@
 		031BB1711F9995360095468F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		031BB1731F9998EB0095468F /* OMGShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGShopManager.swift; sourceTree = "<group>"; };
 		031BB1751F999FED0095468F /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		0324806B207C6DD500669DAA /* TRequestConsumerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestConsumerViewModelTests.swift; sourceTree = "<group>"; };
 		032C2E921FA0326F001AE452 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Popup.storyboard; sourceTree = "<group>"; };
 		032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPopupViewController.swift; sourceTree = "<group>"; };
 		032C2E961FA0389A001AE452 /* RedeemPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPopupViewModel.swift; sourceTree = "<group>"; };
@@ -189,7 +191,7 @@
 		03C601411FA6E4510033A0C7 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
 		03CC0C9E1FA05B0900DB377C /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
-		03CEE9BE2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorViewModelTests.swift; sourceTree = "<group>"; };
+		03CEE9BE2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestGeneratorViewModelTests.swift; sourceTree = "<group>"; };
 		03D2186F207341C2008FA1AE /* GenerateOrScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateOrScanViewController.swift; sourceTree = "<group>"; };
 		03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestGeneratorViewController.swift; sourceTree = "<group>"; };
 		03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateOrScanViewModel.swift; sourceTree = "<group>"; };
@@ -496,7 +498,8 @@
 				03F84C8C1FC4216C00F21C7B /* LoadingViewModelTests.swift */,
 				03F84C8D1FC4216C00F21C7B /* CheckoutViewModelTests.swift */,
 				03F84C8E1FC4216C00F21C7B /* LoginViewModelTests.swift */,
-				03CEE9BE2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift */,
+				03CEE9BE2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift */,
+				0324806B207C6DD500669DAA /* TRequestConsumerViewModelTests.swift */,
 				0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */,
 			);
 			path = ViewModelTests;
@@ -538,7 +541,6 @@
 				031BB1191F9886790095468F /* Resources */,
 				031BB1601F9890170095468F /* ShellScript */,
 				3C3818C7CB1033C55BB1031D /* [CP] Embed Pods Frameworks */,
-				52EC21EA1FD9FC7F758C5DEF /* [CP] Copy Pods Resources */,
 				03CC0CA21FA06F1200DB377C /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -558,8 +560,6 @@
 				031BB12B1F9886790095468F /* Sources */,
 				031BB12C1F9886790095468F /* Frameworks */,
 				031BB12D1F9886790095468F /* Resources */,
-				41D2AD0DCB2F2CF5A7BF40DF /* [CP] Embed Pods Frameworks */,
-				DF187C5B083CD55DF25BBCB6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -711,51 +711,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		41D2AD0DCB2F2CF5A7BF40DF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		52EC21EA1FD9FC7F758C5DEF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF187C5B083CD55DF25BBCB6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E95EFD1C40035230DE0298A5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -846,12 +801,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03CEE9BF2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift in Sources */,
+				03CEE9BF2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift in Sources */,
 				03F84C931FC4216C00F21C7B /* LoadingViewModelTests.swift in Sources */,
 				03F84C951FC4216C00F21C7B /* LoginViewModelTests.swift in Sources */,
 				03F84C921FC4216C00F21C7B /* ProductListViewModelTests.swift in Sources */,
 				03F84C821FC3FD3E00F21C7B /* MockOmiseGOWrapper.swift in Sources */,
 				0377AD62204E5C8C00350407 /* TransactionsViewModelTest.swift in Sources */,
+				0324806C207C6DD500669DAA /* TRequestConsumerViewModelTests.swift in Sources */,
 				03F84C7C1FC3EA4200F21C7B /* MockProductAPI.swift in Sources */,
 				03F84C941FC4216C00F21C7B /* CheckoutViewModelTests.swift in Sources */,
 				03F84C911FC4216C00F21C7B /* RegisterViewModelTests.swift in Sources */,
