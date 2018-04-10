@@ -116,6 +116,8 @@
 "trequest_consumer.error.consumption_rejected" = "Your transaction has been rejected by the requester";
 "trequest_consumer.label.send_to" = "Send to:";
 "trequest_consumer.label.receive_from" = "Receive from:";
+"trequest_consumer.error.transaction_failed" = "Transaction failed to process";
+"trequest_consumer.error.transaction_expired" = "Transaction expired";
 
 // QRCode viewer
 

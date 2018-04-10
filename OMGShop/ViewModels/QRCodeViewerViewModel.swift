@@ -71,7 +71,8 @@ class QRCodeViewerViewModel: BaseViewModel {
         tc.approve(using: SessionManager.shared.omiseGOClient) { (result) in
             self.isLoading = false
             switch result {
-            case .success: break
+            case .success(let transactionConsumption):
+                self.onSuccessApprove?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
             case .fail(error: let error): self.onFailApprove?(.omiseGO(error: error))
             }
         }
@@ -95,9 +96,7 @@ class QRCodeViewerViewModel: BaseViewModel {
 
 extension QRCodeViewerViewModel: TransactionRequestEventDelegate {
 
-    func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
-        self.onSuccessApprove?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
-    }
+    func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) { }
 
     func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
         self.onSuccessReject?("qrcode_viewer.message.successfully_rejected".localized())

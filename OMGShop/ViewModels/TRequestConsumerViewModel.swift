@@ -122,7 +122,6 @@ class TRequestConsumerViewModel: BaseViewModel {
             amount: self.formattedAmount(),
             idempotencyToken: self.idemPotencyToken,
             correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
-            expirationDate: self.expirationDate,
             metadata: [:]) else {
                 self.onFailedConsume?(.missingRequiredFields)
                 return
@@ -204,14 +203,21 @@ class TRequestConsumerViewModel: BaseViewModel {
 extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
 
     func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
-        self.onSuccessConsume?(
-            self.successConsumeMessage(withTransacionConsumption: transactionConsumption)
-        )
+        switch transactionConsumption.status {
+        case .confirmed:
+            self.onSuccessConsume?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
+        case .expired:
+            self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.transaction_expired".localized()))
+        case .failed:
+            self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.transaction_failed".localized()))
+        default: break
+        }
+
         self.stopListening()
     }
 
     func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
-        self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.consumption_rejected"))
+        self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.consumption_rejected".localized()))
         self.stopListening()
     }
 
