@@ -6,6 +6,10 @@
   Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 */
 
+// Global
+
+"global.next" = "Next";
+
 // Loading
 
 "loading.button.title.retry" = "Retry";
@@ -94,7 +98,6 @@
 "trequest_generator.label.expiration_date" = "Expiration date: (optional)";
 "trequest_generator.label.allow_amount_override" = "Allow amount override:";
 "trequest_generator.button.title.generate" = "Generate";
-"trequest_generator.button.title.next" = "Next";
 "trequest_generator.error.missing_amount" = "Amount needs to be inputed or 'allow amount override' needs to be enabled";
 "transaction_consumer.message.waiting_for_confirmation" = "Waiting for confirmation";
 
@@ -107,7 +110,6 @@
 "trequest_consumer.label.address" = "Address (optional):";
 "trequest_consumer.label.correlation_id" = "Correlation id (optional):";
 "trequest_consumer.label.expiration_date" = "Expiration date: (optional)";
-"trequest_consumer.button.title.next" = "Next";
 "trequest_consumer.message.successfully" = "Successfully";
 "trequest_consumer.message.sent" = "sent";
 "trequest_consumer.message.received" = "received";

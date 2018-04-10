@@ -19,7 +19,6 @@ class TRequestConsumerViewModel: BaseViewModel {
     let addressLabel = "trequest_consumer.label.address".localized()
     let correlationIdLabel = "trequest_consumer.label.correlation_id".localized()
     let expirationDateLabel = "trequest_consumer.label.expiration_date".localized()
-    let nextButtonTitle = "trequest_consumer.button.title.next".localized()
 
     // Delegate closures
     var onLoadStateChange: ObjectClosure<Bool>?
@@ -32,9 +31,9 @@ class TRequestConsumerViewModel: BaseViewModel {
 
     var mintedTokenDisplay: String
     var amountDisplay: String
-    var addressDisplay: String
-    var correlationIdDisplay: String
-    var expirationDateDisplay: String
+    var addressDisplay: String = ""
+    var correlationIdDisplay: String = ""
+    var expirationDateDisplay: String = ""
     let transactionTypeDisplay: String
     let requesterAddressDisplay: String
 
@@ -86,9 +85,6 @@ class TRequestConsumerViewModel: BaseViewModel {
         } else {
             self.amountDisplay = ""
         }
-        self.addressDisplay = ""
-        self.correlationIdDisplay = ""
-        self.expirationDateDisplay = ""
         self.transactionTypeDisplay = transactionRequest.type == .send ?
             "trequest_consumer.label.receive_from".localized() :
             "trequest_consumer.label.send_to".localized()
@@ -119,7 +115,7 @@ class TRequestConsumerViewModel: BaseViewModel {
             transactionRequest: self.transactionRequest,
             address: self.addressDisplay != "" ? self.addressDisplay : nil,
             mintedTokenId: mintedTokenId,
-            amount: self.formattedAmount(),
+            amount: self.mintedToken?.formattedAmount(forAmount: self.amountDisplay),
             idempotencyToken: self.idemPotencyToken,
             correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
             metadata: [:]) else {
@@ -155,14 +151,6 @@ class TRequestConsumerViewModel: BaseViewModel {
             //swiftlint:disable:next line_length
             return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("trequest_consumer.message.to".localized()) \(transactionConsumption.transactionRequest.address)"
         }
-    }
-
-    private func formattedAmount() -> Double? {
-        guard self.transactionRequest.allowAmountOverride,
-            self.amountDisplay != "",
-            let amount = Double(self.amountDisplay) else { return nil }
-        let formattedAmount = self.transactionRequest.mintedToken.subUnitToUnit * amount
-        return Double(formattedAmount)
     }
 
     private func updateConsumeButtonState() {

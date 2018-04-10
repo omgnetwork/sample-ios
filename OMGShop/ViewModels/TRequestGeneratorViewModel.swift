@@ -24,7 +24,6 @@ class TRequestGeneratorViewModel: BaseViewModel {
     let expirationDateLabel = "trequest_generator.label.expiration_date".localized()
     let allowAmountOverrideLabel = "trequest_generator.label.allow_amount_override".localized()
     let generateButtonTitle = "trequest_generator.button.title.generate".localized()
-    let nextButtonTitle = "trequest_generator.button.title.next".localized()
 
     // Delegate closures
     var onSuccessGenerate: ObjectClosure<TransactionRequest>?
@@ -48,15 +47,15 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     var sendReceiveSwitchState: Bool
-    var mintedTokenDisplay: String
-    var amountDisplay: String
-    var addressDisplay: String
-    var correlationIdDisplay: String
-    var requiresConfirmationSwitchState: Bool
-    var maxConsumptionsDisplay: String
-    var consumptionLifetimeDisplay: String
-    var expirationDateDisplay: String
-    var allowAmountOverrideSwitchState: Bool
+    var mintedTokenDisplay: String = ""
+    var amountDisplay: String = ""
+    var addressDisplay: String = ""
+    var correlationIdDisplay: String = ""
+    var requiresConfirmationSwitchState: Bool = true
+    var maxConsumptionsDisplay: String = ""
+    var consumptionLifetimeDisplay: String = ""
+    var expirationDateDisplay: String = ""
+    var allowAmountOverrideSwitchState: Bool = true
 
     private var settings: Setting? {
         didSet {
@@ -79,15 +78,6 @@ class TRequestGeneratorViewModel: BaseViewModel {
         self.settingLoader = settingLoader
         self.transactionRequestCreator = transactionRequestCreator
         self.sendReceiveSwitchState = self.type == .send
-        self.mintedTokenDisplay = ""
-        self.amountDisplay = ""
-        self.addressDisplay = ""
-        self.correlationIdDisplay = ""
-        self.requiresConfirmationSwitchState = true
-        self.maxConsumptionsDisplay =  ""
-        self.consumptionLifetimeDisplay = ""
-        self.expirationDateDisplay = ""
-        self.allowAmountOverrideSwitchState = true
         super.init()
     }
 
@@ -111,7 +101,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
         guard let mintedTokenId = self.mintedToken?.id else { return }
         guard let params = TransactionRequestCreateParams(type: self.sendReceiveSwitchState ? .send : .receive,
                                                           mintedTokenId: mintedTokenId,
-                                                          amount: self.formattedAmount(),
+                                                          amount: self.mintedToken?.formattedAmount(forAmount: self.amountDisplay),
                                                           address: self.addressDisplay != "" ? self.addressDisplay : nil,
                                                           correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
                                                           requireConfirmation: self.requiresConfirmationSwitchState,
@@ -142,14 +132,6 @@ class TRequestGeneratorViewModel: BaseViewModel {
             return
         }
         self.isGenerateButtonEnabled = true
-    }
-
-    private func formattedAmount() -> Double? {
-        guard let subUnitToUnit = self.mintedToken?.subUnitToUnit,
-            self.amountDisplay != "",
-            let amount = Double(self.amountDisplay) else { return nil }
-        let formattedAmount = subUnitToUnit * amount
-        return Double(formattedAmount)
     }
 
     private func formattedMaxConsumptions() -> Int? {

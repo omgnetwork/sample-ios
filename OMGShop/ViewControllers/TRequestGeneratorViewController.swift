@@ -127,47 +127,15 @@ class TRequestGeneratorViewController: BaseTableViewController {
     }
 
     func setupAccessoryViews() {
-        let accessoryView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 44))
-        accessoryView.backgroundColor = .white
-        let nextButton = UIButton(type: .custom)
-        nextButton.setTitle(self.viewModel.nextButtonTitle, for: .normal)
-        nextButton.titleLabel?.font = Font.avenirMedium.withSize(17)
-        nextButton.setTitleColor(.black, for: .normal)
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.addTarget(self,
-                             action: #selector(focusNextTextFieldOrResign),
-                             for: .touchUpInside)
-        accessoryView.addSubview(nextButton)
-        [.top, .trailing, .bottom].forEach {
-            accessoryView.addConstraint(NSLayoutConstraint(item: accessoryView,
-                                                           attribute: $0,
-                                                           relatedBy: .equal,
-                                                           toItem: nextButton,
-                                                           attribute: $0,
-                                                           multiplier: 1,
-                                                           constant: 0))
-        }
-        nextButton.addConstraints([NSLayoutConstraint(item: nextButton,
-                                                    attribute: .width,
-                                                    relatedBy: .equal,
-                                                    toItem: nil,
-                                                    attribute: .notAnAttribute,
-                                                    multiplier: 1,
-                                                    constant: 100),
-                                   NSLayoutConstraint(item: nextButton,
-                                                      attribute: .height,
-                                                      relatedBy: .equal,
-                                                      toItem: nil,
-                                                      attribute: .notAnAttribute,
-                                                      multiplier: 1,
-                                                      constant: 44)])
         [self.tokenTextField,
          self.amountTextField,
          self.addressTextField,
          self.correlationIdTextField,
          self.maxConsumptionsTextField,
          self.consumptionLifetimeTextField,
-         self.expirationDateTextField].forEach { $0.inputAccessoryView = accessoryView }
+         self.expirationDateTextField].forEach {
+            $0?.addNextInputView(withOnNextSelector: #selector(focusNextTextFieldOrResign), target: self)
+        }
     }
 
     @objc func focusNextTextFieldOrResign() {
