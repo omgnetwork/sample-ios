@@ -190,22 +190,17 @@ class TRequestConsumerViewModel: BaseViewModel {
 
 extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
 
-    func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
+    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: OmiseGO.APIError) {
+        self.onFailedConsume?(OMGShopError.omiseGO(error: OMGError.api(apiError: error)))
+    }
+
+    func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption) {
         switch transactionConsumption.status {
         case .confirmed:
             self.onSuccessConsume?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
-        case .expired:
-            self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.transaction_expired".localized()))
-        case .failed:
-            self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.transaction_failed".localized()))
         default: break
         }
 
-        self.stopListening()
-    }
-
-    func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
-        self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.consumption_rejected".localized()))
         self.stopListening()
     }
 
@@ -217,8 +212,8 @@ extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
         print("Did stop listening")
     }
 
-    func didReceiveError(_ error: OMGError) {
-        print("Did receive error: \(error.message)")
+    func onError(_ error: OmiseGO.APIError) {
+        print("Did receive error: \(error.description)")
     }
 
 }

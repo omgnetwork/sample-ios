@@ -68,13 +68,8 @@ class QRCodeViewerViewModel: BaseViewModel {
     func approve() {
         guard let tc = self.transactionConsumption else { return }
         self.isLoading = true
-        tc.approve(using: SessionManager.shared.omiseGOClient) { (result) in
+        tc.approve(using: SessionManager.shared.omiseGOClient) { _ in
             self.isLoading = false
-            switch result {
-            case .success(let transactionConsumption):
-                self.onSuccessApprove?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
-            case .fail(error: let error): self.onFailApprove?(.omiseGO(error: error))
-            }
         }
     }
 
@@ -96,13 +91,22 @@ class QRCodeViewerViewModel: BaseViewModel {
 
 extension QRCodeViewerViewModel: TransactionRequestEventDelegate {
 
-    func didReceiveTransactionConsumptionApproval(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) { }
-
-    func didReceiveTransactionConsumptionRejection(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
-        self.onSuccessReject?("qrcode_viewer.message.successfully_rejected".localized())
+    func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption) {
+        switch transactionConsumption.status {
+        case .confirmed: self.onSuccessApprove?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
+        default: break
+        }
     }
 
-    func didReceiveTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption, forEvent event: SocketEvent) {
+    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: OmiseGO.APIError) {
+        switch transactionConsumption.status {
+        case .rejected: self.onSuccessReject?("qrcode_viewer.message.successfully_rejected".localized())
+        default: self.onFailApprove?(.omiseGO(error: .api(apiError: error)))
+        }
+
+    }
+
+    func onTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption) {
         self.transactionConsumption = transactionConsumption
         self.onConsumptionRequest?()
     }
@@ -115,8 +119,8 @@ extension QRCodeViewerViewModel: TransactionRequestEventDelegate {
         print("Stop listening")
     }
 
-    func didReceiveError(_ error: OMGError) {
-        print("received error: \(error.message)")
+    func onError(_ error: OmiseGO.APIError) {
+        print("received error: \(error.description)")
     }
 
 }
