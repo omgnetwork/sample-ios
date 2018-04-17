@@ -103,7 +103,6 @@ extension QRCodeViewerViewModel: TransactionRequestEventDelegate {
         case .rejected: self.onSuccessReject?("qrcode_viewer.message.successfully_rejected".localized())
         default: self.onFailApprove?(.omiseGO(error: .api(apiError: error)))
         }
-
     }
 
     func onTransactionConsumptionRequest(_ transactionConsumption: TransactionConsumption) {

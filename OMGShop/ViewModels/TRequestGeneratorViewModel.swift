@@ -10,6 +10,11 @@ import OmiseGO
 
 class TRequestGeneratorViewModel: BaseViewModel {
 
+    enum Picker {
+        case mintedToken
+        case address
+    }
+
     let title = "trequest_generator.title".localized()
     let iWantToLabel = "trequest_generator.label.i_want_to".localized()
     let sendLabel = "trequest_generator.label.send".localized()
@@ -31,12 +36,19 @@ class TRequestGeneratorViewModel: BaseViewModel {
     var onLoadStateChange: ObjectClosure<Bool>?
     var onSuccessGetSettings: SuccessClosure?
     var onFailedGetSettings: FailureClosure?
+    var onSuccessGetAddresses: SuccessClosure?
+    var onFailedLoadAddress: FailureClosure?
     var onGenerateButtonStateChange: ObjectClosure<Bool>?
 
     private var type: TransactionRequestType = .receive
     private var mintedToken: MintedToken? {
         didSet {
             self.mintedTokenDisplay = mintedToken?.symbol ?? ""
+        }
+    }
+    private var address: Address? {
+        didSet {
+            self.addressDisplay = address?.address ?? ""
         }
     }
     private var expirationDate: Date? {
@@ -62,8 +74,14 @@ class TRequestGeneratorViewModel: BaseViewModel {
             self.mintedToken = settings?.mintedTokens.first
         }
     }
+    private var addresses: [Address] = [] {
+        didSet {
+            self.address = addresses.first
+        }
+    }
 
     private let settingLoader: SettingLoaderProtocol
+    private let addressLoader: AddressLoaderProtocol
     private let transactionRequestCreator: TransactionRequestCreateProtocol
 
     var isGenerateButtonEnabled: Bool = false {
@@ -74,26 +92,27 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     init(settingLoader: SettingLoaderProtocol = SettingLoader(),
+         addressLoader: AddressLoaderProtocol = AddressLoader(),
          transactionRequestCreator: TransactionRequestCreateProtocol = TransactionRequestLoader()) {
         self.settingLoader = settingLoader
+        self.addressLoader = addressLoader
         self.transactionRequestCreator = transactionRequestCreator
         self.sendReceiveSwitchState = self.type == .send
         super.init()
     }
 
-    func loadSettings() {
+    func loadData() {
         self.isLoading = true
-        self.settingLoader.get { (result) in
-            self.isLoading = false
-            switch result {
-            case .success(data: let settings):
-                self.settings = settings
-                self.onSuccessGetSettings?()
-            case .fail(error: let error):
-                self.handleOMGError(error)
-                self.onFailedGetSettings?(.omiseGO(error: error))
+        let loadingGroup = DispatchGroup()
+        loadingGroup.enter()
+        self.loadSettings(withGroup: loadingGroup)
+        loadingGroup.enter()
+        self.loadAddresses(withGroup: loadingGroup)
+        DispatchQueue.global().async {
+            loadingGroup.wait()
+            DispatchQueue.main.async {
+                self.isLoading = false
             }
-            self.updateGenerateButtonState()
         }
     }
 
@@ -126,6 +145,35 @@ class TRequestGeneratorViewModel: BaseViewModel {
         }
     }
 
+    private func loadAddresses(withGroup group: DispatchGroup?) {
+        self.addressLoader.getAll { (result) in
+            defer { group?.leave() }
+            switch result {
+            case .success(data: let addresses):
+                self.addresses = addresses
+                self.onSuccessGetAddresses?()
+            case .fail(error: let error):
+                self.handleOMGError(error)
+                self.onFailedLoadAddress?(.omiseGO(error: error))
+            }
+        }
+    }
+
+    private func loadSettings(withGroup group: DispatchGroup?) {
+        self.settingLoader.get { (result) in
+            defer { group?.leave() }
+            switch result {
+            case .success(data: let settings):
+                self.settings = settings
+                self.onSuccessGetSettings?()
+            case .fail(error: let error):
+                self.handleOMGError(error)
+                self.onFailedGetSettings?(.omiseGO(error: error))
+            }
+            self.updateGenerateButtonState()
+        }
+    }
+
     private func updateGenerateButtonState() {
         guard self.mintedToken != nil else {
             self.isGenerateButtonEnabled = false
@@ -155,19 +203,29 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     // MARK: Picker
-    func didSelect(row: Int) {
-        self.mintedToken = self.settings?.mintedTokens[row]
+    func didSelect(row: Int, picker: Picker) {
+        switch picker {
+        case .mintedToken: self.mintedToken = self.settings?.mintedTokens[row]
+        case .address: self.address = self.addresses[row]
+        }
     }
 
-    func numberOfRowsInPicker() -> Int {
-        return self.settings?.mintedTokens.count ?? 0
+    func numberOfRows(inPicker picker: Picker) -> Int {
+        switch picker {
+        case .mintedToken: return self.settings?.mintedTokens.count ?? 0
+        case .address: return self.addresses.count
+        }
+
     }
 
     func numberOfColumnsInPicker() -> Int {
         return 1
     }
 
-    func title(forRow row: Int) -> String? {
-        return self.settings?.mintedTokens[row].name
+    func title(forRow row: Int, picker: Picker) -> String? {
+        switch picker {
+        case .mintedToken: return self.settings?.mintedTokens[row].name
+        case .address: return self.addresses[row].address
+        }
     }
 }

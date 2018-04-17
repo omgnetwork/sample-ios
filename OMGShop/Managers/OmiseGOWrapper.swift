@@ -10,10 +10,15 @@ import OmiseGO
 
 protocol AddressLoaderProtocol {
     func getMain(withCallback callback: @escaping Address.RetrieveRequestCallback)
+    func getAll(withCallback callback: @escaping Address.ListRequestCallback)
 }
 
 /// This wrapper has been created for the sake of testing with dependency injection
 class AddressLoader: AddressLoaderProtocol {
+
+    func getAll(withCallback callback: @escaping Address.ListRequestCallback) {
+        Address.getAll(using: SessionManager.shared.omiseGOClient, callback: callback)
+    }
 
     func getMain(withCallback callback: @escaping Address.RetrieveRequestCallback) {
         Address.getMain(using: SessionManager.shared.omiseGOClient, callback: callback)
