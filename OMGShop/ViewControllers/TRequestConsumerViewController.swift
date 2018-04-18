@@ -35,6 +35,9 @@ class TRequestConsumerViewController: BaseTableViewController {
 
     @IBOutlet weak var consumeButton: UIButton!
 
+    private var mintedTokenPicker: UIPickerView!
+    private var addressPicker: UIPickerView!
+
     override func configureView() {
         super.configureView()
         self.title = self.viewModel.title
@@ -45,6 +48,8 @@ class TRequestConsumerViewController: BaseTableViewController {
         self.correlationIdLabel.text = self.viewModel.correlationIdLabel
         self.expirationDateLabel.text = self.viewModel.expirationDateLabel
         self.consumeButton.setTitle(self.viewModel.consumeButtonTitle, for: .normal)
+        self.tokenTextField.isEnabled = self.viewModel.isTokenEnabled
+        self.amountTextField.isEnabled = self.viewModel.isAmountEnabled
         self.tableView.tableFooterView = UIView()
         self.setInitialValues()
         self.setupPickers()
@@ -72,17 +77,21 @@ class TRequestConsumerViewController: BaseTableViewController {
         self.viewModel.onSuccessGetSettings = {
             self.tokenTextField.text = self.viewModel.mintedTokenDisplay
         }
+        self.viewModel.onSuccessGetAddresses = {
+            self.addressTextField.text = self.viewModel.addressDisplay
+        }
         self.viewModel.onFailedConsume = {
             self.hideLoading()
             self.showError(withMessage: $0.localizedDescription)
         }
         self.viewModel.onFailedGetSettings = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onFailedLoadAddress = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onConsumeButtonStateChange = {
             self.consumeButton.isEnabled = $0
             self.consumeButton.alpha = $0 ? 1 : 0.5
         }
         self.viewModel.onPendingConfirmation = { self.showLoading(withMessage: $0) }
-        self.viewModel.loadSettings()
+        self.viewModel.loadData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -91,10 +100,14 @@ class TRequestConsumerViewController: BaseTableViewController {
     }
 
     func setupPickers() {
-        let pickerView = UIPickerView()
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        self.tokenTextField.inputView = pickerView
+        self.mintedTokenPicker = UIPickerView()
+        self.mintedTokenPicker.dataSource = self
+        self.mintedTokenPicker.delegate = self
+        self.tokenTextField.inputView = self.mintedTokenPicker
+        self.addressPicker = UIPickerView()
+        self.addressPicker.dataSource = self
+        self.addressPicker.delegate = self
+        self.addressTextField.inputView = self.addressPicker
         let datePicker = UIDatePicker()
         datePicker.addTarget(self, action: #selector(didUpdateExpirationDate), for: .valueChanged)
         datePicker.datePickerMode = .dateAndTime
@@ -131,14 +144,6 @@ class TRequestConsumerViewController: BaseTableViewController {
 }
 
 extension TRequestConsumerViewController: UITextFieldDelegate {
-
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        switch textField {
-        case self.tokenTextField: return self.viewModel.isTokenEnabled
-        case self.amountTextField: return self.viewModel.isAmountEnabled
-        default: return true
-        }
-    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.focusNextTextFieldOrResign()
@@ -178,19 +183,35 @@ extension TRequestConsumerViewController: UITextFieldDelegate {
 extension TRequestConsumerViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.viewModel.didSelect(row: row)
+        switch pickerView {
+        case self.mintedTokenPicker: self.viewModel.didSelect(row: row, picker: .mintedToken)
+        case self.addressPicker: self.viewModel.didSelect(row: row, picker: .address)
+        default: break
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let label = (view as? UILabel) ?? UILabel()
+        label.textAlignment = .center
+        label.font = Font.avenirBook.withSize(17)
+        switch pickerView {
+        case self.mintedTokenPicker: label.text = self.viewModel.title(forRow: row, picker: .mintedToken)
+        case self.addressPicker: label.text = self.viewModel.title(forRow: row, picker: .address)
+        default: break
+        }
+        return label
     }
 
 }
 
 extension TRequestConsumerViewController: UIPickerViewDataSource {
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return self.viewModel.title(forRow: row)
-    }
-
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.viewModel.numberOfRowsInPicker()
+        switch pickerView {
+        case self.mintedTokenPicker: return self.viewModel.numberOfRows(inPicker: .mintedToken)
+        case self.addressPicker: return self.viewModel.numberOfRows(inPicker: .address)
+        default: return 0
+        }
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

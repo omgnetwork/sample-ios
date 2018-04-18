@@ -11,6 +11,11 @@ import BigInt
 
 class TRequestConsumerViewModel: BaseViewModel {
 
+    enum Picker {
+        case mintedToken
+        case address
+    }
+
     let title = "trequest_consumer.title".localized()
     let consumeButtonTitle = "trequest_consumer.button.title.consume".localized()
 
@@ -26,6 +31,8 @@ class TRequestConsumerViewModel: BaseViewModel {
     var onFailedConsume: FailureClosure?
     var onSuccessGetSettings: SuccessClosure?
     var onFailedGetSettings: FailureClosure?
+    var onSuccessGetAddresses: SuccessClosure?
+    var onFailedLoadAddress: FailureClosure?
     var onConsumeButtonStateChange: ObjectClosure<Bool>?
     var onPendingConfirmation: ObjectClosure<String>?
 
@@ -48,15 +55,19 @@ class TRequestConsumerViewModel: BaseViewModel {
     }
     var isTokenEnabled: Bool { return false }
 
-    private let settingLoader: SettingLoaderProtocol
     private let transactionRequest: TransactionRequest
     private var transactionConsumption: TransactionConsumption?
     private let idemPotencyToken = UUID().uuidString
-    private let transactionConsumer: TransactionConsumeProtocol
+
 
     private var mintedToken: MintedToken? {
         didSet {
             self.mintedTokenDisplay = mintedToken?.symbol ?? ""
+        }
+    }
+    private var address: Address? {
+        didSet {
+            self.addressDisplay = address?.address ?? ""
         }
     }
     private var expirationDate: Date? {
@@ -70,13 +81,24 @@ class TRequestConsumerViewModel: BaseViewModel {
             self.mintedToken = settings?.mintedTokens.first
         }
     }
+    private var addresses: [Address] = [] {
+        didSet {
+            self.address = addresses.first
+        }
+    }
+
+    private let settingLoader: SettingLoaderProtocol
+    private let addressLoader: AddressLoaderProtocol
+    private let transactionConsumer: TransactionConsumeProtocol
 
     init(transactionRequest: TransactionRequest,
          transactionConsumer: TransactionConsumeProtocol = TransactionConsumeLoader(),
+         addressLoader: AddressLoaderProtocol = AddressLoader(),
          settingLoader: SettingLoaderProtocol = SettingLoader()) {
         self.transactionRequest = transactionRequest
         self.transactionConsumer = transactionConsumer
         self.settingLoader = settingLoader
+        self.addressLoader = addressLoader
         self.mintedToken = transactionRequest.mintedToken
         self.mintedTokenDisplay = transactionRequest.mintedToken.symbol
         if let amount = transactionRequest.amount {
@@ -92,19 +114,18 @@ class TRequestConsumerViewModel: BaseViewModel {
         super.init()
     }
 
-    func loadSettings() {
+    func loadData() {
         self.isLoading = true
-        self.settingLoader.get { (result) in
-            self.isLoading = false
-            switch result {
-            case .success(data: let settings):
-                self.settings = settings
-                self.onSuccessGetSettings?()
-            case .fail(error: let error):
-                self.handleOMGError(error)
-                self.onFailedGetSettings?(.omiseGO(error: error))
+        let loadingGroup = DispatchGroup()
+        loadingGroup.enter()
+        self.loadSettings(withGroup: loadingGroup)
+        loadingGroup.enter()
+        self.loadAddresses(withGroup: loadingGroup)
+        DispatchQueue.global().async {
+            loadingGroup.wait()
+            DispatchQueue.main.async {
+                self.isLoading = false
             }
-            self.updateConsumeButtonState()
         }
     }
 
@@ -161,6 +182,35 @@ class TRequestConsumerViewModel: BaseViewModel {
         self.isConsumeButtonEnabled = true
     }
 
+    private func loadAddresses(withGroup group: DispatchGroup?) {
+        self.addressLoader.getAll { (result) in
+            defer { group?.leave() }
+            switch result {
+            case .success(data: let addresses):
+                self.addresses = addresses
+                self.onSuccessGetAddresses?()
+            case .fail(error: let error):
+                self.handleOMGError(error)
+                self.onFailedLoadAddress?(.omiseGO(error: error))
+            }
+        }
+    }
+
+    private func loadSettings(withGroup group: DispatchGroup?) {
+        self.settingLoader.get { (result) in
+            defer { group?.leave() }
+            switch result {
+            case .success(data: let settings):
+                self.settings = settings
+                self.onSuccessGetSettings?()
+            case .fail(error: let error):
+                self.handleOMGError(error)
+                self.onFailedGetSettings?(.omiseGO(error: error))
+            }
+            self.updateConsumeButtonState()
+        }
+    }
+
     func stopListening() {
         self.transactionConsumption?.stopListening(withClient: SessionManager.shared.omiseGOSocketClient)
     }
@@ -170,20 +220,30 @@ class TRequestConsumerViewModel: BaseViewModel {
     }
 
     // MARK: Picker
-    func didSelect(row: Int) {
-        self.mintedToken = self.settings?.mintedTokens[row]
+    func didSelect(row: Int, picker: Picker) {
+        switch picker {
+        case .mintedToken: self.mintedToken = self.settings?.mintedTokens[row]
+        case .address: self.address = self.addresses[row]
+        }
     }
 
-    func numberOfRowsInPicker() -> Int {
-        return self.settings?.mintedTokens.count ?? 0
+    func numberOfRows(inPicker picker: Picker) -> Int {
+        switch picker {
+        case .mintedToken: return self.settings?.mintedTokens.count ?? 0
+        case .address: return self.addresses.count
+        }
+
     }
 
     func numberOfColumnsInPicker() -> Int {
         return 1
     }
 
-    func title(forRow row: Int) -> String? {
-        return self.settings?.mintedTokens[row].name
+    func title(forRow row: Int, picker: Picker) -> String? {
+        switch picker {
+        case .mintedToken: return self.settings?.mintedTokens[row].name
+        case .address: return self.addresses[row].address
+        }
     }
 
 }
