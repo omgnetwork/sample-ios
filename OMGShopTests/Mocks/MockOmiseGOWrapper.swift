@@ -14,7 +14,9 @@ class MockAddressLoader {
     var isLoadAddressCalled = false
 
     var address: Address?
+    var addresses: [Address] = []
     var loadCompletionClosure: Address.RetrieveRequestCallback!
+    var loadListCompletionClosure: Address.ListRequestCallback!
 
     func loadMainAddressSuccess() {
         loadCompletionClosure(OmiseGO.Response.success(data: self.address!))
@@ -24,6 +26,14 @@ class MockAddressLoader {
         loadCompletionClosure(OmiseGO.Response.fail(error: error))
     }
 
+    func loadAllAddressesSuccess() {
+        loadListCompletionClosure(OmiseGO.Response.success(data: self.addresses))
+    }
+
+    func loadAllAddressesFailed(withError error: OMGError) {
+        loadListCompletionClosure(OmiseGO.Response.fail(error: error))
+    }
+
 }
 
 extension MockAddressLoader: AddressLoaderProtocol {
@@ -31,6 +41,11 @@ extension MockAddressLoader: AddressLoaderProtocol {
     func getMain(withCallback callback: @escaping Address.RetrieveRequestCallback) {
         self.isLoadAddressCalled = true
         self.loadCompletionClosure = callback
+    }
+
+    func getAll(withCallback callback: @escaping Address.ListRequestCallback) {
+        self.isLoadAddressCalled = true
+        self.loadListCompletionClosure = callback
     }
 
 }

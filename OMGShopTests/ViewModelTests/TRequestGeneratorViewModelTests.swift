@@ -14,26 +14,31 @@ class TRequestGeneratorViewModelTests: XCTestCase {
 
     var mockSettingLoader: MockSettingLoader!
     var mockTransactionRequestCreator: MockTransactionRequestCreator!
+    var mockAddressLoader: MockAddressLoader!
     var sut: TRequestGeneratorViewModel!
 
     override func setUp() {
         super.setUp()
         self.mockSettingLoader = MockSettingLoader()
         self.mockTransactionRequestCreator = MockTransactionRequestCreator()
+        self.mockAddressLoader = MockAddressLoader()
         self.sut = TRequestGeneratorViewModel(settingLoader: self.mockSettingLoader,
-                                            transactionRequestCreator: self.mockTransactionRequestCreator)
+                                              addressLoader: self.mockAddressLoader,
+                                              transactionRequestCreator: self.mockTransactionRequestCreator)
     }
 
     override func tearDown() {
         self.mockSettingLoader = nil
+        self.mockAddressLoader = nil
         self.mockTransactionRequestCreator = nil
         self.sut = nil
         super.tearDown()
     }
 
-    func testLoadSettingsCalled() {
-        self.sut.loadSettings()
+    func testLoadCallSettingAndAddressCallbacks() {
+        self.sut.loadData()
         XCTAssert(self.mockSettingLoader.isLoadSettingCalled)
+        XCTAssert(self.mockAddressLoader.isLoadAddressCalled)
     }
 
     func testLoadSettingsFailed() {
@@ -42,7 +47,7 @@ class TRequestGeneratorViewModelTests: XCTestCase {
             XCTAssertEqual($0.message, "unexpected error: Failed to load settings")
             didFail = true
         }
-        self.sut.loadSettings()
+        self.sut.loadData()
         let error: OMGError = .unexpected(message: "Failed to load settings")
         self.mockSettingLoader.loadSettingFailed(withError: error)
         XCTAssert(didFail)
@@ -51,29 +56,57 @@ class TRequestGeneratorViewModelTests: XCTestCase {
     func testLoadSettingsSucceed() {
         var didLoadSettings = false
         self.sut.onSuccessGetSettings = { didLoadSettings = true }
-        self.goToLoadSettingsFinished()
+        self.goToLoadFinished()
         XCTAssert(didLoadSettings)
 
     }
 
-    func testShowLoadingWhenLoadingSettings() {
+    func testLoadAddressesFailed() {
+        var didFail = false
+        self.sut.onFailedLoadAddress = {
+            XCTAssertEqual($0.message, "unexpected error: Failed to load addresses")
+            didFail = true
+        }
+        self.sut.loadData()
+        let error: OMGError = .unexpected(message: "Failed to load addresses")
+        self.mockAddressLoader.loadAllAddressesFailed(withError: error)
+        XCTAssert(didFail)
+    }
+
+    func testLoadAddressesSucceed() {
+        var didLoadAddresses = false
+        self.sut.onSuccessGetAddresses = { didLoadAddresses = true }
+        self.goToLoadFinished()
+        XCTAssert(didLoadAddresses)
+    }
+
+    func testShowLoadingWhenLoadingData() {
+        let dispatchExpectation = expectation(description: "Wait for dispatch")
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
         self.mockSettingLoader.settings = StubGenerator.settings()
-        self.sut.loadSettings()
+        self.mockAddressLoader.addresses = [StubGenerator.mainAddress()]
+        self.sut.loadData()
         XCTAssertTrue(loadingStatus)
         self.mockSettingLoader.loadSettingSuccess()
+        XCTAssertTrue(loadingStatus)
+        self.mockAddressLoader.loadAllAddressesSuccess()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            dispatchExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 0.1)
         XCTAssertFalse(loadingStatus)
     }
 
     func testGenerateTransactionRequestCalledIfMintedTokenIsNotNil() {
-        self.goToLoadSettingsFinished()
+        self.goToLoadFinished()
         self.sut.generateTransactionRequest()
         XCTAssert(self.mockTransactionRequestCreator.isGenerateCalled)
     }
 
     func testGenerateTransactionRequestFailed() {
-        self.goToLoadSettingsFinished()
+        self.goToLoadFinished()
         var didFail = false
         self.sut.onFailedGenerate = {
             XCTAssertEqual($0.message, "unexpected error: Failed to generate transaction request")
@@ -93,7 +126,7 @@ class TRequestGeneratorViewModelTests: XCTestCase {
     }
 
     func testShowLoadingWhenGenerating() {
-        self.goToLoadSettingsFinished()
+        self.goToLoadFinished()
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
         self.mockTransactionRequestCreator.transactionRequest = StubGenerator.transactionRequest()
@@ -104,18 +137,20 @@ class TRequestGeneratorViewModelTests: XCTestCase {
     }
 
     func testPickerData() {
-        self.goToLoadSettingsFinished()
-        XCTAssertEqual(self.sut.numberOfRowsInPicker(), 2)
+        self.goToLoadFinished()
+        XCTAssertEqual(self.sut.numberOfRows(inPicker: .address), 1)
+        XCTAssertEqual(self.sut.numberOfRows(inPicker: .mintedToken), 2)
         XCTAssertEqual(self.sut.numberOfColumnsInPicker(), 1)
-        XCTAssertEqual(self.sut.title(forRow: 0), "OmiseGO")
-        XCTAssertEqual(self.sut.title(forRow: 1), "Bitcoin")
+        XCTAssertEqual(self.sut.title(forRow: 0, picker: .mintedToken), "OmiseGO")
+        XCTAssertEqual(self.sut.title(forRow: 1, picker: .mintedToken), "Bitcoin")
+        XCTAssertEqual(self.sut.title(forRow: 0, picker: .address), "XXX123")
     }
 
     func testGenerateButtonState() {
         var isGenerateButtonEnabled = self.sut.isGenerateButtonEnabled
         self.sut.onGenerateButtonStateChange = { isGenerateButtonEnabled = $0 }
         XCTAssertFalse(isGenerateButtonEnabled)
-        self.goToLoadSettingsFinished()
+        self.goToLoadFinished()
         XCTAssertTrue(isGenerateButtonEnabled)
     }
 
@@ -123,14 +158,16 @@ class TRequestGeneratorViewModelTests: XCTestCase {
 
 extension TRequestGeneratorViewModelTests {
 
-    private func goToLoadSettingsFinished() {
+    private func goToLoadFinished() {
+        self.mockAddressLoader.addresses = [StubGenerator.mainAddress()]
         self.mockSettingLoader.settings = StubGenerator.settings()
-        self.sut.loadSettings()
+        self.sut.loadData()
         self.mockSettingLoader.loadSettingSuccess()
+        self.mockAddressLoader.loadAllAddressesSuccess()
     }
 
     private func goToGenerateTransactionRequestFinished() {
-        self.goToLoadSettingsFinished()
+        self.goToLoadFinished()
         self.mockTransactionRequestCreator.transactionRequest = StubGenerator.transactionRequest()
         self.sut.generateTransactionRequest()
         self.mockTransactionRequestCreator.generateTransactionRequestSuccess()

@@ -59,7 +59,6 @@ class TRequestConsumerViewModel: BaseViewModel {
     private var transactionConsumption: TransactionConsumption?
     private let idemPotencyToken = UUID().uuidString
 
-
     private var mintedToken: MintedToken? {
         didSet {
             self.mintedTokenDisplay = mintedToken?.symbol ?? ""
