@@ -1,11 +1,11 @@
 PODS:
-  - Alamofire (4.7.1)
+  - Alamofire (4.7.2)
   - BigInt (3.0.1):
     - SipHash (~> 1.2)
   - KeychainSwift (11.0.0)
   - MBProgressHUD (1.1.0)
-  - OmiseGO (0.9.10):
-    - Starscream (~> 3.0.2)
+  - OmiseGO (0.9.11):
+    - Starscream (~> 3.0)
   - SipHash (1.2.0)
   - SkyFloatingLabelTextField (3.4.1)
   - Starscream (3.0.5)
@@ -22,12 +22,25 @@ DEPENDENCIES:
   - Toaster
   - TPKeyboardAvoiding
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - BigInt
+    - KeychainSwift
+    - MBProgressHUD
+    - OmiseGO
+    - SipHash
+    - SkyFloatingLabelTextField
+    - Starscream
+    - Toaster
+    - TPKeyboardAvoiding
+
 SPEC CHECKSUMS:
-  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   BigInt: 8e8a52161c745cd3ab78e3dc346a9fbee51e6cf6
   KeychainSwift: bea6bd9f98af7b8d7ca4aa79fe105c00fab532db
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  OmiseGO: d14c88900a580239f7ff4ffd5437cdb86b915442
+  OmiseGO: db8131a7bb418ec2c8763f90101d696aab860001
   SipHash: c6e9e43e9c531b5bc6602545130c26194a6d31ce
   SkyFloatingLabelTextField: 8085f20f57f74a00cfcae58099299faa1a971035
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd

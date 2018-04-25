@@ -7,7 +7,7 @@
 //
 
 @testable import OMGShop
-import OmiseGO
+@testable import OmiseGO
 
 class MockAddressLoader {
 
@@ -126,15 +126,6 @@ extension MockTransactionConsumer: TransactionConsumeProtocol {
                  callback: @escaping TransactionConsumption.RetrieveRequestCallback) {
         self.isConsumeCalled = true
         self.consumeCompletionClosure = callback
-    }
-
-}
-
-extension JSONPaginatedListResponse {
-
-    init(data: [Item], pagination: Pagination) {
-        self.data = data
-        self.pagination = pagination
     }
 
 }
