@@ -14,6 +14,7 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
 
     var transactionCellViewModel: TransactionCellViewModel! {
         didSet {
@@ -22,6 +23,7 @@ class TransactionTableViewCell: UITableViewCell {
             self.timestampLabel.text = transactionCellViewModel.timeStamp
             self.amountLabel.text = transactionCellViewModel.amount
             self.amountLabel.textColor = transactionCellViewModel.color
+            self.statusLabel.text = transactionCellViewModel.status
         }
     }
 

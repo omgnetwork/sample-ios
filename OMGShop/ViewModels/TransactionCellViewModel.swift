@@ -18,6 +18,7 @@ class TransactionCellViewModel: BaseViewModel {
     let timeStamp: String
     let amount: String
     let color: UIColor
+    let status: String
 
     init(transaction: Transaction, currentUserAddress: String) {
         self.transaction = transaction
@@ -36,6 +37,16 @@ class TransactionCellViewModel: BaseViewModel {
             source = transaction.to
             sign = "+"
         }
+        var statusText: String!
+        switch transaction.status {
+        case .approved: statusText = "transactions.label.status.approved".localized()
+        case .confirmed: statusText = "transactions.label.status.confirmed".localized()
+        case .expired: statusText = "transactions.label.status.expired".localized()
+        case .failed: statusText = "transactions.label.status.failed".localized()
+        case .pending: statusText = "transactions.label.status.pending".localized()
+        case .rejected: statusText = "transactions.label.status.rejected".localized()
+        }
+        self.status = "- \(statusText!)"
         let am = source.amount.quotientAndRemainder(dividingBy: source.token.subUnitToUnit)
         let displayableAmount = "\(am.quotient).\(am.remainder)"
         amount = "\(sign!) \(displayableAmount) \(source.token.symbol)"
