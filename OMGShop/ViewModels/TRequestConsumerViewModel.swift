@@ -257,6 +257,8 @@ extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
         switch transactionConsumption.status {
         case .confirmed:
             self.onSuccessConsume?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
+        case .rejected:
+            self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.consumption_rejected".localized()))
         default: break
         }
 
