@@ -231,7 +231,7 @@ class TRequestConsumerViewModel: BaseViewModel {
         case .mintedToken: return self.settings?.mintedTokens.count ?? 0
         case .address: return self.addresses.count
         }
-
+  
     }
 
     func numberOfColumnsInPicker() -> Int {
@@ -249,20 +249,16 @@ class TRequestConsumerViewModel: BaseViewModel {
 
 extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
 
-    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: OmiseGO.APIError) {
-        self.onFailedConsume?(OMGShopError.omiseGO(error: OMGError.api(apiError: error)))
-    }
-
     func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption) {
         switch transactionConsumption.status {
-        case .confirmed:
-            self.onSuccessConsume?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
-        case .rejected:
-            self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.consumption_rejected".localized()))
+        case .confirmed: self.onSuccessConsume?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
+        case .rejected: self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.consumption_rejected".localized()))
         default: break
         }
+    }
 
-        self.stopListening()
+    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: OmiseGO.APIError) {
+        self.onFailedConsume?(OMGShopError.omiseGO(error: OMGError.api(apiError: error)))
     }
 
     func didStartListening() {

@@ -24,7 +24,8 @@ class TRequestGeneratorViewModel: BaseViewModel {
     let addressLabel = "trequest_generator.label.address".localized()
     let correlationIdLabel = "trequest_generator.label.correlation_id".localized()
     let requiresConfirmationLabel = "trequest_generator.label.requires_confirmation".localized()
-    let maxConsumptionLabel = "trequest_generator.label.max_consumption".localized()
+    let maxConsumptionLabel = "trequest_generator.label.max_consumptions".localized()
+    let maxConsumptionsPerUserLabel = "trequest_generator.label.max_consumptions_per_user".localized()
     let consumptionLifetimeLabel = "trequest_generator.label.consumption_lifetime".localized()
     let expirationDateLabel = "trequest_generator.label.expiration_date".localized()
     let allowAmountOverrideLabel = "trequest_generator.label.allow_amount_override".localized()
@@ -65,6 +66,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     var correlationIdDisplay: String = ""
     var requiresConfirmationSwitchState: Bool = true
     var maxConsumptionsDisplay: String = ""
+    var maxConsumptionsPerUserDisplay: String = ""
     var consumptionLifetimeDisplay: String = ""
     var expirationDateDisplay: String = ""
     var allowAmountOverrideSwitchState: Bool = true
@@ -128,6 +130,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
                                                           consumptionLifetime: self.formattedConsumptionLifetime(),
                                                           expirationDate: self.expirationDate,
                                                           allowAmountOverride: self.allowAmountOverrideSwitchState,
+                                                          maxConsumptionsPerUser: self.formattedMaxConsumptionsPerUser(),
                                                           metadata: [:]
             ) else {
                 self.onFailedGenerate?(.message(message: "trequest_generator.error.missing_amount".localized()))
@@ -188,6 +191,14 @@ class TRequestGeneratorViewModel: BaseViewModel {
                 return nil
         }
         return maxConsumptions
+    }
+
+    private func formattedMaxConsumptionsPerUser() -> Int? {
+        guard self.maxConsumptionsPerUserDisplay != "",
+            let maxConsumptionsPerUser = Int(self.maxConsumptionsPerUserDisplay) else {
+                return nil
+        }
+        return maxConsumptionsPerUser
     }
 
     private func formattedConsumptionLifetime() -> Int? {

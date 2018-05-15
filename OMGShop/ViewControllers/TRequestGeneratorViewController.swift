@@ -39,6 +39,9 @@ class TRequestGeneratorViewController: BaseTableViewController {
     @IBOutlet weak var maxConsumptionLabel: UILabel!
     @IBOutlet weak var maxConsumptionsTextField: UITextField!
 
+    @IBOutlet weak var maxConsumptionsPerUserLabel: UILabel!
+    @IBOutlet weak var maxConsumptionsPerUserTextField: UITextField!
+
     @IBOutlet weak var consumptionLifetimeLabel: UILabel!
     @IBOutlet weak var consumptionLifetimeTextField: UITextField!
 
@@ -67,6 +70,7 @@ class TRequestGeneratorViewController: BaseTableViewController {
         self.correlationIdLabel.text = self.viewModel.correlationIdLabel
         self.requiresConfirmationLabel.text = self.viewModel.requiresConfirmationLabel
         self.maxConsumptionLabel.text = self.viewModel.maxConsumptionLabel
+        self.maxConsumptionsPerUserLabel.text = self.viewModel.maxConsumptionsPerUserLabel
         self.consumptionLifetimeLabel.text = self.viewModel.consumptionLifetimeLabel
         self.expirationDateLabel.text = self.viewModel.expirationDateLabel
         self.allowAmountOverrideLabel.text = self.viewModel.allowAmountOverrideLabel
@@ -85,6 +89,7 @@ class TRequestGeneratorViewController: BaseTableViewController {
         self.correlationIdTextField.text = self.viewModel.correlationIdDisplay
         self.requiresConfirmationSwitch.isOn = self.viewModel.requiresConfirmationSwitchState
         self.maxConsumptionsTextField.text = self.viewModel.maxConsumptionsDisplay
+        self.maxConsumptionsPerUserTextField.text = self.viewModel.maxConsumptionsPerUserDisplay
         self.consumptionLifetimeTextField.text = self.viewModel.consumptionLifetimeDisplay
         self.expirationDateTextField.text = self.viewModel.expirationDateDisplay
         self.allowAmountOverrideSwitch.isOn = self.viewModel.allowAmountOverrideSwitchState
@@ -197,6 +202,7 @@ extension TRequestGeneratorViewController: UITextFieldDelegate {
         case self.addressTextField: self.viewModel.addressDisplay = textAfterUpdate
         case self.correlationIdTextField: self.viewModel.correlationIdDisplay = textAfterUpdate
         case self.maxConsumptionsTextField: self.viewModel.maxConsumptionsDisplay = textAfterUpdate
+        case self.maxConsumptionsPerUserTextField: self.viewModel.maxConsumptionsPerUserDisplay = textAfterUpdate
         case self.consumptionLifetimeTextField: self.viewModel.consumptionLifetimeDisplay = textAfterUpdate
         case self.expirationDateTextField: self.viewModel.expirationDateDisplay = textAfterUpdate
         default: break
@@ -211,6 +217,7 @@ extension TRequestGeneratorViewController: UITextFieldDelegate {
         case self.addressTextField: self.viewModel.addressDisplay = ""
         case self.correlationIdTextField: self.viewModel.correlationIdDisplay = ""
         case self.maxConsumptionsTextField: self.viewModel.maxConsumptionsDisplay = ""
+        case self.maxConsumptionsPerUserTextField: self.viewModel.maxConsumptionsPerUserDisplay = ""
         case self.consumptionLifetimeTextField: self.viewModel.consumptionLifetimeDisplay = ""
         case self.expirationDateTextField: self.viewModel.expirationDateDisplay = ""
         default: break
