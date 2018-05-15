@@ -23,7 +23,6 @@ class TRequestConsumerViewModel: BaseViewModel {
     let amountLabel = "trequest_consumer.label.amount".localized()
     let addressLabel = "trequest_consumer.label.address".localized()
     let correlationIdLabel = "trequest_consumer.label.correlation_id".localized()
-    let expirationDateLabel = "trequest_consumer.label.expiration_date".localized()
 
     // Delegate closures
     var onLoadStateChange: ObjectClosure<Bool>?
@@ -40,7 +39,6 @@ class TRequestConsumerViewModel: BaseViewModel {
     var amountDisplay: String
     var addressDisplay: String = ""
     var correlationIdDisplay: String = ""
-    var expirationDateDisplay: String = ""
     let transactionTypeDisplay: String
     let requesterAddressDisplay: String
 
@@ -67,12 +65,6 @@ class TRequestConsumerViewModel: BaseViewModel {
     private var address: Address? {
         didSet {
             self.addressDisplay = address?.address ?? ""
-        }
-    }
-    private var expirationDate: Date? {
-        didSet {
-            guard let date = expirationDate else { return }
-            self.expirationDateDisplay = date.toString(withFormat: "dd MMM yyyy - HH:mm")
         }
     }
     private var settings: Setting? {
@@ -214,10 +206,6 @@ class TRequestConsumerViewModel: BaseViewModel {
         self.transactionConsumption?.stopListening(withClient: SessionManager.shared.omiseGOSocketClient)
     }
 
-    func didUpdateExpirationDate(_ expirationDate: Date) {
-        self.expirationDate = expirationDate
-    }
-
     // MARK: Picker
     func didSelect(row: Int, picker: Picker) {
         switch picker {
@@ -231,7 +219,6 @@ class TRequestConsumerViewModel: BaseViewModel {
         case .mintedToken: return self.settings?.mintedTokens.count ?? 0
         case .address: return self.addresses.count
         }
-  
     }
 
     func numberOfColumnsInPicker() -> Int {

@@ -46,7 +46,6 @@ class TRequestConsumerViewController: BaseTableViewController {
         self.amountLabel.text = self.viewModel.amountLabel
         self.addressLabel.text = self.viewModel.addressLabel
         self.correlationIdLabel.text = self.viewModel.correlationIdLabel
-        self.expirationDateLabel.text = self.viewModel.expirationDateLabel
         self.consumeButton.setTitle(self.viewModel.consumeButtonTitle, for: .normal)
         self.tokenTextField.isEnabled = self.viewModel.isTokenEnabled
         self.amountTextField.isEnabled = self.viewModel.isAmountEnabled
@@ -63,7 +62,6 @@ class TRequestConsumerViewController: BaseTableViewController {
         self.amountTextField.text = self.viewModel.amountDisplay
         self.addressTextField.text = self.viewModel.addressDisplay
         self.correlationIdTextField.text = self.viewModel.correlationIdDisplay
-        self.expirationDateTextField.text = self.viewModel.expirationDateDisplay
     }
 
     override func configureViewModel() {
@@ -108,11 +106,6 @@ class TRequestConsumerViewController: BaseTableViewController {
         self.addressPicker.dataSource = self
         self.addressPicker.delegate = self
         self.addressTextField.inputView = self.addressPicker
-        let datePicker = UIDatePicker()
-        datePicker.addTarget(self, action: #selector(didUpdateExpirationDate), for: .valueChanged)
-        datePicker.datePickerMode = .dateAndTime
-        datePicker.minimumDate = Date()
-        self.expirationDateTextField.inputView = datePicker
     }
 
     func setupAccessoryViews() {
@@ -129,11 +122,6 @@ class TRequestConsumerViewController: BaseTableViewController {
         if !self.tpKeyboardAvoidingTableView.focusNextTextField() {
             self.view.endEditing(true)
         }
-    }
-
-    @objc func didUpdateExpirationDate(_ picker: UIDatePicker) {
-        self.viewModel.didUpdateExpirationDate(picker.date)
-        self.expirationDateTextField.text = self.viewModel.expirationDateDisplay
     }
 
     @IBAction func didTapConsumeButton(_ sender: UIButton) {
@@ -160,7 +148,6 @@ extension TRequestConsumerViewController: UITextFieldDelegate {
         case self.amountTextField: self.viewModel.amountDisplay = textAfterUpdate
         case self.addressTextField: self.viewModel.addressDisplay = textAfterUpdate
         case self.correlationIdTextField: self.viewModel.correlationIdDisplay = textAfterUpdate
-        case self.expirationDateTextField: self.viewModel.expirationDateDisplay = textAfterUpdate
         default: break
         }
         return true
@@ -172,7 +159,6 @@ extension TRequestConsumerViewController: UITextFieldDelegate {
         case self.amountTextField: self.viewModel.amountDisplay = ""
         case self.addressTextField: self.viewModel.addressDisplay = ""
         case self.correlationIdTextField: self.viewModel.correlationIdDisplay = ""
-        case self.expirationDateTextField: self.viewModel.expirationDateDisplay = ""
         default: break
         }
         return true

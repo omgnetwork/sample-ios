@@ -785,42 +785,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="m3p-NP-Vyr">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m3p-NP-Vyr" id="xHl-CF-EyW">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Expiration date (optional):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FX-yH-wdN">
-                                                    <rect key="frame" x="16" y="8" width="343" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" white="0.3012982334" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="20/02/2022" textAlignment="right" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="8to-TN-sGq">
-                                                    <rect key="frame" x="16" y="30" width="343" height="5.5"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="2z4-e7-hx8" id="qkf-BC-9hG"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="8to-TN-sGq" secondAttribute="trailing" constant="16" id="3xr-Ct-6L0"/>
-                                                <constraint firstItem="8to-TN-sGq" firstAttribute="leading" secondItem="xHl-CF-EyW" secondAttribute="leading" constant="16" id="8lA-z2-UyK"/>
-                                                <constraint firstItem="8to-TN-sGq" firstAttribute="top" secondItem="2FX-yH-wdN" secondAttribute="bottom" constant="2" id="BqF-gi-DjC"/>
-                                                <constraint firstAttribute="bottom" secondItem="8to-TN-sGq" secondAttribute="bottom" constant="8" id="GSb-Aj-VQH"/>
-                                                <constraint firstItem="2FX-yH-wdN" firstAttribute="leading" secondItem="xHl-CF-EyW" secondAttribute="leading" constant="16" id="K80-Dn-N7P"/>
-                                                <constraint firstAttribute="trailing" secondItem="2FX-yH-wdN" secondAttribute="trailing" constant="16" id="he6-EK-C2E"/>
-                                                <constraint firstItem="2FX-yH-wdN" firstAttribute="top" secondItem="xHl-CF-EyW" secondAttribute="top" constant="8" id="kih-UE-RLs"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ixh-TD-SxI">
-                                        <rect key="frame" x="0.0" y="264" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ixh-TD-SxI" id="S5p-0d-ye7">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -871,8 +837,6 @@
                         <outlet property="consumeButton" destination="bQ5-Gv-PVx" id="QJR-bB-zSm"/>
                         <outlet property="correlationIdLabel" destination="gDM-3P-yRl" id="NSm-WR-1NB"/>
                         <outlet property="correlationIdTextField" destination="yxQ-10-CpI" id="sbm-se-g9z"/>
-                        <outlet property="expirationDateLabel" destination="2FX-yH-wdN" id="QlR-N3-rc7"/>
-                        <outlet property="expirationDateTextField" destination="8to-TN-sGq" id="Ewm-6h-WWU"/>
                         <outlet property="tokenLabel" destination="4T1-P3-wRp" id="aaI-7M-BdT"/>
                         <outlet property="tokenTextField" destination="1as-HX-6Sk" id="AGm-eN-c7c"/>
                         <outlet property="tpKeyboardAvoidingTableView" destination="RPj-xZ-QN1" id="AvQ-vK-81p"/>
