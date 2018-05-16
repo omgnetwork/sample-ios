@@ -8,7 +8,7 @@ PODS:
     - Starscream (~> 3.0.2)
   - SipHash (1.2.0)
   - SkyFloatingLabelTextField (3.4.1)
-  - Starscream (3.0.4)
+  - Starscream (3.0.5)
   - Toaster (2.1.1)
   - TPKeyboardAvoiding (1.3.2)
 
@@ -17,20 +17,23 @@ DEPENDENCIES:
   - BigInt
   - KeychainSwift
   - MBProgressHUD
-  - OmiseGO (from `https://github.com/omisego/ios-sdk.git`, branch `naming-consistency`)
+  - OmiseGO (= 0.9.10)
   - SkyFloatingLabelTextField
   - Toaster
   - TPKeyboardAvoiding
 
-EXTERNAL SOURCES:
-  OmiseGO:
-    :branch: naming-consistency
-    :git: https://github.com/omisego/ios-sdk.git
-
-CHECKOUT OPTIONS:
-  OmiseGO:
-    :commit: b656cc5c724dd044aaa09cc8ec9840708e268d5a
-    :git: https://github.com/omisego/ios-sdk.git
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - BigInt
+    - KeychainSwift
+    - MBProgressHUD
+    - OmiseGO
+    - SipHash
+    - SkyFloatingLabelTextField
+    - Starscream
+    - Toaster
+    - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
@@ -40,10 +43,10 @@ SPEC CHECKSUMS:
   OmiseGO: d14c88900a580239f7ff4ffd5437cdb86b915442
   SipHash: c6e9e43e9c531b5bc6602545130c26194a6d31ce
   SkyFloatingLabelTextField: 8085f20f57f74a00cfcae58099299faa1a971035
-  Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: 5a6aa7bc0d40da84ce2fa6659fd61561e2c9a952
+PODFILE CHECKSUM: e8b3d36ddcdd9d9d48267556a7859ab9546eb970
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
