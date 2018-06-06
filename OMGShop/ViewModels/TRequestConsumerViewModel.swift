@@ -12,7 +12,7 @@ import BigInt
 class TRequestConsumerViewModel: BaseViewModel {
 
     enum Picker {
-        case mintedToken
+        case token
         case address
     }
 
@@ -30,12 +30,12 @@ class TRequestConsumerViewModel: BaseViewModel {
     var onFailedConsume: FailureClosure?
     var onSuccessGetSettings: SuccessClosure?
     var onFailedGetSettings: FailureClosure?
-    var onSuccessGetAddresses: SuccessClosure?
-    var onFailedLoadAddress: FailureClosure?
+    var onSuccessGetWallets: SuccessClosure?
+    var onFailedLoadWallet: FailureClosure?
     var onConsumeButtonStateChange: ObjectClosure<Bool>?
     var onPendingConfirmation: ObjectClosure<String>?
 
-    var mintedTokenDisplay: String
+    var tokenDisplay: String
     var amountDisplay: String
     var addressDisplay: String = ""
     var correlationIdDisplay: String = ""
@@ -57,43 +57,43 @@ class TRequestConsumerViewModel: BaseViewModel {
     private var transactionConsumption: TransactionConsumption?
     private let idemPotencyToken = UUID().uuidString
 
-    private var mintedToken: MintedToken? {
+    private var token: Token? {
         didSet {
-            self.mintedTokenDisplay = mintedToken?.symbol ?? ""
+            self.tokenDisplay = token?.symbol ?? ""
         }
     }
-    private var address: Address? {
+    private var wallet: Wallet? {
         didSet {
-            self.addressDisplay = address?.address ?? ""
+            self.addressDisplay = wallet?.address ?? ""
         }
     }
     private var settings: Setting? {
         didSet {
-            self.mintedToken = settings?.mintedTokens.first
+            self.token = settings?.tokens.first
         }
     }
-    private var addresses: [Address] = [] {
+    private var wallets: [Wallet] = [] {
         didSet {
-            self.address = addresses.first
+            self.wallet = wallets.first
         }
     }
 
     private let settingLoader: SettingLoaderProtocol
-    private let addressLoader: AddressLoaderProtocol
+    private let walletLoader: WalletLoaderProtocol
     private let transactionConsumer: TransactionConsumeProtocol
 
     init(transactionRequest: TransactionRequest,
          transactionConsumer: TransactionConsumeProtocol = TransactionConsumeLoader(),
-         addressLoader: AddressLoaderProtocol = AddressLoader(),
+         walletLoader: WalletLoaderProtocol = WalletLoader(),
          settingLoader: SettingLoaderProtocol = SettingLoader()) {
         self.transactionRequest = transactionRequest
         self.transactionConsumer = transactionConsumer
         self.settingLoader = settingLoader
-        self.addressLoader = addressLoader
-        self.mintedToken = transactionRequest.mintedToken
-        self.mintedTokenDisplay = transactionRequest.mintedToken.symbol
+        self.walletLoader = walletLoader
+        self.token = transactionRequest.token
+        self.tokenDisplay = transactionRequest.token.symbol
         if let amount = transactionRequest.amount {
-            let am = BigUInt(amount).quotientAndRemainder(dividingBy: BigUInt(transactionRequest.mintedToken.subUnitToUnit))
+            let am = BigUInt(amount).quotientAndRemainder(dividingBy: BigUInt(transactionRequest.token.subUnitToUnit))
             self.amountDisplay = "\(am.quotient).\(am.remainder)"
         } else {
             self.amountDisplay = ""
@@ -111,7 +111,7 @@ class TRequestConsumerViewModel: BaseViewModel {
         loadingGroup.enter()
         self.loadSettings(withGroup: loadingGroup)
         loadingGroup.enter()
-        self.loadAddresses(withGroup: loadingGroup)
+        self.loadWallets(withGroup: loadingGroup)
         DispatchQueue.global().async {
             loadingGroup.wait()
             DispatchQueue.main.async {
@@ -121,13 +121,13 @@ class TRequestConsumerViewModel: BaseViewModel {
     }
 
     func consumeTransactionRequest() {
-        guard let mintedTokenId = self.mintedToken?.id else { return }
+        guard let tokenId = self.token?.id else { return }
 
         guard let params = TransactionConsumptionParams(
             transactionRequest: self.transactionRequest,
             address: self.addressDisplay != "" ? self.addressDisplay : nil,
-            mintedTokenId: mintedTokenId,
-            amount: self.mintedToken?.formattedAmount(forAmount: self.amountDisplay),
+            tokenId: tokenId,
+            amount: self.token?.formattedAmount(forAmount: self.amountDisplay),
             idempotencyToken: self.idemPotencyToken,
             correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
             metadata: [:]) else {
@@ -155,34 +155,34 @@ class TRequestConsumerViewModel: BaseViewModel {
     }
 
     private func successConsumeMessage(withTransacionConsumption transactionConsumption: TransactionConsumption) -> String {
-        let formattedAmount = transactionConsumption.amount / transactionConsumption.mintedToken.subUnitToUnit
+        let formattedAmount = transactionConsumption.amount / transactionConsumption.token.subUnitToUnit
         if transactionConsumption.transactionRequest.type == .send {
             //swiftlint:disable:next line_length
-            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.received".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("trequest_consumer.message.from".localized()) \(transactionConsumption.transactionRequest.address)"
+            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.received".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.from".localized()) \(transactionConsumption.transactionRequest.address)"
         } else {
             //swiftlint:disable:next line_length
-            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("trequest_consumer.message.to".localized()) \(transactionConsumption.transactionRequest.address)"
+            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.to".localized()) \(transactionConsumption.transactionRequest.address)"
         }
     }
 
     private func updateConsumeButtonState() {
-        guard self.mintedToken != nil else {
+        guard self.token != nil else {
             self.isConsumeButtonEnabled = false
             return
         }
         self.isConsumeButtonEnabled = true
     }
 
-    private func loadAddresses(withGroup group: DispatchGroup?) {
-        self.addressLoader.getAll { (result) in
+    private func loadWallets(withGroup group: DispatchGroup?) {
+        self.walletLoader.getAll { (result) in
             defer { group?.leave() }
             switch result {
-            case .success(data: let addresses):
-                self.addresses = addresses
-                self.onSuccessGetAddresses?()
+            case .success(data: let wallets):
+                self.wallets = wallets
+                self.onSuccessGetWallets?()
             case .fail(error: let error):
                 self.handleOMGError(error)
-                self.onFailedLoadAddress?(.omiseGO(error: error))
+                self.onFailedLoadWallet?(.omiseGO(error: error))
             }
         }
     }
@@ -209,15 +209,15 @@ class TRequestConsumerViewModel: BaseViewModel {
     // MARK: Picker
     func didSelect(row: Int, picker: Picker) {
         switch picker {
-        case .mintedToken: self.mintedToken = self.settings?.mintedTokens[row]
-        case .address: self.address = self.addresses[row]
+        case .token: self.token = self.settings?.tokens[row]
+        case .address: self.wallet = self.wallets[row]
         }
     }
 
     func numberOfRows(inPicker picker: Picker) -> Int {
         switch picker {
-        case .mintedToken: return self.settings?.mintedTokens.count ?? 0
-        case .address: return self.addresses.count
+        case .token: return self.settings?.tokens.count ?? 0
+        case .address: return self.wallets.count
         }
     }
 
@@ -227,8 +227,8 @@ class TRequestConsumerViewModel: BaseViewModel {
 
     func title(forRow row: Int, picker: Picker) -> String? {
         switch picker {
-        case .mintedToken: return self.settings?.mintedTokens[row].name
-        case .address: return self.addresses[row].address
+        case .token: return self.settings?.tokens[row].name
+        case .address: return self.wallets[row].address
         }
     }
 

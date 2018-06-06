@@ -37,7 +37,6 @@
 		032C2E991FA03980001AE452 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E981FA03980001AE452 /* Constant.swift */; };
 		036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */; };
 		036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */; };
-		037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */; };
 		0377AD62204E5C8C00350407 /* TransactionsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */; };
 		0377AD64204E67F700350407 /* PaginatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD63204E67F700350407 /* PaginatorTest.swift */; };
 		0377AD66204E68D800350407 /* MockPaginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD65204E68D800350407 /* MockPaginator.swift */; };
@@ -54,6 +53,7 @@
 		039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */; };
 		039F69D91F9EF9A000AE5355 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69D81F9EF9A000AE5355 /* Product.swift */; };
 		039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */; };
+		03A20C2920C77DB000ED0DFF /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A20C2820C77DB000ED0DFF /* TokenManager.swift */; };
 		03B618061FA9A10400BC0B0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B618051FA9A10400BC0B0E /* ProfileViewController.swift */; };
 		03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */; };
 		03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03BD53E41F99B77F00A26499 /* Localizable.strings */; };
@@ -160,7 +160,6 @@
 		032C2E981FA03980001AE452 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
-		037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintedTokenManager.swift; sourceTree = "<group>"; };
 		0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelTest.swift; sourceTree = "<group>"; };
 		0377AD63204E67F700350407 /* PaginatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatorTest.swift; sourceTree = "<group>"; };
 		0377AD65204E68D800350407 /* MockPaginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPaginator.swift; sourceTree = "<group>"; };
@@ -177,6 +176,7 @@
 		039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		039F69D81F9EF9A000AE5355 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
+		03A20C2820C77DB000ED0DFF /* TokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		03B618051FA9A10400BC0B0E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		03BD53E71F99B8FF00A26499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -318,8 +318,8 @@
 				031BB1731F9998EB0095468F /* OMGShopManager.swift */,
 				032C2E981FA03980001AE452 /* Constant.swift */,
 				03C601381FA6D6F10033A0C7 /* SessionManager.swift */,
-				037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */,
 				03F84C7F1FC3FC5500F21C7B /* OmiseGOWrapper.swift */,
+				03A20C2820C77DB000ED0DFF /* TokenManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -757,6 +757,7 @@
 				03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */,
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
 				039F69D01F9EF7BB00AE5355 /* ProductListViewController.swift in Sources */,
+				03A20C2920C77DB000ED0DFF /* TokenManager.swift in Sources */,
 				03B618061FA9A10400BC0B0E /* ProfileViewController.swift in Sources */,
 				031BB1761F999FED0095468F /* CustomView.swift in Sources */,
 				031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */,
@@ -780,7 +781,6 @@
 				03D218722073618A008FA1AE /* TRequestGeneratorViewController.swift in Sources */,
 				03F84C801FC3FC5500F21C7B /* OmiseGOWrapper.swift in Sources */,
 				030F57342033E42D00F54296 /* QRCodeViewerViewModel.swift in Sources */,
-				037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */,
 				03C2C0801FBAE54700B794AC /* TokenTableViewCell.swift in Sources */,
 				032C2E991FA03980001AE452 /* Constant.swift in Sources */,
 				039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */,
@@ -1031,8 +1031,9 @@
 			baseConfigurationReference = BD99480BA39EA23C6F7625FC /* Pods-OMGShop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AWD3VR6J7J;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1042,6 +1043,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.omisego.omg-shop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1052,8 +1054,9 @@
 			baseConfigurationReference = 172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AWD3VR6J7J;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1063,6 +1066,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.omisego.omg-shop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

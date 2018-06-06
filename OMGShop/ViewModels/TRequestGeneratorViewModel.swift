@@ -11,7 +11,7 @@ import OmiseGO
 class TRequestGeneratorViewModel: BaseViewModel {
 
     enum Picker {
-        case mintedToken
+        case token
         case address
     }
 
@@ -37,19 +37,19 @@ class TRequestGeneratorViewModel: BaseViewModel {
     var onLoadStateChange: ObjectClosure<Bool>?
     var onSuccessGetSettings: SuccessClosure?
     var onFailedGetSettings: FailureClosure?
-    var onSuccessGetAddresses: SuccessClosure?
-    var onFailedLoadAddress: FailureClosure?
+    var onSuccessGetWallets: SuccessClosure?
+    var onFailedLoadWallet: FailureClosure?
     var onGenerateButtonStateChange: ObjectClosure<Bool>?
 
     private var type: TransactionRequestType = .receive
-    private var mintedToken: MintedToken? {
+    private var token: Token? {
         didSet {
-            self.mintedTokenDisplay = mintedToken?.symbol ?? ""
+            self.tokenDisplay = token?.symbol ?? ""
         }
     }
-    private var address: Address? {
+    private var wallet: Wallet? {
         didSet {
-            self.addressDisplay = address?.address ?? ""
+            self.addressDisplay = wallet?.address ?? ""
         }
     }
     private var expirationDate: Date? {
@@ -60,7 +60,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     var sendReceiveSwitchState: Bool
-    var mintedTokenDisplay: String = ""
+    var tokenDisplay: String = ""
     var amountDisplay: String = ""
     var addressDisplay: String = ""
     var correlationIdDisplay: String = ""
@@ -73,17 +73,17 @@ class TRequestGeneratorViewModel: BaseViewModel {
 
     private var settings: Setting? {
         didSet {
-            self.mintedToken = settings?.mintedTokens.first
+            self.token = settings?.tokens.first
         }
     }
-    private var addresses: [Address] = [] {
+    private var wallets: [Wallet] = [] {
         didSet {
-            self.address = addresses.first
+            self.wallet = wallets.first
         }
     }
 
     private let settingLoader: SettingLoaderProtocol
-    private let addressLoader: AddressLoaderProtocol
+    private let walletLoader: WalletLoaderProtocol
     private let transactionRequestCreator: TransactionRequestCreateProtocol
 
     var isGenerateButtonEnabled: Bool = false {
@@ -94,10 +94,10 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     init(settingLoader: SettingLoaderProtocol = SettingLoader(),
-         addressLoader: AddressLoaderProtocol = AddressLoader(),
+         walletLoader: WalletLoaderProtocol = WalletLoader(),
          transactionRequestCreator: TransactionRequestCreateProtocol = TransactionRequestLoader()) {
         self.settingLoader = settingLoader
-        self.addressLoader = addressLoader
+        self.walletLoader = walletLoader
         self.transactionRequestCreator = transactionRequestCreator
         self.sendReceiveSwitchState = self.type == .send
         super.init()
@@ -109,7 +109,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
         loadingGroup.enter()
         self.loadSettings(withGroup: loadingGroup)
         loadingGroup.enter()
-        self.loadAddresses(withGroup: loadingGroup)
+        self.loadWallets(withGroup: loadingGroup)
         DispatchQueue.global().async {
             loadingGroup.wait()
             DispatchQueue.main.async {
@@ -119,10 +119,10 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     func generateTransactionRequest() {
-        guard let mintedTokenId = self.mintedToken?.id else { return }
+        guard let tokenId = self.token?.id else { return }
         guard let params = TransactionRequestCreateParams(type: self.sendReceiveSwitchState ? .send : .receive,
-                                                          mintedTokenId: mintedTokenId,
-                                                          amount: self.mintedToken?.formattedAmount(forAmount: self.amountDisplay),
+                                                          tokenId: tokenId,
+                                                          amount: self.token?.formattedAmount(forAmount: self.amountDisplay),
                                                           address: self.addressDisplay != "" ? self.addressDisplay : nil,
                                                           correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
                                                           requireConfirmation: self.requiresConfirmationSwitchState,
@@ -148,16 +148,16 @@ class TRequestGeneratorViewModel: BaseViewModel {
         }
     }
 
-    private func loadAddresses(withGroup group: DispatchGroup?) {
-        self.addressLoader.getAll { (result) in
+    private func loadWallets(withGroup group: DispatchGroup?) {
+        self.walletLoader.getAll { (result) in
             defer { group?.leave() }
             switch result {
-            case .success(data: let addresses):
-                self.addresses = addresses
-                self.onSuccessGetAddresses?()
+            case .success(data: let wallets):
+                self.wallets = wallets
+                self.onSuccessGetWallets?()
             case .fail(error: let error):
                 self.handleOMGError(error)
-                self.onFailedLoadAddress?(.omiseGO(error: error))
+                self.onFailedLoadWallet?(.omiseGO(error: error))
             }
         }
     }
@@ -178,7 +178,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     private func updateGenerateButtonState() {
-        guard self.mintedToken != nil else {
+        guard self.token != nil else {
             self.isGenerateButtonEnabled = false
             return
         }
@@ -216,15 +216,15 @@ class TRequestGeneratorViewModel: BaseViewModel {
     // MARK: Picker
     func didSelect(row: Int, picker: Picker) {
         switch picker {
-        case .mintedToken: self.mintedToken = self.settings?.mintedTokens[row]
-        case .address: self.address = self.addresses[row]
+        case .token: self.token = self.settings?.tokens[row]
+        case .address: self.wallet = self.wallets[row]
         }
     }
 
     func numberOfRows(inPicker picker: Picker) -> Int {
         switch picker {
-        case .mintedToken: return self.settings?.mintedTokens.count ?? 0
-        case .address: return self.addresses.count
+        case .token: return self.settings?.tokens.count ?? 0
+        case .address: return self.wallets.count
         }
 
     }
@@ -235,8 +235,8 @@ class TRequestGeneratorViewModel: BaseViewModel {
 
     func title(forRow row: Int, picker: Picker) -> String? {
         switch picker {
-        case .mintedToken: return self.settings?.mintedTokens[row].name
-        case .address: return self.addresses[row].address
+        case .token: return self.settings?.tokens[row].name
+        case .address: return self.wallets[row].address
         }
     }
 }

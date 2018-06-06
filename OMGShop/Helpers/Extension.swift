@@ -13,7 +13,7 @@ func dispatchMain(_ block: @escaping EmptyClosure) {
     DispatchQueue.main.async { block() }
 }
 
-extension MintedToken {
+extension Token {
 
     func formattedAmount(forAmount amountString: String?) -> Double? {
         guard amountString != nil, let amount = Double(amountString!) else { return nil }

@@ -35,7 +35,7 @@ class TRequestConsumerViewController: BaseTableViewController {
 
     @IBOutlet weak var consumeButton: UIButton!
 
-    private var mintedTokenPicker: UIPickerView!
+    private var tokenPicker: UIPickerView!
     private var addressPicker: UIPickerView!
 
     override func configureView() {
@@ -58,7 +58,7 @@ class TRequestConsumerViewController: BaseTableViewController {
     private func setInitialValues() {
         self.transactionTypeLabel.text = self.viewModel.transactionTypeDisplay
         self.addressRequesterLabel.text = self.viewModel.requesterAddressDisplay
-        self.tokenTextField.text = self.viewModel.mintedTokenDisplay
+        self.tokenTextField.text = self.viewModel.tokenDisplay
         self.amountTextField.text = self.viewModel.amountDisplay
         self.addressTextField.text = self.viewModel.addressDisplay
         self.correlationIdTextField.text = self.viewModel.correlationIdDisplay
@@ -73,9 +73,9 @@ class TRequestConsumerViewController: BaseTableViewController {
             self.navigationController?.popToRootViewController(animated: true)
         }
         self.viewModel.onSuccessGetSettings = {
-            self.tokenTextField.text = self.viewModel.mintedTokenDisplay
+            self.tokenTextField.text = self.viewModel.tokenDisplay
         }
-        self.viewModel.onSuccessGetAddresses = {
+        self.viewModel.onSuccessGetWallets = {
             self.addressTextField.text = self.viewModel.addressDisplay
         }
         self.viewModel.onFailedConsume = {
@@ -83,7 +83,7 @@ class TRequestConsumerViewController: BaseTableViewController {
             self.showError(withMessage: $0.localizedDescription)
         }
         self.viewModel.onFailedGetSettings = { self.showError(withMessage: $0.localizedDescription) }
-        self.viewModel.onFailedLoadAddress = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onFailedLoadWallet = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onConsumeButtonStateChange = {
             self.consumeButton.isEnabled = $0
             self.consumeButton.alpha = $0 ? 1 : 0.5
@@ -98,10 +98,10 @@ class TRequestConsumerViewController: BaseTableViewController {
     }
 
     func setupPickers() {
-        self.mintedTokenPicker = UIPickerView()
-        self.mintedTokenPicker.dataSource = self
-        self.mintedTokenPicker.delegate = self
-        self.tokenTextField.inputView = self.mintedTokenPicker
+        self.tokenPicker = UIPickerView()
+        self.tokenPicker.dataSource = self
+        self.tokenPicker.delegate = self
+        self.tokenTextField.inputView = self.tokenPicker
         self.addressPicker = UIPickerView()
         self.addressPicker.dataSource = self
         self.addressPicker.delegate = self
@@ -144,7 +144,7 @@ extension TRequestConsumerViewController: UITextFieldDelegate {
         let textFieldText: NSString = (textField.text ?? "") as NSString
         let textAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
         switch textField {
-        case self.tokenTextField: self.viewModel.mintedTokenDisplay = textAfterUpdate
+        case self.tokenTextField: self.viewModel.tokenDisplay = textAfterUpdate
         case self.amountTextField: self.viewModel.amountDisplay = textAfterUpdate
         case self.addressTextField: self.viewModel.addressDisplay = textAfterUpdate
         case self.correlationIdTextField: self.viewModel.correlationIdDisplay = textAfterUpdate
@@ -155,7 +155,7 @@ extension TRequestConsumerViewController: UITextFieldDelegate {
 
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         switch textField {
-        case self.tokenTextField: self.viewModel.mintedTokenDisplay = ""
+        case self.tokenTextField: self.viewModel.tokenDisplay = ""
         case self.amountTextField: self.viewModel.amountDisplay = ""
         case self.addressTextField: self.viewModel.addressDisplay = ""
         case self.correlationIdTextField: self.viewModel.correlationIdDisplay = ""
@@ -170,7 +170,7 @@ extension TRequestConsumerViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
-        case self.mintedTokenPicker: self.viewModel.didSelect(row: row, picker: .mintedToken)
+        case self.tokenPicker: self.viewModel.didSelect(row: row, picker: .token)
         case self.addressPicker: self.viewModel.didSelect(row: row, picker: .address)
         default: break
         }
@@ -181,7 +181,7 @@ extension TRequestConsumerViewController: UIPickerViewDelegate {
         label.textAlignment = .center
         label.font = Font.avenirBook.withSize(17)
         switch pickerView {
-        case self.mintedTokenPicker: label.text = self.viewModel.title(forRow: row, picker: .mintedToken)
+        case self.tokenPicker: label.text = self.viewModel.title(forRow: row, picker: .token)
         case self.addressPicker: label.text = self.viewModel.title(forRow: row, picker: .address)
         default: break
         }
@@ -194,7 +194,7 @@ extension TRequestConsumerViewController: UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
-        case self.mintedTokenPicker: return self.viewModel.numberOfRows(inPicker: .mintedToken)
+        case self.tokenPicker: return self.viewModel.numberOfRows(inPicker: .token)
         case self.addressPicker: return self.viewModel.numberOfRows(inPicker: .address)
         default: return 0
         }

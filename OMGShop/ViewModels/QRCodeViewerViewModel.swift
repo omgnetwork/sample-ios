@@ -44,12 +44,12 @@ class QRCodeViewerViewModel: BaseViewModel {
     func consumptionRequestMessage() -> String {
         guard let tc = self.transactionConsumption else { return "" }
         //swiftlint:disable:next line_length
-        return "\(tc.address) \("qrcode_viewer.alert.consumption_request.wants_to".localized()) \(self.transactionRequest.type == .send ? "qrcode_viewer.alert.consumption_request.take_you".localized() : "qrcode_viewer.alert.consumption_request.send_you".localized()) \(self.displayableAmount()) \(tc.mintedToken.symbol), \("qrcode_viewer.alert.consumption_request.do_you_approve".localized())"
+        return "\(tc.address) \("qrcode_viewer.alert.consumption_request.wants_to".localized()) \(self.transactionRequest.type == .send ? "qrcode_viewer.alert.consumption_request.take_you".localized() : "qrcode_viewer.alert.consumption_request.send_you".localized()) \(self.displayableAmount()) \(tc.token.symbol), \("qrcode_viewer.alert.consumption_request.do_you_approve".localized())"
     }
 
     private func displayableAmount() -> String {
         guard let tc = self.transactionConsumption else { return "" }
-        let am = BigUInt(tc.amount).quotientAndRemainder(dividingBy: BigUInt(tc.mintedToken.subUnitToUnit))
+        let am = BigUInt(tc.amount).quotientAndRemainder(dividingBy: BigUInt(tc.token.subUnitToUnit))
         return "\(am.quotient).\(am.remainder)"
     }
 
@@ -78,13 +78,13 @@ class QRCodeViewerViewModel: BaseViewModel {
     }
 
     private func successConsumeMessage(withTransacionConsumption transactionConsumption: TransactionConsumption) -> String {
-        let formattedAmount = transactionConsumption.amount / transactionConsumption.mintedToken.subUnitToUnit
+        let formattedAmount = transactionConsumption.amount / transactionConsumption.token.subUnitToUnit
         if transactionConsumption.transactionRequest.type == .send {
             //swiftlint:disable:next line_length
-            return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("qrcode_viewer.message.to".localized()) \(transactionConsumption.address)"
+            return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("qrcode_viewer.message.to".localized()) \(transactionConsumption.address)"
         } else {
             //swiftlint:disable:next line_length
-            return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.received".localized()) \(formattedAmount) \(transactionConsumption.mintedToken.symbol) \("qrcode_viewer.message.from".localized()) \(transactionConsumption.address)"
+            return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.received".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("qrcode_viewer.message.from".localized()) \(transactionConsumption.address)"
         }
     }
 }

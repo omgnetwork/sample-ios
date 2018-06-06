@@ -12,7 +12,7 @@ import BigInt
 class Checkout {
 
     var selectedBalance: Balance!
-    var address: Address?
+    var wallet: Wallet?
     var total: BigUInt = 0
     var redeemedToken: BigUInt = 0 {
         didSet { self.discount = redeemedToken }

@@ -29,7 +29,7 @@ class StubGenerator {
 
     class func stubProducts() -> [Product] { return self.stub(forResource: "product_list") }
 
-    class func mainAddress() -> Address { return self.stub(forResource: "address") }
+    class func mainWallet() -> Wallet { return self.stub(forResource: "wallet") }
 
     class func pay() -> OMGShop.EmptyResponse { return self.stub(forResource: "pay") }
 

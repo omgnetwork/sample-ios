@@ -6,8 +6,8 @@
       "object": "transaction_source",
       "address": "083fe98d-a1f4-4fe9-bac0-b967b83140fc",
       "amount": 1000,
-      "minted_token": {
-        "object": "minted_token",
+      "token": {
+        "object": "token",
         "id": "ABC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
         "symbol": "ABC",
         "name": "ABC Point",
@@ -22,8 +22,8 @@
       "object": "transaction_source",
       "address": "XXX123",
       "amount": 1000,
-      "minted_token": {
-        "object": "minted_token",
+      "token": {
+        "object": "token",
         "id": "ABC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
         "symbol": "ABC",
         "name": "ABC Point",
@@ -51,8 +51,8 @@
       "object": "transaction_source",
       "address": "XXX123",
       "amount": 1000,
-      "minted_token": {
-        "object": "minted_token",
+      "token": {
+        "object": "token",
         "id": "ABC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
         "symbol": "ABC",
         "name": "ABC Point",
@@ -67,8 +67,8 @@
       "object": "transaction_source",
       "address": "083fe98d-a1f4-4fe9-bac0-b967b83140fc",
       "amount": 1000,
-      "minted_token": {
-        "object": "minted_token",
+      "token": {
+        "object": "token",
         "id": "ABC:xe3982f5-4a27-498d-a91b-7bb2e2a8d3d1",
         "symbol": "ABC",
         "name": "ABC Point",

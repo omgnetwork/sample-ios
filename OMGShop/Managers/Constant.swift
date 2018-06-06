@@ -43,7 +43,7 @@ enum UserDefaultKeys: String {
     case userId = "token.user_id"
     case appAuthenticationToken = "token.app_authentication_token"
     case omiseGOAuthenticationToken = "token.omisego_authentication_token"
-    case selectedTokenSymbol = "minted_token.selected"
+    case selectedTokenSymbol = "token.selected"
 }
 
 enum AppState {

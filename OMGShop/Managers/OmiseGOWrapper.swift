@@ -8,20 +8,20 @@
 
 import OmiseGO
 
-protocol AddressLoaderProtocol {
-    func getMain(withCallback callback: @escaping Address.RetrieveRequestCallback)
-    func getAll(withCallback callback: @escaping Address.ListRequestCallback)
+protocol WalletLoaderProtocol {
+    func getMain(withCallback callback: @escaping Wallet.RetrieveRequestCallback)
+    func getAll(withCallback callback: @escaping Wallet.ListRequestCallback)
 }
 
 /// This wrapper has been created for the sake of testing with dependency injection
-class AddressLoader: AddressLoaderProtocol {
+class WalletLoader: WalletLoaderProtocol {
 
-    func getAll(withCallback callback: @escaping Address.ListRequestCallback) {
-        Address.getAll(using: SessionManager.shared.omiseGOClient, callback: callback)
+    func getAll(withCallback callback: @escaping Wallet.ListRequestCallback) {
+        Wallet.getAll(using: SessionManager.shared.omiseGOClient, callback: callback)
     }
 
-    func getMain(withCallback callback: @escaping Address.RetrieveRequestCallback) {
-        Address.getMain(using: SessionManager.shared.omiseGOClient, callback: callback)
+    func getMain(withCallback callback: @escaping Wallet.RetrieveRequestCallback) {
+        Wallet.getMain(using: SessionManager.shared.omiseGOClient, callback: callback)
     }
 
 }
@@ -49,9 +49,9 @@ class TransactionRequestLoader: TransactionRequestCreateProtocol {
 
     func generate(withParams params: TransactionRequestCreateParams,
                   callback: @escaping TransactionRequest.RetrieveRequestCallback) {
-        TransactionRequest.generateTransactionRequest(using: SessionManager.shared.omiseGOClient,
-                                                      params: params,
-                                                      callback: callback)
+        TransactionRequest.create(using: SessionManager.shared.omiseGOClient,
+                                  params: params,
+                                  callback: callback)
     }
 
 }

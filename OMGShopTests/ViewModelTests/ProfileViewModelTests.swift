@@ -12,41 +12,41 @@ import OmiseGO
 
 class ProfileViewModelTests: XCTestCase {
 
-    var mockAddressLoader: MockAddressLoader!
+    var mockWalletLoader: MockWalletLoader!
     var mockSessionManager: MockSessionManager!
     var sut: ProfileViewModel!
 
     override func setUp() {
         super.setUp()
-        self.mockAddressLoader = MockAddressLoader()
+        self.mockWalletLoader = MockWalletLoader()
         self.mockSessionManager = MockSessionManager()
-        self.sut = ProfileViewModel(sessionManager: self.mockSessionManager, addressLoader: self.mockAddressLoader)
-        MintedTokenManager.shared.selectedTokenSymbol = nil
+        self.sut = ProfileViewModel(sessionManager: self.mockSessionManager, walletLoader: self.mockWalletLoader)
+        TokenManager.shared.selectedTokenSymbol = nil
     }
 
     override func tearDown() {
-        self.mockAddressLoader = nil
+        self.mockWalletLoader = nil
         self.mockSessionManager = nil
         self.sut = nil
-        MintedTokenManager.shared.selectedTokenSymbol = nil
+        TokenManager.shared.selectedTokenSymbol = nil
         super.tearDown()
     }
 
     func testLoadCalled() {
         self.sut.loadData()
-        XCTAssert(self.mockAddressLoader.isLoadAddressCalled)
+        XCTAssert(self.mockWalletLoader.isLoadWalletCalled)
         XCTAssert(self.mockSessionManager.isLoadCurrentUserCalled)
     }
 
-    func testLoadAddressFailed() {
+    func testLoadWalletFailed() {
         var didFail = false
-        self.sut.onFailGetAddress = {
-            XCTAssertEqual($0.message, "unexpected error: Failed to load address")
+        self.sut.onFailGetWallet = {
+            XCTAssertEqual($0.message, "unexpected error: Failed to load wallet")
             didFail = true
         }
         self.sut.loadData()
-        let error: OMGError = .unexpected(message: "Failed to load address")
-        self.mockAddressLoader.loadMainAddressFailed(withError: error)
+        let error: OMGError = .unexpected(message: "Failed to load wallet")
+        self.mockWalletLoader.loadMainWalletFailed(withError: error)
         self.mockSessionManager.loadCurrentUserSuccess()
         XCTAssert(didFail)
     }
@@ -59,42 +59,42 @@ class ProfileViewModelTests: XCTestCase {
         }
         self.sut.loadData()
         let error: OMGError = .unexpected(message: "Failed to load user")
-        self.mockAddressLoader.address = StubGenerator.mainAddress()
-        self.mockAddressLoader.loadMainAddressSuccess()
+        self.mockWalletLoader.wallet = StubGenerator.mainWallet()
+        self.mockWalletLoader.loadMainWalletSuccess()
         self.mockSessionManager.loadCurrentUserFailed(withError: error)
         XCTAssert(didFail)
     }
 
     func testLoadSucceed() {
         var didLoadCurrentUser = false
-        var didLoadAddress = false
+        var didLoadWallet = false
         self.sut.onSuccessReloadUser = {
             XCTAssertEqual($0, self.mockSessionManager.currentUser!.username)
             didLoadCurrentUser = true
         }
-        self.sut.onTableDataChange = { didLoadAddress = true }
+        self.sut.onTableDataChange = { didLoadWallet = true }
         self.goToLoadFinished()
         XCTAssert(didLoadCurrentUser)
-        XCTAssert(didLoadAddress)
-        XCTAssertEqual(MintedTokenManager.shared.selectedTokenSymbol,
-                       self.mockAddressLoader.address!.balances[0].mintedToken.symbol)
+        XCTAssert(didLoadWallet)
+        XCTAssertEqual(TokenManager.shared.selectedTokenSymbol,
+                       self.mockWalletLoader.wallet!.balances[0].token.symbol)
 
     }
 
     func testGetCellViewModel() {
         self.goToLoadFinished()
-        XCTAssert(self.sut.numberOfRow() == self.mockAddressLoader.address!.balances.count)
+        XCTAssert(self.sut.numberOfRow() == self.mockWalletLoader.wallet!.balances.count)
         let indexPath = IndexPath(row: 0, section: 0)
         let cellViewModel = self.sut.cellViewModel(forIndex: indexPath.row)
-        XCTAssertEqual(cellViewModel.tokenSymbol, self.mockAddressLoader.address!.balances.first!.mintedToken.symbol)
+        XCTAssertEqual(cellViewModel.tokenSymbol, self.mockWalletLoader.wallet!.balances.first!.token.symbol)
     }
 
     func testCellViewModel() {
-        let balance = StubGenerator.mainAddress().balances.first!
+        let balance = StubGenerator.mainWallet().balances.first!
         let cellViewModel = TokenCellViewModel(balance: balance, isSelected: true)
         XCTAssertEqual(cellViewModel.isSelected, true)
         XCTAssertEqual(cellViewModel.tokenAmount, balance.displayAmount(withPrecision: 2))
-        XCTAssertEqual(cellViewModel.tokenSymbol, balance.mintedToken.symbol)
+        XCTAssertEqual(cellViewModel.tokenSymbol, balance.token.symbol)
     }
 
     func testCellViewModelSelection() {
@@ -102,23 +102,23 @@ class ProfileViewModelTests: XCTestCase {
         self.sut.didSelectToken(atIndex: 0)
         XCTAssertTrue(self.sut.cellViewModel(forIndex: 0).isSelected)
         XCTAssertFalse(self.sut.cellViewModel(forIndex: 1).isSelected)
-        XCTAssertEqual(MintedTokenManager.shared.selectedTokenSymbol,
-                       self.mockAddressLoader.address!.balances[0].mintedToken.symbol)
+        XCTAssertEqual(TokenManager.shared.selectedTokenSymbol,
+                       self.mockWalletLoader.wallet!.balances[0].token.symbol)
         self.sut.didSelectToken(atIndex: 1)
         XCTAssertTrue(self.sut.cellViewModel(forIndex: 1).isSelected)
         XCTAssertFalse(self.sut.cellViewModel(forIndex: 0).isSelected)
-        XCTAssertEqual(MintedTokenManager.shared.selectedTokenSymbol,
-                       self.mockAddressLoader.address!.balances[1].mintedToken.symbol)
+        XCTAssertEqual(TokenManager.shared.selectedTokenSymbol,
+                       self.mockWalletLoader.wallet!.balances[1].token.symbol)
     }
 
     func testLoadingWhenLoading() {
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
-        self.mockAddressLoader.address = StubGenerator.mainAddress()
+        self.mockWalletLoader.wallet = StubGenerator.mainWallet()
         self.mockSessionManager.currentUser = StubGenerator.stubCurrentUser()
         self.sut.loadData()
         XCTAssertTrue(loadingStatus)
-        self.mockAddressLoader.loadMainAddressSuccess()
+        self.mockWalletLoader.loadMainWalletSuccess()
         self.mockSessionManager.loadCurrentUserSuccess()
         XCTAssertFalse(loadingStatus)
     }
@@ -160,10 +160,10 @@ class ProfileViewModelTests: XCTestCase {
 extension ProfileViewModelTests {
 
     private func goToLoadFinished() {
-        self.mockAddressLoader.address = StubGenerator.mainAddress()
+        self.mockWalletLoader.wallet = StubGenerator.mainWallet()
         self.mockSessionManager.currentUser = StubGenerator.stubCurrentUser()
         self.sut.loadData()
-        self.mockAddressLoader.loadMainAddressSuccess()
+        self.mockWalletLoader.loadMainWalletSuccess()
         self.mockSessionManager.loadCurrentUserSuccess()
     }
 

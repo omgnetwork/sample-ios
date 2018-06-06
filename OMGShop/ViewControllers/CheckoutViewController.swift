@@ -51,7 +51,7 @@ class CheckoutViewController: BaseViewController {
     override func configureViewModel() {
         super.configureViewModel()
         self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
-        self.viewModel.onFailGetAddress = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onFailGetWallet = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onDiscountPriceChange = { self.discountPriceLabel.text = $0 }
         self.viewModel.onTotalPriceChange = { self.totalPriceLabel.text = $0 }
         self.viewModel.onSuccessPay = { (message) in

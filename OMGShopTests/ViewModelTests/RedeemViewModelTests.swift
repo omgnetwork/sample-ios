@@ -13,23 +13,22 @@ import XCTest
 class RedeemViewModelTests: XCTestCase {
 
     var checkout: Checkout!
-    var address: Address!
+    var wallet: Wallet!
     var product: Product!
     var sut: RedeemPopupViewModel!
 
     override func setUp() {
         super.setUp()
-        self.address = StubGenerator.mainAddress()
+        self.wallet = StubGenerator.mainWallet()
         self.product = StubGenerator.stubProducts().first!
         self.checkout = Checkout(product: product)
-        self.checkout.address = address
-        self.checkout.selectedBalance = address?.balances.first!
+        self.checkout.wallet = wallet
+        self.checkout.selectedBalance = wallet?.balances.first!
     }
 
     override func tearDown() {
         super.tearDown()
-        self.address = nil
-        self.address = nil
+        self.wallet = nil
         self.product = nil
         self.sut = nil
     }

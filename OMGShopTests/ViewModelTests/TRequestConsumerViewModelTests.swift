@@ -14,23 +14,23 @@ class TRequestConsumerViewModelTests: XCTestCase {
 
     var mockSettingLoader: MockSettingLoader!
     var mockTransactionConsumer: MockTransactionConsumer!
-    var mockAddressLoader: MockAddressLoader!
+    var mockWalletLoader: MockWalletLoader!
     var sut: TRequestConsumerViewModel!
 
     override func setUp() {
         super.setUp()
         self.mockSettingLoader = MockSettingLoader()
         self.mockTransactionConsumer = MockTransactionConsumer()
-        self.mockAddressLoader = MockAddressLoader()
+        self.mockWalletLoader = MockWalletLoader()
         self.sut = TRequestConsumerViewModel(transactionRequest: StubGenerator.transactionRequest(),
                                              transactionConsumer: self.mockTransactionConsumer,
-                                             addressLoader: self.mockAddressLoader,
+                                             walletLoader: self.mockWalletLoader,
                                              settingLoader: self.mockSettingLoader)
     }
 
     override func tearDown() {
         self.mockSettingLoader = nil
-        self.mockAddressLoader = nil
+        self.mockWalletLoader = nil
         self.mockTransactionConsumer = nil
         self.sut = nil
         super.tearDown()
@@ -39,7 +39,7 @@ class TRequestConsumerViewModelTests: XCTestCase {
     func testLoadCallSettingAndAddressCallbacks() {
         self.sut.loadData()
         XCTAssert(self.mockSettingLoader.isLoadSettingCalled)
-        XCTAssert(self.mockAddressLoader.isLoadAddressCalled)
+        XCTAssert(self.mockWalletLoader.isLoadWalletCalled)
     }
 
     func testLoadSettingsFailed() {
@@ -62,23 +62,23 @@ class TRequestConsumerViewModelTests: XCTestCase {
 
     }
 
-    func testLoadAddressesFailed() {
+    func testLoadWalletsFailed() {
         var didFail = false
-        self.sut.onFailedLoadAddress = {
-            XCTAssertEqual($0.message, "unexpected error: Failed to load addresses")
+        self.sut.onFailedLoadWallet = {
+            XCTAssertEqual($0.message, "unexpected error: Failed to load wallets")
             didFail = true
         }
         self.sut.loadData()
-        let error: OMGError = .unexpected(message: "Failed to load addresses")
-        self.mockAddressLoader.loadAllAddressesFailed(withError: error)
+        let error: OMGError = .unexpected(message: "Failed to load wallets")
+        self.mockWalletLoader.loadAllWalletsFailed(withError: error)
         XCTAssert(didFail)
     }
 
-    func testLoadAddressesSucceed() {
-        var didLoadAddresses = false
-        self.sut.onSuccessGetAddresses = { didLoadAddresses = true }
+    func testLoadWalletsSucceed() {
+        var didLoadWallets = false
+        self.sut.onSuccessGetWallets = { didLoadWallets = true }
         self.goToLoadFinished()
-        XCTAssert(didLoadAddresses)
+        XCTAssert(didLoadWallets)
     }
 
     func testShowLoadingWhenLoadingData() {
@@ -86,17 +86,17 @@ class TRequestConsumerViewModelTests: XCTestCase {
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
         self.mockSettingLoader.settings = StubGenerator.settings()
-        self.mockAddressLoader.addresses = [StubGenerator.mainAddress()]
+        self.mockWalletLoader.wallets = [StubGenerator.mainWallet()]
         self.sut.loadData()
         XCTAssertTrue(loadingStatus)
         self.mockSettingLoader.loadSettingSuccess()
         XCTAssertTrue(loadingStatus)
-        self.mockAddressLoader.loadAllAddressesSuccess()
+        self.mockWalletLoader.loadAllWalletsSuccess()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             dispatchExpectation.fulfill()
         }
-        waitForExpectations(timeout: 0.1)
+        waitForExpectations(timeout: 0.3)
         XCTAssertFalse(loadingStatus)
     }
 
@@ -128,10 +128,10 @@ class TRequestConsumerViewModelTests: XCTestCase {
     func testPickerData() {
         self.goToLoadFinished()
         XCTAssertEqual(self.sut.numberOfRows(inPicker: .address), 1)
-        XCTAssertEqual(self.sut.numberOfRows(inPicker: .mintedToken), 2)
+        XCTAssertEqual(self.sut.numberOfRows(inPicker: .token), 2)
         XCTAssertEqual(self.sut.numberOfColumnsInPicker(), 1)
-        XCTAssertEqual(self.sut.title(forRow: 0, picker: .mintedToken), "OmiseGO")
-        XCTAssertEqual(self.sut.title(forRow: 1, picker: .mintedToken), "Bitcoin")
+        XCTAssertEqual(self.sut.title(forRow: 0, picker: .token), "OmiseGO")
+        XCTAssertEqual(self.sut.title(forRow: 1, picker: .token), "Bitcoin")
         XCTAssertEqual(self.sut.title(forRow: 0, picker: .address), "XXX123")
     }
 
@@ -150,11 +150,11 @@ class TRequestConsumerViewModelTests: XCTestCase {
 extension TRequestConsumerViewModelTests {
 
     private func goToLoadFinished() {
-        self.mockAddressLoader.addresses = [StubGenerator.mainAddress()]
+        self.mockWalletLoader.wallets = [StubGenerator.mainWallet()]
         self.mockSettingLoader.settings = StubGenerator.settings()
         self.sut.loadData()
         self.mockSettingLoader.loadSettingSuccess()
-        self.mockAddressLoader.loadAllAddressesSuccess()
+        self.mockWalletLoader.loadAllWalletsSuccess()
     }
 
     private func goToConsumeTransactionRequestFinished() {
