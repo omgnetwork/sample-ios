@@ -55,8 +55,8 @@ enum AppState {
 struct Constant {
 
     // Config
-    static let omiseGOhostURL = "https://ewallet.demo.omisego.io/api"
-    static let omiseGOSocketURL = "wss://ewallet.demo.omisego.io/api/socket"
+    static let omiseGOhostURL = "https://ewallet.demo.omisego.io/api/client"
+    static let omiseGOSocketURL = "wss://ewallet.demo.omisego.io/api/client/socket"
     static let hostURL = "https://sample-shop.demo.omisego.io/api"
     static let apiKeyId = "1"
     static let apiKey = "f3629628db9316aa3710b2f705db59c1"
