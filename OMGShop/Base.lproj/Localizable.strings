@@ -152,6 +152,12 @@
 "transactions.label.to" = "To";
 "transactions.label.from" = "From";
 "transactions.label.my_address" = "My address:";
+"transactions.label.status.approved" = "Approved";
+"transactions.label.status.confirmed" = "Confirmed";
+"transactions.label.status.expired" = "Expired";
+"transactions.label.status.failed" = "Failed";
+"transactions.label.status.pending" = "Pending";
+"transactions.label.status.rejected" = "Rejected";
 
 // Global Errors
 "error.missing_required_fields" = "Missing required fields";
