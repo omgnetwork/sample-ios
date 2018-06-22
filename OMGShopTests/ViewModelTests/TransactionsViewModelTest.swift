@@ -76,7 +76,6 @@ class TransactionsViewModelTest: XCTestCase {
         XCTAssertEqual(cellViewModelDebit.amount, "- 10.0 ABC")
         XCTAssertEqual(cellViewModelDebit.color, Color.transactionDebitRed.uiColor())
         XCTAssertEqual(cellViewModelDebit.direction, "transactions.label.to".localized())
-        XCTAssertEqual(cellViewModelDebit.timeStamp, "01 Jan 2018 07:00:00")
         let transactionCredit = StubGenerator.stubTransactions()[1]
         let cellViewModelCredit = TransactionCellViewModel(transaction: transactionCredit,
                                                            currentUserAddress: self.address)
@@ -84,7 +83,6 @@ class TransactionsViewModelTest: XCTestCase {
         XCTAssertEqual(cellViewModelCredit.amount, "+ 10.0 ABC")
         XCTAssertEqual(cellViewModelCredit.color, Color.transactionCreditGreen.uiColor())
         XCTAssertEqual(cellViewModelCredit.direction, "transactions.label.from".localized())
-        XCTAssertEqual(cellViewModelCredit.timeStamp, "01 Jan 2018 07:00:00")
     }
 
     func testLoadingWhenRequesting() {

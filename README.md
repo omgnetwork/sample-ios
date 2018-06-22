@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/omisego/sample-ios.svg?branch=master)](https://travis-ci.org/omisego/sample-ios)
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/omise_go)
+
 # OmiseGO iOS sample
 
 The OmiseGO iOS sample app is a simple example app not a “real-world” application.
