@@ -11,7 +11,7 @@ import OmiseGO
 class ProfileViewModel: BaseViewModel {
 
     // Delegate Closures
-    var onFailGetAddress: FailureClosure?
+    var onFailGetWallet: FailureClosure?
     var onTableDataChange: SuccessClosure?
     var onLogoutSuccess: EmptyClosure?
     var onFailLogout: FailureClosure?
@@ -21,7 +21,7 @@ class ProfileViewModel: BaseViewModel {
 
     var name: String {
         guard let user = self.sessionManager.currentUser else { return "" }
-        return user.username
+        return String(user.username.split(separator: "|").first ?? "")
     }
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }
@@ -39,12 +39,12 @@ class ProfileViewModel: BaseViewModel {
     let selected = "profile.lable.selected".localized()
 
     private let sessionManager: SessionManagerProtocol
-    private let addressLoader: AddressLoaderProtocol
+    private let walletLoader: WalletLoaderProtocol
 
     init(sessionManager: SessionManagerProtocol = SessionManager.shared,
-         addressLoader: AddressLoaderProtocol = AddressLoader()) {
+         walletLoader: WalletLoaderProtocol = WalletLoader()) {
         self.sessionManager = sessionManager
-        self.addressLoader = addressLoader
+        self.walletLoader = walletLoader
         super.init()
     }
 
@@ -60,14 +60,14 @@ class ProfileViewModel: BaseViewModel {
             self.onFailReloadUser?(OMGShopError.omiseGO(error: error))
         })
         dispatchGroup.enter()
-        self.addressLoader.getMain { (result) in
+        self.walletLoader.getMain { (result) in
             self.isLoading = false
             switch result {
-            case .success(data: let address):
-                self.processAddress(address)
+            case .success(data: let wallet):
+                self.processWallet(wallet)
             case .fail(error: let error):
                 self.handleOMGError(error)
-                self.onFailGetAddress?(.omiseGO(error: error))
+                self.onFailGetWallet?(.omiseGO(error: error))
             }
             dispatchGroup.leave()
         }
@@ -77,10 +77,10 @@ class ProfileViewModel: BaseViewModel {
         }
     }
 
-    private func processAddress(_ address: Address) {
-        MintedTokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: address.balances)
-        self.address = address.address
-        self.generateTableViewModels(fromBalances: address.balances)
+    private func processWallet(_ wallet: Wallet) {
+        TokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: wallet.balances)
+        self.address = wallet.address
+        self.generateTableViewModels(fromBalances: wallet.balances)
         self.onTableDataChange?()
     }
 
@@ -109,7 +109,7 @@ class ProfileViewModel: BaseViewModel {
 
     func didSelectToken(atIndex index: Int) {
         let symbol = self.tokenCellViewModels[index].tokenSymbol
-        MintedTokenManager.shared.selectedTokenSymbol = symbol
+        TokenManager.shared.selectedTokenSymbol = symbol
         self.tokenCellViewModels.forEach({ $0.isSelected = $0.tokenSymbol == symbol })
         self.onTableDataChange?()
     }
@@ -117,7 +117,7 @@ class ProfileViewModel: BaseViewModel {
     private func generateTableViewModels(fromBalances balances: [Balance]) {
         balances.forEach({
             let viewModel = TokenCellViewModel(balance: $0,
-                                               isSelected: MintedTokenManager.shared.isSelected($0.mintedToken))
+                                               isSelected: TokenManager.shared.isSelected($0.token))
             self.tokenCellViewModels.append(viewModel)
         })
     }

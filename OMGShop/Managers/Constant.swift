@@ -43,7 +43,7 @@ enum UserDefaultKeys: String {
     case userId = "token.user_id"
     case appAuthenticationToken = "token.app_authentication_token"
     case omiseGOAuthenticationToken = "token.omisego_authentication_token"
-    case selectedTokenSymbol = "minted_token.selected"
+    case selectedTokenSymbol = "token.selected"
 }
 
 enum AppState {
@@ -55,7 +55,8 @@ enum AppState {
 struct Constant {
 
     // Config
-    static let omiseGOhostURL = "https://ewallet.demo.omisego.io/api"
+    static let omiseGOhostURL = "https://ewallet.demo.omisego.io/api/client"
+    static let omiseGOSocketURL = "wss://ewallet.demo.omisego.io/api/client/socket"
     static let hostURL = "https://sample-shop.demo.omisego.io/api"
     static let apiKeyId = "1"
     static let apiKey = "f3629628db9316aa3710b2f705db59c1"

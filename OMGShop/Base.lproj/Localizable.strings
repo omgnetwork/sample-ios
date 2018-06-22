@@ -1,10 +1,14 @@
-/* 
+/*
   Localizable.strings
   OMGShop
 
   Created by Mederic Petit on 20/10/17.
   Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 */
+
+// Global
+
+"global.next" = "Next";
 
 // Loading
 
@@ -71,19 +75,76 @@
 "profile.label.amount" = "Amount";
 "profile.lable.selected" = "Selected";
 
+// Generate Or Scan
+
+"generate_or_scan.title" = "QR Code";
+"generate_or_scan.button.title.cancel" = "Cancel";
+"generate_or_scan.button.title.generate" = "Generate QR Code";
+"generate_or_scan.button.title.scan" = "Scan QR Code";
+
+// TRequest generator
+
+"trequest_generator.title" = "Generate transaction";
+"trequest_generator.label.i_want_to" = "I want to:";
+"trequest_generator.label.send" = "Send";
+"trequest_generator.label.receive" = "Receive";
+"trequest_generator.label.token" = "Token:";
+"trequest_generator.label.amount" = "Amount (optional):";
+"trequest_generator.label.address" = "Address (optional):";
+"trequest_generator.label.correlation_id" = "Correlation id (optional):";
+"trequest_generator.label.requires_confirmation" = "Requires confirmation:";
+"trequest_generator.label.max_consumptions" = "Max consumptions (optional):";
+"trequest_generator.label.max_consumptions_per_user" = "Max consumptions per user (optional):";
+"trequest_generator.label.consumption_lifetime" = "Consumption lifetime in ms (optional):";
+"trequest_generator.label.expiration_date" = "Expiration date: (optional)";
+"trequest_generator.label.allow_amount_override" = "Allow amount override:";
+"trequest_generator.button.title.generate" = "Generate";
+"trequest_generator.error.missing_amount" = "Amount needs to be inputed or 'allow amount override' needs to be enabled";
+"transaction_consumer.message.waiting_for_confirmation" = "Waiting for confirmation";
+
+// TRequest consumer
+
+"trequest_consumer.title" = "Consume request";
+"trequest_consumer.button.title.consume" = "Consume";
+"trequest_consumer.label.token" = "Token:";
+"trequest_consumer.label.amount" = "Amount:";
+"trequest_consumer.label.address" = "Address (optional):";
+"trequest_consumer.label.correlation_id" = "Correlation id (optional):";
+"trequest_consumer.label.expiration_date" = "Expiration date: (optional)";
+"trequest_consumer.message.successfully" = "Successfully";
+"trequest_consumer.message.sent" = "sent";
+"trequest_consumer.message.received" = "received";
+"trequest_consumer.message.to" = "to";
+"trequest_consumer.message.from" = "from";
+"trequest_consumer.error.consumption_rejected" = "Your transaction has been rejected by the requester";
+"trequest_consumer.label.send_to" = "Send to:";
+"trequest_consumer.label.receive_from" = "Receive from:";
+"trequest_consumer.error.transaction_failed" = "Transaction failed to process";
+"trequest_consumer.error.transaction_expired" = "Transaction expired";
+
+// QRCode viewer
+
+"qrcode_viewer.label.waiting" = "Waiting for scan";
+"qrcode_viewer.alert.consumption_request.title" = "Consumption Request";
+"qrcode_viewer.alert.consumption_request.wants_to" = "wants to";
+"qrcode_viewer.alert.consumption_request.send_you" = "send you";
+"qrcode_viewer.alert.consumption_request.take_you" = "take you";
+"qrcode_viewer.alert.consumption_request.do_you_approve" = "do you want to approve this transaction?";
+"qrcode_viewer.alert.consumption_request.approve" = "Approve";
+"qrcode_viewer.alert.consumption_request.reject" = "Reject";
+"qrcode_viewer.message.successfully_approved" = "Transaction completed";
+"qrcode_viewer.message.successfully_rejected" = "Successfully rejected the transaction";
+"qrcode_viewer.message.successfully" = "Successfully";
+"qrcode_viewer.message.sent" = "sent";
+"qrcode_viewer.message.received" = "received";
+"qrcode_viewer.message.to" = "to";
+"qrcode_viewer.message.from" = "from";
+
+
 // QRCode generator
 
-"qr_code_generator.title" = "QR Code";
 "qr_code_generator.text_field.placeholder.amount" = "Amount";
-"qr_code_generator.button.title.generate" = "Generate";
 "qr_code_generator.button.title.generate.disable" = "Loading";
-"qr_code_generator.button.title.scan" = "Scan QR Code";
-"qr_code_generator.message.successful_sent" = "Successfuly sent";
-"qr_code_generator.message.to" = "to";
-
-// QRCode scanner
-
-"qr_code_scanner.button.title.cancel" = "Cancel";
 
 // Transactions
 

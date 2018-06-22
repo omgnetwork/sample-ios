@@ -12,21 +12,21 @@ import BigInt
 class Checkout {
 
     var selectedBalance: Balance!
-    var address: Address?
-    var total: BigUInt = 0
-    var redeemedToken: BigUInt = 0 {
+    var wallet: Wallet?
+    var total: BigInt = 0
+    var redeemedToken: BigInt = 0 {
         didSet { self.discount = redeemedToken }
     }
-    var discount: BigUInt = 0 {
+    var discount: BigInt = 0 {
         didSet { self.updateTotalPrice() }
     }
 
-    let subTotal: BigUInt
+    let subTotal: BigInt
     let product: Product
 
     init(product: Product) {
         self.product = product
-        self.subTotal = BigUInt(product.price)
+        self.subTotal = BigInt(product.price)
         self.updateTotalPrice()
     }
 

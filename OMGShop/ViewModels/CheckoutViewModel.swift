@@ -14,8 +14,8 @@ class CheckoutViewModel: BaseViewModel {
     // Delegate Closures
     var onDiscountPriceChange: ObjectClosure<String>?
     var onTotalPriceChange: ObjectClosure<String>?
-    var onSuccessGetAddress: EmptyClosure?
-    var onFailGetAddress: FailureClosure?
+    var onSuccessGetWallet: EmptyClosure?
+    var onFailGetWallet: FailureClosure?
     var onSuccessPay: ObjectClosure<String>?
     var onFailPay: FailureClosure?
     var onLoadStateChange: ObjectClosure<Bool>?
@@ -53,18 +53,18 @@ class CheckoutViewModel: BaseViewModel {
 
     let checkout: Checkout!
 
-    private let addressLoader: AddressLoaderProtocol
+    private let walletLoader: WalletLoaderProtocol
     private let productAPI: ProductAPIProtocol
 
     init(product: Product,
-         addressLoader: AddressLoaderProtocol = AddressLoader(),
+         walletLoader: WalletLoaderProtocol = WalletLoader(),
          productAPI: ProductAPIProtocol = ProductAPI()) {
         self.checkout = Checkout(product: product)
         self.productName = product.name
         self.productImageURL = URL(string: product.imageURL)
         self.productPrice = product.price.displayablePrice()
         self.subTotalPrice = product.price.displayablePrice()
-        self.addressLoader = addressLoader
+        self.walletLoader = walletLoader
         self.productAPI = productAPI
         super.init()
         self.updatePrices()
@@ -72,27 +72,27 @@ class CheckoutViewModel: BaseViewModel {
 
     func loadBalances() {
         self.isLoading = true
-        self.addressLoader.getMain { (result) in
+        self.walletLoader.getMain { (result) in
             self.isLoading = false
             switch result {
-            case .success(data: let address):
-                self.processAddress(address)
+            case .success(data: let wallet):
+                self.processWallet(wallet)
             case .fail(error: let error):
                 self.handleOMGError(error)
-                self.onFailGetAddress?(.omiseGO(error: error))
+                self.onFailGetWallet?(.omiseGO(error: error))
             }
             self.updateRedeemButtonTitle()
-            self.isRedeemButtonEnabled = MintedTokenManager.shared.selectedTokenSymbol != nil &&
-                self.checkout.address != nil
+            self.isRedeemButtonEnabled = TokenManager.shared.selectedTokenSymbol != nil &&
+                self.checkout.wallet != nil
         }
     }
 
-    private func processAddress(_ address: Address) {
-        MintedTokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: address.balances)
-        self.checkout.address = address
+    private func processWallet(_ wallet: Wallet) {
+        TokenManager.shared.setDefaultTokenSymbolIfNotPresent(withBalances: wallet.balances)
+        self.checkout.wallet = wallet
         self.checkout.selectedBalance =
-            MintedTokenManager.shared.selectedBalance(fromBalances: address.balances)
-        self.onSuccessGetAddress?()
+            TokenManager.shared.selectedBalance(fromBalances: wallet.balances)
+        self.onSuccessGetWallet?()
     }
 
     func updatePrices() {
@@ -102,10 +102,10 @@ class CheckoutViewModel: BaseViewModel {
 
     func pay() {
         self.isLoading = true
-        let buyForm = BuyForm(tokenId: self.checkout.selectedBalance!.mintedToken.id,
+        let buyForm = BuyForm(tokenId: self.checkout.selectedBalance!.token.id,
                               tokenValue:
             (self.checkout.redeemedToken *
-                BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit) / 100).description,
+                self.checkout.selectedBalance.token.subUnitToUnit / 100).description,
                               productId: self.checkout.product.uid)
         self.productAPI.buy(withForm: buyForm) { (response) in
             switch response {
@@ -121,7 +121,7 @@ class CheckoutViewModel: BaseViewModel {
     }
 
     private func updateRedeemButtonTitle() {
-        if let selectedToken = MintedTokenManager.shared.selectedTokenSymbol {
+        if let selectedToken = TokenManager.shared.selectedTokenSymbol {
             self.redeemButtonTitle = "\("checkout.button.title.redeem.redeem".localized()) \(selectedToken)"
         } else {
             self.redeemButtonTitle = "checkout.button.title.redeem.no_balance".localized()

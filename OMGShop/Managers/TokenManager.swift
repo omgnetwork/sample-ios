@@ -1,5 +1,5 @@
 //
-//  MintedTokenManager.swift
+//  TokenManager.swift
 //  OMGShop
 //
 //  Created by Mederic Petit on 15/11/17.
@@ -8,9 +8,9 @@
 
 import OmiseGO
 
-class MintedTokenManager {
+class TokenManager {
 
-    static let shared = MintedTokenManager()
+    static let shared = TokenManager()
 
     var selectedTokenSymbol: String? {
         get {
@@ -23,17 +23,17 @@ class MintedTokenManager {
 
     func setDefaultTokenSymbolIfNotPresent(withBalances balances: [Balance]) {
         if self.selectedTokenSymbol == nil ||
-            balances.filter({$0.mintedToken.symbol == self.selectedTokenSymbol}).isEmpty {
-            self.selectedTokenSymbol = balances.first?.mintedToken.symbol
+            balances.filter({$0.token.symbol == self.selectedTokenSymbol}).isEmpty {
+            self.selectedTokenSymbol = balances.first?.token.symbol
         }
     }
 
     func selectedBalance(fromBalances balances: [Balance]) -> Balance? {
-        return balances.filter({$0.mintedToken.symbol == self.selectedTokenSymbol}).first
+        return balances.filter({$0.token.symbol == self.selectedTokenSymbol}).first
     }
 
-    func isSelected(_ mintedToken: MintedToken) -> Bool {
-        return mintedToken.symbol == self.selectedTokenSymbol
+    func isSelected(_ token: Token) -> Bool {
+        return token.symbol == self.selectedTokenSymbol
     }
 
 }

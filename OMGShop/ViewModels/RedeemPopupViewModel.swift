@@ -17,7 +17,7 @@ class RedeemPopupViewModel: BaseViewModel {
 
     var title: String {
         //swiftlint:disable:next line_length
-        return "\("popup.redeem.label.title.redeem".localized()) \(self.checkout.selectedBalance.mintedToken.symbol) \("popup.redeem.label.title.coins".localized())"
+        return "\("popup.redeem.label.title.redeem".localized()) \(self.checkout.selectedBalance.token.symbol) \("popup.redeem.label.title.coins".localized())"
     }
     let cancelButtonTitle: String = "popup.redeem.button.title.cancel".localized()
     let redeemButtonTitle: String = "popup.redeem.button.title.redeem".localized()
@@ -31,7 +31,7 @@ class RedeemPopupViewModel: BaseViewModel {
         didSet { self.onDiscountUpdate?(getDiscount) }
     }
 
-    private var selectedTokenAmount: BigUInt = 0 {
+    private var selectedTokenAmount: BigInt = 0 {
         didSet { self.buildRedeemTokenString() }
     }
 
@@ -45,14 +45,14 @@ class RedeemPopupViewModel: BaseViewModel {
     }
 
     func updateRedeem(withSliderValue value: Float) {
-        self.selectedTokenAmount = BigUInt(value)
+        self.selectedTokenAmount = BigInt(value)
         self.buildGetDiscountString()
         self.buildRedeemTokenString()
     }
 
     func maximumSliderValue() -> Float {
-        let amount = (BigUInt(self.checkout.selectedBalance.amount) /
-            BigUInt(self.checkout.selectedBalance.mintedToken.subUnitToUnit)) * 100
+        let amount = (self.checkout.selectedBalance.amount /
+            self.checkout.selectedBalance.token.subUnitToUnit) * 100
         return Float(min(amount, self.checkout.subTotal))
     }
 
@@ -70,7 +70,7 @@ class RedeemPopupViewModel: BaseViewModel {
         let toRedeem = NSAttributedString(string: "popup.redeem.to_redeem".localized(), attributes: baseAttributes)
         let tokensAttributes: [NSAttributedStringKey: Any] = [.font: Font.avenirMedium.withSize(14)]
         let amount = self.checkout.selectedBalance.displayAmount(withPrecision: 2)
-        let tokens = NSAttributedString(string: " \(amount) \(self.checkout.selectedBalance.mintedToken.symbol) ",
+        let tokens = NSAttributedString(string: " \(amount) \(self.checkout.selectedBalance.token.symbol) ",
             attributes: tokensAttributes)
         let mutableAS = NSMutableAttributedString()
         mutableAS.append(youHave)
@@ -86,7 +86,7 @@ class RedeemPopupViewModel: BaseViewModel {
         let amount = self.selectedTokenAmount / 100
         let displayableAmount = formatter.string(from: NSNumber(value: Double(amount))) ?? "-"
         self.redeemToken =
-        "\("popup.redeem.redeem".localized()) \(displayableAmount) \(self.checkout.selectedBalance.mintedToken.symbol)"
+        "\("popup.redeem.redeem".localized()) \(displayableAmount) \(self.checkout.selectedBalance.token.symbol)"
     }
 
     private func buildGetDiscountString() {

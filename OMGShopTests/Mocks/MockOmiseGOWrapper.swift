@@ -7,30 +7,45 @@
 //
 
 @testable import OMGShop
-import OmiseGO
+@testable import OmiseGO
 
-class MockAddressLoader {
+class MockWalletLoader {
 
-    var isLoadAddressCalled = false
+    var isLoadWalletCalled = false
 
-    var address: Address?
-    var loadCompletionClosure: Address.RetrieveRequestCallback!
+    var wallet: Wallet?
+    var wallets: [Wallet] = []
+    var loadCompletionClosure: Wallet.RetrieveRequestCallback!
+    var loadListCompletionClosure: Wallet.ListRequestCallback!
 
-    func loadMainAddressSuccess() {
-        loadCompletionClosure(OmiseGO.Response.success(data: self.address!))
+    func loadMainWalletSuccess() {
+        loadCompletionClosure(OmiseGO.Response.success(data: self.wallet!))
     }
 
-    func loadMainAddressFailed(withError error: OMGError) {
+    func loadMainWalletFailed(withError error: OMGError) {
         loadCompletionClosure(OmiseGO.Response.fail(error: error))
+    }
+
+    func loadAllWalletsSuccess() {
+        loadListCompletionClosure(OmiseGO.Response.success(data: self.wallets))
+    }
+
+    func loadAllWalletsFailed(withError error: OMGError) {
+        loadListCompletionClosure(OmiseGO.Response.fail(error: error))
     }
 
 }
 
-extension MockAddressLoader: AddressLoaderProtocol {
+extension MockWalletLoader: WalletLoaderProtocol {
 
-    func getMain(withCallback callback: @escaping Address.RetrieveRequestCallback) {
-        self.isLoadAddressCalled = true
+    func getMain(withCallback callback: @escaping Wallet.RetrieveRequestCallback) {
+        self.isLoadWalletCalled = true
         self.loadCompletionClosure = callback
+    }
+
+    func getAll(withCallback callback: @escaping Wallet.ListRequestCallback) {
+        self.isLoadWalletCalled = true
+        self.loadListCompletionClosure = callback
     }
 
 }
@@ -111,15 +126,6 @@ extension MockTransactionConsumer: TransactionConsumeProtocol {
                  callback: @escaping TransactionConsumption.RetrieveRequestCallback) {
         self.isConsumeCalled = true
         self.consumeCompletionClosure = callback
-    }
-
-}
-
-extension JSONPaginatedListResponse {
-
-    init(data: [Item], pagination: Pagination) {
-        self.data = data
-        self.pagination = pagination
     }
 
 }

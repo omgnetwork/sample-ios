@@ -14,59 +14,59 @@ import BigInt
 class CheckoutViewModelTests: XCTestCase {
 
     var mockProductAPI: MockProductAPI!
-    var mockAddressLoader: MockAddressLoader!
+    var mockWalletLoader: MockWalletLoader!
     var sut: CheckoutViewModel!
 
     override func setUp() {
         super.setUp()
-        MintedTokenManager.shared.selectedTokenSymbol = nil
+        TokenManager.shared.selectedTokenSymbol = nil
         self.mockProductAPI = MockProductAPI()
-        self.mockAddressLoader = MockAddressLoader()
+        self.mockWalletLoader = MockWalletLoader()
         let product = Product(uid: "1", name: "test", description: "test", imageURL: "", price: 20000)
         self.sut = CheckoutViewModel(product: product,
-                                     addressLoader: self.mockAddressLoader,
+                                     walletLoader: self.mockWalletLoader,
                                      productAPI: self.mockProductAPI)
     }
 
     override func tearDown() {
         self.mockProductAPI = nil
-        self.mockAddressLoader = nil
+        self.mockWalletLoader = nil
         self.sut = nil
-        MintedTokenManager.shared.selectedTokenSymbol = nil
+        TokenManager.shared.selectedTokenSymbol = nil
         super.tearDown()
     }
 
-    func testLoadAddressCalled() {
+    func testLoadWalletCalled() {
         self.sut.loadBalances()
-        XCTAssert(self.mockAddressLoader.isLoadAddressCalled)
+        XCTAssert(self.mockWalletLoader.isLoadWalletCalled)
     }
 
-    func testFailLoadAddress() {
+    func testFailLoadWallet() {
         var didFail = false
-        self.sut.onFailGetAddress = {
-            XCTAssertEqual($0.message, "unexpected error: Failed to load address")
+        self.sut.onFailGetWallet = {
+            XCTAssertEqual($0.message, "unexpected error: Failed to load wallet")
             didFail = true
         }
-        self.goToLoadAddressFailed()
+        self.goToLoadWalletFailed()
         XCTAssert(didFail)
     }
 
-    func testLoadAddress() {
-        var successGetAddressCalled = false
-        self.sut.onSuccessGetAddress = { successGetAddressCalled = true }
-        self.goToLoadAddressFinished()
-        let firstBalance = self.mockAddressLoader.address!.balances.first!
-        XCTAssertEqual(MintedTokenManager.shared.selectedTokenSymbol, firstBalance.mintedToken.symbol)
-        XCTAssertEqual(self.sut.checkout.address, self.mockAddressLoader.address!)
+    func testLoadWallet() {
+        var successGetWalletCalled = false
+        self.sut.onSuccessGetWallet = { successGetWalletCalled = true }
+        self.goToLoadWalletFinished()
+        let firstBalance = self.mockWalletLoader.wallet!.balances.first!
+        XCTAssertEqual(TokenManager.shared.selectedTokenSymbol, firstBalance.token.symbol)
+        XCTAssertEqual(self.sut.checkout.wallet, self.mockWalletLoader.wallet!)
         XCTAssertEqual(self.sut.checkout.selectedBalance, firstBalance)
-        XCTAssert(successGetAddressCalled)
+        XCTAssert(successGetWalletCalled)
     }
 
     func testRedeemButtonStateForSuccess() {
         XCTAssertFalse(self.sut.isRedeemButtonEnabled)
         XCTAssertEqual(self.sut.redeemButtonTitle, "checkout.button.title.redeem.loading".localized())
-        self.goToLoadAddressFinished()
-        let selectedToken = MintedTokenManager.shared.selectedTokenSymbol!
+        self.goToLoadWalletFinished()
+        let selectedToken = TokenManager.shared.selectedTokenSymbol!
         XCTAssertTrue(self.sut.isRedeemButtonEnabled)
         XCTAssertEqual(self.sut.redeemButtonTitle,
                        "\("checkout.button.title.redeem.redeem".localized()) \(selectedToken)")
@@ -75,23 +75,23 @@ class CheckoutViewModelTests: XCTestCase {
     func testRedeemButtonStateForFailure() {
         XCTAssertFalse(self.sut.isRedeemButtonEnabled)
         XCTAssertEqual(self.sut.redeemButtonTitle, "checkout.button.title.redeem.loading".localized())
-        self.goToLoadAddressFailed()
+        self.goToLoadWalletFailed()
         XCTAssertFalse(self.sut.isRedeemButtonEnabled)
         XCTAssertEqual(self.sut.redeemButtonTitle, "checkout.button.title.redeem.no_balance".localized())
     }
 
-    func testLoadingWhenLoadingAddress() {
+    func testLoadingWhenLoadingWallet() {
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
         self.sut.loadBalances()
         XCTAssertTrue(loadingStatus)
-        self.mockAddressLoader.address = StubGenerator.mainAddress()
-        self.mockAddressLoader.loadMainAddressSuccess()
+        self.mockWalletLoader.wallet = StubGenerator.mainWallet()
+        self.mockWalletLoader.loadMainWalletSuccess()
         XCTAssertFalse(loadingStatus)
     }
 
     func testBuyCalled() {
-        self.goToLoadAddressFinished()
+        self.goToLoadWalletFinished()
         self.sut.pay()
         XCTAssert(self.mockProductAPI.isPayCalled)
     }
@@ -102,7 +102,7 @@ class CheckoutViewModelTests: XCTestCase {
             XCTAssertEqual($0.message, "Error")
             didFail = true
         }
-        self.goToLoadAddressFinished()
+        self.goToLoadWalletFinished()
         self.sut.pay()
         self.mockProductAPI.payFailed(withError: .init(code: .other("Error"), description: "Error"))
         XCTAssert(didFail)
@@ -118,7 +118,7 @@ class CheckoutViewModelTests: XCTestCase {
     func testLoadingWhenPaying() {
         var loadingStatus = false
         self.sut.onLoadStateChange = { loadingStatus = $0 }
-        self.goToLoadAddressFinished()
+        self.goToLoadWalletFinished()
         self.sut.pay()
         XCTAssertTrue(loadingStatus)
         self.mockProductAPI.pay = StubGenerator.pay()
@@ -129,11 +129,11 @@ class CheckoutViewModelTests: XCTestCase {
     func testPricesCalculation() {
         var discountedPrice: String?
         var totalPrice: String?
-        self.goToLoadAddressFinished()
+        self.goToLoadWalletFinished()
         self.sut.onDiscountPriceChange = { discountedPrice = $0 }
         self.sut.onTotalPriceChange = { totalPrice = $0 }
         let discount: Double = 10000
-        self.sut.checkout.discount = BigUInt(discount)
+        self.sut.checkout.discount = BigInt(discount)
         self.sut.updatePrices()
         XCTAssert(discountedPrice == discount.displayablePrice())
         XCTAssert(self.sut.subTotalPrice == 20000.displayablePrice())
@@ -144,20 +144,20 @@ class CheckoutViewModelTests: XCTestCase {
 
 extension CheckoutViewModelTests {
 
-    private func goToLoadAddressFinished() {
+    private func goToLoadWalletFinished() {
         self.sut.loadBalances()
-        self.mockAddressLoader.address = StubGenerator.mainAddress()
-        self.mockAddressLoader.loadMainAddressSuccess()
+        self.mockWalletLoader.wallet = StubGenerator.mainWallet()
+        self.mockWalletLoader.loadMainWalletSuccess()
     }
 
-    private func goToLoadAddressFailed() {
+    private func goToLoadWalletFailed() {
         self.sut.loadBalances()
-        let error: OMGError = .unexpected(message: "Failed to load address")
-        self.mockAddressLoader.loadMainAddressFailed(withError: error)
+        let error: OMGError = .unexpected(message: "Failed to load wallet")
+        self.mockWalletLoader.loadMainWalletFailed(withError: error)
     }
 
     private func goToPayFinished() {
-        self.goToLoadAddressFinished()
+        self.goToLoadWalletFinished()
         self.sut.pay()
         self.mockProductAPI.pay = StubGenerator.pay()
         self.mockProductAPI.paySuccess()

@@ -41,7 +41,7 @@ class ProfileViewController: BaseViewController {
     override func configureViewModel() {
         super.configureViewModel()
         self.viewModel.onTableDataChange = { self.tableView.reloadData() }
-        self.viewModel.onFailGetAddress = { self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onFailGetWallet = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading() }
         self.viewModel.onLogoutSuccess = {
             self.dismiss(animated: false, completion: nil)

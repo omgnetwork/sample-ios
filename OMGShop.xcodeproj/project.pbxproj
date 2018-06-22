@@ -30,13 +30,13 @@
 		031BB1721F9995360095468F /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1711F9995360095468F /* Extension.swift */; };
 		031BB1741F9998EB0095468F /* OMGShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1731F9998EB0095468F /* OMGShopManager.swift */; };
 		031BB1761F999FED0095468F /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031BB1751F999FED0095468F /* CustomView.swift */; };
+		0324806C207C6DD500669DAA /* TRequestConsumerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324806B207C6DD500669DAA /* TRequestConsumerViewModelTests.swift */; };
 		032C2E931FA0326F001AE452 /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 032C2E911FA0326F001AE452 /* Popup.storyboard */; };
 		032C2E951FA0388A001AE452 /* RedeemPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */; };
 		032C2E971FA0389A001AE452 /* RedeemPopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E961FA0389A001AE452 /* RedeemPopupViewModel.swift */; };
 		032C2E991FA03980001AE452 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032C2E981FA03980001AE452 /* Constant.swift */; };
 		036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */; };
 		036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */; };
-		037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */; };
 		0377AD62204E5C8C00350407 /* TransactionsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */; };
 		0377AD64204E67F700350407 /* PaginatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD63204E67F700350407 /* PaginatorTest.swift */; };
 		0377AD66204E68D800350407 /* MockPaginator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0377AD65204E68D800350407 /* MockPaginator.swift */; };
@@ -53,6 +53,7 @@
 		039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */; };
 		039F69D91F9EF9A000AE5355 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69D81F9EF9A000AE5355 /* Product.swift */; };
 		039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */; };
+		03A20C2920C77DB000ED0DFF /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A20C2820C77DB000ED0DFF /* TokenManager.swift */; };
 		03B618061FA9A10400BC0B0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B618051FA9A10400BC0B0E /* ProfileViewController.swift */; };
 		03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */; };
 		03BD53E21F99B77F00A26499 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03BD53E41F99B77F00A26499 /* Localizable.strings */; };
@@ -67,8 +68,14 @@
 		03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601411FA6E4510033A0C7 /* LoadingViewController.swift */; };
 		03C601441FA6E46F0033A0C7 /* LoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */; };
 		03CC0C9F1FA05B0900DB377C /* Checkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CC0C9E1FA05B0900DB377C /* Checkout.swift */; };
-		03CEE9BF2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEE9BE2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift */; };
+		03CEE9BF2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CEE9BE2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift */; };
+		03D21870207341C2008FA1AE /* GenerateOrScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D2186F207341C2008FA1AE /* GenerateOrScanViewController.swift */; };
+		03D218722073618A008FA1AE /* TRequestGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */; };
+		03D21874207361A5008FA1AE /* GenerateOrScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */; };
+		03D21876207361B3008FA1AE /* TRequestGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */; };
 		03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DEC75B1FA81554009068AD /* ProductAPI.swift */; };
+		03F437F920760C6E00309EEA /* TRequestConsumerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F437F820760C6E00309EEA /* TRequestConsumerViewController.swift */; };
+		03F437FB20760C7C00309EEA /* TRequestConsumerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */; };
 		03F84C6F1FC3C62700F21C7B /* MockSessionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C6E1FC3C62700F21C7B /* MockSessionAPI.swift */; };
 		03F84C731FC3CA4400F21C7B /* StubGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F84C721FC3CA4400F21C7B /* StubGenerator.swift */; };
 		03F84C781FC3D46200F21C7B /* Fixtures in Resources */ = {isa = PBXBuildFile; fileRef = 03F84C771FC3D46200F21C7B /* Fixtures */; };
@@ -89,9 +96,7 @@
 		03F9982E1FA7386A00565960 /* BuyForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9982D1FA7386A00565960 /* BuyForm.swift */; };
 		03FE64572032E75700345281 /* QRCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FE64532032E75700345281 /* QRCode.storyboard */; };
 		03FE64582032E75700345281 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03FE64552032E75700345281 /* Profile.storyboard */; };
-		03FE645A2032EE1C00345281 /* QRCodeGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */; };
 		03FE645C2032EE2A00345281 /* QRCodeViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */; };
-		03FE645E2032F47E00345281 /* QRCodeGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */; };
 		0DB46E866BB859B6A05B52FA /* Pods_OMGShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002FD0CE2D3E2259C1BF5969 /* Pods_OMGShop.framework */; };
 		4C9F7647E9DBA5A17E37CD14 /* Pods_OMGShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CCE631F9619BEB64165E1A /* Pods_OMGShopTests.framework */; };
 /* End PBXBuildFile section */
@@ -148,13 +153,13 @@
 		031BB1711F9995360095468F /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		031BB1731F9998EB0095468F /* OMGShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OMGShopManager.swift; sourceTree = "<group>"; };
 		031BB1751F999FED0095468F /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		0324806B207C6DD500669DAA /* TRequestConsumerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestConsumerViewModelTests.swift; sourceTree = "<group>"; };
 		032C2E921FA0326F001AE452 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Popup.storyboard; sourceTree = "<group>"; };
 		032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPopupViewController.swift; sourceTree = "<group>"; };
 		032C2E961FA0389A001AE452 /* RedeemPopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemPopupViewModel.swift; sourceTree = "<group>"; };
 		032C2E981FA03980001AE452 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		036DFB941F9F2F6B00F3253B /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		036DFB961F9F2F7700F3253B /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
-		037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MintedTokenManager.swift; sourceTree = "<group>"; };
 		0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelTest.swift; sourceTree = "<group>"; };
 		0377AD63204E67F700350407 /* PaginatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatorTest.swift; sourceTree = "<group>"; };
 		0377AD65204E68D800350407 /* MockPaginator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPaginator.swift; sourceTree = "<group>"; };
@@ -171,6 +176,7 @@
 		039F69D51F9EF84F00AE5355 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		039F69D81F9EF9A000AE5355 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		039F69DA1F9EFEB300AE5355 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
+		03A20C2820C77DB000ED0DFF /* TokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		03B618051FA9A10400BC0B0E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		03BD53E71F99B8FF00A26499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -185,8 +191,14 @@
 		03C601411FA6E4510033A0C7 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewModel.swift; sourceTree = "<group>"; };
 		03CC0C9E1FA05B0900DB377C /* Checkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkout.swift; sourceTree = "<group>"; };
-		03CEE9BE2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorViewModelTests.swift; sourceTree = "<group>"; };
+		03CEE9BE2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestGeneratorViewModelTests.swift; sourceTree = "<group>"; };
+		03D2186F207341C2008FA1AE /* GenerateOrScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateOrScanViewController.swift; sourceTree = "<group>"; };
+		03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestGeneratorViewController.swift; sourceTree = "<group>"; };
+		03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateOrScanViewModel.swift; sourceTree = "<group>"; };
+		03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestGeneratorViewModel.swift; sourceTree = "<group>"; };
 		03DEC75B1FA81554009068AD /* ProductAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPI.swift; sourceTree = "<group>"; };
+		03F437F820760C6E00309EEA /* TRequestConsumerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestConsumerViewController.swift; sourceTree = "<group>"; };
+		03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestConsumerViewModel.swift; sourceTree = "<group>"; };
 		03F84C6E1FC3C62700F21C7B /* MockSessionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSessionAPI.swift; sourceTree = "<group>"; };
 		03F84C721FC3CA4400F21C7B /* StubGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubGenerator.swift; sourceTree = "<group>"; };
 		03F84C771FC3D46200F21C7B /* Fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fixtures; sourceTree = "<group>"; };
@@ -207,9 +219,7 @@
 		03F9982D1FA7386A00565960 /* BuyForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyForm.swift; sourceTree = "<group>"; };
 		03FE64542032E75700345281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/QRCode.storyboard; sourceTree = "<group>"; };
 		03FE64562032E75700345281 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
-		03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorViewController.swift; sourceTree = "<group>"; };
 		03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewerViewController.swift; sourceTree = "<group>"; };
-		03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeGeneratorViewModel.swift; sourceTree = "<group>"; };
 		172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShop.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop.release.xcconfig"; sourceTree = "<group>"; };
 		29E669345BD1D2973F29F1A1 /* Pods-OMGShopTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A37D1380E180BBB8DCA459E0 /* Pods-OMGShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OMGShopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -308,8 +318,8 @@
 				031BB1731F9998EB0095468F /* OMGShopManager.swift */,
 				032C2E981FA03980001AE452 /* Constant.swift */,
 				03C601381FA6D6F10033A0C7 /* SessionManager.swift */,
-				037032BF1FBC43D900DBCDDD /* MintedTokenManager.swift */,
 				03F84C7F1FC3FC5500F21C7B /* OmiseGOWrapper.swift */,
+				03A20C2820C77DB000ED0DFF /* TokenManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -349,9 +359,11 @@
 				032C2E941FA0388A001AE452 /* RedeemPopupViewController.swift */,
 				03C601411FA6E4510033A0C7 /* LoadingViewController.swift */,
 				03B618051FA9A10400BC0B0E /* ProfileViewController.swift */,
-				03FE64592032EE1C00345281 /* QRCodeGeneratorViewController.swift */,
-				03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */,
 				030AB354204CE9D100CBB68B /* TransactionsViewController.swift */,
+				03D2186F207341C2008FA1AE /* GenerateOrScanViewController.swift */,
+				03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */,
+				03F437F820760C6E00309EEA /* TRequestConsumerViewController.swift */,
+				03FE645B2032EE2A00345281 /* QRCodeViewerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -369,10 +381,12 @@
 				03C601431FA6E46F0033A0C7 /* LoadingViewModel.swift */,
 				03B618071FA9A17B00BC0B0E /* ProfileViewModel.swift */,
 				03C2C0821FBAE67A00B794AC /* TokenCellViewModel.swift */,
-				03FE645D2032F47E00345281 /* QRCodeGeneratorViewModel.swift */,
-				030F57332033E42D00F54296 /* QRCodeViewerViewModel.swift */,
 				030AB356204CE9E000CBB68B /* TransactionsViewModel.swift */,
 				030AB35C204CEB3B00CBB68B /* TransactionCellViewModel.swift */,
+				03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */,
+				03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */,
+				03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */,
+				030F57332033E42D00F54296 /* QRCodeViewerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -484,7 +498,8 @@
 				03F84C8C1FC4216C00F21C7B /* LoadingViewModelTests.swift */,
 				03F84C8D1FC4216C00F21C7B /* CheckoutViewModelTests.swift */,
 				03F84C8E1FC4216C00F21C7B /* LoginViewModelTests.swift */,
-				03CEE9BE2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift */,
+				03CEE9BE2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift */,
+				0324806B207C6DD500669DAA /* TRequestConsumerViewModelTests.swift */,
 				0377AD61204E5C8C00350407 /* TransactionsViewModelTest.swift */,
 			);
 			path = ViewModelTests;
@@ -526,7 +541,6 @@
 				031BB1191F9886790095468F /* Resources */,
 				031BB1601F9890170095468F /* ShellScript */,
 				3C3818C7CB1033C55BB1031D /* [CP] Embed Pods Frameworks */,
-				52EC21EA1FD9FC7F758C5DEF /* [CP] Copy Pods Resources */,
 				03CC0CA21FA06F1200DB377C /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -546,8 +560,6 @@
 				031BB12B1F9886790095468F /* Sources */,
 				031BB12C1F9886790095468F /* Frameworks */,
 				031BB12D1F9886790095468F /* Resources */,
-				41D2AD0DCB2F2CF5A7BF40DF /* [CP] Embed Pods Frameworks */,
-				DF187C5B083CD55DF25BBCB6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -699,51 +711,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		41D2AD0DCB2F2CF5A7BF40DF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		52EC21EA1FD9FC7F758C5DEF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShop/Pods-OMGShop-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF187C5B083CD55DF25BBCB6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OMGShopTests/Pods-OMGShopTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E95EFD1C40035230DE0298A5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -776,6 +743,7 @@
 				037AFA741FA70B5D006A0C01 /* APIError.swift in Sources */,
 				031BB1651F9890770095468F /* LoginViewController.swift in Sources */,
 				030AB362204D050000CBB68B /* TransactionsPaginator.swift in Sources */,
+				03F437FB20760C7C00309EEA /* TRequestConsumerViewModel.swift in Sources */,
 				031BB16F1F99948A0095468F /* Theme.swift in Sources */,
 				03FE645C2032EE2A00345281 /* QRCodeViewerViewController.swift in Sources */,
 				037AFA721FA70B3C006A0C01 /* Response.swift in Sources */,
@@ -789,6 +757,7 @@
 				03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */,
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
 				039F69D01F9EF7BB00AE5355 /* ProductListViewController.swift in Sources */,
+				03A20C2920C77DB000ED0DFF /* TokenManager.swift in Sources */,
 				03B618061FA9A10400BC0B0E /* ProfileViewController.swift in Sources */,
 				031BB1761F999FED0095468F /* CustomView.swift in Sources */,
 				031BB16B1F98AF0C0095468F /* RegisterViewController.swift in Sources */,
@@ -800,23 +769,25 @@
 				039F69D61F9EF84F00AE5355 /* ProductTableViewCell.swift in Sources */,
 				03C601421FA6E4510033A0C7 /* LoadingViewController.swift in Sources */,
 				037AFA761FA7122B006A0C01 /* Router.swift in Sources */,
-				03FE645E2032F47E00345281 /* QRCodeGeneratorViewModel.swift in Sources */,
 				036DFB951F9F2F6B00F3253B /* CheckoutViewController.swift in Sources */,
 				03B618081FA9A17B00BC0B0E /* ProfileViewModel.swift in Sources */,
 				03F998261FA7162E00565960 /* Protocol.swift in Sources */,
+				03F437F920760C6E00309EEA /* TRequestConsumerViewController.swift in Sources */,
 				030AB357204CE9E000CBB68B /* TransactionsViewModel.swift in Sources */,
 				036DFB971F9F2F7700F3253B /* CheckoutViewModel.swift in Sources */,
 				031BB1671F9890A20095468F /* LoginViewModel.swift in Sources */,
 				037AFA701FA70A12006A0C01 /* JSONResponse.swift in Sources */,
+				03D21876207361B3008FA1AE /* TRequestGeneratorViewModel.swift in Sources */,
+				03D218722073618A008FA1AE /* TRequestGeneratorViewController.swift in Sources */,
 				03F84C801FC3FC5500F21C7B /* OmiseGOWrapper.swift in Sources */,
 				030F57342033E42D00F54296 /* QRCodeViewerViewModel.swift in Sources */,
-				03FE645A2032EE1C00345281 /* QRCodeGeneratorViewController.swift in Sources */,
-				037032C01FBC43D900DBCDDD /* MintedTokenManager.swift in Sources */,
 				03C2C0801FBAE54700B794AC /* TokenTableViewCell.swift in Sources */,
 				032C2E991FA03980001AE452 /* Constant.swift in Sources */,
 				039F69DB1F9EFEB300AE5355 /* ProductCellViewModel.swift in Sources */,
 				03F9982C1FA7294900565960 /* SessionToken.swift in Sources */,
 				03CC0C9F1FA05B0900DB377C /* Checkout.swift in Sources */,
+				03D21870207341C2008FA1AE /* GenerateOrScanViewController.swift in Sources */,
+				03D21874207361A5008FA1AE /* GenerateOrScanViewModel.swift in Sources */,
 				031BB15D1F988E930095468F /* BaseViewModel.swift in Sources */,
 				03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */,
 				03C601441FA6E46F0033A0C7 /* LoadingViewModel.swift in Sources */,
@@ -830,12 +801,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03CEE9BF2036926C00DC56DF /* QRCodeGeneratorViewModelTests.swift in Sources */,
+				03CEE9BF2036926C00DC56DF /* TRequestGeneratorViewModelTests.swift in Sources */,
 				03F84C931FC4216C00F21C7B /* LoadingViewModelTests.swift in Sources */,
 				03F84C951FC4216C00F21C7B /* LoginViewModelTests.swift in Sources */,
 				03F84C921FC4216C00F21C7B /* ProductListViewModelTests.swift in Sources */,
 				03F84C821FC3FD3E00F21C7B /* MockOmiseGOWrapper.swift in Sources */,
 				0377AD62204E5C8C00350407 /* TransactionsViewModelTest.swift in Sources */,
+				0324806C207C6DD500669DAA /* TRequestConsumerViewModelTests.swift in Sources */,
 				03F84C7C1FC3EA4200F21C7B /* MockProductAPI.swift in Sources */,
 				03F84C941FC4216C00F21C7B /* CheckoutViewModelTests.swift in Sources */,
 				03F84C911FC4216C00F21C7B /* RegisterViewModelTests.swift in Sources */,
@@ -1059,6 +1031,7 @@
 			baseConfigurationReference = BD99480BA39EA23C6F7625FC /* Pods-OMGShop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1070,6 +1043,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.omisego.omg-shop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1080,6 +1054,7 @@
 			baseConfigurationReference = 172BC87327E95C968E7BAE4D /* Pods-OMGShop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1091,6 +1066,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.omisego.omg-shop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

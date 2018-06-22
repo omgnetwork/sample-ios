@@ -26,7 +26,6 @@ class TransactionPaginator: Paginator<Transaction> {
         let paginationParams = PaginationParams<Transaction>(page: self.page,
                                                              perPage: self.perPage,
                                                              searchTerm: nil,
-                                                             searchTerms: nil,
                                                              sortBy: .createdAt,
                                                              sortDirection: .descending)
         let params = TransactionListParams(paginationParams: paginationParams, address: self.address)

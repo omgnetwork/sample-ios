@@ -13,10 +13,11 @@ func dispatchMain(_ block: @escaping EmptyClosure) {
     DispatchQueue.main.async { block() }
 }
 
-extension MintedToken {
+extension Token {
 
-    func display(forAmount amount: BigUInt) -> String {
-        return Double(amount).displayablePrice(withSubunitToUnitCount: self.subUnitToUnit)
+    func formattedAmount(forAmount amountString: String?) -> BigInt? {
+        guard let amountString = amountString else { return nil }
+        return OMGNumberFormatter().number(from: amountString, subunitToUnit: self.subUnitToUnit)
     }
 
 }
@@ -150,4 +151,46 @@ extension UIView {
         self.layer.shadowRadius = radius
         self.layer.masksToBounds = false
     }
+}
+
+extension UITextField {
+
+    func addNextInputView(withOnNextSelector selector: Selector, target: Any) {
+        let accessoryView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 44))
+        accessoryView.backgroundColor = .white
+        let nextButton = UIButton(type: .custom)
+        nextButton.setTitle("global.next".localized(), for: .normal)
+        nextButton.titleLabel?.font = Font.avenirMedium.withSize(17)
+        nextButton.setTitleColor(.black, for: .normal)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.addTarget(target,
+                             action: selector,
+                             for: .touchUpInside)
+        accessoryView.addSubview(nextButton)
+        [.top, .trailing, .bottom].forEach {
+            accessoryView.addConstraint(NSLayoutConstraint(item: accessoryView,
+                                                           attribute: $0,
+                                                           relatedBy: .equal,
+                                                           toItem: nextButton,
+                                                           attribute: $0,
+                                                           multiplier: 1,
+                                                           constant: 0))
+        }
+        nextButton.addConstraints([NSLayoutConstraint(item: nextButton,
+                                                      attribute: .width,
+                                                      relatedBy: .equal,
+                                                      toItem: nil,
+                                                      attribute: .notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 100),
+                                   NSLayoutConstraint(item: nextButton,
+                                                      attribute: .height,
+                                                      relatedBy: .equal,
+                                                      toItem: nil,
+                                                      attribute: .notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 44)])
+        self.inputAccessoryView = accessoryView
+    }
+
 }
