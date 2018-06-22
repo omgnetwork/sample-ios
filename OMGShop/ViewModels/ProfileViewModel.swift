@@ -21,7 +21,7 @@ class ProfileViewModel: BaseViewModel {
 
     var name: String {
         guard let user = self.sessionManager.currentUser else { return "" }
-        return user.username
+        return String(user.username.split(separator: "|").first ?? "")
     }
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }

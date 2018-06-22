@@ -31,7 +31,7 @@ class RedeemPopupViewModel: BaseViewModel {
         didSet { self.onDiscountUpdate?(getDiscount) }
     }
 
-    private var selectedTokenAmount: BigUInt = 0 {
+    private var selectedTokenAmount: BigInt = 0 {
         didSet { self.buildRedeemTokenString() }
     }
 
@@ -45,14 +45,14 @@ class RedeemPopupViewModel: BaseViewModel {
     }
 
     func updateRedeem(withSliderValue value: Float) {
-        self.selectedTokenAmount = BigUInt(value)
+        self.selectedTokenAmount = BigInt(value)
         self.buildGetDiscountString()
         self.buildRedeemTokenString()
     }
 
     func maximumSliderValue() -> Float {
-        let amount = (BigUInt(self.checkout.selectedBalance.amount) /
-            BigUInt(self.checkout.selectedBalance.token.subUnitToUnit)) * 100
+        let amount = (self.checkout.selectedBalance.amount /
+            self.checkout.selectedBalance.token.subUnitToUnit) * 100
         return Float(min(amount, self.checkout.subTotal))
     }
 

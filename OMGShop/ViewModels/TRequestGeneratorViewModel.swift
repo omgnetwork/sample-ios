@@ -40,6 +40,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     var onSuccessGetWallets: SuccessClosure?
     var onFailedLoadWallet: FailureClosure?
     var onGenerateButtonStateChange: ObjectClosure<Bool>?
+    var onTokenChange: ObjectClosure<String>?
 
     private var type: TransactionRequestType = .receive
     private var token: Token? {
@@ -60,7 +61,11 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     var sendReceiveSwitchState: Bool
-    var tokenDisplay: String = ""
+    var tokenDisplay: String = "" {
+        didSet {
+            self.onTokenChange?(tokenDisplay)
+        }
+    }
     var amountDisplay: String = ""
     var addressDisplay: String = ""
     var correlationIdDisplay: String = ""

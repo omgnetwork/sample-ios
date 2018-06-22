@@ -67,12 +67,13 @@ class SessionManager: SessionManagerProtocol {
     private func initializeOmiseGOSDK() {
         guard let token = self.omiseGOAuthenticationToken else { return }
         let httpConfig = ClientConfiguration(baseURL: Constant.omiseGOhostURL,
-                                         apiKey: Constant.omiseGOAPIKey,
-                                         authenticationToken: token)
+                                             apiKey: Constant.omiseGOAPIKey,
+                                             authenticationToken: token,
+                                             debugLog: true)
         self.omiseGOClient = HTTPClient(config: httpConfig)
         let socketConfig = ClientConfiguration(baseURL: Constant.omiseGOSocketURL,
-                                             apiKey: Constant.omiseGOAPIKey,
-                                             authenticationToken: token)
+                                               apiKey: Constant.omiseGOAPIKey,
+                                               authenticationToken: token)
         self.omiseGOSocketClient = SocketClient(config: socketConfig, delegate: self)
     }
 

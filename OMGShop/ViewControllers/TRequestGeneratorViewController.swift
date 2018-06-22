@@ -114,6 +114,7 @@ class TRequestGeneratorViewController: BaseTableViewController {
             self.generateButton.isEnabled = $0
             self.generateButton.alpha = $0 ? 1 : 0.5
         }
+        self.viewModel.onTokenChange = { self.tokenTextField.text = $0 }
         self.viewModel.loadData()
     }
 

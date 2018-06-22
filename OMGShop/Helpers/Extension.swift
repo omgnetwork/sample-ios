@@ -15,10 +15,9 @@ func dispatchMain(_ block: @escaping EmptyClosure) {
 
 extension Token {
 
-    func formattedAmount(forAmount amountString: String?) -> Double? {
-        guard amountString != nil, let amount = Double(amountString!) else { return nil }
-        let formattedAmount = self.subUnitToUnit * amount
-        return Double(formattedAmount)
+    func formattedAmount(forAmount amountString: String?) -> BigInt? {
+        guard let amountString = amountString else { return nil }
+        return OMGNumberFormatter().number(from: amountString, subunitToUnit: self.subUnitToUnit)
     }
 
 }

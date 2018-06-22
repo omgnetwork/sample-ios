@@ -36,7 +36,7 @@ class TransactionCellViewModel: BaseViewModel {
             source = transaction.to
             sign = "+"
         }
-        let am = BigUInt(source.amount).quotientAndRemainder(dividingBy: BigUInt(source.token.subUnitToUnit))
+        let am = source.amount.quotientAndRemainder(dividingBy: source.token.subUnitToUnit)
         let displayableAmount = "\(am.quotient).\(am.remainder)"
         amount = "\(sign!) \(displayableAmount) \(source.token.symbol)"
         timeStamp = transaction.createdAt.toString()

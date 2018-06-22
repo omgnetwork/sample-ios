@@ -93,8 +93,9 @@ class TRequestConsumerViewModel: BaseViewModel {
         self.token = transactionRequest.token
         self.tokenDisplay = transactionRequest.token.symbol
         if let amount = transactionRequest.amount {
-            let am = BigUInt(amount).quotientAndRemainder(dividingBy: BigUInt(transactionRequest.token.subUnitToUnit))
-            self.amountDisplay = "\(am.quotient).\(am.remainder)"
+            let formatter = OMGNumberFormatter(precision: 5)
+            self.amountDisplay = formatter.string(from: amount,
+                                                  subunitToUnit: transactionRequest.token.subUnitToUnit)
         } else {
             self.amountDisplay = ""
         }
@@ -155,7 +156,9 @@ class TRequestConsumerViewModel: BaseViewModel {
     }
 
     private func successConsumeMessage(withTransacionConsumption transactionConsumption: TransactionConsumption) -> String {
-        let formattedAmount = transactionConsumption.amount / transactionConsumption.token.subUnitToUnit
+        let formatter = OMGNumberFormatter(precision: 5)
+        let formattedAmount = formatter.string(from: transactionConsumption.amount,
+                                               subunitToUnit: transactionConsumption.token.subUnitToUnit)
         if transactionConsumption.transactionRequest.type == .send {
             //swiftlint:disable:next line_length
             return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.received".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.from".localized()) \(transactionConsumption.transactionRequest.address)"

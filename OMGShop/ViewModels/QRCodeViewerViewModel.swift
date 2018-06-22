@@ -49,8 +49,7 @@ class QRCodeViewerViewModel: BaseViewModel {
 
     private func displayableAmount() -> String {
         guard let tc = self.transactionConsumption else { return "" }
-        let am = BigUInt(tc.amount).quotientAndRemainder(dividingBy: BigUInt(tc.token.subUnitToUnit))
-        return "\(am.quotient).\(am.remainder)"
+        return OMGNumberFormatter(precision: 5).string(from: tc.amount, subunitToUnit: tc.token.subUnitToUnit)
     }
 
     func reject() {
@@ -78,7 +77,8 @@ class QRCodeViewerViewModel: BaseViewModel {
     }
 
     private func successConsumeMessage(withTransacionConsumption transactionConsumption: TransactionConsumption) -> String {
-        let formattedAmount = transactionConsumption.amount / transactionConsumption.token.subUnitToUnit
+        let formattedAmount = OMGNumberFormatter(precision: 5).string(from: transactionConsumption.amount,
+                                                                      subunitToUnit: transactionConsumption.token.subUnitToUnit)
         if transactionConsumption.transactionRequest.type == .send {
             //swiftlint:disable:next line_length
             return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("qrcode_viewer.message.to".localized()) \(transactionConsumption.address)"

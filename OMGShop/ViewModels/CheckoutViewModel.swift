@@ -105,7 +105,7 @@ class CheckoutViewModel: BaseViewModel {
         let buyForm = BuyForm(tokenId: self.checkout.selectedBalance!.token.id,
                               tokenValue:
             (self.checkout.redeemedToken *
-                BigUInt(self.checkout.selectedBalance.token.subUnitToUnit) / 100).description,
+                self.checkout.selectedBalance.token.subUnitToUnit / 100).description,
                               productId: self.checkout.product.uid)
         self.productAPI.buy(withForm: buyForm) { (response) in
             switch response {
