@@ -47,7 +47,6 @@ class TRequestConsumerViewController: BaseTableViewController {
         self.addressLabel.text = self.viewModel.addressLabel
         self.correlationIdLabel.text = self.viewModel.correlationIdLabel
         self.consumeButton.setTitle(self.viewModel.consumeButtonTitle, for: .normal)
-        self.tokenTextField.isEnabled = self.viewModel.isTokenEnabled
         self.amountTextField.isEnabled = self.viewModel.isAmountEnabled
         self.tableView.tableFooterView = UIView()
         self.setInitialValues()
@@ -68,18 +67,17 @@ class TRequestConsumerViewController: BaseTableViewController {
         super.configureViewModel()
         self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading() }
         self.viewModel.onSuccessConsume = {
-            self.hideLoading()
             self.showMessage($0)
             self.navigationController?.popToRootViewController(animated: true)
         }
         self.viewModel.onSuccessGetSettings = {
             self.tokenTextField.text = self.viewModel.tokenDisplay
+            self.tokenPicker.selectRow(self.viewModel.selectedRow(forPicker: .token), inComponent: 0, animated: false)
         }
         self.viewModel.onSuccessGetWallets = {
             self.addressTextField.text = self.viewModel.addressDisplay
         }
         self.viewModel.onFailedConsume = {
-            self.hideLoading()
             self.showError(withMessage: $0.localizedDescription)
         }
         self.viewModel.onFailedGetSettings = { self.showError(withMessage: $0.localizedDescription) }
@@ -89,6 +87,7 @@ class TRequestConsumerViewController: BaseTableViewController {
             self.consumeButton.alpha = $0 ? 1 : 0.5
         }
         self.viewModel.onPendingConfirmation = { self.showLoading(withMessage: $0) }
+        self.viewModel.onTokenChange = { self.tokenTextField.text = $0 }
         self.viewModel.loadData()
     }
 
@@ -162,6 +161,13 @@ extension TRequestConsumerViewController: UITextFieldDelegate {
         default: break
         }
         return true
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        switch textField {
+        case self.tokenTextField: return self.viewModel.isTokenEnabled
+        default: return true
+        }
     }
 
 }

@@ -34,8 +34,13 @@ class TRequestConsumerViewModel: BaseViewModel {
     var onFailedLoadWallet: FailureClosure?
     var onConsumeButtonStateChange: ObjectClosure<Bool>?
     var onPendingConfirmation: ObjectClosure<String>?
+    var onTokenChange: ObjectClosure<String>?
 
-    var tokenDisplay: String
+    var tokenDisplay: String {
+        didSet {
+            self.onTokenChange?(tokenDisplay)
+        }
+    }
     var amountDisplay: String
     var addressDisplay: String = ""
     var correlationIdDisplay: String = ""
@@ -51,11 +56,11 @@ class TRequestConsumerViewModel: BaseViewModel {
     var isAmountEnabled: Bool {
         return self.transactionRequest.allowAmountOverride
     }
-    var isTokenEnabled: Bool { return false }
+    var isTokenEnabled: Bool = false
 
     private let transactionRequest: TransactionRequest
     private var transactionConsumption: TransactionConsumption?
-    private let idemPotencyToken = UUID().uuidString
+    private var idemPotencyToken = UUID().uuidString
 
     private var token: Token? {
         didSet {
@@ -69,7 +74,8 @@ class TRequestConsumerViewModel: BaseViewModel {
     }
     private var settings: Setting? {
         didSet {
-            self.token = settings?.tokens.first
+            self.isTokenEnabled = true
+            self.token = self.settings?.tokens.filter({$0 == self.transactionRequest.token}).first
         }
     }
     private var wallets: [Wallet] = [] {
@@ -90,7 +96,6 @@ class TRequestConsumerViewModel: BaseViewModel {
         self.transactionConsumer = transactionConsumer
         self.settingLoader = settingLoader
         self.walletLoader = walletLoader
-        self.token = transactionRequest.token
         self.tokenDisplay = transactionRequest.token.symbol
         if let amount = transactionRequest.amount {
             let formatter = OMGNumberFormatter(precision: 5)
@@ -140,6 +145,7 @@ class TRequestConsumerViewModel: BaseViewModel {
             self.isLoading = false
             switch result {
             case .success(data: let transactionConsumption):
+                self.idemPotencyToken = UUID().uuidString
                 self.transactionConsumption = transactionConsumption
                 if self.transactionRequest.requireConfirmation {
                     self.onPendingConfirmation?("transaction_consumer.message.waiting_for_confirmation".localized())
@@ -217,6 +223,17 @@ class TRequestConsumerViewModel: BaseViewModel {
         }
     }
 
+    func selectedRow(forPicker picker: Picker) -> Int {
+        switch picker {
+        case .token:
+            guard let token = self.token, let settings = self.settings else { return 0 }
+            return settings.tokens.index(of: token) ?? 0
+        case .address:
+            guard let wallet = self.wallet else { return 0 }
+            return self.wallets.index(of: wallet) ?? 0
+        }
+    }
+
     func numberOfRows(inPicker picker: Picker) -> Int {
         switch picker {
         case .token: return self.settings?.tokens.count ?? 0
@@ -245,10 +262,12 @@ extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
         case .rejected: self.onFailedConsume?(OMGShopError.message(message: "trequest_consumer.error.consumption_rejected".localized()))
         default: break
         }
+        self.isLoading = false
     }
 
     func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: OmiseGO.APIError) {
         self.onFailedConsume?(OMGShopError.omiseGO(error: OMGError.api(apiError: error)))
+        self.isLoading = false
     }
 
     func didStartListening() {
