@@ -96,6 +96,7 @@ class TRequestConsumerViewModel: BaseViewModel {
         self.transactionConsumer = transactionConsumer
         self.settingLoader = settingLoader
         self.walletLoader = walletLoader
+        self.token = transactionRequest.token
         self.tokenDisplay = transactionRequest.token.symbol
         if let amount = transactionRequest.amount {
             let formatter = OMGNumberFormatter(precision: 5)
