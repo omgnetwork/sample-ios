@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a3C-oT-qIS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a3C-oT-qIS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -493,7 +493,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37h-Ss-ZsO">
-                                                    <rect key="frame" x="16" y="-4" width="343" height="50"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="50"/>
                                                     <color key="backgroundColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="sbz-Pe-n2c"/>
@@ -662,24 +662,20 @@
                                                     <color key="textColor" white="0.3012982334" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="OMG" textAlignment="right" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="1as-HX-6Sk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Token" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0V-og-e16">
                                                     <rect key="frame" x="16" y="30" width="343" height="5.5"/>
-                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="2z4-e7-hx8" id="UG2-Nh-psN"/>
-                                                    </connections>
-                                                </textField>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="1as-HX-6Sk" secondAttribute="bottom" constant="8" id="4OV-ii-DXH"/>
-                                                <constraint firstItem="1as-HX-6Sk" firstAttribute="leading" secondItem="wyz-Hf-s0j" secondAttribute="leading" constant="16" id="KeY-xp-Lgn"/>
+                                                <constraint firstAttribute="bottom" secondItem="d0V-og-e16" secondAttribute="bottom" constant="8" id="Jdw-eF-Qsy"/>
+                                                <constraint firstAttribute="trailing" secondItem="d0V-og-e16" secondAttribute="trailing" constant="16" id="Pr0-Sa-8WS"/>
                                                 <constraint firstAttribute="trailing" secondItem="4T1-P3-wRp" secondAttribute="trailing" constant="16" id="T2n-n0-dCc"/>
+                                                <constraint firstItem="d0V-og-e16" firstAttribute="leading" secondItem="wyz-Hf-s0j" secondAttribute="leading" constant="16" id="VIo-rc-Va9"/>
                                                 <constraint firstItem="4T1-P3-wRp" firstAttribute="leading" secondItem="wyz-Hf-s0j" secondAttribute="leading" constant="16" id="aq2-ei-Ls0"/>
                                                 <constraint firstItem="4T1-P3-wRp" firstAttribute="top" secondItem="wyz-Hf-s0j" secondAttribute="top" constant="8" id="jKA-Vo-d3p"/>
-                                                <constraint firstItem="1as-HX-6Sk" firstAttribute="top" secondItem="4T1-P3-wRp" secondAttribute="bottom" constant="2" id="tL5-AV-Eeb"/>
-                                                <constraint firstAttribute="trailing" secondItem="1as-HX-6Sk" secondAttribute="trailing" constant="16" id="tlh-ZF-Hg9"/>
+                                                <constraint firstItem="d0V-og-e16" firstAttribute="top" secondItem="4T1-P3-wRp" secondAttribute="bottom" constant="2" id="pcJ-4M-X7L"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -837,8 +833,8 @@
                         <outlet property="consumeButton" destination="bQ5-Gv-PVx" id="QJR-bB-zSm"/>
                         <outlet property="correlationIdLabel" destination="gDM-3P-yRl" id="NSm-WR-1NB"/>
                         <outlet property="correlationIdTextField" destination="yxQ-10-CpI" id="sbm-se-g9z"/>
+                        <outlet property="tokenDisplayLabel" destination="d0V-og-e16" id="JGg-O6-LHj"/>
                         <outlet property="tokenLabel" destination="4T1-P3-wRp" id="aaI-7M-BdT"/>
-                        <outlet property="tokenTextField" destination="1as-HX-6Sk" id="AGm-eN-c7c"/>
                         <outlet property="tpKeyboardAvoidingTableView" destination="RPj-xZ-QN1" id="AvQ-vK-81p"/>
                         <outlet property="transactionTypeLabel" destination="JvL-ju-fyt" id="VcR-LX-G6t"/>
                     </connections>

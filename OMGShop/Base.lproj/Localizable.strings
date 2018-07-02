@@ -139,6 +139,7 @@
 "qrcode_viewer.message.received" = "received";
 "qrcode_viewer.message.to" = "to";
 "qrcode_viewer.message.from" = "from";
+"qrcode_viewer.error.transaction_failed" = "Transaction failed to process";
 
 
 // QRCode generator

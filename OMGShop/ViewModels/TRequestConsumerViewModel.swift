@@ -12,7 +12,6 @@ import BigInt
 class TRequestConsumerViewModel: BaseViewModel {
 
     enum Picker {
-        case token
         case address
     }
 
@@ -28,19 +27,12 @@ class TRequestConsumerViewModel: BaseViewModel {
     var onLoadStateChange: ObjectClosure<Bool>?
     var onSuccessConsume: ObjectClosure<String>?
     var onFailedConsume: FailureClosure?
-    var onSuccessGetSettings: SuccessClosure?
-    var onFailedGetSettings: FailureClosure?
     var onSuccessGetWallets: SuccessClosure?
     var onFailedLoadWallet: FailureClosure?
     var onConsumeButtonStateChange: ObjectClosure<Bool>?
     var onPendingConfirmation: ObjectClosure<String>?
-    var onTokenChange: ObjectClosure<String>?
 
-    var tokenDisplay: String {
-        didSet {
-            self.onTokenChange?(tokenDisplay)
-        }
-    }
+    var tokenDisplay: String
     var amountDisplay: String
     var addressDisplay: String = ""
     var correlationIdDisplay: String = ""
@@ -56,28 +48,17 @@ class TRequestConsumerViewModel: BaseViewModel {
     var isAmountEnabled: Bool {
         return self.transactionRequest.allowAmountOverride
     }
-    var isTokenEnabled: Bool = false
 
     private let transactionRequest: TransactionRequest
     private var transactionConsumption: TransactionConsumption?
     private var idemPotencyToken = UUID().uuidString
 
-    private var token: Token? {
-        didSet {
-            self.tokenDisplay = token?.symbol ?? ""
-        }
-    }
     private var wallet: Wallet? {
         didSet {
             self.addressDisplay = wallet?.address ?? ""
         }
     }
-    private var settings: Setting? {
-        didSet {
-            self.isTokenEnabled = true
-            self.token = self.settings?.tokens.filter({$0 == self.transactionRequest.token}).first
-        }
-    }
+    private var settings: Setting?
     private var wallets: [Wallet] = [] {
         didSet {
             self.wallet = wallets.first
@@ -96,7 +77,6 @@ class TRequestConsumerViewModel: BaseViewModel {
         self.transactionConsumer = transactionConsumer
         self.settingLoader = settingLoader
         self.walletLoader = walletLoader
-        self.token = transactionRequest.token
         self.tokenDisplay = transactionRequest.token.symbol
         if let amount = transactionRequest.amount {
             let formatter = OMGNumberFormatter(precision: 5)
@@ -112,29 +92,11 @@ class TRequestConsumerViewModel: BaseViewModel {
         super.init()
     }
 
-    func loadData() {
-        self.isLoading = true
-        let loadingGroup = DispatchGroup()
-        loadingGroup.enter()
-        self.loadSettings(withGroup: loadingGroup)
-        loadingGroup.enter()
-        self.loadWallets(withGroup: loadingGroup)
-        DispatchQueue.global().async {
-            loadingGroup.wait()
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
-        }
-    }
-
     func consumeTransactionRequest() {
-        guard let tokenId = self.token?.id else { return }
-
         guard let params = TransactionConsumptionParams(
             transactionRequest: self.transactionRequest,
             address: self.addressDisplay != "" ? self.addressDisplay : nil,
-            tokenId: tokenId,
-            amount: self.token?.formattedAmount(forAmount: self.amountDisplay),
+            amount: self.transactionRequest.token.formattedAmount(forAmount: self.amountDisplay),
             idempotencyToken: self.idemPotencyToken,
             correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
             metadata: [:]) else {
@@ -162,30 +124,10 @@ class TRequestConsumerViewModel: BaseViewModel {
         }
     }
 
-    private func successConsumeMessage(withTransacionConsumption transactionConsumption: TransactionConsumption) -> String {
-        let formatter = OMGNumberFormatter(precision: 5)
-        let formattedAmount = formatter.string(from: transactionConsumption.amount,
-                                               subunitToUnit: transactionConsumption.token.subUnitToUnit)
-        if transactionConsumption.transactionRequest.type == .send {
-            //swiftlint:disable:next line_length
-            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.received".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.from".localized()) \(transactionConsumption.transactionRequest.address)"
-        } else {
-            //swiftlint:disable:next line_length
-            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.to".localized()) \(transactionConsumption.transactionRequest.address)"
-        }
-    }
-
-    private func updateConsumeButtonState() {
-        guard self.token != nil else {
-            self.isConsumeButtonEnabled = false
-            return
-        }
-        self.isConsumeButtonEnabled = true
-    }
-
-    private func loadWallets(withGroup group: DispatchGroup?) {
+    func loadWallets() {
+        self.isLoading = true
         self.walletLoader.getAll { (result) in
-            defer { group?.leave() }
+            self.isLoading = false
             switch result {
             case .success(data: let wallets):
                 self.wallets = wallets
@@ -193,20 +135,6 @@ class TRequestConsumerViewModel: BaseViewModel {
             case .fail(error: let error):
                 self.handleOMGError(error)
                 self.onFailedLoadWallet?(.omiseGO(error: error))
-            }
-        }
-    }
-
-    private func loadSettings(withGroup group: DispatchGroup?) {
-        self.settingLoader.get { (result) in
-            defer { group?.leave() }
-            switch result {
-            case .success(data: let settings):
-                self.settings = settings
-                self.onSuccessGetSettings?()
-            case .fail(error: let error):
-                self.handleOMGError(error)
-                self.onFailedGetSettings?(.omiseGO(error: error))
             }
             self.updateConsumeButtonState()
         }
@@ -219,25 +147,12 @@ class TRequestConsumerViewModel: BaseViewModel {
     // MARK: Picker
     func didSelect(row: Int, picker: Picker) {
         switch picker {
-        case .token: self.token = self.settings?.tokens[row]
         case .address: self.wallet = self.wallets[row]
-        }
-    }
-
-    func selectedRow(forPicker picker: Picker) -> Int {
-        switch picker {
-        case .token:
-            guard let token = self.token, let settings = self.settings else { return 0 }
-            return settings.tokens.index(of: token) ?? 0
-        case .address:
-            guard let wallet = self.wallet else { return 0 }
-            return self.wallets.index(of: wallet) ?? 0
         }
     }
 
     func numberOfRows(inPicker picker: Picker) -> Int {
         switch picker {
-        case .token: return self.settings?.tokens.count ?? 0
         case .address: return self.wallets.count
         }
     }
@@ -248,9 +163,31 @@ class TRequestConsumerViewModel: BaseViewModel {
 
     func title(forRow row: Int, picker: Picker) -> String? {
         switch picker {
-        case .token: return self.settings?.tokens[row].name
         case .address: return self.wallets[row].address
         }
+    }
+
+    private func successConsumeMessage(withTransacionConsumption transactionConsumption: TransactionConsumption) -> String {
+        let formatter = OMGNumberFormatter(precision: 5)
+        guard let amount = transactionConsumption.finalizedConsumptionAmount else {
+            return "trequest_consumer.error.transaction_failed".localized()
+        }
+        let formattedAmount = formatter.string(from: amount, subunitToUnit: transactionConsumption.token.subUnitToUnit)
+        if transactionConsumption.transactionRequest.type == .send {
+            //swiftlint:disable:next line_length
+            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.received".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.from".localized()) \(transactionConsumption.transactionRequest.address)"
+        } else {
+            //swiftlint:disable:next line_length
+            return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.to".localized()) \(transactionConsumption.transactionRequest.address)"
+        }
+    }
+
+    private func updateConsumeButtonState() {
+        guard self.wallet != nil else {
+            self.isConsumeButtonEnabled = false
+            return
+        }
+        self.isConsumeButtonEnabled = true
     }
 
 }

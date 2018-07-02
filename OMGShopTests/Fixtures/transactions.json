@@ -36,13 +36,15 @@
     },
     "exchange": {
       "object": "exchange",
-      "rate": 1
+      "rate": 1,
+      "calculated_at": null,
+      "exchange_pair_id": null,
+      "exchange_pair": null
     },
+    "status": "confirmed",
     "metadata": {},
     "encrypted_metadata": {},
-    "status": "confirmed",
-    "created_at": "2018-01-01T00:00:00Z",
-    "updated_at": "2018-01-01T10:00:00Z"
+    "created_at": "2018-01-01T00:00:00Z"
   },
   {
     "object": "transaction",
@@ -81,11 +83,14 @@
     },
     "exchange": {
       "object": "exchange",
-      "rate": 1
+      "rate": 1,
+      "calculated_at": null,
+      "exchange_pair_id": null,
+      "exchange_pair": null
     },
+    "status": "confirmed",
     "metadata": {},
     "encrypted_metadata": {},
-    "status": "confirmed",
     "created_at": "2018-01-01T00:00:00Z"
   }
 ]
