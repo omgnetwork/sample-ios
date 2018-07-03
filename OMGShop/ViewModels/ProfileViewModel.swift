@@ -9,7 +9,6 @@
 import OmiseGO
 
 class ProfileViewModel: BaseViewModel {
-
     // Delegate Closures
     var onFailGetWallet: FailureClosure?
     var onTableDataChange: SuccessClosure?
@@ -23,9 +22,11 @@ class ProfileViewModel: BaseViewModel {
         guard let user = self.sessionManager.currentUser else { return "" }
         return String(user.username.split(separator: "|").first ?? "")
     }
+
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }
     }
+
     var address: String?
 
     private var tokenCellViewModels: [TokenCellViewModel] = []
@@ -55,17 +56,17 @@ class ProfileViewModel: BaseViewModel {
         self.sessionManager.loadCurrentUser(withSuccessClosure: {
             dispatchGroup.leave()
             self.onSuccessReloadUser?(self.name)
-        }, failure: { (error) in
+        }, failure: { error in
             dispatchGroup.leave()
             self.onFailReloadUser?(OMGShopError.omiseGO(error: error))
         })
         dispatchGroup.enter()
-        self.walletLoader.getMain { (result) in
+        self.walletLoader.getMain { result in
             self.isLoading = false
             switch result {
-            case .success(data: let wallet):
+            case let .success(data: wallet):
                 self.processWallet(wallet)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.handleOMGError(error)
                 self.onFailGetWallet?(.omiseGO(error: error))
             }
@@ -91,7 +92,7 @@ class ProfileViewModel: BaseViewModel {
                 self.isLoading = false
                 self.onLogoutSuccess?()
             }
-        }, failure: { (error) in
+        }, failure: { error in
             dispatchMain {
                 self.isLoading = false
                 self.onFailLogout?(error)
@@ -121,5 +122,4 @@ class ProfileViewModel: BaseViewModel {
             self.tokenCellViewModels.append(viewModel)
         })
     }
-
 }

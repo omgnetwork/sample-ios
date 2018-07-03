@@ -9,7 +9,6 @@
 import Foundation
 
 struct RegisterForm: Encodable {
-
     let firstName: String
     let lastName: String
     let email: String
@@ -21,13 +20,10 @@ struct RegisterForm: Encodable {
         case email
         case password
     }
-
 }
 
 extension RegisterForm: JsonEncodable {
-
     func encodedBody() -> Data? {
         return try? JSONEncoder().encode(self)
     }
-
 }

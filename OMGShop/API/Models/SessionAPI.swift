@@ -7,18 +7,16 @@
 //
 
 protocol SessionAPIProtocol {
-    func login(withForm form: LoginForm, completionClosure:@escaping APIClosure<SessionToken>)
-    func register(withForm form: RegisterForm, completionClosure:@escaping APIClosure<SessionToken>)
+    func login(withForm form: LoginForm, completionClosure: @escaping APIClosure<SessionToken>)
+    func register(withForm form: RegisterForm, completionClosure: @escaping APIClosure<SessionToken>)
 }
 
 class SessionAPI: SessionAPIProtocol {
-
-    func login(withForm form: LoginForm, completionClosure:@escaping APIClosure<SessionToken>) {
+    func login(withForm form: LoginForm, completionClosure: @escaping APIClosure<SessionToken>) {
         Router.login(withForm: form).request(withCompletionClosure: completionClosure)
     }
 
-    func register(withForm form: RegisterForm, completionClosure:@escaping APIClosure<SessionToken>) {
+    func register(withForm form: RegisterForm, completionClosure: @escaping APIClosure<SessionToken>) {
         Router.register(withForm: form).request(withCompletionClosure: completionClosure)
     }
-
 }

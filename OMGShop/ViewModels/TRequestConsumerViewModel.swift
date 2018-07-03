@@ -6,11 +6,10 @@
 //  Copyright © 2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import OmiseGO
 import BigInt
+import OmiseGO
 
 class TRequestConsumerViewModel: BaseViewModel {
-
     enum Picker {
         case address
     }
@@ -42,9 +41,11 @@ class TRequestConsumerViewModel: BaseViewModel {
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }
     }
+
     var isConsumeButtonEnabled: Bool = false {
         didSet { self.onConsumeButtonStateChange?(isConsumeButtonEnabled) }
     }
+
     var isAmountEnabled: Bool {
         return self.transactionRequest.allowAmountOverride
     }
@@ -58,6 +59,7 @@ class TRequestConsumerViewModel: BaseViewModel {
             self.addressDisplay = wallet?.address ?? ""
         }
     }
+
     private var settings: Setting?
     private var wallets: [Wallet] = [] {
         didSet {
@@ -100,14 +102,14 @@ class TRequestConsumerViewModel: BaseViewModel {
             idempotencyToken: self.idemPotencyToken,
             correlationId: self.correlationIdDisplay != "" ? self.correlationIdDisplay : nil,
             metadata: [:]) else {
-                self.onFailedConsume?(.missingRequiredFields)
-                return
+            self.onFailedConsume?(.missingRequiredFields)
+            return
         }
         self.isLoading = true
-        self.transactionConsumer.consume(withParams: params) { (result) in
+        self.transactionConsumer.consume(withParams: params) { result in
             self.isLoading = false
             switch result {
-            case .success(data: let transactionConsumption):
+            case let .success(data: transactionConsumption):
                 self.idemPotencyToken = UUID().uuidString
                 self.transactionConsumption = transactionConsumption
                 if self.transactionRequest.requireConfirmation {
@@ -118,7 +120,7 @@ class TRequestConsumerViewModel: BaseViewModel {
                         self.successConsumeMessage(withTransacionConsumption: transactionConsumption)
                     )
                 }
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.onFailedConsume?(.omiseGO(error: error))
             }
         }
@@ -126,13 +128,13 @@ class TRequestConsumerViewModel: BaseViewModel {
 
     func loadWallets() {
         self.isLoading = true
-        self.walletLoader.getAll { (result) in
+        self.walletLoader.getAll { result in
             self.isLoading = false
             switch result {
-            case .success(data: let wallets):
+            case let .success(data: wallets):
                 self.wallets = wallets
                 self.onSuccessGetWallets?()
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.handleOMGError(error)
                 self.onFailedLoadWallet?(.omiseGO(error: error))
             }
@@ -145,6 +147,7 @@ class TRequestConsumerViewModel: BaseViewModel {
     }
 
     // MARK: Picker
+
     func didSelect(row: Int, picker: Picker) {
         switch picker {
         case .address: self.wallet = self.wallets[row]
@@ -174,10 +177,10 @@ class TRequestConsumerViewModel: BaseViewModel {
         }
         let formattedAmount = formatter.string(from: amount, subunitToUnit: transactionConsumption.token.subUnitToUnit)
         if transactionConsumption.transactionRequest.type == .send {
-            //swiftlint:disable:next line_length
+            // swiftlint:disable:next line_length
             return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.received".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.from".localized()) \(transactionConsumption.transactionRequest.address)"
         } else {
-            //swiftlint:disable:next line_length
+            // swiftlint:disable:next line_length
             return "\("trequest_consumer.message.successfully".localized()) \("trequest_consumer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("trequest_consumer.message.to".localized()) \(transactionConsumption.transactionRequest.address)"
         }
     }
@@ -189,11 +192,9 @@ class TRequestConsumerViewModel: BaseViewModel {
         }
         self.isConsumeButtonEnabled = true
     }
-
 }
 
 extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
-
     func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption) {
         switch transactionConsumption.status {
         case .confirmed: self.onSuccessConsume?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
@@ -203,7 +204,7 @@ extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
         self.isLoading = false
     }
 
-    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: OmiseGO.APIError) {
+    func onFailedTransactionConsumptionFinalized(_: TransactionConsumption, error: OmiseGO.APIError) {
         self.onFailedConsume?(OMGShopError.omiseGO(error: OMGError.api(apiError: error)))
         self.isLoading = false
     }
@@ -219,5 +220,4 @@ extension TRequestConsumerViewModel: TransactionConsumptionEventDelegate {
     func onError(_ error: OmiseGO.APIError) {
         print("Did receive error: \(error.description)")
     }
-
 }

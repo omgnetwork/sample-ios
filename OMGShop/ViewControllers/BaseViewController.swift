@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import Toaster
 import MBProgressHUD
+import Toaster
 
 class BaseViewController: UIViewController {
-
     var loading: MBProgressHUD?
 
     override func viewDidLoad() {
@@ -21,12 +20,11 @@ class BaseViewController: UIViewController {
     func configureView() {
         self.configureViewModel()
     }
-    func configureViewModel() {}
 
+    func configureViewModel() {}
 }
 
 extension BaseViewController {
-
     func showLoading() {
         self.loading = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.loading!.contentColor = Color.omiseGOBlue.uiColor()
@@ -68,7 +66,6 @@ extension BaseViewController {
 }
 
 class BaseTableViewController: UITableViewController {
-
     var loading: MBProgressHUD?
 
     override func viewDidLoad() {
@@ -79,12 +76,11 @@ class BaseTableViewController: UITableViewController {
     func configureView() {
         self.configureViewModel()
     }
-    func configureViewModel() {}
 
+    func configureViewModel() {}
 }
 
 extension BaseTableViewController {
-
     func showLoading(withMessage message: String? = nil) {
         self.loading = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.loading!.label.text = message

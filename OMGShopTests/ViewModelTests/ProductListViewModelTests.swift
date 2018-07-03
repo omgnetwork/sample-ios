@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OMGShop
+import XCTest
 
 class ProductListViewModelTests: XCTestCase {
-
     var mockProductAPI: MockProductAPI!
     var sut: ProductListViewModel!
 
@@ -75,15 +74,12 @@ class ProductListViewModelTests: XCTestCase {
         self.mockProductAPI.loadProductsSuccess()
         XCTAssertFalse(loadingStatus)
     }
-
 }
 
 extension ProductListViewModelTests {
-
     private func goToLoadProductsFinished() {
         self.mockProductAPI.products = StubGenerator.stubProducts()
         self.sut.getProducts()
         self.mockProductAPI.loadProductsSuccess()
     }
-
 }

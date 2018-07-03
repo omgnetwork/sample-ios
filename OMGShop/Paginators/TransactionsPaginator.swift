@@ -9,7 +9,6 @@
 import OmiseGO
 
 class TransactionPaginator: Paginator<Transaction> {
-
     private let transactionLoader: TransactionLoaderProtocol
     let address: String
 
@@ -29,14 +28,13 @@ class TransactionPaginator: Paginator<Transaction> {
                                                              sortBy: .createdAt,
                                                              sortDirection: .descending)
         let params = TransactionListParams(paginationParams: paginationParams, address: self.address)
-        self.currentRequest = self.transactionLoader.list(withParams: params) { (response) in
+        self.currentRequest = self.transactionLoader.list(withParams: params) { response in
             switch response {
-            case .success(data: let transactionList):
+            case let .success(data: transactionList):
                 self.didReceiveResults(results: transactionList.data, pagination: transactionList.pagination)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.didFail(withError: error)
             }
         }
     }
-
 }

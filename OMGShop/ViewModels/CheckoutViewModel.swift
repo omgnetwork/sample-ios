@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import OmiseGO
 import BigInt
+import OmiseGO
 
 class CheckoutViewModel: BaseViewModel {
-
     // Delegate Closures
     var onDiscountPriceChange: ObjectClosure<String>?
     var onTotalPriceChange: ObjectClosure<String>?
@@ -38,15 +37,19 @@ class CheckoutViewModel: BaseViewModel {
     var discountPrice: String = 0.0.displayablePrice() {
         didSet { self.onDiscountPriceChange?(discountPrice) }
     }
+
     var totalPrice: String = 0.0.displayablePrice() {
         didSet { self.onTotalPriceChange?(totalPrice) }
     }
+
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }
     }
+
     var redeemButtonTitle: String = "checkout.button.title.redeem.loading".localized() {
         didSet { self.onRedeemButtonTitleChange?(redeemButtonTitle) }
     }
+
     var isRedeemButtonEnabled: Bool = false {
         didSet { self.onRedeemButtonStateChange?(isRedeemButtonEnabled) }
     }
@@ -72,12 +75,12 @@ class CheckoutViewModel: BaseViewModel {
 
     func loadBalances() {
         self.isLoading = true
-        self.walletLoader.getMain { (result) in
+        self.walletLoader.getMain { result in
             self.isLoading = false
             switch result {
-            case .success(data: let wallet):
+            case let .success(data: wallet):
                 self.processWallet(wallet)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.handleOMGError(error)
                 self.onFailGetWallet?(.omiseGO(error: error))
             }
@@ -104,15 +107,15 @@ class CheckoutViewModel: BaseViewModel {
         self.isLoading = true
         let buyForm = BuyForm(tokenId: self.checkout.selectedBalance!.token.id,
                               tokenValue:
-            (self.checkout.redeemedToken *
-                self.checkout.selectedBalance.token.subUnitToUnit / 100).description,
+                              (self.checkout.redeemedToken *
+                                  self.checkout.selectedBalance.token.subUnitToUnit / 100).description,
                               productId: self.checkout.product.uid)
-        self.productAPI.buy(withForm: buyForm) { (response) in
+        self.productAPI.buy(withForm: buyForm) { response in
             switch response {
             case .success(data: _):
                 self.isLoading = false
                 self.onSuccessPay?("\("checkout.message.pay_success".localized()) \(self.productName)")
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.isLoading = false
                 self.handleOMGShopError(error)
                 self.onFailPay?(error)
@@ -127,5 +130,4 @@ class CheckoutViewModel: BaseViewModel {
             self.redeemButtonTitle = "checkout.button.title.redeem.no_balance".localized()
         }
     }
-
 }

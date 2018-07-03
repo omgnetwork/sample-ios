@@ -10,7 +10,6 @@
 import OmiseGO
 
 class MockSessionManager: SessionManagerProtocol {
-
     var currentUser: User?
 
     var isLoginCalled = false
@@ -37,7 +36,7 @@ class MockSessionManager: SessionManagerProtocol {
         self.failureLogoutClosure(.api(error: error))
     }
 
-    func login(withAppToken appAuthenticationToken: String, omiseGOAuthenticationToken: String, userId: String) {
+    func login(withAppToken _: String, omiseGOAuthenticationToken _: String, userId _: String) {
         self.isLoginCalled = true
     }
 
@@ -54,5 +53,4 @@ class MockSessionManager: SessionManagerProtocol {
         self.successClosure = success
         self.failureLogoutClosure = failure
     }
-
 }

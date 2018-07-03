@@ -7,7 +7,6 @@
 //
 
 struct Product: Decodable {
-
     let uid: String
     let name: String
     let description: String
@@ -21,5 +20,4 @@ struct Product: Decodable {
         case imageURL = "image_url"
         case price
     }
-
 }

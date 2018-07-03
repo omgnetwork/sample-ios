@@ -9,7 +9,6 @@
 import OmiseGO
 
 class TRequestGeneratorViewModel: BaseViewModel {
-
     enum Picker {
         case token
         case address
@@ -45,14 +44,16 @@ class TRequestGeneratorViewModel: BaseViewModel {
     private var type: TransactionRequestType = .receive
     private var token: Token? {
         didSet {
-            self.tokenDisplay = token?.symbol ?? ""
+            self.tokenDisplay = self.token?.symbol ?? ""
         }
     }
+
     private var wallet: Wallet? {
         didSet {
-            self.addressDisplay = wallet?.address ?? ""
+            self.addressDisplay = self.wallet?.address ?? ""
         }
     }
+
     private var expirationDate: Date? {
         didSet {
             guard let date = expirationDate else { return }
@@ -66,6 +67,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
             self.onTokenChange?(tokenDisplay)
         }
     }
+
     var amountDisplay: String = ""
     var addressDisplay: String = ""
     var correlationIdDisplay: String = ""
@@ -81,6 +83,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
             self.token = settings?.tokens.first
         }
     }
+
     private var wallets: [Wallet] = [] {
         didSet {
             self.wallet = wallets.first
@@ -94,6 +97,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     var isGenerateButtonEnabled: Bool = false {
         didSet { self.onGenerateButtonStateChange?(isGenerateButtonEnabled) }
     }
+
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(isLoading) }
     }
@@ -137,30 +141,30 @@ class TRequestGeneratorViewModel: BaseViewModel {
                                                           allowAmountOverride: self.allowAmountOverrideSwitchState,
                                                           maxConsumptionsPerUser: self.formattedMaxConsumptionsPerUser(),
                                                           metadata: [:]
-            ) else {
-                self.onFailedGenerate?(.message(message: "trequest_generator.error.missing_amount".localized()))
-                return
+        ) else {
+            self.onFailedGenerate?(.message(message: "trequest_generator.error.missing_amount".localized()))
+            return
         }
         self.isLoading = true
-        self.transactionRequestCreator.generate(withParams: params) { (result) in
+        self.transactionRequestCreator.generate(withParams: params) { result in
             self.isLoading = false
             switch result {
-            case .success(data: let transactionRequest):
+            case let .success(data: transactionRequest):
                 self.onSuccessGenerate?(transactionRequest)
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.onFailedGenerate?(.omiseGO(error: error))
             }
         }
     }
 
     private func loadWallets(withGroup group: DispatchGroup?) {
-        self.walletLoader.getAll { (result) in
+        self.walletLoader.getAll { result in
             defer { group?.leave() }
             switch result {
-            case .success(data: let wallets):
+            case let .success(data: wallets):
                 self.wallets = wallets
                 self.onSuccessGetWallets?()
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.handleOMGError(error)
                 self.onFailedLoadWallet?(.omiseGO(error: error))
             }
@@ -168,13 +172,13 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     private func loadSettings(withGroup group: DispatchGroup?) {
-        self.settingLoader.get { (result) in
+        self.settingLoader.get { result in
             defer { group?.leave() }
             switch result {
-            case .success(data: let settings):
+            case let .success(data: settings):
                 self.settings = settings
                 self.onSuccessGetSettings?()
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.handleOMGError(error)
                 self.onFailedGetSettings?(.omiseGO(error: error))
             }
@@ -193,7 +197,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     private func formattedMaxConsumptions() -> Int? {
         guard self.maxConsumptionsDisplay != "",
             let maxConsumptions = Int(self.maxConsumptionsDisplay) else {
-                return nil
+            return nil
         }
         return maxConsumptions
     }
@@ -201,7 +205,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     private func formattedMaxConsumptionsPerUser() -> Int? {
         guard self.maxConsumptionsPerUserDisplay != "",
             let maxConsumptionsPerUser = Int(self.maxConsumptionsPerUserDisplay) else {
-                return nil
+            return nil
         }
         return maxConsumptionsPerUser
     }
@@ -209,7 +213,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     private func formattedConsumptionLifetime() -> Int? {
         guard self.consumptionLifetimeDisplay != "",
             let consumptionLifetime = Int(self.consumptionLifetimeDisplay) else {
-                return nil
+            return nil
         }
         return consumptionLifetime
     }
@@ -219,6 +223,7 @@ class TRequestGeneratorViewModel: BaseViewModel {
     }
 
     // MARK: Picker
+
     func didSelect(row: Int, picker: Picker) {
         switch picker {
         case .token: self.token = self.settings?.tokens[row]
@@ -231,7 +236,6 @@ class TRequestGeneratorViewModel: BaseViewModel {
         case .token: return self.settings?.tokens.count ?? 0
         case .address: return self.wallets.count
         }
-
     }
 
     func numberOfColumnsInPicker() -> Int {

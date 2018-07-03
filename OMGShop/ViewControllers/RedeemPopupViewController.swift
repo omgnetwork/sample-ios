@@ -13,18 +13,17 @@ protocol RedeemPopupViewControllerDelegate: class {
 }
 
 class RedeemPopupViewController: BaseViewController {
-
     var viewModel: RedeemPopupViewModel!
 
     weak var delegate: RedeemPopupViewControllerDelegate?
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var totalTokenToRedeemLabel: UILabel!
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var redeemTokenLabel: UILabel!
-    @IBOutlet weak var getDiscountLabel: UILabel!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var redeemButton: UIButton!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var totalTokenToRedeemLabel: UILabel!
+    @IBOutlet var slider: UISlider!
+    @IBOutlet var redeemTokenLabel: UILabel!
+    @IBOutlet var getDiscountLabel: UILabel!
+    @IBOutlet var cancelButton: UIButton!
+    @IBOutlet var redeemButton: UIButton!
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -62,11 +61,9 @@ class RedeemPopupViewController: BaseViewController {
         popup.delegate = delegate
         viewController.present(popup, animated: true, completion: nil)
     }
-
 }
 
 extension RedeemPopupViewController {
-
     @IBAction func didUpdateSliderValue(_ sender: UISlider) {
         let step: Float = 5000
         var roundedValue: Float = 0
@@ -83,11 +80,11 @@ extension RedeemPopupViewController {
         self.viewModel.updateRedeem(withSliderValue: roundedValue)
     }
 
-    @IBAction func didTapCancelButton(_ sender: UIButton) {
+    @IBAction func didTapCancelButton(_: UIButton) {
         self.dismiss()
     }
 
-    @IBAction func didTapRedeemButton(_ sender: UIButton) {
+    @IBAction func didTapRedeemButton(_: UIButton) {
         self.viewModel.redeem()
         self.dismiss()
     }
@@ -96,5 +93,4 @@ extension RedeemPopupViewController {
         self.delegate?.didFinishToRedeem()
         self.dismiss(animated: true, completion: nil)
     }
-
 }

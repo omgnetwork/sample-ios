@@ -7,7 +7,6 @@
 //
 
 struct SessionToken: Decodable {
-
     let userId: String
     let authenticationToken: String
     let omiseGOAuthenticationToken: String
@@ -17,5 +16,4 @@ struct SessionToken: Decodable {
         case authenticationToken = "authentication_token"
         case omiseGOAuthenticationToken = "omisego_authentication_token"
     }
-
 }

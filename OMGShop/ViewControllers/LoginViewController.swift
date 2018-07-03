@@ -9,14 +9,13 @@
 import TPKeyboardAvoiding
 
 class LoginViewController: BaseViewController {
-
     let viewModel: LoginViewModel = LoginViewModel()
 
-    @IBOutlet weak var scrollView: TPKeyboardAvoidingScrollView!
-    @IBOutlet weak var emailTextField: OMGFloatingTextField!
-    @IBOutlet weak var passwordTextField: OMGFloatingTextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet var scrollView: TPKeyboardAvoidingScrollView!
+    @IBOutlet var emailTextField: OMGFloatingTextField!
+    @IBOutlet var passwordTextField: OMGFloatingTextField!
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var registerButton: UIButton!
 
     override func configureView() {
         super.configureView()
@@ -30,24 +29,20 @@ class LoginViewController: BaseViewController {
         super.configureViewModel()
         self.viewModel.updateEmailValidation = { self.emailTextField.errorMessage = $0 }
         self.viewModel.updatePasswordValidation = { self.passwordTextField.errorMessage = $0 }
-        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading() }
         self.viewModel.onSuccessLogin = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
         self.viewModel.onFailedLogin = { self.showError(withMessage: $0.localizedDescription) }
     }
-
 }
 
 extension LoginViewController {
-
-    @IBAction func tapLoginButton(_ sender: UIButton) {
+    @IBAction func tapLoginButton(_: UIButton) {
         self.view.endEditing(true)
         self.viewModel.login()
     }
-
 }
 
 extension LoginViewController: UITextFieldDelegate {
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if !self.scrollView.tpKeyboardAvoiding_focusNextTextField() {
             textField.resignFirstResponder()
@@ -62,8 +57,8 @@ extension LoginViewController: UITextFieldDelegate {
         let textFieldText: NSString = (textField.text ?? "") as NSString
         let textAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
         switch textField {
-        case emailTextField: self.viewModel.email = textAfterUpdate
-        case passwordTextField: self.viewModel.password = textAfterUpdate
+        case self.emailTextField: self.viewModel.email = textAfterUpdate
+        case self.passwordTextField: self.viewModel.password = textAfterUpdate
         default: break
         }
         return true
@@ -71,11 +66,10 @@ extension LoginViewController: UITextFieldDelegate {
 
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         switch textField {
-        case emailTextField: self.viewModel.email = ""
-        case passwordTextField: self.viewModel.password = ""
+        case self.emailTextField: self.viewModel.email = ""
+        case self.passwordTextField: self.viewModel.password = ""
         default: break
         }
         return true
     }
-
 }

@@ -9,11 +9,10 @@
 import UIKit
 
 class QRCodeViewerViewController: BaseViewController {
-
     var viewModel: QRCodeViewerViewModel!
-    @IBOutlet weak var qrImageView: UIImageView!
+    @IBOutlet var qrImageView: UIImageView!
 
-    @IBOutlet weak var waitingForScanLabel: UILabel!
+    @IBOutlet var waitingForScanLabel: UILabel!
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -54,5 +53,4 @@ class QRCodeViewerViewController: BaseViewController {
         alert.addAction(approveAction)
         return alert
     }
-
 }

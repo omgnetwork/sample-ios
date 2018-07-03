@@ -9,7 +9,6 @@
 import OmiseGO
 
 class TokenCellViewModel: BaseViewModel {
-
     var tokenSymbol: String = "-"
     var tokenAmount: String = "0"
     var isSelected: Bool = false
@@ -21,5 +20,4 @@ class TokenCellViewModel: BaseViewModel {
         self.tokenAmount = balance.displayAmount(withPrecision: 3)
         self.isSelected = isSelected
     }
-
 }

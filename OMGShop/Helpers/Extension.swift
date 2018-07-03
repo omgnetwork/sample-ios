@@ -6,29 +6,26 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import OmiseGO
 import BigInt
+import OmiseGO
 
 func dispatchMain(_ block: @escaping EmptyClosure) {
     DispatchQueue.main.async { block() }
 }
 
 extension Token {
-
     func formattedAmount(forAmount amountString: String?) -> BigInt? {
         guard let amountString = amountString else { return nil }
         return OMGNumberFormatter().number(from: amountString, subunitToUnit: self.subUnitToUnit)
     }
-
 }
 
 extension UIColor {
-
     static func color(fromHexString: String, alpha: CGFloat? = 1.0) -> UIColor {
         let hexint = Int(colorInteger(fromHexString: fromHexString))
-        let red = CGFloat((hexint & 0xff0000) >> 16) / 255.0
-        let green = CGFloat((hexint & 0xff00) >> 8) / 255.0
-        let blue = CGFloat((hexint & 0xff) >> 0) / 255.0
+        let red = CGFloat((hexint & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((hexint & 0xFF00) >> 8) / 255.0
+        let blue = CGFloat((hexint & 0xFF) >> 0) / 255.0
         let alpha = alpha!
         let color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
 
@@ -43,11 +40,9 @@ extension UIColor {
 
         return hexInt
     }
-
 }
 
 extension String {
-
     func isValidEmailAddress() -> Bool {
         let regex = try? NSRegularExpression(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
                                              options: .caseInsensitive)
@@ -61,34 +56,28 @@ extension String {
     func localized() -> String {
         return NSLocalizedString(self, comment: "")
     }
-
 }
 
 extension UITableView {
-
     public func registerNib(tableViewCell: UITableViewCell.Type) {
-        self.register(UINib.init(nibName: String(describing: tableViewCell), bundle: nil),
+        self.register(UINib(nibName: String(describing: tableViewCell), bundle: nil),
                       forCellReuseIdentifier: String(describing: tableViewCell))
     }
 
     public func registerNibs(tableViewCells: [UITableViewCell.Type]) {
-        tableViewCells.forEach { (tableViewCell) in
+        tableViewCells.forEach { tableViewCell in
             self.registerNib(tableViewCell: tableViewCell)
         }
     }
-
 }
 
 extension UITableViewCell {
-
     class func identifier() -> String {
         return String(describing: self)
     }
-
 }
 
 extension UIImageView {
-
     func downloaded(from url: URL?) {
         guard let url = url else { return }
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -97,17 +86,15 @@ extension UIImageView {
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
                 let image = UIImage(data: data)
-                else { return }
+            else { return }
             DispatchQueue.main.async {
                 self.image = image
             }
-            }.resume()
+        }.resume()
     }
-
 }
 
 extension Double {
-
     func displayablePrice(withSubunitToUnitCount subUnitToUnit: Double = 100) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -117,33 +104,27 @@ extension Double {
         let displayableAmount: Double = self / subUnitToUnit
         return formatter.string(from: NSNumber(value: displayableAmount)) ?? ""
     }
-
 }
 
 extension UIViewController {
-
     class func newInstance<T: UIViewController>(fromStoryboard storyboard: Storyboard) -> T? {
         let identifier = String(describing: self)
 
         return UIStoryboard(name: storyboard.name, bundle: nil).instantiateViewController(withIdentifier:
             identifier) as? T
     }
-
 }
 
 extension Date {
-
     func toString(withFormat format: String? = "dd MMM yyyy HH:mm:ss") -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter.string(from: self)
     }
-
 }
 
 extension UIView {
-
     func addDropShadow(withColor color: UIColor, offset: CGSize, opacity: Float, radius: CGFloat) {
         self.layer.shadowColor = color.cgColor
         self.layer.shadowOffset = offset
@@ -154,7 +135,6 @@ extension UIView {
 }
 
 extension UITextField {
-
     func addNextInputView(withOnNextSelector selector: Selector, target: Any) {
         let accessoryView = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: 44))
         accessoryView.backgroundColor = .white
@@ -176,21 +156,22 @@ extension UITextField {
                                                            multiplier: 1,
                                                            constant: 0))
         }
-        nextButton.addConstraints([NSLayoutConstraint(item: nextButton,
-                                                      attribute: .width,
-                                                      relatedBy: .equal,
-                                                      toItem: nil,
-                                                      attribute: .notAnAttribute,
-                                                      multiplier: 1,
-                                                      constant: 100),
-                                   NSLayoutConstraint(item: nextButton,
-                                                      attribute: .height,
-                                                      relatedBy: .equal,
-                                                      toItem: nil,
-                                                      attribute: .notAnAttribute,
-                                                      multiplier: 1,
-                                                      constant: 44)])
+        nextButton.addConstraints([
+            NSLayoutConstraint(item: nextButton,
+                               attribute: .width,
+                               relatedBy: .equal,
+                               toItem: nil,
+                               attribute: .notAnAttribute,
+                               multiplier: 1,
+                               constant: 100),
+            NSLayoutConstraint(item: nextButton,
+                               attribute: .height,
+                               relatedBy: .equal,
+                               toItem: nil,
+                               attribute: .notAnAttribute,
+                               multiplier: 1,
+                               constant: 44)
+        ])
         self.inputAccessoryView = accessoryView
     }
-
 }

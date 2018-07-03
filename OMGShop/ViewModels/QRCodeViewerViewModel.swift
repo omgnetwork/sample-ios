@@ -6,12 +6,11 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import UIKit
-import OmiseGO
 import BigInt
+import OmiseGO
+import UIKit
 
 class QRCodeViewerViewModel: BaseViewModel {
-
     // Delegate closures
     var onConsumptionRequest: SuccessClosure?
     var onSuccessApprove: ObjectClosure<String>?
@@ -43,7 +42,7 @@ class QRCodeViewerViewModel: BaseViewModel {
 
     func consumptionRequestMessage() -> String {
         guard let tc = self.transactionConsumption else { return "" }
-        //swiftlint:disable:next line_length
+        // swiftlint:disable:next line_length
         return "\(tc.address) \("qrcode_viewer.alert.consumption_request.wants_to".localized()) \(self.transactionRequest.type == .send ? "qrcode_viewer.alert.consumption_request.take_you".localized() : "qrcode_viewer.alert.consumption_request.send_you".localized()) \(self.displayableAmount()) \(tc.token.symbol), \("qrcode_viewer.alert.consumption_request.do_you_approve".localized())"
     }
 
@@ -55,11 +54,11 @@ class QRCodeViewerViewModel: BaseViewModel {
     func reject() {
         guard let tc = self.transactionConsumption else { return }
         self.isLoading = true
-        tc.reject(using: SessionManager.shared.omiseGOClient) { (result) in
+        tc.reject(using: SessionManager.shared.omiseGOClient) { result in
             self.isLoading = false
             switch result {
             case .success: break
-            case .fail(error: let error): self.onFailReject?(.omiseGO(error: error))
+            case let .fail(error: error): self.onFailReject?(.omiseGO(error: error))
             }
         }
     }
@@ -83,17 +82,16 @@ class QRCodeViewerViewModel: BaseViewModel {
         let formattedAmount = OMGNumberFormatter(precision: 5).string(from: amount,
                                                                       subunitToUnit: transactionConsumption.token.subUnitToUnit)
         if transactionConsumption.transactionRequest.type == .send {
-            //swiftlint:disable:next line_length
+            // swiftlint:disable:next line_length
             return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.sent".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("qrcode_viewer.message.to".localized()) \(transactionConsumption.address)"
         } else {
-            //swiftlint:disable:next line_length
+            // swiftlint:disable:next line_length
             return "\("qrcode_viewer.message.successfully".localized()) \("qrcode_viewer.message.received".localized()) \(formattedAmount) \(transactionConsumption.token.symbol) \("qrcode_viewer.message.from".localized()) \(transactionConsumption.address)"
         }
     }
 }
 
 extension QRCodeViewerViewModel: TransactionRequestEventDelegate {
-
     func onSuccessfulTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption) {
         switch transactionConsumption.status {
         case .confirmed: self.onSuccessApprove?(self.successConsumeMessage(withTransacionConsumption: transactionConsumption))
@@ -102,7 +100,7 @@ extension QRCodeViewerViewModel: TransactionRequestEventDelegate {
         }
     }
 
-    func onFailedTransactionConsumptionFinalized(_ transactionConsumption: TransactionConsumption, error: OmiseGO.APIError) {
+    func onFailedTransactionConsumptionFinalized(_: TransactionConsumption, error: OmiseGO.APIError) {
         self.onFailApprove?(.omiseGO(error: .api(apiError: error)))
     }
 
@@ -122,5 +120,4 @@ extension QRCodeViewerViewModel: TransactionRequestEventDelegate {
     func onError(_ error: OmiseGO.APIError) {
         print("received error: \(error.description)")
     }
-
 }

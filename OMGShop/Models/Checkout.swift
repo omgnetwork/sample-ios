@@ -6,17 +6,17 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import OmiseGO
 import BigInt
+import OmiseGO
 
 class Checkout {
-
     var selectedBalance: Balance!
     var wallet: Wallet?
     var total: BigInt = 0
     var redeemedToken: BigInt = 0 {
         didSet { self.discount = redeemedToken }
     }
+
     var discount: BigInt = 0 {
         didSet { self.updateTotalPrice() }
     }
@@ -33,5 +33,4 @@ class Checkout {
     private func updateTotalPrice() {
         self.total = self.subTotal - self.discount
     }
-
 }

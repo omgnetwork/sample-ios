@@ -7,12 +7,11 @@
 //
 
 public struct APIError: CustomDebugStringConvertible {
-
     public let code: APIErrorCode
     public let description: String
 
     public var debugDescription: String {
-        return "Error: \(code.debugDescription) - \(description)"
+        return "Error: \(self.code.debugDescription) - \(self.description)"
     }
 
     func isAuthorizationError() -> Bool {
@@ -23,7 +22,6 @@ public struct APIError: CustomDebugStringConvertible {
     }
 
     public enum APIErrorCode: CustomDebugStringConvertible, Decodable {
-
         case invalidAuthenticationToken
         case other(String)
 
@@ -44,7 +42,7 @@ public struct APIError: CustomDebugStringConvertible {
             switch self {
             case .invalidAuthenticationToken:
                 return "user:invalid_authentication_token"
-            case .other(let code):
+            case let .other(code):
                 return code
             }
         }
@@ -53,18 +51,16 @@ public struct APIError: CustomDebugStringConvertible {
             switch self {
             case .invalidAuthenticationToken:
                 return "user:invalid_authentication_token"
-            case .other(let code):
+            case let .other(code):
                 return code
             }
         }
     }
-
 }
 
 extension APIError: Error {}
 
 extension APIError: Decodable {
-
     private enum CodingKeys: String, CodingKey {
         case object
         case code
@@ -76,5 +72,4 @@ extension APIError: Decodable {
         code = try container.decode(APIErrorCode.self, forKey: .code)
         description = try container.decode(String.self, forKey: .description)
     }
-
 }

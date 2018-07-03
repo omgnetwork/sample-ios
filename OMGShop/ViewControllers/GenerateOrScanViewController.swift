@@ -6,17 +6,16 @@
 //  Copyright © 2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import UIKit
 import OmiseGO
+import UIKit
 
 class GenerateOrScanViewController: BaseViewController {
-
     let segueIdentifier = "showConsumeView"
 
     let viewModel = GenerateOrScanViewModel()
 
-    @IBOutlet weak var generateQRCodeButton: UIButton!
-    @IBOutlet weak var scanQRCodeButton: UIButton!
+    @IBOutlet var generateQRCodeButton: UIButton!
+    @IBOutlet var scanQRCodeButton: UIButton!
 
     override func configureView() {
         super.configureView()
@@ -34,19 +33,16 @@ class GenerateOrScanViewController: BaseViewController {
 }
 
 extension GenerateOrScanViewController {
-
-    @IBAction func tapScanButton(_ sender: UIButton) {
+    @IBAction func tapScanButton(_: UIButton) {
         if let scannerVC = QRScannerViewController(delegate: self,
                                                    client: SessionManager.shared.omiseGOClient,
                                                    cancelButtonTitle: self.viewModel.cancelButtonTitle) {
             self.present(scannerVC, animated: true, completion: nil)
         }
     }
-
 }
 
 extension GenerateOrScanViewController: QRScannerViewControllerDelegate {
-
     func scannerDidCancel(scanner: QRScannerViewController) {
         scanner.dismiss(animated: true, completion: nil)
     }
@@ -56,8 +52,7 @@ extension GenerateOrScanViewController: QRScannerViewControllerDelegate {
         self.performSegue(withIdentifier: self.segueIdentifier, sender: transactionRequest)
     }
 
-    func scannerDidFailToDecode(scanner: QRScannerViewController, withError error: OMGError) {
+    func scannerDidFailToDecode(scanner _: QRScannerViewController, withError error: OMGError) {
         self.showError(withMessage: error.localizedDescription)
     }
-
 }

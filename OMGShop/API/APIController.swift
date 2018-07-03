@@ -9,7 +9,6 @@
 import Alamofire
 
 class APIController {
-
     static let apiVersion = "1"
     static let shared = APIController()
     private let manager = Alamofire.SessionManager.default
@@ -22,10 +21,10 @@ class APIController {
     @discardableResult
     class func request<T: Decodable>(withRouter router: URLRequestConvertible,
                                      completionClosure: @escaping APIClosure<T>) -> URLSessionTask? {
-        let request = self.shared.manager.request(router).responseData { (data) in
+        let request = self.shared.manager.request(router).responseData { data in
             if let response = data.response, [200, 500].contains(response.statusCode) {
                 switch data.result {
-                case .success(let data):
+                case let .success(data):
                     do {
                         let jsonDecoder = JSONDecoder()
                         let response: JSONResponse<T> = try jsonDecoder.decode(JSONResponse<T>.self, from: data)
@@ -33,7 +32,7 @@ class APIController {
                     } catch let error {
                         completionClosure(.fail(error: .other(error: error)))
                     }
-                case .failure(let error):
+                case let .failure(error):
                     completionClosure(.fail(error: .other(error: error)))
                 }
             } else {
@@ -43,14 +42,12 @@ class APIController {
         debugPrint(request)
         return request.task
     }
-
 }
 
 private class OMGRequestRetrier: RequestRetrier {
-
-    func should(_ manager: Alamofire.SessionManager,
+    func should(_: Alamofire.SessionManager,
                 retry request: Alamofire.Request,
-                with error: Error,
+                with _: Error,
                 completion: @escaping Alamofire.RequestRetryCompletion) {
         guard request.retryCount < 3 else {
             completion(false, 0.0)
@@ -58,20 +55,17 @@ private class OMGRequestRetrier: RequestRetrier {
         }
         completion(true, 0.0)
     }
-
 }
 
 private class OMGRequestAdapter: RequestAdapter {
-
     enum AuthenticationType {
-
         case authenticated(token: String, userId: String)
         case unAuthenticated
 
         var encodedKey: String? {
             var key: String!
             switch self {
-            case .authenticated(token: let authenticationToken, userId: let userId):
+            case let .authenticated(token: authenticationToken, userId: userId):
                 key = "\(Constant.apiKeyId):\(Constant.apiKey):\(userId):\(authenticationToken)"
             case .unAuthenticated:
                 key = "\(Constant.apiKeyId):\(Constant.apiKey)"
@@ -106,5 +100,4 @@ private class OMGRequestAdapter: RequestAdapter {
     private func contentTypeHeader() -> String {
         return "application/vnd.omisego.v\(APIController.apiVersion)+json"
     }
-
 }

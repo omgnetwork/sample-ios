@@ -6,13 +6,12 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
+import BigInt
 @testable import OMGShop
 @testable import OmiseGO
-import BigInt
+import XCTest
 
 class CheckoutViewModelTests: XCTestCase {
-
     var mockProductAPI: MockProductAPI!
     var mockWalletLoader: MockWalletLoader!
     var sut: CheckoutViewModel!
@@ -139,11 +138,9 @@ class CheckoutViewModelTests: XCTestCase {
         XCTAssert(self.sut.subTotalPrice == 20000.displayablePrice())
         XCTAssert(totalPrice == (20000 - discount).displayablePrice())
     }
-
 }
 
 extension CheckoutViewModelTests {
-
     private func goToLoadWalletFinished() {
         self.sut.loadBalances()
         self.mockWalletLoader.wallet = StubGenerator.mainWallet()
@@ -162,5 +159,4 @@ extension CheckoutViewModelTests {
         self.mockProductAPI.pay = StubGenerator.pay()
         self.mockProductAPI.paySuccess()
     }
-
 }

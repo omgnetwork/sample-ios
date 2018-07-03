@@ -9,22 +9,21 @@
 import UIKit
 
 class CheckoutViewController: BaseViewController {
-
     var viewModel: CheckoutViewModel!
 
-    @IBOutlet weak var yourProductLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var productPriceLabel: UILabel!
-    @IBOutlet weak var summaryLabel: UILabel!
-    @IBOutlet weak var subTotalLabel: UILabel!
-    @IBOutlet weak var subTotalPriceLabel: UILabel!
-    @IBOutlet weak var discountLabel: UILabel!
-    @IBOutlet weak var discountPriceLabel: UILabel!
-    @IBOutlet weak var totalLabel: UILabel!
-    @IBOutlet weak var totalPriceLabel: UILabel!
-    @IBOutlet weak var redeemButton: UIButton!
-    @IBOutlet weak var payButton: UIButton!
+    @IBOutlet var yourProductLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var productPriceLabel: UILabel!
+    @IBOutlet var summaryLabel: UILabel!
+    @IBOutlet var subTotalLabel: UILabel!
+    @IBOutlet var subTotalPriceLabel: UILabel!
+    @IBOutlet var discountLabel: UILabel!
+    @IBOutlet var discountPriceLabel: UILabel!
+    @IBOutlet var totalLabel: UILabel!
+    @IBOutlet var totalPriceLabel: UILabel!
+    @IBOutlet var redeemButton: UIButton!
+    @IBOutlet var payButton: UIButton!
 
     override func configureView() {
         super.configureView()
@@ -50,15 +49,15 @@ class CheckoutViewController: BaseViewController {
 
     override func configureViewModel() {
         super.configureViewModel()
-        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading() }
         self.viewModel.onFailGetWallet = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onDiscountPriceChange = { self.discountPriceLabel.text = $0 }
         self.viewModel.onTotalPriceChange = { self.totalPriceLabel.text = $0 }
-        self.viewModel.onSuccessPay = { (message) in
+        self.viewModel.onSuccessPay = { message in
             self.showMessage(message)
             self.navigationController?.popViewController(animated: true)
         }
-        self.viewModel.onFailPay = {  self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onFailPay = { self.showError(withMessage: $0.localizedDescription) }
         self.viewModel.onAppStateChange = { (UIApplication.shared.delegate as? AppDelegate)?.loadRootView() }
         self.viewModel.onRedeemButtonTitleChange = { self.redeemButton.setTitle($0, for: .normal) }
         self.viewModel.onRedeemButtonStateChange = {
@@ -72,25 +71,20 @@ class CheckoutViewController: BaseViewController {
         self.redeemButton.layer.borderColor = Color.omiseGOBlue.cgColor()
         self.redeemButton.layer.borderWidth = 1
     }
-
 }
 
 extension CheckoutViewController {
-
-    @IBAction func didTapRedeemButton(_ sender: UIButton) {
+    @IBAction func didTapRedeemButton(_: UIButton) {
         RedeemPopupViewController.present(fromViewController: self, checkout: self.viewModel.checkout, delegate: self)
     }
 
-    @IBAction func didTapPayButton(_ sender: UIButton) {
+    @IBAction func didTapPayButton(_: UIButton) {
         self.viewModel.pay()
     }
-
 }
 
 extension CheckoutViewController: RedeemPopupViewControllerDelegate {
-
     func didFinishToRedeem() {
         self.viewModel.updatePrices()
     }
-
 }

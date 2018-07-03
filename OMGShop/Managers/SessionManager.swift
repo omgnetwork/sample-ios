@@ -6,8 +6,8 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import OmiseGO
 import KeychainSwift
+import OmiseGO
 
 protocol SessionManagerProtocol {
     var currentUser: User? { get set }
@@ -19,7 +19,6 @@ protocol SessionManagerProtocol {
 }
 
 class SessionManager: SessionManagerProtocol {
-
     static let shared: SessionManager = SessionManager()
 
     init() {
@@ -92,24 +91,24 @@ class SessionManager: SessionManagerProtocol {
             failure(.unexpected(message: "error.unexpected".localized()))
             return
         }
-        User.getCurrent (using: self.omiseGOClient) { (response) in
+        User.getCurrent(using: self.omiseGOClient) { response in
             switch response {
-            case .success(data: let user):
+            case let .success(data: user):
                 self.currentUser = user
                 success()
-            case .fail(error: let error):
+            case let .fail(error: error):
                 failure(error)
             }
         }
     }
 
     func logout(withSuccessClosure success: @escaping SuccessClosure, failure: @escaping FailureClosure) {
-        self.omiseGOClient.logout { (response) in
+        self.omiseGOClient.logout { response in
             switch response {
             case .success(data: _):
                 self.clearTokens()
                 success()
-            case .fail(error: let error):
+            case let .fail(error: error):
                 failure(.omiseGO(error: error))
             }
         }
@@ -117,13 +116,11 @@ class SessionManager: SessionManagerProtocol {
 }
 
 extension SessionManager: SocketConnectionDelegate {
-
     func didConnect() {
         print("Socket did connect")
     }
 
-    func didDisconnect(_ error: OMGError?) {
+    func didDisconnect(_: OMGError?) {
         print("Socket did disconnect")
     }
-
 }

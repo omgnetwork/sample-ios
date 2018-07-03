@@ -9,7 +9,6 @@
 import OmiseGO
 
 class TokenManager {
-
     static let shared = TokenManager()
 
     var selectedTokenSymbol: String? {
@@ -23,17 +22,16 @@ class TokenManager {
 
     func setDefaultTokenSymbolIfNotPresent(withBalances balances: [Balance]) {
         if self.selectedTokenSymbol == nil ||
-            balances.filter({$0.token.symbol == self.selectedTokenSymbol}).isEmpty {
+            balances.filter({ $0.token.symbol == self.selectedTokenSymbol }).isEmpty {
             self.selectedTokenSymbol = balances.first?.token.symbol
         }
     }
 
     func selectedBalance(fromBalances balances: [Balance]) -> Balance? {
-        return balances.filter({$0.token.symbol == self.selectedTokenSymbol}).first
+        return balances.filter({ $0.token.symbol == self.selectedTokenSymbol }).first
     }
 
     func isSelected(_ token: Token) -> Bool {
         return token.symbol == self.selectedTokenSymbol
     }
-
 }

@@ -6,31 +6,30 @@
 //  Copyright © 2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import UIKit
 import TPKeyboardAvoiding
+import UIKit
 
 class TRequestConsumerViewController: BaseTableViewController {
-
     var viewModel: TRequestConsumerViewModel!
 
-    @IBOutlet weak var transactionTypeLabel: UILabel!
-    @IBOutlet weak var addressRequesterLabel: UILabel!
+    @IBOutlet var transactionTypeLabel: UILabel!
+    @IBOutlet var addressRequesterLabel: UILabel!
 
-    @IBOutlet weak var tokenLabel: UILabel!
-    @IBOutlet weak var tokenDisplayLabel: UILabel!
+    @IBOutlet var tokenLabel: UILabel!
+    @IBOutlet var tokenDisplayLabel: UILabel!
 
-    @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet var amountTextField: UITextField!
 
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var addressTextField: UITextField!
 
-    @IBOutlet weak var correlationIdLabel: UILabel!
-    @IBOutlet weak var correlationIdTextField: UITextField!
+    @IBOutlet var correlationIdLabel: UILabel!
+    @IBOutlet var correlationIdTextField: UITextField!
 
     @IBOutlet var tpKeyboardAvoidingTableView: TPKeyboardAvoidingTableView!
 
-    @IBOutlet weak var consumeButton: UIButton!
+    @IBOutlet var consumeButton: UIButton!
 
     private var addressPicker: UIPickerView!
 
@@ -94,9 +93,11 @@ class TRequestConsumerViewController: BaseTableViewController {
     }
 
     func setupAccessoryViews() {
-        [self.amountTextField,
-         self.addressTextField,
-         self.correlationIdTextField].forEach {
+        [
+            self.amountTextField,
+            self.addressTextField,
+            self.correlationIdTextField
+        ].forEach {
             $0?.addNextInputView(withOnNextSelector: #selector(focusNextTextFieldOrResign), target: self)
         }
     }
@@ -107,16 +108,14 @@ class TRequestConsumerViewController: BaseTableViewController {
         }
     }
 
-    @IBAction func didTapConsumeButton(_ sender: UIButton) {
+    @IBAction func didTapConsumeButton(_: UIButton) {
         self.view.endEditing(true)
         self.viewModel.consumeTransactionRequest()
     }
-
 }
 
 extension TRequestConsumerViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_: UITextField) -> Bool {
         self.focusNextTextFieldOrResign()
         return true
     }
@@ -144,19 +143,17 @@ extension TRequestConsumerViewController: UITextFieldDelegate {
         }
         return true
     }
-
 }
 
 extension TRequestConsumerViewController: UIPickerViewDelegate {
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent _: Int) {
         switch pickerView {
         case self.addressPicker: self.viewModel.didSelect(row: row, picker: .address)
         default: break
         }
     }
 
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent _: Int, reusing view: UIView?) -> UIView {
         let label = (view as? UILabel) ?? UILabel()
         label.textAlignment = .center
         label.font = Font.avenirBook.withSize(17)
@@ -166,20 +163,17 @@ extension TRequestConsumerViewController: UIPickerViewDelegate {
         }
         return label
     }
-
 }
 
 extension TRequestConsumerViewController: UIPickerViewDataSource {
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent _: Int) -> Int {
         switch pickerView {
         case self.addressPicker: return self.viewModel.numberOfRows(inPicker: .address)
         default: return 0
         }
     }
 
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in _: UIPickerView) -> Int {
         return self.viewModel.numberOfColumnsInPicker()
     }
-
 }

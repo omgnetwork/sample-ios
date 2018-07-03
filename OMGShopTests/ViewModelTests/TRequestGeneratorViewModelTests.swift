@@ -6,12 +6,11 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OMGShop
 import OmiseGO
+import XCTest
 
 class TRequestGeneratorViewModelTests: XCTestCase {
-
     var mockSettingLoader: MockSettingLoader!
     var mockTransactionRequestCreator: MockTransactionRequestCreator!
     var mockWalletLoader: MockWalletLoader!
@@ -58,7 +57,6 @@ class TRequestGeneratorViewModelTests: XCTestCase {
         self.sut.onSuccessGetSettings = { didLoadSettings = true }
         self.goToLoadFinished()
         XCTAssert(didLoadSettings)
-
     }
 
     func testLoadWalletsFailed() {
@@ -153,11 +151,9 @@ class TRequestGeneratorViewModelTests: XCTestCase {
         self.goToLoadFinished()
         XCTAssertTrue(isGenerateButtonEnabled)
     }
-
 }
 
 extension TRequestGeneratorViewModelTests {
-
     private func goToLoadFinished() {
         self.mockWalletLoader.wallets = [StubGenerator.mainWallet()]
         self.mockSettingLoader.settings = StubGenerator.settings()
@@ -172,5 +168,4 @@ extension TRequestGeneratorViewModelTests {
         self.sut.generateTransactionRequest()
         self.mockTransactionRequestCreator.generateTransactionRequestSuccess()
     }
-
 }

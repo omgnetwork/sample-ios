@@ -9,16 +9,15 @@
 import TPKeyboardAvoiding
 
 class RegisterViewController: BaseViewController {
-
     let viewModel: RegisterViewModel = RegisterViewModel()
 
-    @IBOutlet weak var scrollView: TPKeyboardAvoidingScrollView!
-    @IBOutlet weak var closeButton: UIBarButtonItem!
-    @IBOutlet weak var firstNameTextField: OMGFloatingTextField!
-    @IBOutlet weak var lastNameTextField: OMGFloatingTextField!
-    @IBOutlet weak var emailTextField: OMGFloatingTextField!
-    @IBOutlet weak var passwordTextField: OMGFloatingTextField!
-    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet var scrollView: TPKeyboardAvoidingScrollView!
+    @IBOutlet var closeButton: UIBarButtonItem!
+    @IBOutlet var firstNameTextField: OMGFloatingTextField!
+    @IBOutlet var lastNameTextField: OMGFloatingTextField!
+    @IBOutlet var emailTextField: OMGFloatingTextField!
+    @IBOutlet var passwordTextField: OMGFloatingTextField!
+    @IBOutlet var registerButton: UIButton!
 
     override func configureView() {
         super.configureView()
@@ -37,32 +36,28 @@ class RegisterViewController: BaseViewController {
         self.viewModel.updateLastNameValidation = { self.lastNameTextField.errorMessage = $0 }
         self.viewModel.updateEmailValidation = { self.emailTextField.errorMessage = $0 }
         self.viewModel.updatePasswordValidation = { self.passwordTextField.errorMessage = $0 }
-        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading() }
         self.viewModel.onSuccessRegister = {
             self.dismiss(animated: false, completion: {
                 (UIApplication.shared.delegate as? AppDelegate)?.loadRootView()
             })
         }
-        self.viewModel.onFailedRegister = {  self.showError(withMessage: $0.localizedDescription) }
+        self.viewModel.onFailedRegister = { self.showError(withMessage: $0.localizedDescription) }
     }
-
 }
 
 extension RegisterViewController {
-
-    @IBAction func tapCloseButton(_ sender: UIBarButtonItem) {
+    @IBAction func tapCloseButton(_: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func tapRegisterButton(_ sender: UIButton) {
+    @IBAction func tapRegisterButton(_: UIButton) {
         self.view.endEditing(true)
         self.viewModel.register()
     }
-
 }
 
 extension RegisterViewController: UITextFieldDelegate {
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if !self.scrollView.tpKeyboardAvoiding_focusNextTextField() {
             textField.resignFirstResponder()
@@ -77,10 +72,10 @@ extension RegisterViewController: UITextFieldDelegate {
         let textFieldText: NSString = (textField.text ?? "") as NSString
         let textAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
         switch textField {
-        case firstNameTextField: self.viewModel.firstName = textAfterUpdate
-        case lastNameTextField: self.viewModel.lastName = textAfterUpdate
-        case emailTextField: self.viewModel.email = textAfterUpdate
-        case passwordTextField: self.viewModel.password = textAfterUpdate
+        case self.firstNameTextField: self.viewModel.firstName = textAfterUpdate
+        case self.lastNameTextField: self.viewModel.lastName = textAfterUpdate
+        case self.emailTextField: self.viewModel.email = textAfterUpdate
+        case self.passwordTextField: self.viewModel.password = textAfterUpdate
         default: break
         }
         return true
@@ -88,13 +83,12 @@ extension RegisterViewController: UITextFieldDelegate {
 
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         switch textField {
-        case firstNameTextField: self.viewModel.firstName = ""
-        case lastNameTextField: self.viewModel.lastName = ""
-        case emailTextField: self.viewModel.email = ""
-        case passwordTextField: self.viewModel.password = ""
+        case self.firstNameTextField: self.viewModel.firstName = ""
+        case self.lastNameTextField: self.viewModel.lastName = ""
+        case self.emailTextField: self.viewModel.email = ""
+        case self.passwordTextField: self.viewModel.password = ""
         default: break
         }
         return true
     }
-
 }

@@ -9,7 +9,6 @@
 @testable import OMGShop
 
 class MockProductAPI {
-
     var isLoadProductsCalled = false
     var isPayCalled = false
 
@@ -19,33 +18,30 @@ class MockProductAPI {
     var payCompletionClosure: APIClosure<EmptyResponse>!
 
     func loadProductsSuccess() {
-        loadCompletionClosure(.success(data: self.products))
+        self.loadCompletionClosure(.success(data: self.products))
     }
 
     func loadProductsFailed(withError error: APIError) {
-        loadCompletionClosure(.fail(error: OMGShopError.api(error: error)))
+        self.loadCompletionClosure(.fail(error: OMGShopError.api(error: error)))
     }
 
     func paySuccess() {
-        payCompletionClosure(.success(data: self.pay!))
+        self.payCompletionClosure(.success(data: self.pay!))
     }
 
     func payFailed(withError error: APIError) {
-        payCompletionClosure(.fail(error: OMGShopError.api(error: error)))
+        self.payCompletionClosure(.fail(error: OMGShopError.api(error: error)))
     }
-
 }
 
 extension MockProductAPI: ProductAPIProtocol {
-
     func getAll(withCompletionClosure completionClosure: @escaping APIClosure<[Product]>) {
         self.isLoadProductsCalled = true
         self.loadCompletionClosure = completionClosure
     }
 
-    func buy(withForm form: BuyForm, completionClosure: @escaping APIClosure<EmptyResponse>) {
+    func buy(withForm _: BuyForm, completionClosure: @escaping APIClosure<EmptyResponse>) {
         self.isPayCalled = true
         self.payCompletionClosure = completionClosure
     }
-
 }
