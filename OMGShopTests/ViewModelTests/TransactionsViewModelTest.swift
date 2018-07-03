@@ -73,14 +73,14 @@ class TransactionsViewModelTest: XCTestCase {
         let cellViewModelDebit = TransactionCellViewModel(transaction: transactionDebit,
                                                           currentUserAddress: self.address)
         XCTAssertEqual(cellViewModelDebit.address, "XXX123")
-        XCTAssertEqual(cellViewModelDebit.amount, "- 10.0 ABC")
+        XCTAssertEqual(cellViewModelDebit.amount, "- 10 ABC")
         XCTAssertEqual(cellViewModelDebit.color, Color.transactionDebitRed.uiColor())
         XCTAssertEqual(cellViewModelDebit.direction, "transactions.label.to".localized())
         let transactionCredit = StubGenerator.stubTransactions()[1]
         let cellViewModelCredit = TransactionCellViewModel(transaction: transactionCredit,
                                                            currentUserAddress: self.address)
         XCTAssertEqual(cellViewModelCredit.address, "XXX123")
-        XCTAssertEqual(cellViewModelCredit.amount, "+ 10.0 ABC")
+        XCTAssertEqual(cellViewModelCredit.amount, "+ 10 ABC")
         XCTAssertEqual(cellViewModelCredit.color, Color.transactionCreditGreen.uiColor())
         XCTAssertEqual(cellViewModelCredit.direction, "transactions.label.from".localized())
     }
