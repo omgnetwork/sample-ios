@@ -9,7 +9,6 @@
 import SkyFloatingLabelTextField
 
 class OMGFloatingTextField: SkyFloatingLabelTextField {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
@@ -21,7 +20,6 @@ class OMGFloatingTextField: SkyFloatingLabelTextField {
     }
 
     private func setup() {
-
         self.textColor = Color.omiseGOBlue.uiColor()
 
         // Placeholder: The placeholder shown when there is no content in the text field
@@ -39,8 +37,7 @@ class OMGFloatingTextField: SkyFloatingLabelTextField {
         self.titleColor = .lightGray
         self.titleFont = Font.avenirBook.withSize(12)
         self.titleFormatter = { (text: String) -> String in
-            return text
+            text
         }
     }
-
 }

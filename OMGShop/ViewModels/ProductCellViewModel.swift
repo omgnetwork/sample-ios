@@ -9,7 +9,6 @@
 import UIKit
 
 class ProductCellViewModel: BaseViewModel {
-
     let name: String
     let desc: String
     let displayPrice: String
@@ -24,5 +23,4 @@ class ProductCellViewModel: BaseViewModel {
         self.displayPrice = product.price.displayablePrice()
         self.imageURL = URL(string: product.imageURL)
     }
-
 }

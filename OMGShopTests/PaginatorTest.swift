@@ -6,18 +6,17 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OMGShop
 @testable import OmiseGO
+import XCTest
 
 class PaginatorTest: XCTestCase {
-
     func testLoadSuccess() {
         var expectedTransactions: [Transaction] = []
         let successClosure: ObjectClosure<[Transaction]> = { transactions in
             expectedTransactions = transactions
         }
-        let failureClosure: FailureClosure = { error in
+        let failureClosure: FailureClosure = { _ in
             XCTFail("Shouldn't fail")
         }
         let paginator = MockPaginator(page: 1,
@@ -33,7 +32,7 @@ class PaginatorTest: XCTestCase {
 
     func testLoadFailure() {
         var expectedError: OMGShopError?
-        let successClosure: ObjectClosure<[Transaction]> = { transactions in
+        let successClosure: ObjectClosure<[Transaction]> = { _ in
             XCTFail("Shouldn't succeed")
         }
         let failureClosure: FailureClosure = { error in
@@ -64,5 +63,4 @@ class PaginatorTest: XCTestCase {
         paginator.cancelLoading()
         XCTAssertEqual(request.task!.state, .canceling)
     }
-
 }

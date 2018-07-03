@@ -35,7 +35,7 @@ enum Storyboard {
     }
 
     var storyboard: UIStoryboard {
-        return UIStoryboard.init(name: self.name, bundle: nil)
+        return UIStoryboard(name: self.name, bundle: nil)
     }
 }
 
@@ -53,7 +53,6 @@ enum AppState {
 }
 
 struct Constant {
-
     // Config
     static let omiseGOhostURL = "https://ewallet.demo.omisego.io/api/client"
     static let omiseGOSocketURL = "wss://ewallet.demo.omisego.io/api/client/socket"
@@ -65,5 +64,4 @@ struct Constant {
 
     // Pagination
     static let perPage = 20
-
 }

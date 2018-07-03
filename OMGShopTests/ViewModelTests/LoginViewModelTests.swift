@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OMGShop
+import XCTest
 
 class LoginViewModelTests: XCTestCase {
-
     var mockSessionAPI: MockSessionAPI!
     var mockSessionManager: MockSessionManager!
     var sut: LoginViewModel!
@@ -69,7 +68,7 @@ class LoginViewModelTests: XCTestCase {
     }
 
     func testLoginSucceedButLoadCurrentUserFail() {
-        self.sut.onFailedLogin = { XCTAssertEqual($0.message, "unexpected error: Failed to load user")}
+        self.sut.onFailedLogin = { XCTAssertEqual($0.message, "unexpected error: Failed to load user") }
         self.goToLoginFinished()
         XCTAssert(self.mockSessionManager.isLoginCalled)
         XCTAssert(self.mockSessionManager.isLoadCurrentUserCalled)
@@ -102,12 +101,10 @@ class LoginViewModelTests: XCTestCase {
 }
 
 extension LoginViewModelTests {
-
     private func goToLoginFinished() {
         self.fillValidCredentials()
         self.mockSessionAPI.sessionToken = StubGenerator.stubLogin()
         self.sut.login()
         self.mockSessionAPI.loginSuccess()
     }
-
 }

@@ -7,7 +7,6 @@
 //
 
 class RegisterViewModel: BaseViewModel {
-
     // Delegate closures
     var updateFirstNameValidation: ViewModelValidationClosure?
     var updateLastNameValidation: ViewModelValidationClosure?
@@ -70,10 +69,10 @@ class RegisterViewModel: BaseViewModel {
                                         lastName: self.lastName!,
                                         email: self.email!,
                                         password: self.password!)
-        self.sessionAPI.register(withForm: registerForm, completionClosure: { (response) in
+        self.sessionAPI.register(withForm: registerForm, completionClosure: { response in
             switch response {
-            case .success(data: let tokens): self.processRegister(withTokens: tokens)
-            case .fail(error: let error):
+            case let .success(data: tokens): self.processRegister(withTokens: tokens)
+            case let .fail(error: error):
                 self.isLoading = false
                 self.onFailedRegister?(error)
             }
@@ -82,12 +81,12 @@ class RegisterViewModel: BaseViewModel {
 
     private func processRegister(withTokens tokens: SessionToken) {
         self.sessionManager.login(withAppToken: tokens.authenticationToken,
-                                    omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken,
-                                    userId: tokens.userId)
+                                  omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken,
+                                  userId: tokens.userId)
         self.sessionManager.loadCurrentUser(withSuccessClosure: {
             self.isLoading = false
             self.onSuccessRegister?()
-        }, failure: { (error) in
+        }, failure: { error in
             self.isLoading = false
             self.onFailedRegister?(OMGShopError.omiseGO(error: error))
         })
@@ -130,5 +129,4 @@ class RegisterViewModel: BaseViewModel {
         isValid = self.validatePassword() && isValid
         guard isValid else { throw OMGShopError.missingRequiredFields }
     }
-
 }

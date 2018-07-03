@@ -6,29 +6,30 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import OmiseGO
 import BigInt
+import OmiseGO
 
 class RedeemPopupViewModel: BaseViewModel {
-
     // Delegate Closures
     var onRedeemTokenUpdate: ObjectClosure<String>?
     var onDiscountUpdate: ObjectClosure<String>?
 
     var title: String {
-        //swiftlint:disable:next line_length
+        // swiftlint:disable:next line_length
         return "\("popup.redeem.label.title.redeem".localized()) \(self.checkout.selectedBalance.token.symbol) \("popup.redeem.label.title.coins".localized())"
     }
+
     let cancelButtonTitle: String = "popup.redeem.button.title.cancel".localized()
     let redeemButtonTitle: String = "popup.redeem.button.title.redeem".localized()
     private let checkout: Checkout
 
     var totalTokenToRedeem: NSAttributedString!
     var redeemToken: String! {
-        didSet { self.onRedeemTokenUpdate?(redeemToken) }
+        didSet { self.onRedeemTokenUpdate?(self.redeemToken) }
     }
+
     var getDiscount: String! {
-        didSet { self.onDiscountUpdate?(getDiscount) }
+        didSet { self.onDiscountUpdate?(self.getDiscount) }
     }
 
     private var selectedTokenAmount: BigInt = 0 {
@@ -71,7 +72,7 @@ class RedeemPopupViewModel: BaseViewModel {
         let tokensAttributes: [NSAttributedStringKey: Any] = [.font: Font.avenirMedium.withSize(14)]
         let amount = self.checkout.selectedBalance.displayAmount(withPrecision: 2)
         let tokens = NSAttributedString(string: " \(amount) \(self.checkout.selectedBalance.token.symbol) ",
-            attributes: tokensAttributes)
+                                        attributes: tokensAttributes)
         let mutableAS = NSMutableAttributedString()
         mutableAS.append(youHave)
         mutableAS.append(tokens)
@@ -86,12 +87,11 @@ class RedeemPopupViewModel: BaseViewModel {
         let amount = self.selectedTokenAmount / 100
         let displayableAmount = formatter.string(from: NSNumber(value: Double(amount))) ?? "-"
         self.redeemToken =
-        "\("popup.redeem.redeem".localized()) \(displayableAmount) \(self.checkout.selectedBalance.token.symbol)"
+            "\("popup.redeem.redeem".localized()) \(displayableAmount) \(self.checkout.selectedBalance.token.symbol)"
     }
 
     private func buildGetDiscountString() {
         let displayAmount = self.selectedTokenAmount
         self.getDiscount = "\("popup.redeem.get_discount".localized()) \(Double(displayAmount).displayablePrice())"
     }
-
 }

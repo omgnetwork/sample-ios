@@ -6,12 +6,11 @@
 //  Copyright © 2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OMGShop
 import OmiseGO
+import XCTest
 
 class TRequestConsumerViewModelTests: XCTestCase {
-
     var mockTransactionConsumer: MockTransactionConsumer!
     var mockWalletLoader: MockWalletLoader!
     var sut: TRequestConsumerViewModel!
@@ -94,7 +93,6 @@ class TRequestConsumerViewModelTests: XCTestCase {
         self.sut.onSuccessConsume = { _ in didConsume = true }
         self.goToConsumeTransactionRequestFinished()
         XCTAssert(didConsume)
-
     }
 
     func testPickerData() {
@@ -113,11 +111,9 @@ class TRequestConsumerViewModelTests: XCTestCase {
         self.mockTransactionConsumer.consumeTransactionSuccess()
         XCTAssertFalse(loadingStatus)
     }
-
 }
 
 extension TRequestConsumerViewModelTests {
-
     private func goToLoadFinished() {
         self.mockWalletLoader.wallets = [StubGenerator.mainWallet()]
         self.sut.loadWallets()
@@ -129,5 +125,4 @@ extension TRequestConsumerViewModelTests {
         self.sut.consumeTransactionRequest()
         self.mockTransactionConsumer.consumeTransactionSuccess()
     }
-
 }

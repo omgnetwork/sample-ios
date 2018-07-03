@@ -7,11 +7,9 @@
 //
 
 class OMGShopManager {
-
     static let shared: OMGShopManager = OMGShopManager()
 
     init() {
         Theme.apply()
     }
-
 }

@@ -9,7 +9,6 @@
 import OmiseGO
 
 enum OMGShopError: Error {
-
     case missingRequiredFields
     case unexpected
     case api(error: APIError)
@@ -23,17 +22,16 @@ enum OMGShopError: Error {
             return "error.missing_required_fields".localized()
         case .unexpected:
             return "error.unexpected".localized()
-        case .api(error: let apiError):
+        case let .api(error: apiError):
             return apiError.description
-        case .omiseGO(error: let error):
+        case let .omiseGO(error: error):
             return error.description
-        case .other(error: let error):
+        case let .other(error: error):
             return error.localizedDescription
-        case .message(message: let message):
+        case let .message(message: message):
             return message
         }
     }
-
 }
 
 extension OMGShopError: CustomStringConvertible, CustomDebugStringConvertible {

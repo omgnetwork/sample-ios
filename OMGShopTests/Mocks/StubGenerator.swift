@@ -11,15 +11,14 @@
 @testable import OmiseGO
 
 class StubGenerator {
-
-    class private func stub<T: Decodable>(forResource resource: String) -> T {
+    private class func stub<T: Decodable>(forResource resource: String) -> T {
         let bundle = Bundle(for: StubGenerator.self)
         let directoryURL = bundle.url(forResource: "Fixtures", withExtension: nil)!
         let filePath = (resource as NSString).appendingPathExtension("json")! as String
         let fixtureFileURL = directoryURL.appendingPathComponent(filePath)
         let data = try! Data(contentsOf: fixtureFileURL)
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom({return try dateDecodingStrategy(decoder: $0)})
+        decoder.dateDecodingStrategy = .custom({ try dateDecodingStrategy(decoder: $0) })
         return try! decoder.decode(T.self, from: data)
     }
 
@@ -37,10 +36,9 @@ class StubGenerator {
 
     class func transactionRequest() -> TransactionRequest { return self.stub(forResource: "transaction_request") }
 
-    class func transactionConsumption() -> TransactionConsumption { return self.stub(forResource: "transaction_consumption")}
+    class func transactionConsumption() -> TransactionConsumption { return self.stub(forResource: "transaction_consumption") }
 
-    class func stubTransactions() -> [Transaction] { return self.stub(forResource: "transactions")}
+    class func stubTransactions() -> [Transaction] { return self.stub(forResource: "transactions") }
 
-    class func stubPagination() -> Pagination { return self.stub(forResource: "pagination")}
-
+    class func stubPagination() -> Pagination { return self.stub(forResource: "pagination") }
 }

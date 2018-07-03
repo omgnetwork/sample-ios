@@ -14,7 +14,6 @@ enum LoadingState {
 }
 
 class Paginator<T: Decodable> {
-
     var page: Int = 1
     var perPage: Int = 10
     var state: LoadingState = .idle
@@ -73,5 +72,4 @@ class Paginator<T: Decodable> {
         self.perPage = pagination.perPage
         self.reachedLastPage = pagination.isLastPage
     }
-
 }

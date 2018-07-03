@@ -9,16 +9,15 @@
 import UIKit
 
 class TokenTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var symbolLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var checkmarkLabel: UILabel!
+    @IBOutlet var symbolLabel: UILabel!
+    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet var checkmarkLabel: UILabel!
 
     var tokenCellViewModel: TokenCellViewModel! {
         didSet {
-            self.symbolLabel.text = tokenCellViewModel.tokenSymbol
-            self.amountLabel.text = tokenCellViewModel.tokenAmount
-            self.checkmarkLabel.isHidden = !tokenCellViewModel.isSelected
+            self.symbolLabel.text = self.tokenCellViewModel.tokenSymbol
+            self.amountLabel.text = self.tokenCellViewModel.tokenAmount
+            self.checkmarkLabel.isHidden = !self.tokenCellViewModel.isSelected
         }
     }
 }

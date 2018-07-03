@@ -9,7 +9,6 @@
 import Alamofire
 
 enum Router<ResponseType: Decodable> {
-
     case login(withForm: LoginForm)
     case register(withForm: RegisterForm)
     case getProducts
@@ -19,11 +18,11 @@ enum Router<ResponseType: Decodable> {
     func request(withCompletionClosure completionClosure: @escaping APIClosure<ResponseType>) -> URLSessionTask? {
         switch self {
         case .getProducts:
-            let listClosure: APIClosure<JSONListResponse<ResponseType>> = { (response) in
+            let listClosure: APIClosure<JSONListResponse<ResponseType>> = { response in
                 switch response {
-                case .success(data: let data):
+                case let .success(data: data):
                     completionClosure(.success(data: data.data))
-                case .fail(error: let error):
+                case let .fail(error: error):
                     completionClosure(.fail(error: error))
                 }
             }
@@ -32,11 +31,9 @@ enum Router<ResponseType: Decodable> {
             return APIController.request(withRouter: self, completionClosure: completionClosure)
         }
     }
-
 }
 
 extension Router: URLRequestConvertible {
-
     var operation: String {
         switch self {
         case .login(withForm: _): return "/login"
@@ -48,9 +45,9 @@ extension Router: URLRequestConvertible {
 
     var body: Data? {
         switch self {
-        case .login(withForm: let form): return form.encodedBody()
-        case .register(withForm: let form): return form.encodedBody()
-        case .buyProduct(withForm: let form): return form.encodedBody()
+        case let .login(withForm: form): return form.encodedBody()
+        case let .register(withForm: form): return form.encodedBody()
+        case let .buyProduct(withForm: form): return form.encodedBody()
         default: return nil
         }
     }
@@ -67,5 +64,4 @@ extension Router: URLRequestConvertible {
     private func generateIdempotencyToken() -> String {
         return UUID().uuidString
     }
-
 }

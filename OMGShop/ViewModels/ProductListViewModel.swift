@@ -9,7 +9,6 @@
 import Foundation
 
 class ProductListViewModel: BaseViewModel {
-
     // Delegate closures
     var reloadTableViewClosure: EmptyClosure?
     var onFailLoadProducts: FailureClosure?
@@ -36,12 +35,12 @@ class ProductListViewModel: BaseViewModel {
 
     func getProducts() {
         self.isLoading = true
-        self.productAPI.getAll { (response) in
+        self.productAPI.getAll { response in
             switch response {
-            case .success(data: let products):
+            case let .success(data: products):
                 self.process(products)
                 self.isLoading = false
-            case .fail(error: let error):
+            case let .fail(error: error):
                 self.isLoading = false
                 self.onFailLoadProducts?(error)
             }
@@ -53,11 +52,9 @@ class ProductListViewModel: BaseViewModel {
         products.forEach({ newCellViewModels.append(ProductCellViewModel(product: $0)) })
         self.productCellViewModels = newCellViewModels
     }
-
 }
 
 extension ProductListViewModel {
-
     func productCellViewModel(at indexPath: IndexPath) -> ProductCellViewModel {
         return self.productCellViewModels[indexPath.row]
     }
@@ -65,5 +62,4 @@ extension ProductListViewModel {
     func numberOfRow() -> Int {
         return self.productCellViewModels.count
     }
-
 }

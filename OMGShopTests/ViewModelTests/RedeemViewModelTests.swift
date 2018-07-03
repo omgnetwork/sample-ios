@@ -6,12 +6,11 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OMGShop
 @testable import OmiseGO
+import XCTest
 
 class RedeemViewModelTests: XCTestCase {
-
     var checkout: Checkout!
     var wallet: Wallet!
     var product: Product!
@@ -21,9 +20,9 @@ class RedeemViewModelTests: XCTestCase {
         super.setUp()
         self.wallet = StubGenerator.mainWallet()
         self.product = StubGenerator.stubProducts().first!
-        self.checkout = Checkout(product: product)
+        self.checkout = Checkout(product: self.product)
         self.checkout.wallet = wallet
-        self.checkout.selectedBalance = wallet?.balances.first!
+        self.checkout.selectedBalance = self.wallet?.balances.first!
     }
 
     override func tearDown() {
@@ -47,8 +46,7 @@ class RedeemViewModelTests: XCTestCase {
 
     func testExistingSliderValues() {
         self.checkout.redeemedToken = 5000
-        self.sut = RedeemPopupViewModel(checkout: checkout)
+        self.sut = RedeemPopupViewModel(checkout: self.checkout)
         XCTAssert(self.sut.initialSliderValue() == 5000)
     }
-
 }

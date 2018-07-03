@@ -9,7 +9,6 @@
 import OmiseGO
 
 class LoadingViewModel: BaseViewModel {
-
     var onFailedLoading: FailureClosure?
     var onLoadStateChange: ObjectClosure<Bool>?
 
@@ -33,11 +32,10 @@ class LoadingViewModel: BaseViewModel {
         self.sessionManager.loadCurrentUser(withSuccessClosure: {
             self.isLoading = false
             self.onAppStateChange?()
-            }, failure: { (error) in
-                self.handleOMGError(error)
-                self.isLoading = false
-                self.onFailedLoading?(OMGShopError.omiseGO(error: error))
+        }, failure: { error in
+            self.handleOMGError(error)
+            self.isLoading = false
+            self.onFailedLoading?(OMGShopError.omiseGO(error: error))
         })
     }
-
 }

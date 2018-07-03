@@ -9,7 +9,6 @@
 import Foundation
 
 struct BuyForm: Encodable {
-
     let tokenId: String
     let tokenValue: String
     let productId: String
@@ -19,13 +18,10 @@ struct BuyForm: Encodable {
         case tokenValue = "token_value"
         case productId = "product_id"
     }
-
 }
 
 extension BuyForm: JsonEncodable {
-
     func encodedBody() -> Data? {
         return try? JSONEncoder().encode(self)
     }
-
 }

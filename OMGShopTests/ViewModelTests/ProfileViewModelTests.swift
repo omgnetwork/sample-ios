@@ -6,12 +6,11 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OMGShop
 import OmiseGO
+import XCTest
 
 class ProfileViewModelTests: XCTestCase {
-
     var mockWalletLoader: MockWalletLoader!
     var mockSessionManager: MockSessionManager!
     var sut: ProfileViewModel!
@@ -78,7 +77,6 @@ class ProfileViewModelTests: XCTestCase {
         XCTAssert(didLoadWallet)
         XCTAssertEqual(TokenManager.shared.selectedTokenSymbol,
                        self.mockWalletLoader.wallet!.balances[0].token.symbol)
-
     }
 
     func testGetCellViewModel() {
@@ -154,11 +152,9 @@ class ProfileViewModelTests: XCTestCase {
         self.wait(for: [expectation], timeout: 1)
         XCTAssert(didLogout)
     }
-
 }
 
 extension ProfileViewModelTests {
-
     private func goToLoadFinished() {
         self.mockWalletLoader.wallet = StubGenerator.mainWallet()
         self.mockSessionManager.currentUser = StubGenerator.stubCurrentUser()
@@ -166,5 +162,4 @@ extension ProfileViewModelTests {
         self.mockWalletLoader.loadMainWalletSuccess()
         self.mockSessionManager.loadCurrentUserSuccess()
     }
-
 }

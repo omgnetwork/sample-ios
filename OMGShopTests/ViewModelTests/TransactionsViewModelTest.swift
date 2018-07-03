@@ -6,12 +6,11 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
-import OmiseGO
 @testable import OMGShop
+import OmiseGO
+import XCTest
 
 class TransactionsViewModelTest: XCTestCase {
-
     var mockTransactionLoader: MockTransactionLoader!
     var sut: TransactionsViewModel!
     let address = "083fe98d-a1f4-4fe9-bac0-b967b83140fc"
@@ -95,16 +94,13 @@ class TransactionsViewModelTest: XCTestCase {
         self.mockTransactionLoader.loadTransactionSuccess()
         XCTAssertFalse(loadingStatus)
     }
-
 }
 
 extension TransactionsViewModelTest {
-
     private func goToLoadTransactionsFinished() {
         self.mockTransactionLoader.transactions = StubGenerator.stubTransactions()
         self.mockTransactionLoader.pagination = StubGenerator.stubPagination()
         self.sut.getNextTransactions()
         self.mockTransactionLoader.loadTransactionSuccess()
     }
-
 }

@@ -9,22 +9,20 @@
 import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var directionLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var timestampLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet var directionLabel: UILabel!
+    @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var timestampLabel: UILabel!
+    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet var statusLabel: UILabel!
 
     var transactionCellViewModel: TransactionCellViewModel! {
         didSet {
-            self.directionLabel.text = transactionCellViewModel.direction
-            self.addressLabel.text = transactionCellViewModel.address
-            self.timestampLabel.text = transactionCellViewModel.timeStamp
-            self.amountLabel.text = transactionCellViewModel.amount
-            self.amountLabel.textColor = transactionCellViewModel.color
-            self.statusLabel.text = transactionCellViewModel.status
+            self.directionLabel.text = self.transactionCellViewModel.direction
+            self.addressLabel.text = self.transactionCellViewModel.address
+            self.timestampLabel.text = self.transactionCellViewModel.timeStamp
+            self.amountLabel.text = self.transactionCellViewModel.amount
+            self.amountLabel.textColor = self.transactionCellViewModel.color
+            self.statusLabel.text = self.transactionCellViewModel.status
         }
     }
-
 }

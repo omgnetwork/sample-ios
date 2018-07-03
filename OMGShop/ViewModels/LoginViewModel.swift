@@ -7,7 +7,6 @@
 //
 
 class LoginViewModel: BaseViewModel {
-
     // Delegate closures
     var updateEmailValidation: ViewModelValidationClosure?
     var updatePasswordValidation: ViewModelValidationClosure?
@@ -54,10 +53,10 @@ class LoginViewModel: BaseViewModel {
 
     private func submit() {
         let loginForm = LoginForm(email: self.email!, password: self.password!)
-        self.sessionAPI.login(withForm: loginForm, completionClosure: { (response) in
+        self.sessionAPI.login(withForm: loginForm, completionClosure: { response in
             switch response {
-            case .success(data: let tokens): self.processLogin(withTokens: tokens)
-            case .fail(error: let error):
+            case let .success(data: tokens): self.processLogin(withTokens: tokens)
+            case let .fail(error: error):
                 self.isLoading = false
                 self.onFailedLogin?(error)
             }
@@ -66,12 +65,12 @@ class LoginViewModel: BaseViewModel {
 
     private func processLogin(withTokens tokens: SessionToken) {
         self.sessionManager.login(withAppToken: tokens.authenticationToken,
-                                    omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken,
-                                    userId: tokens.userId)
+                                  omiseGOAuthenticationToken: tokens.omiseGOAuthenticationToken,
+                                  userId: tokens.userId)
         self.sessionManager.loadCurrentUser(withSuccessClosure: {
             self.isLoading = false
             self.onSuccessLogin?()
-        }, failure: { (error) in
+        }, failure: { error in
             self.isLoading = false
             self.onFailedLogin?(OMGShopError.omiseGO(error: error))
         })
@@ -98,5 +97,4 @@ class LoginViewModel: BaseViewModel {
         isValid = self.validatePassword() && isValid
         guard isValid else { throw OMGShopError.missingRequiredFields }
     }
-
 }

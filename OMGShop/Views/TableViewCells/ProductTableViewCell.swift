@@ -13,11 +13,10 @@ protocol ProductTableViewCellDelegate: class {
 }
 
 class ProductTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var buyButton: UIButton!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var productImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var buyButton: UIButton!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var productImageView: UIImageView!
 
     weak var delegate: ProductTableViewCellDelegate?
 
@@ -36,8 +35,7 @@ class ProductTableViewCell: UITableViewCell {
         self.buyButton.layer.borderWidth = 1
     }
 
-    @IBAction func didTapBuyButton(_ sender: UIButton) {
+    @IBAction func didTapBuyButton(_: UIButton) {
         self.delegate?.didTapBuy(forProduct: self.productCellViewModel.product)
     }
-
 }

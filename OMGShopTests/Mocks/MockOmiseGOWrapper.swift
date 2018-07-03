@@ -10,7 +10,6 @@
 @testable import OmiseGO
 
 class MockWalletLoader {
-
     var isLoadWalletCalled = false
 
     var wallet: Wallet?
@@ -19,25 +18,23 @@ class MockWalletLoader {
     var loadListCompletionClosure: Wallet.ListRequestCallback!
 
     func loadMainWalletSuccess() {
-        loadCompletionClosure(OmiseGO.Response.success(data: self.wallet!))
+        self.loadCompletionClosure(OmiseGO.Response.success(data: self.wallet!))
     }
 
     func loadMainWalletFailed(withError error: OMGError) {
-        loadCompletionClosure(OmiseGO.Response.fail(error: error))
+        self.loadCompletionClosure(OmiseGO.Response.fail(error: error))
     }
 
     func loadAllWalletsSuccess() {
-        loadListCompletionClosure(OmiseGO.Response.success(data: self.wallets))
+        self.loadListCompletionClosure(OmiseGO.Response.success(data: self.wallets))
     }
 
     func loadAllWalletsFailed(withError error: OMGError) {
-        loadListCompletionClosure(OmiseGO.Response.fail(error: error))
+        self.loadListCompletionClosure(OmiseGO.Response.fail(error: error))
     }
-
 }
 
 extension MockWalletLoader: WalletLoaderProtocol {
-
     func getMain(withCallback callback: @escaping Wallet.RetrieveRequestCallback) {
         self.isLoadWalletCalled = true
         self.loadCompletionClosure = callback
@@ -47,91 +44,77 @@ extension MockWalletLoader: WalletLoaderProtocol {
         self.isLoadWalletCalled = true
         self.loadListCompletionClosure = callback
     }
-
 }
 
 class MockSettingLoader {
-
     var isLoadSettingCalled = false
 
     var settings: Setting?
     var loadCompletionClosure: Setting.RetrieveRequestCallback!
 
     func loadSettingSuccess() {
-        loadCompletionClosure(OmiseGO.Response.success(data: self.settings!))
+        self.loadCompletionClosure(OmiseGO.Response.success(data: self.settings!))
     }
 
     func loadSettingFailed(withError error: OMGError) {
-        loadCompletionClosure(OmiseGO.Response.fail(error: error))
+        self.loadCompletionClosure(OmiseGO.Response.fail(error: error))
     }
-
 }
 
 extension MockSettingLoader: SettingLoaderProtocol {
-
     func get(withCallback callback: @escaping Setting.RetrieveRequestCallback) {
         self.isLoadSettingCalled = true
         self.loadCompletionClosure = callback
     }
-
 }
 
 class MockTransactionRequestCreator {
-
     var isGenerateCalled = false
 
     var transactionRequest: TransactionRequest?
     var generateCompletionClosure: TransactionRequest.RetrieveRequestCallback!
 
     func generateTransactionRequestSuccess() {
-        generateCompletionClosure(OmiseGO.Response.success(data: self.transactionRequest!))
+        self.generateCompletionClosure(OmiseGO.Response.success(data: self.transactionRequest!))
     }
 
     func generateTransactionRequestFailed(withError error: OMGError) {
-        generateCompletionClosure(OmiseGO.Response.fail(error: error))
+        self.generateCompletionClosure(OmiseGO.Response.fail(error: error))
     }
-
 }
 
 extension MockTransactionRequestCreator: TransactionRequestCreateProtocol {
-
-    func generate(withParams params: TransactionRequestCreateParams,
+    func generate(withParams _: TransactionRequestCreateParams,
                   callback: @escaping TransactionRequest.RetrieveRequestCallback) {
         self.isGenerateCalled = true
         self.generateCompletionClosure = callback
     }
-
 }
 
 class MockTransactionConsumer {
-
     var isConsumeCalled = false
 
     var transactionConsume: TransactionConsumption?
     var consumeCompletionClosure: TransactionConsumption.RetrieveRequestCallback!
 
     func consumeTransactionSuccess() {
-        consumeCompletionClosure(OmiseGO.Response.success(data: self.transactionConsume!))
+        self.consumeCompletionClosure(OmiseGO.Response.success(data: self.transactionConsume!))
     }
 
     func consumeTransactionFailed(withError error: OMGError) {
-        consumeCompletionClosure(OmiseGO.Response.fail(error: error))
+        self.consumeCompletionClosure(OmiseGO.Response.fail(error: error))
     }
-
 }
 
 extension MockTransactionConsumer: TransactionConsumeProtocol {
-
-    func consume(withParams params: TransactionConsumptionParams,
+    func consume(withParams _: TransactionConsumptionParams,
                  callback: @escaping TransactionConsumption.RetrieveRequestCallback) {
         self.isConsumeCalled = true
         self.consumeCompletionClosure = callback
     }
-
 }
 
 class MockTransactionLoader {
-
     var isListCalled = false
 
     var transactions: [Transaction]?
@@ -139,7 +122,7 @@ class MockTransactionLoader {
     var completionClosure: Transaction.ListRequestCallback!
 
     func loadTransactionSuccess() {
-        completionClosure(
+        self.completionClosure(
             OmiseGO.Response.success(
                 data: JSONPaginatedListResponse<Transaction>(data: self.transactions!, pagination: self.pagination!)
             )
@@ -147,19 +130,16 @@ class MockTransactionLoader {
     }
 
     func loadTransactionFailed(withError error: OMGError) {
-        completionClosure(OmiseGO.Response.fail(error: error))
+        self.completionClosure(OmiseGO.Response.fail(error: error))
     }
-
 }
 
 extension MockTransactionLoader: TransactionLoaderProtocol {
-
-    func list(withParams params: TransactionListParams,
+    func list(withParams _: TransactionListParams,
               callback: @escaping Transaction.ListRequestCallback)
         -> Transaction.ListRequest? {
         self.isListCalled = true
         self.completionClosure = callback
         return nil
     }
-
 }

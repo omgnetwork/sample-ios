@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import XCTest
 @testable import OMGShop
+import XCTest
 
 class LoadingViewModelTests: XCTestCase {
-
     var mockSessionManager: MockSessionManager!
     var sut: LoadingViewModel!
 
@@ -58,5 +57,4 @@ class LoadingViewModelTests: XCTestCase {
         self.mockSessionManager.loadCurrentUserSuccess()
         XCTAssertFalse(loadingStatus)
     }
-
 }

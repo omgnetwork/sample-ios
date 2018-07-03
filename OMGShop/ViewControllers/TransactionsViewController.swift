@@ -9,13 +9,12 @@
 import UIKit
 
 class TransactionsViewController: BaseViewController {
-
     var viewModel: TransactionsViewModel!
 
-    @IBOutlet weak var myAddressLabel: UILabel!
-    @IBOutlet weak var myAddressValueLabel: UILabel!
-    @IBOutlet weak var myAddressView: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var myAddressLabel: UILabel!
+    @IBOutlet var myAddressValueLabel: UILabel!
+    @IBOutlet var myAddressView: UIView!
+    @IBOutlet var tableView: UITableView!
     var refreshControl: UIRefreshControl!
 
     lazy var loadingView: UIView = {
@@ -25,7 +24,7 @@ class TransactionsViewController: BaseViewController {
         loader.translatesAutoresizingMaskIntoConstraints = false
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44))
         view.addSubview(loader)
-        [.centerX, .centerY].forEach ({
+        [.centerX, .centerY].forEach({
             view.addConstraint(NSLayoutConstraint(item: loader,
                                                   attribute: $0,
                                                   relatedBy: .equal,
@@ -44,7 +43,7 @@ class TransactionsViewController: BaseViewController {
         self.myAddressValueLabel.text = self.viewModel.myAddress
         self.refreshControl = UIRefreshControl()
         self.refreshControl.tintColor = Color.omiseGOBlue.uiColor()
-        self.refreshControl.addTarget(self, action: #selector(reloadTransactions), for: .valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(self.reloadTransactions), for: .valueChanged)
         self.tableView.registerNib(tableViewCell: TransactionTableViewCell.self)
         self.tableView.tableFooterView = UIView()
         self.tableView.rowHeight = 65
@@ -86,12 +85,10 @@ class TransactionsViewController: BaseViewController {
     @objc private func reloadTransactions() {
         self.viewModel.reloadTransactions()
     }
-
 }
 
 extension TransactionsViewController: UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return self.viewModel.numberOfRow()
     }
 
@@ -99,20 +96,17 @@ extension TransactionsViewController: UITableViewDataSource {
         guard let cell: TransactionTableViewCell = tableView.dequeueReusableCell(
             withIdentifier: TransactionTableViewCell.identifier(),
             for: indexPath) as? TransactionTableViewCell else {
-                return UITableViewCell()
+            return UITableViewCell()
         }
         cell.transactionCellViewModel = self.viewModel.transactionCellViewModel(at: indexPath)
         return cell
     }
-
 }
 
 extension TransactionsViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_: UITableView, willDisplay _: UITableViewCell, forRowAt indexPath: IndexPath) {
         if self.viewModel.shouldLoadNext(atIndexPath: indexPath) {
             self.viewModel.getNextTransactions()
         }
     }
-
 }

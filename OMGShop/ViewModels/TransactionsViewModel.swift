@@ -6,11 +6,10 @@
 //  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
 //
 
-import UIKit
 import OmiseGO
+import UIKit
 
 class TransactionsViewModel: BaseViewModel {
-
     // Delegate closures
     var appendNewResultClosure: ObjectClosure<[IndexPath]>?
     var reloadTableViewClosure: EmptyClosure?
@@ -31,6 +30,7 @@ class TransactionsViewModel: BaseViewModel {
     var isLoading: Bool = false {
         didSet { self.onLoadStateChange?(self.isLoading) }
     }
+
     var paginator: TransactionPaginator!
 
     init(transactionLoader: TransactionLoaderProtocol = TransactionLoader(), address: String) {
@@ -38,14 +38,13 @@ class TransactionsViewModel: BaseViewModel {
         super.init()
         self.paginator = TransactionPaginator(transactionLoader: transactionLoader,
                                               address: address,
-                                              successClosure: { [weak self] (transactions) in
-            self?.process(transactions)
-            self?.isLoading = false
-            }, failureClosure: { [weak self] (error) in
-                self?.isLoading = false
-                self?.onFailLoadTransactions?(error)
+                                              successClosure: { [weak self] transactions in
+                                                  self?.process(transactions)
+                                                  self?.isLoading = false
+                                              }, failureClosure: { [weak self] error in
+                                                  self?.isLoading = false
+                                                  self?.onFailLoadTransactions?(error)
         })
-
     }
 
     func reloadTransactions() {
@@ -66,19 +65,16 @@ class TransactionsViewModel: BaseViewModel {
                                                               currentUserAddress: self.paginator.address))
         })
         var indexPaths: [IndexPath] = []
-        for row in (
-            self.transactionCellViewModels.count..<(self.transactionCellViewModels.count + newCellViewModels.count)
-            ) {
+        for row in
+        self.transactionCellViewModels.count ..< (self.transactionCellViewModels.count + newCellViewModels.count) {
             indexPaths.append(IndexPath(row: row, section: 0))
         }
         self.transactionCellViewModels.append(contentsOf: newCellViewModels)
         self.appendNewResultClosure?(indexPaths)
     }
-
 }
 
 extension TransactionsViewModel {
-
     func transactionCellViewModel(at indexPath: IndexPath) -> TransactionCellViewModel {
         return self.transactionCellViewModels[indexPath.row]
     }
@@ -90,5 +86,4 @@ extension TransactionsViewModel {
     func shouldLoadNext(atIndexPath indexPath: IndexPath) -> Bool {
         return self.numberOfRow() - indexPath.row < 5 && !self.paginator.reachedLastPage
     }
-
 }

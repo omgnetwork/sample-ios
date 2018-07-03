@@ -9,13 +9,12 @@
 import UIKit
 
 class ProductListViewController: BaseViewController {
-
     let showCheckoutViewControllerSegueIdentifer = "showCheckoutViewController"
 
     let viewModel: ProductListViewModel = ProductListViewModel()
 
-    @IBOutlet weak var logoutButton: UIBarButtonItem!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var logoutButton: UIBarButtonItem!
+    @IBOutlet var tableView: UITableView!
     var refreshControl: UIRefreshControl!
 
     override func configureView() {
@@ -23,7 +22,7 @@ class ProductListViewController: BaseViewController {
         self.title = self.viewModel.viewTitle
         self.refreshControl = UIRefreshControl()
         self.refreshControl.tintColor = Color.omiseGOBlue.uiColor()
-        self.refreshControl.addTarget(self, action: #selector(reloadProducts), for: .valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(self.reloadProducts), for: .valueChanged)
         self.tableView.registerNib(tableViewCell: ProductTableViewCell.self)
         self.tableView.tableFooterView = UIView()
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -35,7 +34,7 @@ class ProductListViewController: BaseViewController {
 
     override func configureViewModel() {
         super.configureViewModel()
-        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading()}
+        self.viewModel.onLoadStateChange = { $0 ? self.showLoading() : self.hideLoading() }
         self.viewModel.reloadTableViewClosure = {
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
@@ -63,8 +62,7 @@ class ProductListViewController: BaseViewController {
 }
 
 extension ProductListViewController: UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return self.viewModel.numberOfRow()
     }
 
@@ -78,22 +76,17 @@ extension ProductListViewController: UITableViewDataSource {
         cell.delegate = self
         return cell
     }
-
 }
 
 extension ProductListViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let product = self.viewModel.productCellViewModel(at: indexPath).product
         self.performSegue(withIdentifier: self.showCheckoutViewControllerSegueIdentifer, sender: product)
     }
-
 }
 
 extension ProductListViewController: ProductTableViewCellDelegate {
-
     func didTapBuy(forProduct product: Product) {
         self.performSegue(withIdentifier: self.showCheckoutViewControllerSegueIdentifer, sender: product)
     }
-
 }
