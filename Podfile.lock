@@ -4,7 +4,7 @@ PODS:
     - SipHash (~> 1.2)
   - KeychainSwift (11.0.0)
   - MBProgressHUD (1.1.0)
-  - OmiseGO (0.10.0):
+  - OmiseGO (0.10.1):
     - BigInt (~> 3.1)
     - Starscream (~> 3.0)
   - SipHash (1.2.2)
@@ -18,7 +18,7 @@ DEPENDENCIES:
   - BigInt
   - KeychainSwift
   - MBProgressHUD
-  - OmiseGO
+  - OmiseGO (= 0.10.1)
   - SkyFloatingLabelTextField
   - Toaster
   - TPKeyboardAvoiding
@@ -41,13 +41,13 @@ SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   KeychainSwift: bea6bd9f98af7b8d7ca4aa79fe105c00fab532db
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  OmiseGO: 0e1085890abd69aeab20e28c9549e664bcf54fec
+  OmiseGO: e6b15cb9d3b9385722cabbefb714b4b54b82acc9
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SkyFloatingLabelTextField: 4cbeece9c3aae97c6019d8fae511cb5b755874f7
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   Toaster: a6c9532de1ded8105e77376f7dffeb2e12b46dbb
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: 7ec9cd0396d62425e5ab467c2c38a62a980d8251
+PODFILE CHECKSUM: e4836940048024c2b886abb1398587ee81c4fac5
 
 COCOAPODS: 1.5.3
