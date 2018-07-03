@@ -18,7 +18,7 @@ class TokenCellViewModel: BaseViewModel {
 
     init(balance: Balance, isSelected: Bool) {
         self.tokenSymbol = balance.token.symbol
-        self.tokenAmount = balance.displayAmount(withPrecision: 2)
+        self.tokenAmount = balance.displayAmount(withPrecision: 3)
         self.isSelected = isSelected
     }
 

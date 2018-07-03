@@ -47,8 +47,7 @@ class TransactionCellViewModel: BaseViewModel {
         case .rejected: statusText = "transactions.label.status.rejected".localized()
         }
         self.status = "- \(statusText!)"
-        let am = source.amount.quotientAndRemainder(dividingBy: source.token.subUnitToUnit)
-        let displayableAmount = "\(am.quotient).\(am.remainder)"
+        let displayableAmount = OMGNumberFormatter(precision: 5).string(from: source.amount, subunitToUnit: source.token.subUnitToUnit)
         amount = "\(sign!) \(displayableAmount) \(source.token.symbol)"
         timeStamp = transaction.createdAt.toString()
     }
