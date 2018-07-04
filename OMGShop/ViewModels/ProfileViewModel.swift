@@ -20,7 +20,7 @@ class ProfileViewModel: BaseViewModel {
 
     var name: String {
         guard let user = self.sessionManager.currentUser else { return "" }
-        return String(user.username.split(separator: "|").first ?? "")
+        return user.formattedUsername
     }
 
     var isLoading: Bool = false {

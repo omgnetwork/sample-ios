@@ -20,6 +20,12 @@ extension Token {
     }
 }
 
+extension User {
+    var formattedUsername: String {
+        return String(self.username.split(separator: "|").first ?? "")
+    }
+}
+
 extension UIColor {
     static func color(fromHexString: String, alpha: CGFloat? = 1.0) -> UIColor {
         let hexint = Int(colorInteger(fromHexString: fromHexString))

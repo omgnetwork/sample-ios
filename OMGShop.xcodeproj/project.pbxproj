@@ -73,6 +73,9 @@
 		03D218722073618A008FA1AE /* TRequestGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */; };
 		03D21874207361A5008FA1AE /* GenerateOrScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */; };
 		03D21876207361B3008FA1AE /* TRequestGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */; };
+		03D9DCFF20EB626A009F1B61 /* TransactionConsumptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9DCFD20EB626A009F1B61 /* TransactionConsumptionTableViewCell.swift */; };
+		03D9DD0020EB626A009F1B61 /* TransactionConsumptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03D9DCFE20EB626A009F1B61 /* TransactionConsumptionTableViewCell.xib */; };
+		03D9DD0220EB65EB009F1B61 /* TransactionConsumptionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9DD0120EB65EB009F1B61 /* TransactionConsumptionCellViewModel.swift */; };
 		03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DEC75B1FA81554009068AD /* ProductAPI.swift */; };
 		03F437F920760C6E00309EEA /* TRequestConsumerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F437F820760C6E00309EEA /* TRequestConsumerViewController.swift */; };
 		03F437FB20760C7C00309EEA /* TRequestConsumerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */; };
@@ -196,6 +199,9 @@
 		03D218712073618A008FA1AE /* TRequestGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestGeneratorViewController.swift; sourceTree = "<group>"; };
 		03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateOrScanViewModel.swift; sourceTree = "<group>"; };
 		03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestGeneratorViewModel.swift; sourceTree = "<group>"; };
+		03D9DCFD20EB626A009F1B61 /* TransactionConsumptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionTableViewCell.swift; sourceTree = "<group>"; };
+		03D9DCFE20EB626A009F1B61 /* TransactionConsumptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionConsumptionTableViewCell.xib; sourceTree = "<group>"; };
+		03D9DD0120EB65EB009F1B61 /* TransactionConsumptionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionConsumptionCellViewModel.swift; sourceTree = "<group>"; };
 		03DEC75B1FA81554009068AD /* ProductAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPI.swift; sourceTree = "<group>"; };
 		03F437F820760C6E00309EEA /* TRequestConsumerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestConsumerViewController.swift; sourceTree = "<group>"; };
 		03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRequestConsumerViewModel.swift; sourceTree = "<group>"; };
@@ -383,6 +389,7 @@
 				03C2C0821FBAE67A00B794AC /* TokenCellViewModel.swift */,
 				030AB356204CE9E000CBB68B /* TransactionsViewModel.swift */,
 				030AB35C204CEB3B00CBB68B /* TransactionCellViewModel.swift */,
+				03D9DD0120EB65EB009F1B61 /* TransactionConsumptionCellViewModel.swift */,
 				03D21873207361A5008FA1AE /* GenerateOrScanViewModel.swift */,
 				03D21875207361B3008FA1AE /* TRequestGeneratorViewModel.swift */,
 				03F437FA20760C7C00309EEA /* TRequestConsumerViewModel.swift */,
@@ -447,6 +454,8 @@
 				03C2C07F1FBAE54700B794AC /* TokenTableViewCell.xib */,
 				030AB358204CEABD00CBB68B /* TransactionTableViewCell.swift */,
 				030AB359204CEABD00CBB68B /* TransactionTableViewCell.xib */,
+				03D9DCFD20EB626A009F1B61 /* TransactionConsumptionTableViewCell.swift */,
+				03D9DCFE20EB626A009F1B61 /* TransactionConsumptionTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -624,6 +633,7 @@
 				03C601401FA6E3FC0033A0C7 /* Loading.storyboard in Resources */,
 				031BB1571F988E750095468F /* LaunchScreen.storyboard in Resources */,
 				031BB1591F988E750095468F /* Assets.xcassets in Resources */,
+				03D9DD0020EB626A009F1B61 /* TransactionConsumptionTableViewCell.xib in Resources */,
 				039F69D71F9EF84F00AE5355 /* ProductTableViewCell.xib in Resources */,
 				03C2C0811FBAE54700B794AC /* TokenTableViewCell.xib in Resources */,
 				039F69CE1F9EF55900AE5355 /* Register.storyboard in Resources */,
@@ -755,6 +765,7 @@
 				030AB35F204CF0C100CBB68B /* Paginator.swift in Sources */,
 				031BB16D1F98AF250095468F /* RegisterViewModel.swift in Sources */,
 				03DEC75C1FA81554009068AD /* ProductAPI.swift in Sources */,
+				03D9DCFF20EB626A009F1B61 /* TransactionConsumptionTableViewCell.swift in Sources */,
 				031BB15B1F988E8B0095468F /* BaseViewController.swift in Sources */,
 				039F69D01F9EF7BB00AE5355 /* ProductListViewController.swift in Sources */,
 				03A20C2920C77DB000ED0DFF /* TokenManager.swift in Sources */,
@@ -788,6 +799,7 @@
 				03CC0C9F1FA05B0900DB377C /* Checkout.swift in Sources */,
 				03D21870207341C2008FA1AE /* GenerateOrScanViewController.swift in Sources */,
 				03D21874207361A5008FA1AE /* GenerateOrScanViewModel.swift in Sources */,
+				03D9DD0220EB65EB009F1B61 /* TransactionConsumptionCellViewModel.swift in Sources */,
 				031BB15D1F988E930095468F /* BaseViewModel.swift in Sources */,
 				03BD53EA1F99D97B00A26499 /* OMGError.swift in Sources */,
 				03C601441FA6E46F0033A0C7 /* LoadingViewModel.swift in Sources */,

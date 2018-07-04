@@ -124,14 +124,7 @@
 
 // QRCode viewer
 
-"qrcode_viewer.label.waiting" = "Waiting for scan";
 "qrcode_viewer.alert.consumption_request.title" = "Consumption Request";
-"qrcode_viewer.alert.consumption_request.wants_to" = "wants to";
-"qrcode_viewer.alert.consumption_request.send_you" = "send you";
-"qrcode_viewer.alert.consumption_request.take_you" = "take you";
-"qrcode_viewer.alert.consumption_request.do_you_approve" = "do you want to approve this transaction?";
-"qrcode_viewer.alert.consumption_request.approve" = "Approve";
-"qrcode_viewer.alert.consumption_request.reject" = "Reject";
 "qrcode_viewer.message.successfully_approved" = "Transaction completed";
 "qrcode_viewer.message.successfully_rejected" = "Successfully rejected the transaction";
 "qrcode_viewer.message.successfully" = "Successfully";
@@ -140,7 +133,13 @@
 "qrcode_viewer.message.to" = "to";
 "qrcode_viewer.message.from" = "from";
 "qrcode_viewer.error.transaction_failed" = "Transaction failed to process";
-
+"qrcode_viewer.label.status.approved" = "Approved";
+"qrcode_viewer.label.status.confirmed" = "Confirmed";
+"qrcode_viewer.label.status.expired" = "Expired";
+"qrcode_viewer.label.status.failed" = "Failed";
+"qrcode_viewer.label.status.pending" = "Pending";
+"qrcode_viewer.label.status.rejected" = "Rejected";
+"qrcode_viewer.label.consumption_requests" = "Consumption requests:";
 
 // QRCode generator
 
