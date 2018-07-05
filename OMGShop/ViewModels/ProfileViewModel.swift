@@ -3,7 +3,7 @@
 //  OMGShop
 //
 //  Created by Mederic Petit on 1/11/17.
-//  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO
@@ -20,7 +20,7 @@ class ProfileViewModel: BaseViewModel {
 
     var name: String {
         guard let user = self.sessionManager.currentUser else { return "" }
-        return String(user.username.split(separator: "|").first ?? "")
+        return user.formattedUsername
     }
 
     var isLoading: Bool = false {

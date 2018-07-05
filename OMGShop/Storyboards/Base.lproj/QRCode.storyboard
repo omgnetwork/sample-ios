@@ -571,27 +571,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="znx-TG-ixF">
-                                <rect key="frame" x="16" y="130" width="343" height="343"/>
+                                <rect key="frame" x="87.5" y="8" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="znx-TG-ixF" secondAttribute="height" multiplier="1:1" id="oPz-YT-cNv"/>
+                                    <constraint firstAttribute="height" constant="200" id="q3V-hl-gS1"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for scan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJN-eW-CaG">
-                                <rect key="frame" x="16" y="16" width="343" height="98"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kkX-16-uo3">
+                                <rect key="frame" x="0.0" y="236" width="375" height="367"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yfu-Gx-lOE" id="TZ9-gb-hag"/>
+                                    <outlet property="delegate" destination="yfu-Gx-lOE" id="ABw-xn-mLs"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RU2-wj-Jmw">
+                                <rect key="frame" x="0.0" y="216" width="375" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consumption requests:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="67r-dx-0KZ">
+                                        <rect key="frame" x="16" y="0.0" width="343" height="20"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1019607843" green="0.32549019610000002" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="67r-dx-0KZ" secondAttribute="bottom" id="1em-jl-rg4"/>
+                                    <constraint firstAttribute="trailing" secondItem="67r-dx-0KZ" secondAttribute="trailing" constant="16" id="6wa-BN-tT1"/>
+                                    <constraint firstAttribute="height" constant="20" id="8xd-fP-sT4"/>
+                                    <constraint firstItem="67r-dx-0KZ" firstAttribute="leading" secondItem="RU2-wj-Jmw" secondAttribute="leading" constant="16" id="iF9-WA-Esa"/>
+                                    <constraint firstItem="67r-dx-0KZ" firstAttribute="top" secondItem="RU2-wj-Jmw" secondAttribute="top" id="s8b-lv-yYE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="UJN-eW-CaG" firstAttribute="top" secondItem="by5-db-PwH" secondAttribute="top" constant="16" id="0wN-XK-XyQ"/>
-                            <constraint firstItem="by5-db-PwH" firstAttribute="trailing" secondItem="znx-TG-ixF" secondAttribute="trailing" constant="16" id="5pK-zm-VIL"/>
-                            <constraint firstItem="znx-TG-ixF" firstAttribute="leading" secondItem="by5-db-PwH" secondAttribute="leading" constant="16" id="7q3-5i-bPD"/>
-                            <constraint firstItem="UJN-eW-CaG" firstAttribute="leading" secondItem="by5-db-PwH" secondAttribute="leading" constant="16" id="NpC-Yd-Z57"/>
-                            <constraint firstItem="znx-TG-ixF" firstAttribute="centerY" secondItem="WYy-s7-Lhg" secondAttribute="centerY" id="Q3s-5l-DpM"/>
-                            <constraint firstItem="znx-TG-ixF" firstAttribute="top" secondItem="UJN-eW-CaG" secondAttribute="bottom" constant="16" id="j8c-KX-wEs"/>
-                            <constraint firstItem="by5-db-PwH" firstAttribute="trailing" secondItem="UJN-eW-CaG" secondAttribute="trailing" constant="16" id="mtI-QS-0Kg"/>
+                            <constraint firstItem="by5-db-PwH" firstAttribute="bottom" secondItem="kkX-16-uo3" secondAttribute="bottom" id="3em-j5-tRQ"/>
+                            <constraint firstAttribute="trailing" secondItem="RU2-wj-Jmw" secondAttribute="trailing" id="Ad1-VY-8pm"/>
+                            <constraint firstItem="RU2-wj-Jmw" firstAttribute="leading" secondItem="by5-db-PwH" secondAttribute="leading" id="Kws-3O-rad"/>
+                            <constraint firstItem="znx-TG-ixF" firstAttribute="centerX" secondItem="WYy-s7-Lhg" secondAttribute="centerX" id="cza-wb-dU4"/>
+                            <constraint firstItem="znx-TG-ixF" firstAttribute="top" secondItem="by5-db-PwH" secondAttribute="top" constant="8" id="eh3-4G-mCg"/>
+                            <constraint firstItem="kkX-16-uo3" firstAttribute="top" secondItem="RU2-wj-Jmw" secondAttribute="bottom" id="gMW-iO-B14"/>
+                            <constraint firstItem="kkX-16-uo3" firstAttribute="leading" secondItem="by5-db-PwH" secondAttribute="leading" id="uUW-pw-5S9"/>
+                            <constraint firstItem="by5-db-PwH" firstAttribute="trailing" secondItem="kkX-16-uo3" secondAttribute="trailing" id="yvF-sk-d7K"/>
+                            <constraint firstItem="RU2-wj-Jmw" firstAttribute="top" secondItem="znx-TG-ixF" secondAttribute="bottom" constant="8" id="z7k-8n-Xlt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="by5-db-PwH"/>
                     </view>
@@ -600,13 +624,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="consumptionRequestsLabel" destination="67r-dx-0KZ" id="apx-aW-u5n"/>
                         <outlet property="qrImageView" destination="znx-TG-ixF" id="ice-BQ-0jS"/>
-                        <outlet property="waitingForScanLabel" destination="UJN-eW-CaG" id="GZQ-mN-sNe"/>
+                        <outlet property="transactionsTableView" destination="kkX-16-uo3" id="NWl-Xh-yLc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4y-1c-p7B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3406" y="1026"/>
+            <point key="canvasLocation" x="3405.5999999999999" y="1025.9370314842579"/>
         </scene>
         <!--Request Consumer View Controller-->
         <scene sceneID="lzd-WD-TVF">

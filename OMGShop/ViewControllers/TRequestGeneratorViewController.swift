@@ -3,7 +3,7 @@
 //  OMGShop
 //
 //  Created by Mederic Petit on 3/4/18.
-//  Copyright © 2018 Omise Go Ptd. Ltd. All rights reserved.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import OmiseGO

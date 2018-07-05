@@ -3,7 +3,7 @@
 //  OMGShop
 //
 //  Created by Mederic Petit on 20/10/17.
-//  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import BigInt
@@ -17,6 +17,12 @@ extension Token {
     func formattedAmount(forAmount amountString: String?) -> BigInt? {
         guard let amountString = amountString else { return nil }
         return OMGNumberFormatter().number(from: amountString, subunitToUnit: self.subUnitToUnit)
+    }
+}
+
+extension User {
+    var formattedUsername: String {
+        return String(self.username.split(separator: "|").first ?? "")
     }
 }
 

@@ -3,7 +3,7 @@
 //  OMGShop
 //
 //  Created by Mederic Petit on 5/4/18.
-//  Copyright © 2018 Omise Go Ptd. Ltd. All rights reserved.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 import BigInt
@@ -56,7 +56,7 @@ class TRequestConsumerViewModel: BaseViewModel {
 
     private var wallet: Wallet? {
         didSet {
-            self.addressDisplay = wallet?.address ?? ""
+            self.addressDisplay = self.wallet?.address ?? ""
         }
     }
 
