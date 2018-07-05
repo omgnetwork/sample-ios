@@ -13,7 +13,7 @@ target 'OMGShop' do
   pod 'Alamofire'
   pod 'KeychainSwift'
   pod 'BigInt'
-  pod 'OmiseGO', '0.10.1'
+  pod 'OmiseGO', '0.10.3'
 
   target 'OMGShopTests' do
     inherit! :search_paths
