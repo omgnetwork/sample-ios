@@ -3,7 +3,7 @@
 //  OMGShopTests
 //
 //  Created by Mederic Petit on 27/10/17.
-//  Copyright © 2017-2018 Omise Go Ptd. Ltd. All rights reserved.
+//  Copyright © 2017-2018 Omise Go Pte. Ltd. All rights reserved.
 //
 
 @testable import OMGShop
