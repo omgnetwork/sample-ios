@@ -15,7 +15,7 @@ The currency used is the Thai Baht (฿). The loyalty points received are OMGs (
 
 - iOS 10.0+
 - Xcode 9+
-- Swift 4.0
+- Swift 4.1
 
 ---
 
